@@ -1,0 +1,4 @@
+# Pin protobuf for all projects
+branch=21.x-20241125
+# strongly recommended: exact commit SHA
+commit=28b7c28078e90f40e55a407eceb5c2d81b7e8ccf
