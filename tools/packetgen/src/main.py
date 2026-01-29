@@ -6,8 +6,9 @@ def build_argparser():
     ap = argparse.ArgumentParser(description="Packet Generator Tool")
     ap.add_argument("--proto", required=True, help="Path to the .proto file")
     ap.add_argument("--start_id", type=int, default=1000)
-    ad.add_argument("--recv", default="C_")
-    ad.add_argument("--send", default="S_")
+    ap.add_argument("--recv", default="C_")
+    ap.add_argument("--send", default="S_")
+    ap.add_argument("--template", default="PacketHandler.j2")
     ap.add_argument("--template_dir", default="Templates")
     ap.add_argument("--out_dir", default="Generated")
     ap.add_argument("--name", default="PacketHandler")
@@ -31,7 +32,7 @@ def main():
     }
     
     # TODO: Template 파일도 명령행 인자로 받도록 수정 (PacketHandler.tpl)
-    gen.render("PacketHandler.tpl", f"{args.name}.h", ctx) 
+    gen.render(args.template, f"{args.name}.h", ctx) 
     
 if __name__ == "__main__":
     main()
