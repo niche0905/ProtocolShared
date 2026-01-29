@@ -32,7 +32,7 @@ def main():
     }
     
     # TODO: Template 파일도 명령행 인자로 받도록 수정 (PacketHandler.tpl)
-    gen.render(args.template, f"{args.name}.h", ctx) 
+    gen.render_to_file(args.template, f"{args.name}.h", ctx) 
     
 if __name__ == "__main__":
     main()
