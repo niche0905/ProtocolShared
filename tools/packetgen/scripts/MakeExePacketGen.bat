@@ -1,4 +1,4 @@
-﻿@echo off
+@echo off
 setlocal
 
 rem scripts 폴더 기준
