@@ -1,4 +1,4 @@
-﻿from dataclass import dataclass
+﻿from dataclasses  import dataclass
 from pathlib import Path
 import jinja2
 
