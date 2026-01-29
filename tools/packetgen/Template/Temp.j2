@@ -1,0 +1,76 @@
+#pragma once
+// #include ".proto file name here"
+
+#if UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1
+// #include "UE project use protocol header file here"
+#endif
+
+using PacketHandlerFunc = std::function<bool(std::shared_ptr<PacketSession>&, BYTE*, int32)>;
+extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
+
+enum : uint16
+{
+{% for packet in packets %}
+    PKT_{{ packet.name }} = {{ packet.id }},
+{% endfor %}
+};
+
+// Custom packet handler declaration
+bool Handle_INVALID(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
+
+{% for packet in recv_packets %}
+bool Handle_{{ packet.name }}(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
+{% endfor %}
+
+class {{outpout}}
+{
+public:
+    static void Init()
+    {
+        for (int32 i = 0; i < UINT16_MAX; i++) {
+            GPacketHandler[i] = Handle_INVALID;
+        }
+        
+{% for packet in recv_packets %}
+        GPacketHandler[PKT_{{ packet.name }}] = Handle_{{ packet.name }};
+{% endfor %}
+    }
+    
+{% for packet in send_packets %}
+    static std::shared_ptr<SendBuffer> MakeSendBuffer({{PackageName}}::{{packet.name}}& pkt) { return MakeSendBuffer(pkt, PKT_{{packet.name}}); }
+{% endfor %}
+
+private:
+    template<typename PacketType, typename ProcessFunc>
+    static bool HandlePacket(ProcessFunc func, std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len)
+    {
+        PacketType pkt;
+        if (pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false) {
+            return false;
+        }
+        return func(session, pkt);
+    }
+    
+    template<typename T>
+    static std::shared_ptr<SendBuffer> MakeSendBuffer(T& pkt, uint16 pktId)
+    {
+        const int16 dataSize = static_cast<int32>(pkt.ByteSizeLong());
+        const int16 packetSize = dataSize + sizeof(PacketHeader);
+        
+#if UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1
+        TSharedPtr<SendBuffer> sendBuffer = MakeShared<SendBuffer>(packetSize);
+#else
+        std::shared_ptr<SendBuffer> sendBuffer = std::make_shared<SendBuffer>(packetSize);
+#endif
+
+        PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
+        header->size = packetSize;
+        header->id = pktId;
+        ASSERT_CRASH(pkt.SerializeToArray(&header[1], dataSize));
+        
+        sendBuffer->Close(packetSize);
+        
+        return sendBuffer;
+    }
+    
+};
