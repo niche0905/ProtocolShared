@@ -1,0 +1,71 @@
+﻿syntax = "proto3";
+
+package se.common;
+
+import "common/common_enums.proto";
+
+/*
+ * 공용 결과 타입
+ * 모든 Res* 패킷에 포함되는 것을 권장
+ */
+message Result {
+  ErrorCode code = 1;
+  string message = 2;
+}
+
+/*
+ * 3D 벡터
+ * 좌표계는 서버 기준(right-handed / left-handed 여부는 문서로 고정)
+ */
+message Vector3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+/*
+ * 회전 정보 (월드 기준)
+ * FPS/TPS 서버 기준으로 yaw만 사용
+ */
+message Rotation {
+  float yaw = 1;
+}
+
+/*
+ * 조준 회전 정보 (상체/총 기준)
+ * - pitch: 상하 조준 각도
+ * - 애니메이션/IK/피격 방향 연출용
+ * - 서버 판정(히트스캔 등)에 사용 가능
+ */
+message AimRotation {
+  float pitch = 1;
+}
+
+/*
+ * 위치 + 회전 (정적 상태)
+ * 순간 스냅샷, 텔레포트, 초기 동기화 등에 사용
+ */
+message Transform {
+  Vector3 position = 1;
+  Rotation rotation = 2;
+}
+
+/*
+ * 이동 동기화용 최소 상태
+ * 서버 -> 클라이언트 브로드캐스트 기준
+ */
+message MovementState {
+  Vector3 position = 1;
+  float yaw = 2;
+
+  // 서버 시뮬레이션 기준 속도 (옵션)
+  float speed = 3;
+}
+
+/*
+ * 엔티티 식별용 공용 ID
+ * Player / NPC / Object 공통
+ */
+message EntityId {
+  uint64 value = 1;
+}
