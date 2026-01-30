@@ -1,0 +1,24 @@
+﻿syntax = "proto3";
+
+package se.options;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.MessageOptions {
+  uint32 packet_id = 50001;     // 패킷 ID
+  PacketDir dir    = 50002;     // 패킷 방향
+  PacketRoute route = 50003;    // 패킷 라우트
+}
+
+enum PacketDir {
+  DIR_NONE = 0;
+  C2S = 1;
+  S2C = 2;
+}
+
+enum PacketRoute {
+  ROUTE_NONE = 0;
+  AUTH  = 1;
+  LOBBY = 2;
+  ROOM  = 3;
+}
