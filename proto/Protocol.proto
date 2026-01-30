@@ -1,0 +1,29 @@
+﻿syntax = "proto3";
+
+package se.protocol;
+
+/*
+ * ===== Options / Common =====
+ */
+import "options/packet_options.proto";
+
+import "common/common_enums.proto";
+import "common/common_types.proto";
+
+/*
+ * ===== Auth Domain =====
+ */
+import "auth/types.proto";
+import "auth/messages.proto";
+
+/*
+ * ===== Lobby Domain =====
+ */
+import "lobby/types.proto";
+import "lobby/messages.proto";
+
+/*
+ * ===== Room(Game) Domain =====
+ */
+import "room/types.proto";
+import "room/messages.proto";
