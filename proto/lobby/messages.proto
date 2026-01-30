@@ -1,0 +1,77 @@
+﻿syntax = "proto3";
+
+package se.lobby;
+
+import "options/packet_options.proto";
+import "common/common_types.proto";
+import "lobby/types.proto";
+
+/*
+ * 로비 진입(초기 상태 요청)
+ */
+message C_LobbyEnterReq {
+  option (se.options.packet_id) = 2000;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = LOBBY;
+
+  // 필요 시: 클라 상태/마지막 로비 버전 등
+}
+
+message S_LobbyEnterRes {
+  option (se.options.packet_id) = 2001;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = LOBBY;
+
+  se.common.Result result = 1;
+
+  PlayerProfile profile = 2;
+}
+
+/*
+ * 매치메이킹 참가/취소
+ */
+message C_MatchQueueEnterReq {
+  option (se.options.packet_id) = 2010;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = LOBBY;
+
+  // 모드/난이도/지역 같은 매칭 파라미터 (최소 1개는 있어야 확장 쉬움)
+  uint32 playlist_id = 1;
+}
+
+message S_MatchQueueEnterRes {
+  option (se.options.packet_id) = 2011;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = LOBBY;
+
+  se.common.Result result = 1;
+  MatchTicket ticket = 2;
+}
+
+message C_MatchQueueCancelReq {
+  option (se.options.packet_id) = 2012;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = LOBBY;
+
+  MatchTicket ticket = 1;
+}
+
+message S_MatchQueueCancelRes {
+  option (se.options.packet_id) = 2013;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = LOBBY;
+
+  se.common.Result result = 1;
+}
+
+/*
+ * 매칭 완료 알림 (서버 -> 클라)
+ * 룸 서버 분리 여부와 상관없이 "이제 룸으로 가라"는 이벤트
+ */
+message N_MatchFound {
+  option (se.options.packet_id) = 2020;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = LOBBY;
+
+  RoomEndpoint room = 1;
+}

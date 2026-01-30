@@ -1,0 +1,23 @@
+﻿syntax = "proto3";
+
+package se.lobby;
+
+import "common/common_types.proto";
+
+message PlayerProfile {
+  se.common.EntityId player_id = 1;
+  string nickname = 2;
+  uint32 level = 3;
+}
+
+message MatchTicket {
+  uint64 ticket_id = 1;
+}
+
+message RoomEndpoint {
+  // 룸 식별자(혹은 shard 정보)
+  uint64 room_id = 3;
+
+  // 룸 입장 토큰(재사용/위조 방지)
+  string join_token = 4;
+}
