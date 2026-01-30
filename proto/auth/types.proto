@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+
+package se.auth;
+
+// 필요해지면 확장: token, platform, region 등
+message AuthToken {
+  string access_token = 1;
+}
