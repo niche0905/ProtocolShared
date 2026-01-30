@@ -1,0 +1,28 @@
+﻿syntax = "proto3";
+
+package se.common;
+
+/*
+ * 모든 응답 패킷에서 공용으로 사용하는 에러 코드
+ * 값은 절대 재사용 금지
+ */
+enum ErrorCode {
+  ERROR_NONE = 0;
+
+  // Common
+  ERROR_UNKNOWN = 1;
+  ERROR_INVALID_PACKET = 2;
+  ERROR_INVALID_STATE = 3;
+  ERROR_PERMISSION_DENIED = 4;
+
+  // Auth
+  ERROR_AUTH_FAILED = 100;
+  ERROR_ALREADY_LOGGED_IN = 101;
+
+  // Lobby
+  ERROR_INVALID_LOBBY = 200;
+
+  // Room
+  ERROR_INVALID_ROOM = 300;
+  ERROR_ROOM_FULL = 301;
+}
