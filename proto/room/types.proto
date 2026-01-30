@@ -1,0 +1,32 @@
+﻿syntax = "proto3";
+
+package se.room;
+
+import "common/common_types.proto";
+
+/*
+ * Room 참가자 정보
+ */
+message RoomPlayer {
+  se.common.EntityId entity_id = 1;
+  string nickname = 2;
+  bool is_ready = 3;
+}
+
+/*
+ * Room 초기 스냅샷
+ */
+message RoomSnapshot {
+  uint64 room_id = 1;
+
+  repeated RoomPlayer players = 2;
+}
+
+/*
+ * 서버 authoritative 엔티티 상태
+ */
+message EntityState {
+  se.common.EntityId entity_id = 1;
+  se.common.MovementState movement = 2;
+  se.common.AimRotation aim = 3;
+}

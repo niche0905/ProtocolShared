@@ -1,0 +1,103 @@
+﻿syntax = "proto3";
+
+package se.room;
+
+import "options/packet_options.proto";
+import "common/common_types.proto";
+import "room/types.proto";
+
+/*
+ * Ready / Start
+ */
+message C_RoomReadyReq {
+  option (se.options.packet_id) = 3010;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = ROOM;
+
+  bool ready = 1;
+}
+
+message N_RoomReadyChanged {
+  option (se.options.packet_id) = 3011;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = ROOM;
+
+  se.common.EntityId entity_id = 1;
+  bool ready = 2;
+}
+
+message N_GameStart {
+  option (se.options.packet_id) = 3020;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = ROOM;
+}
+
+/*
+ * ===== Input (Client -> Server) =====
+ * 클라는 "의도"만 보낸다
+ * TODO: 앞으론 클라이언트에서 이동을 확정하고 서버에서는 Broadcast만 한다
+ */
+message C_MoveInput {
+  option (se.options.packet_id) = 3100;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = ROOM;
+
+  // -1 ~ 1
+  float move_x = 1;
+  float move_y = 2;
+
+  float yaw = 3;
+}
+
+message C_AimInput {
+  option (se.options.packet_id) = 3101;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = ROOM;
+
+  float pitch = 1;
+}
+
+message C_FireReq {
+  option (se.options.packet_id) = 3110;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = ROOM;
+
+  uint32 weapon_id = 1;
+}
+
+/*
+ * ===== State / Event (Server -> Client) =====
+ */
+message S_EntityState {
+  option (se.options.packet_id) = 3200;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = ROOM;
+
+  repeated EntityState entities = 1;
+}
+
+message N_EntitySpawn {
+  option (se.options.packet_id) = 3210;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = ROOM;
+
+  EntityState entity = 1;
+}
+
+message N_EntityDespawn {
+  option (se.options.packet_id) = 3211;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = ROOM;
+
+  se.common.EntityId entity_id = 1;
+}
+
+message N_HitEvent {
+  option (se.options.packet_id) = 3220;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = ROOM;
+
+  se.common.EntityId attacker = 1;
+  se.common.EntityId victim = 2;
+  uint32 damage = 3;
+}
