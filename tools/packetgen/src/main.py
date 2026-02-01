@@ -15,6 +15,12 @@ def build_argparser():
         help="Path to the descriptor set (.desc)"
     )
     ap.add_argument(
+        "--protocol_include",
+        required=True,
+        default="Protocol.pb.h",
+        help="Protocol include path"
+    )
+    ap.add_argument(
         "--side",
         required=True,
         choices=["server", "client"],
@@ -49,6 +55,7 @@ def main():
     
     gen = Generator(GenConfig(template_dir=args.template_dir, out_dir=args.out_dir))
     ctx = {
+        "protocol_include": args.protocol_include,
         "packets": packets,
         "recv_packets": recv_packets,
         "send_packets": send_packets,
