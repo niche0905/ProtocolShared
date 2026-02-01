@@ -5,11 +5,11 @@ from typing import List
 
 MESSAGE_RE = re.compile(r'^\s*message\s+([A-Za-z_]\w*)\s*\{')
 
-@dataclass(frozen=True)
-class Packet:
-    name: str
-    id: int
-    direction: str # "recv" | "send" | "unknown"
+# @dataclass(frozen=True)
+# class Packet:
+#     name: str
+#     id: int
+#     direction: str # "recv" | "send" | "unknown"
     
 class ProtoReader:
     def __init__(self, start_id: int, recv_prefix: str, send_prefix: str):
