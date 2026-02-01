@@ -1,23 +1,10 @@
-﻿# DescReader.py
-from dataclasses import dataclass
+﻿from Model import Packet
 from typing import List, Optional, Tuple
 from google.protobuf import descriptor_pb2
-
-# packet_options.proto에서 정의한 extension field numbers
-FIELD_PACKET_ID = 50001
-FIELD_DIR       = 50002
-FIELD_ROUTE     = 50003
-
-# dir enum 값 (packet_options.proto 기준)
-DIR_C2S = 1
-DIR_S2C = 2
-
-@dataclass(frozen=True)
-class Packet:
-    name: str          # "se.auth.C_LoginReq" 같은 풀네임
-    id: int
-    direction: str     # "recv" | "send"
-    route: int         # 숫자 그대로(필요하면 문자열 매핑 가능)
+from Constants import (
+    FIELD_PACKET_ID, FIELD_DIR, FIELD_ROUTE,
+    DIR_C2S, DIR_S2C
+)
 
 def _read_varint(buf: bytes, i: int) -> Tuple[int, int]:
     """return (value, next_index)"""
@@ -87,17 +74,13 @@ class DescReader:
                 dir_val   = int(opts.get(FIELD_DIR, 0))
                 route_val = int(opts.get(FIELD_ROUTE, 0))
 
-                if dir_val == DIR_C2S:
-                    direction = "recv"  # 서버가 받는 패킷
-                elif dir_val == DIR_S2C:
-                    direction = "send"  # 서버가 보내는 패킷
-                else:
+                if dir_val not in (DIR_C2S, DIR_S2C):
                     continue
-
+                    
                 packets.append(Packet(
                     name=full_name,
                     id=packet_id,
-                    direction=direction,
+                    dir=dir_val,
                     route=route_val,
                 ))
 
