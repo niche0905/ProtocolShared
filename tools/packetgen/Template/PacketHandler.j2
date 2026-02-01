@@ -37,7 +37,7 @@ public:
     }
     
 {% for packet in send_packets %}
-    static std::shared_ptr<SendBuffer> MakeSendBuffer({{ cpp_type(packet) }}& pkt) { return MakeSendBuffer(pkt, PKT_{{ short_name(packet) }}); }
+    static std::shared_ptr<SendBuffer> MakeSendBuffer({{ cpp_type(packet.name) }}& pkt) { return MakeSendBuffer(pkt, PKT_{{ short_name(packet) }}); }
 {% endfor %}
 
 private:
