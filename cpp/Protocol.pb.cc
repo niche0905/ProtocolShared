@@ -33,25 +33,26 @@ static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\016Protocol.proto\022\013se.protocol\032\034options/p"
   "acket_options.proto\032\031common/common_enums"
-  ".proto\032\031common/common_types.proto\032\020auth/"
-  "types.proto\032\023auth/messages.proto\032\021lobby/"
-  "types.proto\032\024lobby/messages.proto\032\020room/"
-  "types.proto\032\023room/messages.protob\006proto3"
+  ".proto\032\031common/common_types.proto\032\025auth/"
+  "auth_types.proto\032\030auth/auth_messages.pro"
+  "to\032\027lobby/lobby_types.proto\032\032lobby/lobby"
+  "_messages.proto\032\025room/room_types.proto\032\030"
+  "room/room_messages.protob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[9] = {
-  &::descriptor_table_auth_2fmessages_2eproto,
-  &::descriptor_table_auth_2ftypes_2eproto,
+  &::descriptor_table_auth_2fauth_5fmessages_2eproto,
+  &::descriptor_table_auth_2fauth_5ftypes_2eproto,
   &::descriptor_table_common_2fcommon_5fenums_2eproto,
   &::descriptor_table_common_2fcommon_5ftypes_2eproto,
-  &::descriptor_table_lobby_2fmessages_2eproto,
-  &::descriptor_table_lobby_2ftypes_2eproto,
+  &::descriptor_table_lobby_2flobby_5fmessages_2eproto,
+  &::descriptor_table_lobby_2flobby_5ftypes_2eproto,
   &::descriptor_table_options_2fpacket_5foptions_2eproto,
-  &::descriptor_table_room_2fmessages_2eproto,
-  &::descriptor_table_room_2ftypes_2eproto,
+  &::descriptor_table_room_2froom_5fmessages_2eproto,
+  &::descriptor_table_room_2froom_5ftypes_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 240, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 272, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 9, 0,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,

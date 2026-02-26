@@ -4,7 +4,7 @@ package se.auth;
 
 import "options/packet_options.proto";
 import "common/common_types.proto";
-import "auth/types.proto";
+import "auth/auth_types.proto";
 
 message C_HandshakeReq {
   option (se.options.packet_id) = 1000;

@@ -4,7 +4,7 @@ package se.room;
 
 import "options/packet_options.proto";
 import "common/common_types.proto";
-import "room/types.proto";
+import "room/room_types.proto";
 
 /*
  * Ready / Start

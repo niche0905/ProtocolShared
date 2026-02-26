@@ -13,17 +13,17 @@ import "common/common_types.proto";
 /*
  * ===== Auth Domain =====
  */
-import "auth/types.proto";
-import "auth/messages.proto";
+import "auth/auth_types.proto";
+import "auth/auth_messages.proto";
 
 /*
  * ===== Lobby Domain =====
  */
-import "lobby/types.proto";
-import "lobby/messages.proto";
+import "lobby/lobby_types.proto";
+import "lobby/lobby_messages.proto";
 
 /*
  * ===== Room(Game) Domain =====
  */
-import "room/types.proto";
-import "room/messages.proto";
+import "room/room_types.proto";
+import "room/room_messages.proto";

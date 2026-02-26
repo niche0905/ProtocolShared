@@ -4,7 +4,7 @@ package se.lobby;
 
 import "options/packet_options.proto";
 import "common/common_types.proto";
-import "lobby/types.proto";
+import "lobby/lobby_types.proto";
 
 /*
  * 로비 진입(초기 상태 요청)
