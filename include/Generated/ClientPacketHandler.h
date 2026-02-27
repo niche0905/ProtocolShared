@@ -5,8 +5,16 @@
 // #include "UE project use protocol header file here"
 #endif
 
-using PacketHandlerFunc = std::function<bool(std::shared_ptr<PacketSession>&, BYTE*, int32)>;
+#if UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1
+using PacketSessionRef = TSharedPtr<PacketSession>;
+#else
+using PacketSessionRef = std::shared_ptr<PacketSession>;
+#endif
+
+using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
 extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
+
+using PacketHeader = Protocol::Framing::PacketHeader;
 
 enum : uint16
 {
@@ -36,21 +44,21 @@ enum : uint16
 };
 
 // Custom packet handler declaration
-bool Handle_INVALID(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
+bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
 
-bool Handle_S_HandshakeRes(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_S_LoginRes(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_S_Pong(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_S_LobbyEnterRes(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_S_MatchQueueEnterRes(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_S_MatchQueueCancelRes(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_N_MatchFound(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_N_RoomReadyChanged(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_N_GameStart(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_S_EntityState(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_N_EntitySpawn(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_N_EntityDespawn(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_N_HitEvent(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
+bool Handle_S_HandshakeRes(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_S_LoginRes(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_S_Pong(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_S_LobbyEnterRes(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_S_MatchQueueEnterRes(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_S_MatchQueueCancelRes(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_N_MatchFound(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_N_RoomReadyChanged(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_N_GameStart(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_S_EntityState(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_N_EntitySpawn(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_N_EntityDespawn(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_N_HitEvent(PacketSessionRef& session, BYTE* buffer, int32 len);
 
 class ClientPacketHandler
 {
@@ -87,9 +95,24 @@ public:
     static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::ROOM::C_AimInput& pkt) { return MakeSendBuffer(pkt, PKT_C_AimInput); }
     static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::ROOM::C_FireReq& pkt) { return MakeSendBuffer(pkt, PKT_C_FireReq); }
 
+public:
+    static bool Dispatch(PacketSessionRef& session, BYTE* buffer, int32 len)
+    {
+        if (len < static_cast<int32>(sizeof(PacketHeader)))
+            return false;
+
+        PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
+
+        // (선택) size 검증
+        if (header->size != len)
+            return false;
+
+        return GPacketHandler[header->id](session, buffer, len);
+    }
+
 private:
     template<typename PacketType, typename ProcessFunc>
-    static bool HandlePacket(ProcessFunc func, std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len)
+    static bool HandlePacket(ProcessFunc func, PacketSessionRef& session, BYTE* buffer, int32 len)
     {
         PacketType pkt;
         if (pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false) {

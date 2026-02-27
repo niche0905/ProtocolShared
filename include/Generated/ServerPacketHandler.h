@@ -5,8 +5,16 @@
 // #include "UE project use protocol header file here"
 #endif
 
-using PacketHandlerFunc = std::function<bool(std::shared_ptr<PacketSession>&, BYTE*, int32)>;
+#if UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1
+using PacketSessionRef = TSharedPtr<PacketSession>;
+#else
+using PacketSessionRef = std::shared_ptr<PacketSession>;
+#endif
+
+using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
 extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
+
+using PacketHeader = Protocol::Framing::PacketHeader;
 
 enum : uint16
 {
@@ -36,18 +44,18 @@ enum : uint16
 };
 
 // Custom packet handler declaration
-bool Handle_INVALID(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
+bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
 
-bool Handle_C_HandshakeReq(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_C_LoginReq(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_C_Ping(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_C_LobbyEnterReq(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_C_MatchQueueEnterReq(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_C_MatchQueueCancelReq(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_C_RoomReadyReq(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_C_MoveInput(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_C_AimInput(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
-bool Handle_C_FireReq(std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len);
+bool Handle_C_HandshakeReq(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_C_LoginReq(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_C_Ping(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_C_LobbyEnterReq(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_C_MatchQueueEnterReq(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_C_MatchQueueCancelReq(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_C_RoomReadyReq(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_C_MoveInput(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_C_AimInput(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_C_FireReq(PacketSessionRef& session, BYTE* buffer, int32 len);
 
 class ServerPacketHandler
 {
@@ -84,9 +92,24 @@ public:
     static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::ROOM::N_EntityDespawn& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityDespawn); }
     static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::ROOM::N_HitEvent& pkt) { return MakeSendBuffer(pkt, PKT_N_HitEvent); }
 
+public:
+    static bool Dispatch(PacketSessionRef& session, BYTE* buffer, int32 len)
+    {
+        if (len < static_cast<int32>(sizeof(PacketHeader)))
+            return false;
+
+        PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
+
+        // (선택) size 검증
+        if (header->size != len)
+            return false;
+
+        return GPacketHandler[header->id](session, buffer, len);
+    }
+
 private:
     template<typename PacketType, typename ProcessFunc>
-    static bool HandlePacket(ProcessFunc func, std::shared_ptr<PacketSession>& session, BYTE* buffer, int32 len)
+    static bool HandlePacket(ProcessFunc func, PacketSessionRef& session, BYTE* buffer, int32 len)
     {
         PacketType pkt;
         if (pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false) {
