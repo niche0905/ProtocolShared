@@ -19,4 +19,4 @@ namespace Protocol::Framing
 
 #pragma pack(pop)
 
-static_assert(sizeof(PacketHeader) == 4, "PacketHeader size must be 4 bytes");
+static_assert(sizeof(Protocol::Framing::PacketHeader) == 4, "PacketHeader size must be 4 bytes");
