@@ -3,9 +3,6 @@ tools/packetgen/build/
 tools/packetgen/__pycache__/
 tools/packetgen/src/__pycache__/
 
-# PyInstaller artifacts (혹시 생기면)
-*.spec
-
 # Python cache
 __pycache__/
 *.pyc

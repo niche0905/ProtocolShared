@@ -3,12 +3,27 @@
 
 #if UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1
 // #include "UE project use protocol header file here"
+#include "CoreMinimal.h"
+#include "Protocol/Framing/PacketHeader.h"
+#include "Network/PacketSession.h"
+
+#ifndef ASSERT_CRASH
+    #define ASSERT_CRASH(Expr) check(Expr)
+#endif
+#else
+#include <cassert>
+
+#ifndef ASSERT_CRASH
+    #define ASSERT_CRASH(Expr) assert(Expr)
+#endif
 #endif
 
 #if UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1
 using PacketSessionRef = TSharedPtr<PacketSession>;
+using SendBufferRef = TSharedPtr<SendBuffer>;
 #else
 using PacketSessionRef = std::shared_ptr<PacketSession>;
+using SendBufferRef = std::shared_ptr<SendBuffer>;
 #endif
 
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
@@ -84,16 +99,16 @@ public:
         GPacketHandler[PKT_N_HitEvent] = Handle_N_HitEvent;
     }
     
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::AUTH::C_HandshakeReq& pkt) { return MakeSendBuffer(pkt, PKT_C_HandshakeReq); }
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::AUTH::C_LoginReq& pkt) { return MakeSendBuffer(pkt, PKT_C_LoginReq); }
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::AUTH::C_Ping& pkt) { return MakeSendBuffer(pkt, PKT_C_Ping); }
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::LOBBY::C_LobbyEnterReq& pkt) { return MakeSendBuffer(pkt, PKT_C_LobbyEnterReq); }
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::LOBBY::C_MatchQueueEnterReq& pkt) { return MakeSendBuffer(pkt, PKT_C_MatchQueueEnterReq); }
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::LOBBY::C_MatchQueueCancelReq& pkt) { return MakeSendBuffer(pkt, PKT_C_MatchQueueCancelReq); }
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::ROOM::C_RoomReadyReq& pkt) { return MakeSendBuffer(pkt, PKT_C_RoomReadyReq); }
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::ROOM::C_MoveInput& pkt) { return MakeSendBuffer(pkt, PKT_C_MoveInput); }
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::ROOM::C_AimInput& pkt) { return MakeSendBuffer(pkt, PKT_C_AimInput); }
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(SE::ROOM::C_FireReq& pkt) { return MakeSendBuffer(pkt, PKT_C_FireReq); }
+    static SendBufferRef MakeSendBuffer(se::auth::C_HandshakeReq& pkt) { return MakeSendBuffer(pkt, PKT_C_HandshakeReq); }
+    static SendBufferRef MakeSendBuffer(se::auth::C_LoginReq& pkt) { return MakeSendBuffer(pkt, PKT_C_LoginReq); }
+    static SendBufferRef MakeSendBuffer(se::auth::C_Ping& pkt) { return MakeSendBuffer(pkt, PKT_C_Ping); }
+    static SendBufferRef MakeSendBuffer(se::lobby::C_LobbyEnterReq& pkt) { return MakeSendBuffer(pkt, PKT_C_LobbyEnterReq); }
+    static SendBufferRef MakeSendBuffer(se::lobby::C_MatchQueueEnterReq& pkt) { return MakeSendBuffer(pkt, PKT_C_MatchQueueEnterReq); }
+    static SendBufferRef MakeSendBuffer(se::lobby::C_MatchQueueCancelReq& pkt) { return MakeSendBuffer(pkt, PKT_C_MatchQueueCancelReq); }
+    static SendBufferRef MakeSendBuffer(se::room::C_RoomReadyReq& pkt) { return MakeSendBuffer(pkt, PKT_C_RoomReadyReq); }
+    static SendBufferRef MakeSendBuffer(se::room::C_MoveInput& pkt) { return MakeSendBuffer(pkt, PKT_C_MoveInput); }
+    static SendBufferRef MakeSendBuffer(se::room::C_AimInput& pkt) { return MakeSendBuffer(pkt, PKT_C_AimInput); }
+    static SendBufferRef MakeSendBuffer(se::room::C_FireReq& pkt) { return MakeSendBuffer(pkt, PKT_C_FireReq); }
 
 public:
     static bool Dispatch(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -103,11 +118,10 @@ public:
 
         PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
 
-        // (선택) size 검증
-        if (header->size != len)
+        if (header->packetSize != len)
             return false;
 
-        return GPacketHandler[header->id](session, buffer, len);
+        return GPacketHandler[header->messageId](session, buffer, len);
     }
 
 private:
@@ -122,20 +136,20 @@ private:
     }
     
     template<typename T>
-    static std::shared_ptr<SendBuffer> MakeSendBuffer(T& pkt, uint16 pktId)
+    static SendBufferRef MakeSendBuffer(T& pkt, uint16 pktId)
     {
         const int16 dataSize = static_cast<int32>(pkt.ByteSizeLong());
         const int16 packetSize = dataSize + sizeof(PacketHeader);
         
 #if UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1
-        TSharedPtr<SendBuffer> sendBuffer = MakeShared<SendBuffer>(packetSize);
+        SendBufferRef sendBuffer = MakeShared<SendBuffer>(packetSize);
 #else
-        std::shared_ptr<SendBuffer> sendBuffer = std::make_shared<SendBuffer>(packetSize);
+        SendBufferRef sendBuffer = std::make_shared<SendBuffer>(packetSize);
 #endif
 
         PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
-        header->size = packetSize;
-        header->id = pktId;
+        header->packetSize = packetSize;
+        header->messageId = pktId;
         ASSERT_CRASH(pkt.SerializeToArray(&header[1], dataSize));
         
         sendBuffer->Close(packetSize);

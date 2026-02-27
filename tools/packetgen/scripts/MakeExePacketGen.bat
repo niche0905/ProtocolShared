@@ -10,7 +10,7 @@ for %%I in ("%ROOT%") do set ROOT=%%~fI
 
 set OUTBIN=%ROOT%\bin
 set EXENAME=GenPackets
-set SPECPATH=%ROOT%\tools\packetgen\build\spec\GenPackets.spec
+set SPECPATH=%ROOT%\tools\packetgen\spec\GenPackets.spec
 
 if not exist "%OUTBIN%" mkdir "%OUTBIN%"
 

@@ -15,7 +15,7 @@ def cpp_type(full_name: str) -> str:
     -> C++ type (e.g. SE::ROOM::C_EnterReq)
     """
     parts = full_name.split('.')
-    namespaces = [p.upper() for p in parts[:-1]]
+    namespaces = [p.lower() for p in parts[:-1]]
     type_name = parts[-1]
 
     return "::".join(namespaces + [type_name])
