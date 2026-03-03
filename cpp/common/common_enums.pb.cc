@@ -31,18 +31,17 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 
 const char descriptor_table_protodef_common_2fcommon_5fenums_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\031common/common_enums.proto\022\tse.common*\373"
-  "\001\n\tErrorCode\022\016\n\nERROR_NONE\020\000\022\021\n\rERROR_UN"
-  "KNOWN\020\001\022\030\n\024ERROR_INVALID_PACKET\020\002\022\027\n\023ERR"
-  "OR_INVALID_STATE\020\003\022\033\n\027ERROR_PERMISSION_D"
-  "ENIED\020\004\022\025\n\021ERROR_AUTH_FAILED\020d\022\033\n\027ERROR_"
-  "ALREADY_LOGGED_IN\020e\022\030\n\023ERROR_INVALID_LOB"
-  "BY\020\310\001\022\027\n\022ERROR_INVALID_ROOM\020\254\002\022\024\n\017ERROR_"
-  "ROOM_FULL\020\255\002b\006proto3"
+  "\n\031common/common_enums.proto\022\tse.common*\347"
+  "\001\n\tErrorCode\022\014\n\010ERR_NONE\020\000\022\017\n\013ERR_UNKNOW"
+  "N\020\001\022\026\n\022ERR_INVALID_PACKET\020\002\022\025\n\021ERR_INVAL"
+  "ID_STATE\020\003\022\031\n\025ERR_PERMISSION_DENIED\020\004\022\023\n"
+  "\017ERR_AUTH_FAILED\020d\022\031\n\025ERR_ALREADY_LOGGED"
+  "_IN\020e\022\026\n\021ERR_INVALID_LOBBY\020\310\001\022\025\n\020ERR_INV"
+  "ALID_ROOM\020\254\002\022\022\n\rERR_ROOM_FULL\020\255\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_common_2fcommon_5fenums_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fcommon_5fenums_2eproto = {
-    false, false, 300, descriptor_table_protodef_common_2fcommon_5fenums_2eproto,
+    false, false, 280, descriptor_table_protodef_common_2fcommon_5fenums_2eproto,
     "common/common_enums.proto",
     &descriptor_table_common_2fcommon_5fenums_2eproto_once, nullptr, 0, 0,
     schemas, file_default_instances, TableStruct_common_2fcommon_5fenums_2eproto::offsets,

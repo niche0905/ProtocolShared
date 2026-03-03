@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Protocol.pb.h"
+#include "Protocol/Framing/PacketHeader.h"
 
 #if UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1
 // #include "UE project use protocol header file here"
@@ -12,6 +13,8 @@
 #endif
 #else
 #include <cassert>
+#include "Network/Session/PacketSession.h"
+#include "Network/Buffer/SendBuffer.h"
 
 #ifndef ASSERT_CRASH
     #define ASSERT_CRASH(Expr) assert(Expr)

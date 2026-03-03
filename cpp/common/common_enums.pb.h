@@ -49,22 +49,22 @@ namespace se {
 namespace common {
 
 enum ErrorCode : int {
-  ERROR_NONE = 0,
-  ERROR_UNKNOWN = 1,
-  ERROR_INVALID_PACKET = 2,
-  ERROR_INVALID_STATE = 3,
-  ERROR_PERMISSION_DENIED = 4,
-  ERROR_AUTH_FAILED = 100,
-  ERROR_ALREADY_LOGGED_IN = 101,
-  ERROR_INVALID_LOBBY = 200,
-  ERROR_INVALID_ROOM = 300,
-  ERROR_ROOM_FULL = 301,
+  ERR_NONE = 0,
+  ERR_UNKNOWN = 1,
+  ERR_INVALID_PACKET = 2,
+  ERR_INVALID_STATE = 3,
+  ERR_PERMISSION_DENIED = 4,
+  ERR_AUTH_FAILED = 100,
+  ERR_ALREADY_LOGGED_IN = 101,
+  ERR_INVALID_LOBBY = 200,
+  ERR_INVALID_ROOM = 300,
+  ERR_ROOM_FULL = 301,
   ErrorCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   ErrorCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool ErrorCode_IsValid(int value);
-constexpr ErrorCode ErrorCode_MIN = ERROR_NONE;
-constexpr ErrorCode ErrorCode_MAX = ERROR_ROOM_FULL;
+constexpr ErrorCode ErrorCode_MIN = ERR_NONE;
+constexpr ErrorCode ErrorCode_MAX = ERR_ROOM_FULL;
 constexpr int ErrorCode_ARRAYSIZE = ErrorCode_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ErrorCode_descriptor();
