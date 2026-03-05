@@ -62,9 +62,7 @@ struct N_GameStartDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 N_GameStartDefaultTypeInternal _N_GameStart_default_instance_;
 PROTOBUF_CONSTEXPR C_MoveInput::C_MoveInput(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.move_x_)*/0
-  , /*decltype(_impl_.move_y_)*/0
-  , /*decltype(_impl_.yaw_)*/0
+    /*decltype(_impl_.entity_state_)*/nullptr
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct C_MoveInputDefaultTypeInternal {
   PROTOBUF_CONSTEXPR C_MoveInputDefaultTypeInternal()
@@ -189,9 +187,7 @@ const uint32_t TableStruct_room_2froom_5fmessages_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::se::room::C_MoveInput, _impl_.move_x_),
-  PROTOBUF_FIELD_OFFSET(::se::room::C_MoveInput, _impl_.move_y_),
-  PROTOBUF_FIELD_OFFSET(::se::room::C_MoveInput, _impl_.yaw_),
+  PROTOBUF_FIELD_OFFSET(::se::room::C_MoveInput, _impl_.entity_state_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::se::room::C_AimInput, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -242,12 +238,12 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 7, -1, -1, sizeof(::se::room::N_RoomReadyChanged)},
   { 15, -1, -1, sizeof(::se::room::N_GameStart)},
   { 21, -1, -1, sizeof(::se::room::C_MoveInput)},
-  { 30, -1, -1, sizeof(::se::room::C_AimInput)},
-  { 37, -1, -1, sizeof(::se::room::C_FireReq)},
-  { 44, -1, -1, sizeof(::se::room::S_EntityState)},
-  { 51, -1, -1, sizeof(::se::room::N_EntitySpawn)},
-  { 58, -1, -1, sizeof(::se::room::N_EntityDespawn)},
-  { 65, -1, -1, sizeof(::se::room::N_HitEvent)},
+  { 28, -1, -1, sizeof(::se::room::C_AimInput)},
+  { 35, -1, -1, sizeof(::se::room::C_FireReq)},
+  { 42, -1, -1, sizeof(::se::room::S_EntityState)},
+  { 49, -1, -1, sizeof(::se::room::N_EntitySpawn)},
+  { 56, -1, -1, sizeof(::se::room::N_EntityDespawn)},
+  { 63, -1, -1, sizeof(::se::room::N_HitEvent)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -271,19 +267,19 @@ const char descriptor_table_protodef_room_2froom_5fmessages_2eproto[] PROTOBUF_S
   "\265\030\003\"Z\n\022N_RoomReadyChanged\022&\n\tentity_id\030\001"
   " \001(\0132\023.se.common.EntityId\022\r\n\005ready\030\002 \001(\010"
   ":\r\210\265\030\303\027\220\265\030\002\230\265\030\003\"\034\n\013N_GameStart:\r\210\265\030\314\027\220\265\030"
-  "\002\230\265\030\003\"I\n\013C_MoveInput\022\016\n\006move_x\030\001 \001(\002\022\016\n\006"
-  "move_y\030\002 \001(\002\022\013\n\003yaw\030\003 \001(\002:\r\210\265\030\234\030\220\265\030\001\230\265\030\003"
-  "\"*\n\nC_AimInput\022\r\n\005pitch\030\001 \001(\002:\r\210\265\030\235\030\220\265\030\001"
-  "\230\265\030\003\"-\n\tC_FireReq\022\021\n\tweapon_id\030\001 \001(\r:\r\210\265"
-  "\030\246\030\220\265\030\001\230\265\030\003\"F\n\rS_EntityState\022&\n\010entities"
-  "\030\001 \003(\0132\024.se.room.EntityState:\r\210\265\030\200\031\220\265\030\002\230"
-  "\265\030\003\"D\n\rN_EntitySpawn\022$\n\006entity\030\001 \001(\0132\024.s"
-  "e.room.EntityState:\r\210\265\030\212\031\220\265\030\002\230\265\030\003\"H\n\017N_E"
-  "ntityDespawn\022&\n\tentity_id\030\001 \001(\0132\023.se.com"
-  "mon.EntityId:\r\210\265\030\213\031\220\265\030\002\230\265\030\003\"w\n\nN_HitEven"
-  "t\022%\n\010attacker\030\001 \001(\0132\023.se.common.EntityId"
-  "\022#\n\006victim\030\002 \001(\0132\023.se.common.EntityId\022\016\n"
-  "\006damage\030\003 \001(\r:\r\210\265\030\224\031\220\265\030\002\230\265\030\003b\006proto3"
+  "\002\230\265\030\003\"H\n\013C_MoveInput\022*\n\014entity_state\030\001 \001"
+  "(\0132\024.se.room.EntityState:\r\210\265\030\234\030\220\265\030\001\230\265\030\003\""
+  "*\n\nC_AimInput\022\r\n\005pitch\030\001 \001(\002:\r\210\265\030\235\030\220\265\030\001\230"
+  "\265\030\003\"-\n\tC_FireReq\022\021\n\tweapon_id\030\001 \001(\r:\r\210\265\030"
+  "\246\030\220\265\030\001\230\265\030\003\"F\n\rS_EntityState\022&\n\010entities\030"
+  "\001 \003(\0132\024.se.room.EntityState:\r\210\265\030\200\031\220\265\030\002\230\265"
+  "\030\003\"D\n\rN_EntitySpawn\022$\n\006entity\030\001 \001(\0132\024.se"
+  ".room.EntityState:\r\210\265\030\212\031\220\265\030\002\230\265\030\003\"H\n\017N_En"
+  "tityDespawn\022&\n\tentity_id\030\001 \001(\0132\023.se.comm"
+  "on.EntityId:\r\210\265\030\213\031\220\265\030\002\230\265\030\003\"w\n\nN_HitEvent"
+  "\022%\n\010attacker\030\001 \001(\0132\023.se.common.EntityId\022"
+  "#\n\006victim\030\002 \001(\0132\023.se.common.EntityId\022\016\n\006"
+  "damage\030\003 \001(\r:\r\210\265\030\224\031\220\265\030\002\230\265\030\003b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_room_2froom_5fmessages_2eproto_deps[3] = {
   &::descriptor_table_common_2fcommon_5ftypes_2eproto,
@@ -292,7 +288,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_room_2froom_5fmessa
 };
 static ::_pbi::once_flag descriptor_table_room_2froom_5fmessages_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_room_2froom_5fmessages_2eproto = {
-    false, false, 796, descriptor_table_protodef_room_2froom_5fmessages_2eproto,
+    false, false, 795, descriptor_table_protodef_room_2froom_5fmessages_2eproto,
     "room/room_messages.proto",
     &descriptor_table_room_2froom_5fmessages_2eproto_once, descriptor_table_room_2froom_5fmessages_2eproto_deps, 3, 10,
     schemas, file_default_instances, TableStruct_room_2froom_5fmessages_2eproto::offsets,
@@ -760,8 +756,19 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*N_GameStart::GetClassData() co
 
 class C_MoveInput::_Internal {
  public:
+  static const ::se::room::EntityState& entity_state(const C_MoveInput* msg);
 };
 
+const ::se::room::EntityState&
+C_MoveInput::_Internal::entity_state(const C_MoveInput* msg) {
+  return *msg->_impl_.entity_state_;
+}
+void C_MoveInput::clear_entity_state() {
+  if (GetArenaForAllocation() == nullptr && _impl_.entity_state_ != nullptr) {
+    delete _impl_.entity_state_;
+  }
+  _impl_.entity_state_ = nullptr;
+}
 C_MoveInput::C_MoveInput(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -772,15 +779,13 @@ C_MoveInput::C_MoveInput(const C_MoveInput& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   C_MoveInput* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.move_x_){}
-    , decltype(_impl_.move_y_){}
-    , decltype(_impl_.yaw_){}
+      decltype(_impl_.entity_state_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.move_x_, &from._impl_.move_x_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.yaw_) -
-    reinterpret_cast<char*>(&_impl_.move_x_)) + sizeof(_impl_.yaw_));
+  if (from._internal_has_entity_state()) {
+    _this->_impl_.entity_state_ = new ::se::room::EntityState(*from._impl_.entity_state_);
+  }
   // @@protoc_insertion_point(copy_constructor:se.room.C_MoveInput)
 }
 
@@ -789,9 +794,7 @@ inline void C_MoveInput::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.move_x_){0}
-    , decltype(_impl_.move_y_){0}
-    , decltype(_impl_.yaw_){0}
+      decltype(_impl_.entity_state_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -807,6 +810,7 @@ C_MoveInput::~C_MoveInput() {
 
 inline void C_MoveInput::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.entity_state_;
 }
 
 void C_MoveInput::SetCachedSize(int size) const {
@@ -819,9 +823,10 @@ void C_MoveInput::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.move_x_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.yaw_) -
-      reinterpret_cast<char*>(&_impl_.move_x_)) + sizeof(_impl_.yaw_));
+  if (GetArenaForAllocation() == nullptr && _impl_.entity_state_ != nullptr) {
+    delete _impl_.entity_state_;
+  }
+  _impl_.entity_state_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -831,27 +836,11 @@ const char* C_MoveInput::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // float move_x = 1;
+      // .se.room.EntityState entity_state = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
-          _impl_.move_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
-        } else
-          goto handle_unusual;
-        continue;
-      // float move_y = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          _impl_.move_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
-        } else
-          goto handle_unusual;
-        continue;
-      // float yaw = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
-          _impl_.yaw_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_entity_state(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -884,34 +873,11 @@ uint8_t* C_MoveInput::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // float move_x = 1;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_move_x = this->_internal_move_x();
-  uint32_t raw_move_x;
-  memcpy(&raw_move_x, &tmp_move_x, sizeof(tmp_move_x));
-  if (raw_move_x != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_move_x(), target);
-  }
-
-  // float move_y = 2;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_move_y = this->_internal_move_y();
-  uint32_t raw_move_y;
-  memcpy(&raw_move_y, &tmp_move_y, sizeof(tmp_move_y));
-  if (raw_move_y != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_move_y(), target);
-  }
-
-  // float yaw = 3;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_yaw = this->_internal_yaw();
-  uint32_t raw_yaw;
-  memcpy(&raw_yaw, &tmp_yaw, sizeof(tmp_yaw));
-  if (raw_yaw != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_yaw(), target);
+  // .se.room.EntityState entity_state = 1;
+  if (this->_internal_has_entity_state()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::entity_state(this),
+        _Internal::entity_state(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -930,31 +896,11 @@ size_t C_MoveInput::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // float move_x = 1;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_move_x = this->_internal_move_x();
-  uint32_t raw_move_x;
-  memcpy(&raw_move_x, &tmp_move_x, sizeof(tmp_move_x));
-  if (raw_move_x != 0) {
-    total_size += 1 + 4;
-  }
-
-  // float move_y = 2;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_move_y = this->_internal_move_y();
-  uint32_t raw_move_y;
-  memcpy(&raw_move_y, &tmp_move_y, sizeof(tmp_move_y));
-  if (raw_move_y != 0) {
-    total_size += 1 + 4;
-  }
-
-  // float yaw = 3;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_yaw = this->_internal_yaw();
-  uint32_t raw_yaw;
-  memcpy(&raw_yaw, &tmp_yaw, sizeof(tmp_yaw));
-  if (raw_yaw != 0) {
-    total_size += 1 + 4;
+  // .se.room.EntityState entity_state = 1;
+  if (this->_internal_has_entity_state()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.entity_state_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -975,26 +921,9 @@ void C_MoveInput::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PR
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_move_x = from._internal_move_x();
-  uint32_t raw_move_x;
-  memcpy(&raw_move_x, &tmp_move_x, sizeof(tmp_move_x));
-  if (raw_move_x != 0) {
-    _this->_internal_set_move_x(from._internal_move_x());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_move_y = from._internal_move_y();
-  uint32_t raw_move_y;
-  memcpy(&raw_move_y, &tmp_move_y, sizeof(tmp_move_y));
-  if (raw_move_y != 0) {
-    _this->_internal_set_move_y(from._internal_move_y());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_yaw = from._internal_yaw();
-  uint32_t raw_yaw;
-  memcpy(&raw_yaw, &tmp_yaw, sizeof(tmp_yaw));
-  if (raw_yaw != 0) {
-    _this->_internal_set_yaw(from._internal_yaw());
+  if (from._internal_has_entity_state()) {
+    _this->_internal_mutable_entity_state()->::se::room::EntityState::MergeFrom(
+        from._internal_entity_state());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1013,12 +942,7 @@ bool C_MoveInput::IsInitialized() const {
 void C_MoveInput::InternalSwap(C_MoveInput* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(C_MoveInput, _impl_.yaw_)
-      + sizeof(C_MoveInput::_impl_.yaw_)
-      - PROTOBUF_FIELD_OFFSET(C_MoveInput, _impl_.move_x_)>(
-          reinterpret_cast<char*>(&_impl_.move_x_),
-          reinterpret_cast<char*>(&other->_impl_.move_x_));
+  swap(_impl_.entity_state_, other->_impl_.entity_state_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata C_MoveInput::GetMetadata() const {

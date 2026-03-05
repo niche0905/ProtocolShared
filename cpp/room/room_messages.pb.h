@@ -654,36 +654,25 @@ class C_MoveInput final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kMoveXFieldNumber = 1,
-    kMoveYFieldNumber = 2,
-    kYawFieldNumber = 3,
+    kEntityStateFieldNumber = 1,
   };
-  // float move_x = 1;
-  void clear_move_x();
-  float move_x() const;
-  void set_move_x(float value);
+  // .se.room.EntityState entity_state = 1;
+  bool has_entity_state() const;
   private:
-  float _internal_move_x() const;
-  void _internal_set_move_x(float value);
+  bool _internal_has_entity_state() const;
   public:
-
-  // float move_y = 2;
-  void clear_move_y();
-  float move_y() const;
-  void set_move_y(float value);
+  void clear_entity_state();
+  const ::se::room::EntityState& entity_state() const;
+  PROTOBUF_NODISCARD ::se::room::EntityState* release_entity_state();
+  ::se::room::EntityState* mutable_entity_state();
+  void set_allocated_entity_state(::se::room::EntityState* entity_state);
   private:
-  float _internal_move_y() const;
-  void _internal_set_move_y(float value);
+  const ::se::room::EntityState& _internal_entity_state() const;
+  ::se::room::EntityState* _internal_mutable_entity_state();
   public:
-
-  // float yaw = 3;
-  void clear_yaw();
-  float yaw() const;
-  void set_yaw(float value);
-  private:
-  float _internal_yaw() const;
-  void _internal_set_yaw(float value);
-  public:
+  void unsafe_arena_set_allocated_entity_state(
+      ::se::room::EntityState* entity_state);
+  ::se::room::EntityState* unsafe_arena_release_entity_state();
 
   // @@protoc_insertion_point(class_scope:se.room.C_MoveInput)
  private:
@@ -693,9 +682,7 @@ class C_MoveInput final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    float move_x_;
-    float move_y_;
-    float yaw_;
+    ::se::room::EntityState* entity_state_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1804,64 +1791,89 @@ inline void N_RoomReadyChanged::set_ready(bool value) {
 
 // C_MoveInput
 
-// float move_x = 1;
-inline void C_MoveInput::clear_move_x() {
-  _impl_.move_x_ = 0;
+// .se.room.EntityState entity_state = 1;
+inline bool C_MoveInput::_internal_has_entity_state() const {
+  return this != internal_default_instance() && _impl_.entity_state_ != nullptr;
 }
-inline float C_MoveInput::_internal_move_x() const {
-  return _impl_.move_x_;
+inline bool C_MoveInput::has_entity_state() const {
+  return _internal_has_entity_state();
 }
-inline float C_MoveInput::move_x() const {
-  // @@protoc_insertion_point(field_get:se.room.C_MoveInput.move_x)
-  return _internal_move_x();
+inline const ::se::room::EntityState& C_MoveInput::_internal_entity_state() const {
+  const ::se::room::EntityState* p = _impl_.entity_state_;
+  return p != nullptr ? *p : reinterpret_cast<const ::se::room::EntityState&>(
+      ::se::room::_EntityState_default_instance_);
 }
-inline void C_MoveInput::_internal_set_move_x(float value) {
+inline const ::se::room::EntityState& C_MoveInput::entity_state() const {
+  // @@protoc_insertion_point(field_get:se.room.C_MoveInput.entity_state)
+  return _internal_entity_state();
+}
+inline void C_MoveInput::unsafe_arena_set_allocated_entity_state(
+    ::se::room::EntityState* entity_state) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.entity_state_);
+  }
+  _impl_.entity_state_ = entity_state;
+  if (entity_state) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.room.C_MoveInput.entity_state)
+}
+inline ::se::room::EntityState* C_MoveInput::release_entity_state() {
   
-  _impl_.move_x_ = value;
+  ::se::room::EntityState* temp = _impl_.entity_state_;
+  _impl_.entity_state_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-inline void C_MoveInput::set_move_x(float value) {
-  _internal_set_move_x(value);
-  // @@protoc_insertion_point(field_set:se.room.C_MoveInput.move_x)
-}
-
-// float move_y = 2;
-inline void C_MoveInput::clear_move_y() {
-  _impl_.move_y_ = 0;
-}
-inline float C_MoveInput::_internal_move_y() const {
-  return _impl_.move_y_;
-}
-inline float C_MoveInput::move_y() const {
-  // @@protoc_insertion_point(field_get:se.room.C_MoveInput.move_y)
-  return _internal_move_y();
-}
-inline void C_MoveInput::_internal_set_move_y(float value) {
+inline ::se::room::EntityState* C_MoveInput::unsafe_arena_release_entity_state() {
+  // @@protoc_insertion_point(field_release:se.room.C_MoveInput.entity_state)
   
-  _impl_.move_y_ = value;
+  ::se::room::EntityState* temp = _impl_.entity_state_;
+  _impl_.entity_state_ = nullptr;
+  return temp;
 }
-inline void C_MoveInput::set_move_y(float value) {
-  _internal_set_move_y(value);
-  // @@protoc_insertion_point(field_set:se.room.C_MoveInput.move_y)
-}
-
-// float yaw = 3;
-inline void C_MoveInput::clear_yaw() {
-  _impl_.yaw_ = 0;
-}
-inline float C_MoveInput::_internal_yaw() const {
-  return _impl_.yaw_;
-}
-inline float C_MoveInput::yaw() const {
-  // @@protoc_insertion_point(field_get:se.room.C_MoveInput.yaw)
-  return _internal_yaw();
-}
-inline void C_MoveInput::_internal_set_yaw(float value) {
+inline ::se::room::EntityState* C_MoveInput::_internal_mutable_entity_state() {
   
-  _impl_.yaw_ = value;
+  if (_impl_.entity_state_ == nullptr) {
+    auto* p = CreateMaybeMessage<::se::room::EntityState>(GetArenaForAllocation());
+    _impl_.entity_state_ = p;
+  }
+  return _impl_.entity_state_;
 }
-inline void C_MoveInput::set_yaw(float value) {
-  _internal_set_yaw(value);
-  // @@protoc_insertion_point(field_set:se.room.C_MoveInput.yaw)
+inline ::se::room::EntityState* C_MoveInput::mutable_entity_state() {
+  ::se::room::EntityState* _msg = _internal_mutable_entity_state();
+  // @@protoc_insertion_point(field_mutable:se.room.C_MoveInput.entity_state)
+  return _msg;
+}
+inline void C_MoveInput::set_allocated_entity_state(::se::room::EntityState* entity_state) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.entity_state_);
+  }
+  if (entity_state) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(entity_state));
+    if (message_arena != submessage_arena) {
+      entity_state = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, entity_state, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.entity_state_ = entity_state;
+  // @@protoc_insertion_point(field_set_allocated:se.room.C_MoveInput.entity_state)
 }
 
 // -------------------------------------------------------------------

@@ -30,7 +30,8 @@ using SendBufferRef = std::shared_ptr<SendBuffer>;
 #endif
 
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
-extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
+constexpr uint32 kMaxMessageId = UINT16_MAX;
+extern PacketHandlerFunc GPacketHandler[kMaxMessageId + 1];
 
 using PacketHeader = Protocol::Framing::PacketHeader;
 
@@ -64,19 +65,19 @@ enum : uint16
 // Custom packet handler declaration
 bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
 
-bool Handle_S_HandshakeRes(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_S_LoginRes(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_S_Pong(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_S_LobbyEnterRes(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_S_MatchQueueEnterRes(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_S_MatchQueueCancelRes(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_N_MatchFound(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_N_RoomReadyChanged(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_N_GameStart(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_S_EntityState(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_N_EntitySpawn(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_N_EntityDespawn(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_N_HitEvent(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_S_HandshakeRes(PacketSessionRef& session, const se::auth::S_HandshakeRes& pkt);
+bool Handle_S_LoginRes(PacketSessionRef& session, const se::auth::S_LoginRes& pkt);
+bool Handle_S_Pong(PacketSessionRef& session, const se::auth::S_Pong& pkt);
+bool Handle_S_LobbyEnterRes(PacketSessionRef& session, const se::lobby::S_LobbyEnterRes& pkt);
+bool Handle_S_MatchQueueEnterRes(PacketSessionRef& session, const se::lobby::S_MatchQueueEnterRes& pkt);
+bool Handle_S_MatchQueueCancelRes(PacketSessionRef& session, const se::lobby::S_MatchQueueCancelRes& pkt);
+bool Handle_N_MatchFound(PacketSessionRef& session, const se::lobby::N_MatchFound& pkt);
+bool Handle_N_RoomReadyChanged(PacketSessionRef& session, const se::room::N_RoomReadyChanged& pkt);
+bool Handle_N_GameStart(PacketSessionRef& session, const se::room::N_GameStart& pkt);
+bool Handle_S_EntityState(PacketSessionRef& session, const se::room::S_EntityState& pkt);
+bool Handle_N_EntitySpawn(PacketSessionRef& session, const se::room::N_EntitySpawn& pkt);
+bool Handle_N_EntityDespawn(PacketSessionRef& session, const se::room::N_EntityDespawn& pkt);
+bool Handle_N_HitEvent(PacketSessionRef& session, const se::room::N_HitEvent& pkt);
 
 class ClientPacketHandler
 {
@@ -87,19 +88,19 @@ public:
             GPacketHandler[i] = Handle_INVALID;
         }
         
-        GPacketHandler[PKT_S_HandshakeRes] = Handle_S_HandshakeRes;
-        GPacketHandler[PKT_S_LoginRes] = Handle_S_LoginRes;
-        GPacketHandler[PKT_S_Pong] = Handle_S_Pong;
-        GPacketHandler[PKT_S_LobbyEnterRes] = Handle_S_LobbyEnterRes;
-        GPacketHandler[PKT_S_MatchQueueEnterRes] = Handle_S_MatchQueueEnterRes;
-        GPacketHandler[PKT_S_MatchQueueCancelRes] = Handle_S_MatchQueueCancelRes;
-        GPacketHandler[PKT_N_MatchFound] = Handle_N_MatchFound;
-        GPacketHandler[PKT_N_RoomReadyChanged] = Handle_N_RoomReadyChanged;
-        GPacketHandler[PKT_N_GameStart] = Handle_N_GameStart;
-        GPacketHandler[PKT_S_EntityState] = Handle_S_EntityState;
-        GPacketHandler[PKT_N_EntitySpawn] = Handle_N_EntitySpawn;
-        GPacketHandler[PKT_N_EntityDespawn] = Handle_N_EntityDespawn;
-        GPacketHandler[PKT_N_HitEvent] = Handle_N_HitEvent;
+        GPacketHandler[PKT_S_HandshakeRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::auth::S_HandshakeRes>(Handle_S_HandshakeRes, session, buffer, len); };
+        GPacketHandler[PKT_S_LoginRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::auth::S_LoginRes>(Handle_S_LoginRes, session, buffer, len); };
+        GPacketHandler[PKT_S_Pong] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::auth::S_Pong>(Handle_S_Pong, session, buffer, len); };
+        GPacketHandler[PKT_S_LobbyEnterRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::lobby::S_LobbyEnterRes>(Handle_S_LobbyEnterRes, session, buffer, len); };
+        GPacketHandler[PKT_S_MatchQueueEnterRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::lobby::S_MatchQueueEnterRes>(Handle_S_MatchQueueEnterRes, session, buffer, len); };
+        GPacketHandler[PKT_S_MatchQueueCancelRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::lobby::S_MatchQueueCancelRes>(Handle_S_MatchQueueCancelRes, session, buffer, len); };
+        GPacketHandler[PKT_N_MatchFound] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::lobby::N_MatchFound>(Handle_N_MatchFound, session, buffer, len); };
+        GPacketHandler[PKT_N_RoomReadyChanged] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::N_RoomReadyChanged>(Handle_N_RoomReadyChanged, session, buffer, len); };
+        GPacketHandler[PKT_N_GameStart] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::N_GameStart>(Handle_N_GameStart, session, buffer, len); };
+        GPacketHandler[PKT_S_EntityState] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::S_EntityState>(Handle_S_EntityState, session, buffer, len); };
+        GPacketHandler[PKT_N_EntitySpawn] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::N_EntitySpawn>(Handle_N_EntitySpawn, session, buffer, len); };
+        GPacketHandler[PKT_N_EntityDespawn] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::N_EntityDespawn>(Handle_N_EntityDespawn, session, buffer, len); };
+        GPacketHandler[PKT_N_HitEvent] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::N_HitEvent>(Handle_N_HitEvent, session, buffer, len); };
     }
     
     static SendBufferRef MakeSendBuffer(se::auth::C_HandshakeReq& pkt) { return MakeSendBuffer(pkt, PKT_C_HandshakeReq); }
@@ -123,19 +124,23 @@ public:
 
         if (header->packetSize != len)
             return false;
+            
+        if (header->messageId > kMaxMessageId)
+            return false;
 
         return GPacketHandler[header->messageId](session, buffer, len);
     }
 
 private:
-    template<typename PacketType, typename ProcessFunc>
-    static bool HandlePacket(ProcessFunc func, PacketSessionRef& session, BYTE* buffer, int32 len)
+    template<typename PacketType>
+    static bool HandlePacket(bool (*func)(PacketSessionRef&, const PacketType&), PacketSessionRef& session, BYTE* buffer, int32 len)
     {
         PacketType pkt;
-        if (pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false) {
+
+        if (!pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)))
             return false;
-        }
-        return func(session, pkt);
+
+        return func(session, pkt);  
     }
     
     template<typename T>

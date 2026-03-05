@@ -30,7 +30,8 @@ using SendBufferRef = std::shared_ptr<SendBuffer>;
 #endif
 
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
-extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
+constexpr uint32 kMaxMessageId = UINT16_MAX;
+extern PacketHandlerFunc GPacketHandler[kMaxMessageId + 1];
 
 using PacketHeader = Protocol::Framing::PacketHeader;
 
@@ -64,16 +65,16 @@ enum : uint16
 // Custom packet handler declaration
 bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
 
-bool Handle_C_HandshakeReq(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_C_LoginReq(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_C_Ping(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_C_LobbyEnterReq(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_C_MatchQueueEnterReq(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_C_MatchQueueCancelReq(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_C_RoomReadyReq(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_C_MoveInput(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_C_AimInput(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_C_FireReq(PacketSessionRef& session, BYTE* buffer, int32 len);
+bool Handle_C_HandshakeReq(PacketSessionRef& session, const se::auth::C_HandshakeReq& pkt);
+bool Handle_C_LoginReq(PacketSessionRef& session, const se::auth::C_LoginReq& pkt);
+bool Handle_C_Ping(PacketSessionRef& session, const se::auth::C_Ping& pkt);
+bool Handle_C_LobbyEnterReq(PacketSessionRef& session, const se::lobby::C_LobbyEnterReq& pkt);
+bool Handle_C_MatchQueueEnterReq(PacketSessionRef& session, const se::lobby::C_MatchQueueEnterReq& pkt);
+bool Handle_C_MatchQueueCancelReq(PacketSessionRef& session, const se::lobby::C_MatchQueueCancelReq& pkt);
+bool Handle_C_RoomReadyReq(PacketSessionRef& session, const se::room::C_RoomReadyReq& pkt);
+bool Handle_C_MoveInput(PacketSessionRef& session, const se::room::C_MoveInput& pkt);
+bool Handle_C_AimInput(PacketSessionRef& session, const se::room::C_AimInput& pkt);
+bool Handle_C_FireReq(PacketSessionRef& session, const se::room::C_FireReq& pkt);
 
 class ServerPacketHandler
 {
@@ -84,16 +85,16 @@ public:
             GPacketHandler[i] = Handle_INVALID;
         }
         
-        GPacketHandler[PKT_C_HandshakeReq] = Handle_C_HandshakeReq;
-        GPacketHandler[PKT_C_LoginReq] = Handle_C_LoginReq;
-        GPacketHandler[PKT_C_Ping] = Handle_C_Ping;
-        GPacketHandler[PKT_C_LobbyEnterReq] = Handle_C_LobbyEnterReq;
-        GPacketHandler[PKT_C_MatchQueueEnterReq] = Handle_C_MatchQueueEnterReq;
-        GPacketHandler[PKT_C_MatchQueueCancelReq] = Handle_C_MatchQueueCancelReq;
-        GPacketHandler[PKT_C_RoomReadyReq] = Handle_C_RoomReadyReq;
-        GPacketHandler[PKT_C_MoveInput] = Handle_C_MoveInput;
-        GPacketHandler[PKT_C_AimInput] = Handle_C_AimInput;
-        GPacketHandler[PKT_C_FireReq] = Handle_C_FireReq;
+        GPacketHandler[PKT_C_HandshakeReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::auth::C_HandshakeReq>(Handle_C_HandshakeReq, session, buffer, len); };
+        GPacketHandler[PKT_C_LoginReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::auth::C_LoginReq>(Handle_C_LoginReq, session, buffer, len); };
+        GPacketHandler[PKT_C_Ping] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::auth::C_Ping>(Handle_C_Ping, session, buffer, len); };
+        GPacketHandler[PKT_C_LobbyEnterReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::lobby::C_LobbyEnterReq>(Handle_C_LobbyEnterReq, session, buffer, len); };
+        GPacketHandler[PKT_C_MatchQueueEnterReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::lobby::C_MatchQueueEnterReq>(Handle_C_MatchQueueEnterReq, session, buffer, len); };
+        GPacketHandler[PKT_C_MatchQueueCancelReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::lobby::C_MatchQueueCancelReq>(Handle_C_MatchQueueCancelReq, session, buffer, len); };
+        GPacketHandler[PKT_C_RoomReadyReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::C_RoomReadyReq>(Handle_C_RoomReadyReq, session, buffer, len); };
+        GPacketHandler[PKT_C_MoveInput] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::C_MoveInput>(Handle_C_MoveInput, session, buffer, len); };
+        GPacketHandler[PKT_C_AimInput] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::C_AimInput>(Handle_C_AimInput, session, buffer, len); };
+        GPacketHandler[PKT_C_FireReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::C_FireReq>(Handle_C_FireReq, session, buffer, len); };
     }
     
     static SendBufferRef MakeSendBuffer(se::auth::S_HandshakeRes& pkt) { return MakeSendBuffer(pkt, PKT_S_HandshakeRes); }
@@ -120,19 +121,23 @@ public:
 
         if (header->packetSize != len)
             return false;
+            
+        if (header->messageId > kMaxMessageId)
+            return false;
 
         return GPacketHandler[header->messageId](session, buffer, len);
     }
 
 private:
-    template<typename PacketType, typename ProcessFunc>
-    static bool HandlePacket(ProcessFunc func, PacketSessionRef& session, BYTE* buffer, int32 len)
+    template<typename PacketType>
+    static bool HandlePacket(bool (*func)(PacketSessionRef&, const PacketType&), PacketSessionRef& session, BYTE* buffer, int32 len)
     {
         PacketType pkt;
-        if (pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false) {
+
+        if (!pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)))
             return false;
-        }
-        return func(session, pkt);
+
+        return func(session, pkt);  
     }
     
     template<typename T>

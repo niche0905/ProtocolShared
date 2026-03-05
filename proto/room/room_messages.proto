@@ -34,19 +34,14 @@ message N_GameStart {
 
 /*
  * ===== Input (Client -> Server) =====
- * 클라는 "의도"만 보낸다
- * TODO: 앞으론 클라이언트에서 이동을 확정하고 서버에서는 Broadcast만 한다
+ * 클라이언트에서 이동을 확정하고 서버에서는 Broadcast만 한다
  */
 message C_MoveInput {
   option (se.options.packet_id) = 3100;
   option (se.options.dir) = C2S;
   option (se.options.route) = ROOM;
 
-  // -1 ~ 1
-  float move_x = 1;
-  float move_y = 2;
-
-  float yaw = 3;
+  EntityState entity_state = 1;
 }
 
 message C_AimInput {
