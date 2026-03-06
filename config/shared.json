@@ -1,0 +1,8 @@
+{
+    "protocol": {
+        "version": 3
+    },
+    "network": {
+        "game_port": 8252
+    }
+}
