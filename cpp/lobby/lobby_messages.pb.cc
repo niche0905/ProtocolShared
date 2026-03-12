@@ -63,7 +63,6 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR S_MatchQueueEnterRes::S_MatchQueueEnterRes(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.result_)*/nullptr
-  , /*decltype(_impl_.ticket_)*/nullptr
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct S_MatchQueueEnterResDefaultTypeInternal {
   PROTOBUF_CONSTEXPR S_MatchQueueEnterResDefaultTypeInternal()
@@ -75,9 +74,7 @@ struct S_MatchQueueEnterResDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_MatchQueueEnterResDefaultTypeInternal _S_MatchQueueEnterRes_default_instance_;
 PROTOBUF_CONSTEXPR C_MatchQueueCancelReq::C_MatchQueueCancelReq(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.ticket_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized) {}
 struct C_MatchQueueCancelReqDefaultTypeInternal {
   PROTOBUF_CONSTEXPR C_MatchQueueCancelReqDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -102,7 +99,7 @@ struct S_MatchQueueCancelResDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_MatchQueueCancelResDefaultTypeInternal _S_MatchQueueCancelRes_default_instance_;
 PROTOBUF_CONSTEXPR N_MatchFound::N_MatchFound(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.room_)*/nullptr
+    /*decltype(_impl_.room_id_)*/0u
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct N_MatchFoundDefaultTypeInternal {
   PROTOBUF_CONSTEXPR N_MatchFoundDefaultTypeInternal()
@@ -148,14 +145,12 @@ const uint32_t TableStruct_lobby_2flobby_5fmessages_2eproto::offsets[] PROTOBUF_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::se::lobby::S_MatchQueueEnterRes, _impl_.result_),
-  PROTOBUF_FIELD_OFFSET(::se::lobby::S_MatchQueueEnterRes, _impl_.ticket_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::se::lobby::C_MatchQueueCancelReq, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::se::lobby::C_MatchQueueCancelReq, _impl_.ticket_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::se::lobby::S_MatchQueueCancelRes, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -169,16 +164,16 @@ const uint32_t TableStruct_lobby_2flobby_5fmessages_2eproto::offsets[] PROTOBUF_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::se::lobby::N_MatchFound, _impl_.room_),
+  PROTOBUF_FIELD_OFFSET(::se::lobby::N_MatchFound, _impl_.room_id_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::se::lobby::C_LobbyEnterReq)},
   { 6, -1, -1, sizeof(::se::lobby::S_LobbyEnterRes)},
   { 14, -1, -1, sizeof(::se::lobby::C_MatchQueueEnterReq)},
   { 21, -1, -1, sizeof(::se::lobby::S_MatchQueueEnterRes)},
-  { 29, -1, -1, sizeof(::se::lobby::C_MatchQueueCancelReq)},
-  { 36, -1, -1, sizeof(::se::lobby::S_MatchQueueCancelRes)},
-  { 43, -1, -1, sizeof(::se::lobby::N_MatchFound)},
+  { 28, -1, -1, sizeof(::se::lobby::C_MatchQueueCancelReq)},
+  { 34, -1, -1, sizeof(::se::lobby::S_MatchQueueCancelRes)},
+  { 41, -1, -1, sizeof(::se::lobby::N_MatchFound)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -200,15 +195,13 @@ const char descriptor_table_protodef_lobby_2flobby_5fmessages_2eproto[] PROTOBUF
   "n.Result\022(\n\007profile\030\002 \001(\0132\027.se.lobby.Pla"
   "yerProfile:\r\210\265\030\321\017\220\265\030\002\230\265\030\002\":\n\024C_MatchQueu"
   "eEnterReq\022\023\n\013playlist_id\030\001 \001(\r:\r\210\265\030\332\017\220\265\030"
-  "\001\230\265\030\002\"o\n\024S_MatchQueueEnterRes\022!\n\006result\030"
-  "\001 \001(\0132\021.se.common.Result\022%\n\006ticket\030\002 \001(\013"
-  "2\025.se.lobby.MatchTicket:\r\210\265\030\333\017\220\265\030\002\230\265\030\002\"M"
-  "\n\025C_MatchQueueCancelReq\022%\n\006ticket\030\001 \001(\0132"
-  "\025.se.lobby.MatchTicket:\r\210\265\030\334\017\220\265\030\001\230\265\030\002\"I\n"
-  "\025S_MatchQueueCancelRes\022!\n\006result\030\001 \001(\0132\021"
-  ".se.common.Result:\r\210\265\030\335\017\220\265\030\002\230\265\030\002\"C\n\014N_Ma"
-  "tchFound\022$\n\004room\030\001 \001(\0132\026.se.lobby.RoomEn"
-  "dpoint:\r\210\265\030\344\017\220\265\030\002\230\265\030\002b\006proto3"
+  "\001\230\265\030\002\"H\n\024S_MatchQueueEnterRes\022!\n\006result\030"
+  "\001 \001(\0132\021.se.common.Result:\r\210\265\030\333\017\220\265\030\002\230\265\030\002\""
+  "&\n\025C_MatchQueueCancelReq:\r\210\265\030\334\017\220\265\030\001\230\265\030\002\""
+  "I\n\025S_MatchQueueCancelRes\022!\n\006result\030\001 \001(\013"
+  "2\021.se.common.Result:\r\210\265\030\335\017\220\265\030\002\230\265\030\002\".\n\014N_"
+  "MatchFound\022\017\n\007room_id\030\001 \001(\r:\r\210\265\030\344\017\220\265\030\002\230\265"
+  "\030\002b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_lobby_2flobby_5fmessages_2eproto_deps[3] = {
   &::descriptor_table_common_2fcommon_5ftypes_2eproto,
@@ -217,7 +210,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_lobby_2flobby_5fmes
 };
 static ::_pbi::once_flag descriptor_table_lobby_2flobby_5fmessages_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_lobby_2flobby_5fmessages_2eproto = {
-    false, false, 669, descriptor_table_protodef_lobby_2flobby_5fmessages_2eproto,
+    false, false, 570, descriptor_table_protodef_lobby_2flobby_5fmessages_2eproto,
     "lobby/lobby_messages.proto",
     &descriptor_table_lobby_2flobby_5fmessages_2eproto_once, descriptor_table_lobby_2flobby_5fmessages_2eproto_deps, 3, 7,
     schemas, file_default_instances, TableStruct_lobby_2flobby_5fmessages_2eproto::offsets,
@@ -707,28 +700,17 @@ void C_MatchQueueEnterReq::InternalSwap(C_MatchQueueEnterReq* other) {
 class S_MatchQueueEnterRes::_Internal {
  public:
   static const ::se::common::Result& result(const S_MatchQueueEnterRes* msg);
-  static const ::se::lobby::MatchTicket& ticket(const S_MatchQueueEnterRes* msg);
 };
 
 const ::se::common::Result&
 S_MatchQueueEnterRes::_Internal::result(const S_MatchQueueEnterRes* msg) {
   return *msg->_impl_.result_;
 }
-const ::se::lobby::MatchTicket&
-S_MatchQueueEnterRes::_Internal::ticket(const S_MatchQueueEnterRes* msg) {
-  return *msg->_impl_.ticket_;
-}
 void S_MatchQueueEnterRes::clear_result() {
   if (GetArenaForAllocation() == nullptr && _impl_.result_ != nullptr) {
     delete _impl_.result_;
   }
   _impl_.result_ = nullptr;
-}
-void S_MatchQueueEnterRes::clear_ticket() {
-  if (GetArenaForAllocation() == nullptr && _impl_.ticket_ != nullptr) {
-    delete _impl_.ticket_;
-  }
-  _impl_.ticket_ = nullptr;
 }
 S_MatchQueueEnterRes::S_MatchQueueEnterRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -741,15 +723,11 @@ S_MatchQueueEnterRes::S_MatchQueueEnterRes(const S_MatchQueueEnterRes& from)
   S_MatchQueueEnterRes* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.result_){nullptr}
-    , decltype(_impl_.ticket_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_result()) {
     _this->_impl_.result_ = new ::se::common::Result(*from._impl_.result_);
-  }
-  if (from._internal_has_ticket()) {
-    _this->_impl_.ticket_ = new ::se::lobby::MatchTicket(*from._impl_.ticket_);
   }
   // @@protoc_insertion_point(copy_constructor:se.lobby.S_MatchQueueEnterRes)
 }
@@ -760,7 +738,6 @@ inline void S_MatchQueueEnterRes::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.result_){nullptr}
-    , decltype(_impl_.ticket_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -777,7 +754,6 @@ S_MatchQueueEnterRes::~S_MatchQueueEnterRes() {
 inline void S_MatchQueueEnterRes::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete _impl_.result_;
-  if (this != internal_default_instance()) delete _impl_.ticket_;
 }
 
 void S_MatchQueueEnterRes::SetCachedSize(int size) const {
@@ -794,10 +770,6 @@ void S_MatchQueueEnterRes::Clear() {
     delete _impl_.result_;
   }
   _impl_.result_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.ticket_ != nullptr) {
-    delete _impl_.ticket_;
-  }
-  _impl_.ticket_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -811,14 +783,6 @@ const char* S_MatchQueueEnterRes::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_result(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .se.lobby.MatchTicket ticket = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_ticket(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -859,13 +823,6 @@ uint8_t* S_MatchQueueEnterRes::_InternalSerialize(
         _Internal::result(this).GetCachedSize(), target, stream);
   }
 
-  // .se.lobby.MatchTicket ticket = 2;
-  if (this->_internal_has_ticket()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::ticket(this),
-        _Internal::ticket(this).GetCachedSize(), target, stream);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -887,13 +844,6 @@ size_t S_MatchQueueEnterRes::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.result_);
-  }
-
-  // .se.lobby.MatchTicket ticket = 2;
-  if (this->_internal_has_ticket()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ticket_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -918,10 +868,6 @@ void S_MatchQueueEnterRes::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, c
     _this->_internal_mutable_result()->::se::common::Result::MergeFrom(
         from._internal_result());
   }
-  if (from._internal_has_ticket()) {
-    _this->_internal_mutable_ticket()->::se::lobby::MatchTicket::MergeFrom(
-        from._internal_ticket());
-  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -939,12 +885,7 @@ bool S_MatchQueueEnterRes::IsInitialized() const {
 void S_MatchQueueEnterRes::InternalSwap(S_MatchQueueEnterRes* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(S_MatchQueueEnterRes, _impl_.ticket_)
-      + sizeof(S_MatchQueueEnterRes::_impl_.ticket_)
-      - PROTOBUF_FIELD_OFFSET(S_MatchQueueEnterRes, _impl_.result_)>(
-          reinterpret_cast<char*>(&_impl_.result_),
-          reinterpret_cast<char*>(&other->_impl_.result_));
+  swap(_impl_.result_, other->_impl_.result_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata S_MatchQueueEnterRes::GetMetadata() const {
@@ -957,194 +898,35 @@ void S_MatchQueueEnterRes::InternalSwap(S_MatchQueueEnterRes* other) {
 
 class C_MatchQueueCancelReq::_Internal {
  public:
-  static const ::se::lobby::MatchTicket& ticket(const C_MatchQueueCancelReq* msg);
 };
 
-const ::se::lobby::MatchTicket&
-C_MatchQueueCancelReq::_Internal::ticket(const C_MatchQueueCancelReq* msg) {
-  return *msg->_impl_.ticket_;
-}
-void C_MatchQueueCancelReq::clear_ticket() {
-  if (GetArenaForAllocation() == nullptr && _impl_.ticket_ != nullptr) {
-    delete _impl_.ticket_;
-  }
-  _impl_.ticket_ = nullptr;
-}
 C_MatchQueueCancelReq::C_MatchQueueCancelReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
   // @@protoc_insertion_point(arena_constructor:se.lobby.C_MatchQueueCancelReq)
 }
 C_MatchQueueCancelReq::C_MatchQueueCancelReq(const C_MatchQueueCancelReq& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
   C_MatchQueueCancelReq* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.ticket_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_ticket()) {
-    _this->_impl_.ticket_ = new ::se::lobby::MatchTicket(*from._impl_.ticket_);
-  }
   // @@protoc_insertion_point(copy_constructor:se.lobby.C_MatchQueueCancelReq)
 }
 
-inline void C_MatchQueueCancelReq::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.ticket_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
 
-C_MatchQueueCancelReq::~C_MatchQueueCancelReq() {
-  // @@protoc_insertion_point(destructor:se.lobby.C_MatchQueueCancelReq)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
 
-inline void C_MatchQueueCancelReq::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.ticket_;
-}
 
-void C_MatchQueueCancelReq::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void C_MatchQueueCancelReq::Clear() {
-// @@protoc_insertion_point(message_clear_start:se.lobby.C_MatchQueueCancelReq)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  if (GetArenaForAllocation() == nullptr && _impl_.ticket_ != nullptr) {
-    delete _impl_.ticket_;
-  }
-  _impl_.ticket_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* C_MatchQueueCancelReq::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .se.lobby.MatchTicket ticket = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_ticket(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* C_MatchQueueCancelReq::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:se.lobby.C_MatchQueueCancelReq)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .se.lobby.MatchTicket ticket = 1;
-  if (this->_internal_has_ticket()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::ticket(this),
-        _Internal::ticket(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:se.lobby.C_MatchQueueCancelReq)
-  return target;
-}
-
-size_t C_MatchQueueCancelReq::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:se.lobby.C_MatchQueueCancelReq)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // .se.lobby.MatchTicket ticket = 1;
-  if (this->_internal_has_ticket()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ticket_);
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData C_MatchQueueCancelReq::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    C_MatchQueueCancelReq::MergeImpl
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*C_MatchQueueCancelReq::GetClassData() const { return &_class_data_; }
 
 
-void C_MatchQueueCancelReq::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<C_MatchQueueCancelReq*>(&to_msg);
-  auto& from = static_cast<const C_MatchQueueCancelReq&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:se.lobby.C_MatchQueueCancelReq)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
-  if (from._internal_has_ticket()) {
-    _this->_internal_mutable_ticket()->::se::lobby::MatchTicket::MergeFrom(
-        from._internal_ticket());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
 
-void C_MatchQueueCancelReq::CopyFrom(const C_MatchQueueCancelReq& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:se.lobby.C_MatchQueueCancelReq)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
 
-bool C_MatchQueueCancelReq::IsInitialized() const {
-  return true;
-}
 
-void C_MatchQueueCancelReq::InternalSwap(C_MatchQueueCancelReq* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.ticket_, other->_impl_.ticket_);
-}
 
 ::PROTOBUF_NAMESPACE_ID::Metadata C_MatchQueueCancelReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
@@ -1355,19 +1137,8 @@ void S_MatchQueueCancelRes::InternalSwap(S_MatchQueueCancelRes* other) {
 
 class N_MatchFound::_Internal {
  public:
-  static const ::se::lobby::RoomEndpoint& room(const N_MatchFound* msg);
 };
 
-const ::se::lobby::RoomEndpoint&
-N_MatchFound::_Internal::room(const N_MatchFound* msg) {
-  return *msg->_impl_.room_;
-}
-void N_MatchFound::clear_room() {
-  if (GetArenaForAllocation() == nullptr && _impl_.room_ != nullptr) {
-    delete _impl_.room_;
-  }
-  _impl_.room_ = nullptr;
-}
 N_MatchFound::N_MatchFound(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -1378,13 +1149,11 @@ N_MatchFound::N_MatchFound(const N_MatchFound& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   N_MatchFound* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.room_){nullptr}
+      decltype(_impl_.room_id_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_room()) {
-    _this->_impl_.room_ = new ::se::lobby::RoomEndpoint(*from._impl_.room_);
-  }
+  _this->_impl_.room_id_ = from._impl_.room_id_;
   // @@protoc_insertion_point(copy_constructor:se.lobby.N_MatchFound)
 }
 
@@ -1393,7 +1162,7 @@ inline void N_MatchFound::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.room_){nullptr}
+      decltype(_impl_.room_id_){0u}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1409,7 +1178,6 @@ N_MatchFound::~N_MatchFound() {
 
 inline void N_MatchFound::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.room_;
 }
 
 void N_MatchFound::SetCachedSize(int size) const {
@@ -1422,10 +1190,7 @@ void N_MatchFound::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.room_ != nullptr) {
-    delete _impl_.room_;
-  }
-  _impl_.room_ = nullptr;
+  _impl_.room_id_ = 0u;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1435,10 +1200,10 @@ const char* N_MatchFound::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .se.lobby.RoomEndpoint room = 1;
+      // uint32 room_id = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_room(), ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.room_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1472,11 +1237,10 @@ uint8_t* N_MatchFound::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .se.lobby.RoomEndpoint room = 1;
-  if (this->_internal_has_room()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::room(this),
-        _Internal::room(this).GetCachedSize(), target, stream);
+  // uint32 room_id = 1;
+  if (this->_internal_room_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_room_id(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1495,11 +1259,9 @@ size_t N_MatchFound::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .se.lobby.RoomEndpoint room = 1;
-  if (this->_internal_has_room()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.room_);
+  // uint32 room_id = 1;
+  if (this->_internal_room_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_room_id());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1520,9 +1282,8 @@ void N_MatchFound::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::P
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_room()) {
-    _this->_internal_mutable_room()->::se::lobby::RoomEndpoint::MergeFrom(
-        from._internal_room());
+  if (from._internal_room_id() != 0) {
+    _this->_internal_set_room_id(from._internal_room_id());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1541,7 +1302,7 @@ bool N_MatchFound::IsInitialized() const {
 void N_MatchFound::InternalSwap(N_MatchFound* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.room_, other->_impl_.room_);
+  swap(_impl_.room_id_, other->_impl_.room_id_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata N_MatchFound::GetMetadata() const {

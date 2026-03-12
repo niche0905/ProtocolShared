@@ -3,6 +3,7 @@
 package se.room;
 
 import "options/packet_options.proto";
+import "common/common_enums.proto";
 import "common/common_types.proto";
 import "room/room_types.proto";
 
@@ -22,7 +23,7 @@ message N_RoomReadyChanged {
   option (se.options.dir) = S2C;
   option (se.options.route) = ROOM;
 
-  se.common.EntityId entity_id = 1;
+  se.common.ObjectId entity_id = 1;
   bool ready = 2;
 }
 
@@ -76,7 +77,8 @@ message N_EntitySpawn {
   option (se.options.dir) = S2C;
   option (se.options.route) = ROOM;
 
-  EntityState entity = 1;
+  se.common.ObjectType entity_type = 1;
+  EntityState entity = 2;
 }
 
 message N_EntityDespawn {
@@ -84,7 +86,7 @@ message N_EntityDespawn {
   option (se.options.dir) = S2C;
   option (se.options.route) = ROOM;
 
-  se.common.EntityId entity_id = 1;
+  se.common.ObjectId entity_id = 1;
 }
 
 message N_HitEvent {
@@ -92,7 +94,7 @@ message N_HitEvent {
   option (se.options.dir) = S2C;
   option (se.options.route) = ROOM;
 
-  se.common.EntityId attacker = 1;
-  se.common.EntityId victim = 2;
+  se.common.ObjectId attacker = 1;
+  se.common.ObjectId victim = 2;
   uint32 damage = 3;
 }

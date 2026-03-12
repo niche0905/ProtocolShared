@@ -37,36 +37,9 @@ struct PlayerProfileDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerProfileDefaultTypeInternal _PlayerProfile_default_instance_;
-PROTOBUF_CONSTEXPR MatchTicket::MatchTicket(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.ticket_id_)*/uint64_t{0u}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct MatchTicketDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MatchTicketDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MatchTicketDefaultTypeInternal() {}
-  union {
-    MatchTicket _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MatchTicketDefaultTypeInternal _MatchTicket_default_instance_;
-PROTOBUF_CONSTEXPR RoomEndpoint::RoomEndpoint(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.join_token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.room_id_)*/uint64_t{0u}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct RoomEndpointDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RoomEndpointDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RoomEndpointDefaultTypeInternal() {}
-  union {
-    RoomEndpoint _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RoomEndpointDefaultTypeInternal _RoomEndpoint_default_instance_;
 }  // namespace lobby
 }  // namespace se
-static ::_pb::Metadata file_level_metadata_lobby_2flobby_5ftypes_2eproto[3];
+static ::_pb::Metadata file_level_metadata_lobby_2flobby_5ftypes_2eproto[1];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_lobby_2flobby_5ftypes_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_lobby_2flobby_5ftypes_2eproto = nullptr;
 
@@ -80,51 +53,29 @@ const uint32_t TableStruct_lobby_2flobby_5ftypes_2eproto::offsets[] PROTOBUF_SEC
   PROTOBUF_FIELD_OFFSET(::se::lobby::PlayerProfile, _impl_.player_id_),
   PROTOBUF_FIELD_OFFSET(::se::lobby::PlayerProfile, _impl_.nickname_),
   PROTOBUF_FIELD_OFFSET(::se::lobby::PlayerProfile, _impl_.level_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::se::lobby::MatchTicket, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::se::lobby::MatchTicket, _impl_.ticket_id_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::se::lobby::RoomEndpoint, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::se::lobby::RoomEndpoint, _impl_.room_id_),
-  PROTOBUF_FIELD_OFFSET(::se::lobby::RoomEndpoint, _impl_.join_token_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::se::lobby::PlayerProfile)},
-  { 9, -1, -1, sizeof(::se::lobby::MatchTicket)},
-  { 16, -1, -1, sizeof(::se::lobby::RoomEndpoint)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::se::lobby::_PlayerProfile_default_instance_._instance,
-  &::se::lobby::_MatchTicket_default_instance_._instance,
-  &::se::lobby::_RoomEndpoint_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_lobby_2flobby_5ftypes_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\027lobby/lobby_types.proto\022\010se.lobby\032\031com"
   "mon/common_types.proto\"X\n\rPlayerProfile\022"
-  "&\n\tplayer_id\030\001 \001(\0132\023.se.common.EntityId\022"
-  "\020\n\010nickname\030\002 \001(\t\022\r\n\005level\030\003 \001(\r\" \n\013Matc"
-  "hTicket\022\021\n\tticket_id\030\001 \001(\004\"3\n\014RoomEndpoi"
-  "nt\022\017\n\007room_id\030\003 \001(\004\022\022\n\njoin_token\030\004 \001(\tb"
-  "\006proto3"
+  "&\n\tplayer_id\030\001 \001(\0132\023.se.common.PlayerId\022"
+  "\020\n\010nickname\030\002 \001(\t\022\r\n\005level\030\003 \001(\rb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_lobby_2flobby_5ftypes_2eproto_deps[1] = {
   &::descriptor_table_common_2fcommon_5ftypes_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_lobby_2flobby_5ftypes_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_lobby_2flobby_5ftypes_2eproto = {
-    false, false, 247, descriptor_table_protodef_lobby_2flobby_5ftypes_2eproto,
+    false, false, 160, descriptor_table_protodef_lobby_2flobby_5ftypes_2eproto,
     "lobby/lobby_types.proto",
-    &descriptor_table_lobby_2flobby_5ftypes_2eproto_once, descriptor_table_lobby_2flobby_5ftypes_2eproto_deps, 1, 3,
+    &descriptor_table_lobby_2flobby_5ftypes_2eproto_once, descriptor_table_lobby_2flobby_5ftypes_2eproto_deps, 1, 1,
     schemas, file_default_instances, TableStruct_lobby_2flobby_5ftypes_2eproto::offsets,
     file_level_metadata_lobby_2flobby_5ftypes_2eproto, file_level_enum_descriptors_lobby_2flobby_5ftypes_2eproto,
     file_level_service_descriptors_lobby_2flobby_5ftypes_2eproto,
@@ -142,10 +93,10 @@ namespace lobby {
 
 class PlayerProfile::_Internal {
  public:
-  static const ::se::common::EntityId& player_id(const PlayerProfile* msg);
+  static const ::se::common::PlayerId& player_id(const PlayerProfile* msg);
 };
 
-const ::se::common::EntityId&
+const ::se::common::PlayerId&
 PlayerProfile::_Internal::player_id(const PlayerProfile* msg) {
   return *msg->_impl_.player_id_;
 }
@@ -180,7 +131,7 @@ PlayerProfile::PlayerProfile(const PlayerProfile& from)
       _this->GetArenaForAllocation());
   }
   if (from._internal_has_player_id()) {
-    _this->_impl_.player_id_ = new ::se::common::EntityId(*from._impl_.player_id_);
+    _this->_impl_.player_id_ = new ::se::common::PlayerId(*from._impl_.player_id_);
   }
   _this->_impl_.level_ = from._impl_.level_;
   // @@protoc_insertion_point(copy_constructor:se.lobby.PlayerProfile)
@@ -242,7 +193,7 @@ const char* PlayerProfile::_InternalParse(const char* ptr, ::_pbi::ParseContext*
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .se.common.EntityId player_id = 1;
+      // .se.common.PlayerId player_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_player_id(), ptr);
@@ -297,7 +248,7 @@ uint8_t* PlayerProfile::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .se.common.EntityId player_id = 1;
+  // .se.common.PlayerId player_id = 1;
   if (this->_internal_has_player_id()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(1, _Internal::player_id(this),
@@ -343,7 +294,7 @@ size_t PlayerProfile::ByteSizeLong() const {
         this->_internal_nickname());
   }
 
-  // .se.common.EntityId player_id = 1;
+  // .se.common.PlayerId player_id = 1;
   if (this->_internal_has_player_id()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -377,7 +328,7 @@ void PlayerProfile::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
     _this->_internal_set_nickname(from._internal_nickname());
   }
   if (from._internal_has_player_id()) {
-    _this->_internal_mutable_player_id()->::se::common::EntityId::MergeFrom(
+    _this->_internal_mutable_player_id()->::se::common::PlayerId::MergeFrom(
         from._internal_player_id());
   }
   if (from._internal_level() != 0) {
@@ -420,414 +371,6 @@ void PlayerProfile::InternalSwap(PlayerProfile* other) {
       file_level_metadata_lobby_2flobby_5ftypes_2eproto[0]);
 }
 
-// ===================================================================
-
-class MatchTicket::_Internal {
- public:
-};
-
-MatchTicket::MatchTicket(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:se.lobby.MatchTicket)
-}
-MatchTicket::MatchTicket(const MatchTicket& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  MatchTicket* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.ticket_id_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.ticket_id_ = from._impl_.ticket_id_;
-  // @@protoc_insertion_point(copy_constructor:se.lobby.MatchTicket)
-}
-
-inline void MatchTicket::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.ticket_id_){uint64_t{0u}}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-MatchTicket::~MatchTicket() {
-  // @@protoc_insertion_point(destructor:se.lobby.MatchTicket)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void MatchTicket::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-}
-
-void MatchTicket::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void MatchTicket::Clear() {
-// @@protoc_insertion_point(message_clear_start:se.lobby.MatchTicket)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.ticket_id_ = uint64_t{0u};
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* MatchTicket::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // uint64 ticket_id = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.ticket_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* MatchTicket::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:se.lobby.MatchTicket)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // uint64 ticket_id = 1;
-  if (this->_internal_ticket_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_ticket_id(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:se.lobby.MatchTicket)
-  return target;
-}
-
-size_t MatchTicket::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:se.lobby.MatchTicket)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // uint64 ticket_id = 1;
-  if (this->_internal_ticket_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_ticket_id());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MatchTicket::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    MatchTicket::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MatchTicket::GetClassData() const { return &_class_data_; }
-
-
-void MatchTicket::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<MatchTicket*>(&to_msg);
-  auto& from = static_cast<const MatchTicket&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:se.lobby.MatchTicket)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_ticket_id() != 0) {
-    _this->_internal_set_ticket_id(from._internal_ticket_id());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void MatchTicket::CopyFrom(const MatchTicket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:se.lobby.MatchTicket)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool MatchTicket::IsInitialized() const {
-  return true;
-}
-
-void MatchTicket::InternalSwap(MatchTicket* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.ticket_id_, other->_impl_.ticket_id_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata MatchTicket::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_lobby_2flobby_5ftypes_2eproto_getter, &descriptor_table_lobby_2flobby_5ftypes_2eproto_once,
-      file_level_metadata_lobby_2flobby_5ftypes_2eproto[1]);
-}
-
-// ===================================================================
-
-class RoomEndpoint::_Internal {
- public:
-};
-
-RoomEndpoint::RoomEndpoint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:se.lobby.RoomEndpoint)
-}
-RoomEndpoint::RoomEndpoint(const RoomEndpoint& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  RoomEndpoint* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.join_token_){}
-    , decltype(_impl_.room_id_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.join_token_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.join_token_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_join_token().empty()) {
-    _this->_impl_.join_token_.Set(from._internal_join_token(), 
-      _this->GetArenaForAllocation());
-  }
-  _this->_impl_.room_id_ = from._impl_.room_id_;
-  // @@protoc_insertion_point(copy_constructor:se.lobby.RoomEndpoint)
-}
-
-inline void RoomEndpoint::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.join_token_){}
-    , decltype(_impl_.room_id_){uint64_t{0u}}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.join_token_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.join_token_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-}
-
-RoomEndpoint::~RoomEndpoint() {
-  // @@protoc_insertion_point(destructor:se.lobby.RoomEndpoint)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void RoomEndpoint::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.join_token_.Destroy();
-}
-
-void RoomEndpoint::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void RoomEndpoint::Clear() {
-// @@protoc_insertion_point(message_clear_start:se.lobby.RoomEndpoint)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.join_token_.ClearToEmpty();
-  _impl_.room_id_ = uint64_t{0u};
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* RoomEndpoint::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // uint64 room_id = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.room_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string join_token = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          auto str = _internal_mutable_join_token();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "se.lobby.RoomEndpoint.join_token"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* RoomEndpoint::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:se.lobby.RoomEndpoint)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // uint64 room_id = 3;
-  if (this->_internal_room_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(3, this->_internal_room_id(), target);
-  }
-
-  // string join_token = 4;
-  if (!this->_internal_join_token().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_join_token().data(), static_cast<int>(this->_internal_join_token().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "se.lobby.RoomEndpoint.join_token");
-    target = stream->WriteStringMaybeAliased(
-        4, this->_internal_join_token(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:se.lobby.RoomEndpoint)
-  return target;
-}
-
-size_t RoomEndpoint::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:se.lobby.RoomEndpoint)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string join_token = 4;
-  if (!this->_internal_join_token().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_join_token());
-  }
-
-  // uint64 room_id = 3;
-  if (this->_internal_room_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_room_id());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RoomEndpoint::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    RoomEndpoint::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RoomEndpoint::GetClassData() const { return &_class_data_; }
-
-
-void RoomEndpoint::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<RoomEndpoint*>(&to_msg);
-  auto& from = static_cast<const RoomEndpoint&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:se.lobby.RoomEndpoint)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_join_token().empty()) {
-    _this->_internal_set_join_token(from._internal_join_token());
-  }
-  if (from._internal_room_id() != 0) {
-    _this->_internal_set_room_id(from._internal_room_id());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void RoomEndpoint::CopyFrom(const RoomEndpoint& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:se.lobby.RoomEndpoint)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool RoomEndpoint::IsInitialized() const {
-  return true;
-}
-
-void RoomEndpoint::InternalSwap(RoomEndpoint* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.join_token_, lhs_arena,
-      &other->_impl_.join_token_, rhs_arena
-  );
-  swap(_impl_.room_id_, other->_impl_.room_id_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata RoomEndpoint::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_lobby_2flobby_5ftypes_2eproto_getter, &descriptor_table_lobby_2flobby_5ftypes_2eproto_once,
-      file_level_metadata_lobby_2flobby_5ftypes_2eproto[2]);
-}
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace lobby
 }  // namespace se
@@ -835,14 +378,6 @@ PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::se::lobby::PlayerProfile*
 Arena::CreateMaybeMessage< ::se::lobby::PlayerProfile >(Arena* arena) {
   return Arena::CreateMessageInternal< ::se::lobby::PlayerProfile >(arena);
-}
-template<> PROTOBUF_NOINLINE ::se::lobby::MatchTicket*
-Arena::CreateMaybeMessage< ::se::lobby::MatchTicket >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::se::lobby::MatchTicket >(arena);
-}
-template<> PROTOBUF_NOINLINE ::se::lobby::RoomEndpoint*
-Arena::CreateMaybeMessage< ::se::lobby::RoomEndpoint >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::se::lobby::RoomEndpoint >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

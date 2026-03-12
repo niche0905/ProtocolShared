@@ -32,6 +32,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
 #include "options/packet_options.pb.h"
+#include "common/common_enums.pb.h"
 #include "common/common_types.pb.h"
 #include "room/room_types.pb.h"
 // @@protoc_insertion_point(includes)
@@ -371,23 +372,23 @@ class N_RoomReadyChanged final :
     kEntityIdFieldNumber = 1,
     kReadyFieldNumber = 2,
   };
-  // .se.common.EntityId entity_id = 1;
+  // .se.common.ObjectId entity_id = 1;
   bool has_entity_id() const;
   private:
   bool _internal_has_entity_id() const;
   public:
   void clear_entity_id();
-  const ::se::common::EntityId& entity_id() const;
-  PROTOBUF_NODISCARD ::se::common::EntityId* release_entity_id();
-  ::se::common::EntityId* mutable_entity_id();
-  void set_allocated_entity_id(::se::common::EntityId* entity_id);
+  const ::se::common::ObjectId& entity_id() const;
+  PROTOBUF_NODISCARD ::se::common::ObjectId* release_entity_id();
+  ::se::common::ObjectId* mutable_entity_id();
+  void set_allocated_entity_id(::se::common::ObjectId* entity_id);
   private:
-  const ::se::common::EntityId& _internal_entity_id() const;
-  ::se::common::EntityId* _internal_mutable_entity_id();
+  const ::se::common::ObjectId& _internal_entity_id() const;
+  ::se::common::ObjectId* _internal_mutable_entity_id();
   public:
   void unsafe_arena_set_allocated_entity_id(
-      ::se::common::EntityId* entity_id);
-  ::se::common::EntityId* unsafe_arena_release_entity_id();
+      ::se::common::ObjectId* entity_id);
+  ::se::common::ObjectId* unsafe_arena_release_entity_id();
 
   // bool ready = 2;
   void clear_ready();
@@ -406,7 +407,7 @@ class N_RoomReadyChanged final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::se::common::EntityId* entity_id_;
+    ::se::common::ObjectId* entity_id_;
     bool ready_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1264,9 +1265,10 @@ class N_EntitySpawn final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kEntityFieldNumber = 1,
+    kEntityFieldNumber = 2,
+    kEntityTypeFieldNumber = 1,
   };
-  // .se.room.EntityState entity = 1;
+  // .se.room.EntityState entity = 2;
   bool has_entity() const;
   private:
   bool _internal_has_entity() const;
@@ -1284,6 +1286,15 @@ class N_EntitySpawn final :
       ::se::room::EntityState* entity);
   ::se::room::EntityState* unsafe_arena_release_entity();
 
+  // .se.common.ObjectType entity_type = 1;
+  void clear_entity_type();
+  ::se::common::ObjectType entity_type() const;
+  void set_entity_type(::se::common::ObjectType value);
+  private:
+  ::se::common::ObjectType _internal_entity_type() const;
+  void _internal_set_entity_type(::se::common::ObjectType value);
+  public:
+
   // @@protoc_insertion_point(class_scope:se.room.N_EntitySpawn)
  private:
   class _Internal;
@@ -1293,6 +1304,7 @@ class N_EntitySpawn final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::se::room::EntityState* entity_;
+    int entity_type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1423,23 +1435,23 @@ class N_EntityDespawn final :
   enum : int {
     kEntityIdFieldNumber = 1,
   };
-  // .se.common.EntityId entity_id = 1;
+  // .se.common.ObjectId entity_id = 1;
   bool has_entity_id() const;
   private:
   bool _internal_has_entity_id() const;
   public:
   void clear_entity_id();
-  const ::se::common::EntityId& entity_id() const;
-  PROTOBUF_NODISCARD ::se::common::EntityId* release_entity_id();
-  ::se::common::EntityId* mutable_entity_id();
-  void set_allocated_entity_id(::se::common::EntityId* entity_id);
+  const ::se::common::ObjectId& entity_id() const;
+  PROTOBUF_NODISCARD ::se::common::ObjectId* release_entity_id();
+  ::se::common::ObjectId* mutable_entity_id();
+  void set_allocated_entity_id(::se::common::ObjectId* entity_id);
   private:
-  const ::se::common::EntityId& _internal_entity_id() const;
-  ::se::common::EntityId* _internal_mutable_entity_id();
+  const ::se::common::ObjectId& _internal_entity_id() const;
+  ::se::common::ObjectId* _internal_mutable_entity_id();
   public:
   void unsafe_arena_set_allocated_entity_id(
-      ::se::common::EntityId* entity_id);
-  ::se::common::EntityId* unsafe_arena_release_entity_id();
+      ::se::common::ObjectId* entity_id);
+  ::se::common::ObjectId* unsafe_arena_release_entity_id();
 
   // @@protoc_insertion_point(class_scope:se.room.N_EntityDespawn)
  private:
@@ -1449,7 +1461,7 @@ class N_EntityDespawn final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::se::common::EntityId* entity_id_;
+    ::se::common::ObjectId* entity_id_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1582,41 +1594,41 @@ class N_HitEvent final :
     kVictimFieldNumber = 2,
     kDamageFieldNumber = 3,
   };
-  // .se.common.EntityId attacker = 1;
+  // .se.common.ObjectId attacker = 1;
   bool has_attacker() const;
   private:
   bool _internal_has_attacker() const;
   public:
   void clear_attacker();
-  const ::se::common::EntityId& attacker() const;
-  PROTOBUF_NODISCARD ::se::common::EntityId* release_attacker();
-  ::se::common::EntityId* mutable_attacker();
-  void set_allocated_attacker(::se::common::EntityId* attacker);
+  const ::se::common::ObjectId& attacker() const;
+  PROTOBUF_NODISCARD ::se::common::ObjectId* release_attacker();
+  ::se::common::ObjectId* mutable_attacker();
+  void set_allocated_attacker(::se::common::ObjectId* attacker);
   private:
-  const ::se::common::EntityId& _internal_attacker() const;
-  ::se::common::EntityId* _internal_mutable_attacker();
+  const ::se::common::ObjectId& _internal_attacker() const;
+  ::se::common::ObjectId* _internal_mutable_attacker();
   public:
   void unsafe_arena_set_allocated_attacker(
-      ::se::common::EntityId* attacker);
-  ::se::common::EntityId* unsafe_arena_release_attacker();
+      ::se::common::ObjectId* attacker);
+  ::se::common::ObjectId* unsafe_arena_release_attacker();
 
-  // .se.common.EntityId victim = 2;
+  // .se.common.ObjectId victim = 2;
   bool has_victim() const;
   private:
   bool _internal_has_victim() const;
   public:
   void clear_victim();
-  const ::se::common::EntityId& victim() const;
-  PROTOBUF_NODISCARD ::se::common::EntityId* release_victim();
-  ::se::common::EntityId* mutable_victim();
-  void set_allocated_victim(::se::common::EntityId* victim);
+  const ::se::common::ObjectId& victim() const;
+  PROTOBUF_NODISCARD ::se::common::ObjectId* release_victim();
+  ::se::common::ObjectId* mutable_victim();
+  void set_allocated_victim(::se::common::ObjectId* victim);
   private:
-  const ::se::common::EntityId& _internal_victim() const;
-  ::se::common::EntityId* _internal_mutable_victim();
+  const ::se::common::ObjectId& _internal_victim() const;
+  ::se::common::ObjectId* _internal_mutable_victim();
   public:
   void unsafe_arena_set_allocated_victim(
-      ::se::common::EntityId* victim);
-  ::se::common::EntityId* unsafe_arena_release_victim();
+      ::se::common::ObjectId* victim);
+  ::se::common::ObjectId* unsafe_arena_release_victim();
 
   // uint32 damage = 3;
   void clear_damage();
@@ -1635,8 +1647,8 @@ class N_HitEvent final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::se::common::EntityId* attacker_;
-    ::se::common::EntityId* victim_;
+    ::se::common::ObjectId* attacker_;
+    ::se::common::ObjectId* victim_;
     uint32_t damage_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1678,24 +1690,24 @@ inline void C_RoomReadyReq::set_ready(bool value) {
 
 // N_RoomReadyChanged
 
-// .se.common.EntityId entity_id = 1;
+// .se.common.ObjectId entity_id = 1;
 inline bool N_RoomReadyChanged::_internal_has_entity_id() const {
   return this != internal_default_instance() && _impl_.entity_id_ != nullptr;
 }
 inline bool N_RoomReadyChanged::has_entity_id() const {
   return _internal_has_entity_id();
 }
-inline const ::se::common::EntityId& N_RoomReadyChanged::_internal_entity_id() const {
-  const ::se::common::EntityId* p = _impl_.entity_id_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::common::EntityId&>(
-      ::se::common::_EntityId_default_instance_);
+inline const ::se::common::ObjectId& N_RoomReadyChanged::_internal_entity_id() const {
+  const ::se::common::ObjectId* p = _impl_.entity_id_;
+  return p != nullptr ? *p : reinterpret_cast<const ::se::common::ObjectId&>(
+      ::se::common::_ObjectId_default_instance_);
 }
-inline const ::se::common::EntityId& N_RoomReadyChanged::entity_id() const {
+inline const ::se::common::ObjectId& N_RoomReadyChanged::entity_id() const {
   // @@protoc_insertion_point(field_get:se.room.N_RoomReadyChanged.entity_id)
   return _internal_entity_id();
 }
 inline void N_RoomReadyChanged::unsafe_arena_set_allocated_entity_id(
-    ::se::common::EntityId* entity_id) {
+    ::se::common::ObjectId* entity_id) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.entity_id_);
   }
@@ -1707,9 +1719,9 @@ inline void N_RoomReadyChanged::unsafe_arena_set_allocated_entity_id(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.room.N_RoomReadyChanged.entity_id)
 }
-inline ::se::common::EntityId* N_RoomReadyChanged::release_entity_id() {
+inline ::se::common::ObjectId* N_RoomReadyChanged::release_entity_id() {
   
-  ::se::common::EntityId* temp = _impl_.entity_id_;
+  ::se::common::ObjectId* temp = _impl_.entity_id_;
   _impl_.entity_id_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -1722,27 +1734,27 @@ inline ::se::common::EntityId* N_RoomReadyChanged::release_entity_id() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::se::common::EntityId* N_RoomReadyChanged::unsafe_arena_release_entity_id() {
+inline ::se::common::ObjectId* N_RoomReadyChanged::unsafe_arena_release_entity_id() {
   // @@protoc_insertion_point(field_release:se.room.N_RoomReadyChanged.entity_id)
   
-  ::se::common::EntityId* temp = _impl_.entity_id_;
+  ::se::common::ObjectId* temp = _impl_.entity_id_;
   _impl_.entity_id_ = nullptr;
   return temp;
 }
-inline ::se::common::EntityId* N_RoomReadyChanged::_internal_mutable_entity_id() {
+inline ::se::common::ObjectId* N_RoomReadyChanged::_internal_mutable_entity_id() {
   
   if (_impl_.entity_id_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::common::EntityId>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::se::common::ObjectId>(GetArenaForAllocation());
     _impl_.entity_id_ = p;
   }
   return _impl_.entity_id_;
 }
-inline ::se::common::EntityId* N_RoomReadyChanged::mutable_entity_id() {
-  ::se::common::EntityId* _msg = _internal_mutable_entity_id();
+inline ::se::common::ObjectId* N_RoomReadyChanged::mutable_entity_id() {
+  ::se::common::ObjectId* _msg = _internal_mutable_entity_id();
   // @@protoc_insertion_point(field_mutable:se.room.N_RoomReadyChanged.entity_id)
   return _msg;
 }
-inline void N_RoomReadyChanged::set_allocated_entity_id(::se::common::EntityId* entity_id) {
+inline void N_RoomReadyChanged::set_allocated_entity_id(::se::common::ObjectId* entity_id) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.entity_id_);
@@ -1969,7 +1981,27 @@ S_EntityState::entities() const {
 
 // N_EntitySpawn
 
-// .se.room.EntityState entity = 1;
+// .se.common.ObjectType entity_type = 1;
+inline void N_EntitySpawn::clear_entity_type() {
+  _impl_.entity_type_ = 0;
+}
+inline ::se::common::ObjectType N_EntitySpawn::_internal_entity_type() const {
+  return static_cast< ::se::common::ObjectType >(_impl_.entity_type_);
+}
+inline ::se::common::ObjectType N_EntitySpawn::entity_type() const {
+  // @@protoc_insertion_point(field_get:se.room.N_EntitySpawn.entity_type)
+  return _internal_entity_type();
+}
+inline void N_EntitySpawn::_internal_set_entity_type(::se::common::ObjectType value) {
+  
+  _impl_.entity_type_ = value;
+}
+inline void N_EntitySpawn::set_entity_type(::se::common::ObjectType value) {
+  _internal_set_entity_type(value);
+  // @@protoc_insertion_point(field_set:se.room.N_EntitySpawn.entity_type)
+}
+
+// .se.room.EntityState entity = 2;
 inline bool N_EntitySpawn::_internal_has_entity() const {
   return this != internal_default_instance() && _impl_.entity_ != nullptr;
 }
@@ -2058,24 +2090,24 @@ inline void N_EntitySpawn::set_allocated_entity(::se::room::EntityState* entity)
 
 // N_EntityDespawn
 
-// .se.common.EntityId entity_id = 1;
+// .se.common.ObjectId entity_id = 1;
 inline bool N_EntityDespawn::_internal_has_entity_id() const {
   return this != internal_default_instance() && _impl_.entity_id_ != nullptr;
 }
 inline bool N_EntityDespawn::has_entity_id() const {
   return _internal_has_entity_id();
 }
-inline const ::se::common::EntityId& N_EntityDespawn::_internal_entity_id() const {
-  const ::se::common::EntityId* p = _impl_.entity_id_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::common::EntityId&>(
-      ::se::common::_EntityId_default_instance_);
+inline const ::se::common::ObjectId& N_EntityDespawn::_internal_entity_id() const {
+  const ::se::common::ObjectId* p = _impl_.entity_id_;
+  return p != nullptr ? *p : reinterpret_cast<const ::se::common::ObjectId&>(
+      ::se::common::_ObjectId_default_instance_);
 }
-inline const ::se::common::EntityId& N_EntityDespawn::entity_id() const {
+inline const ::se::common::ObjectId& N_EntityDespawn::entity_id() const {
   // @@protoc_insertion_point(field_get:se.room.N_EntityDespawn.entity_id)
   return _internal_entity_id();
 }
 inline void N_EntityDespawn::unsafe_arena_set_allocated_entity_id(
-    ::se::common::EntityId* entity_id) {
+    ::se::common::ObjectId* entity_id) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.entity_id_);
   }
@@ -2087,9 +2119,9 @@ inline void N_EntityDespawn::unsafe_arena_set_allocated_entity_id(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.room.N_EntityDespawn.entity_id)
 }
-inline ::se::common::EntityId* N_EntityDespawn::release_entity_id() {
+inline ::se::common::ObjectId* N_EntityDespawn::release_entity_id() {
   
-  ::se::common::EntityId* temp = _impl_.entity_id_;
+  ::se::common::ObjectId* temp = _impl_.entity_id_;
   _impl_.entity_id_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -2102,27 +2134,27 @@ inline ::se::common::EntityId* N_EntityDespawn::release_entity_id() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::se::common::EntityId* N_EntityDespawn::unsafe_arena_release_entity_id() {
+inline ::se::common::ObjectId* N_EntityDespawn::unsafe_arena_release_entity_id() {
   // @@protoc_insertion_point(field_release:se.room.N_EntityDespawn.entity_id)
   
-  ::se::common::EntityId* temp = _impl_.entity_id_;
+  ::se::common::ObjectId* temp = _impl_.entity_id_;
   _impl_.entity_id_ = nullptr;
   return temp;
 }
-inline ::se::common::EntityId* N_EntityDespawn::_internal_mutable_entity_id() {
+inline ::se::common::ObjectId* N_EntityDespawn::_internal_mutable_entity_id() {
   
   if (_impl_.entity_id_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::common::EntityId>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::se::common::ObjectId>(GetArenaForAllocation());
     _impl_.entity_id_ = p;
   }
   return _impl_.entity_id_;
 }
-inline ::se::common::EntityId* N_EntityDespawn::mutable_entity_id() {
-  ::se::common::EntityId* _msg = _internal_mutable_entity_id();
+inline ::se::common::ObjectId* N_EntityDespawn::mutable_entity_id() {
+  ::se::common::ObjectId* _msg = _internal_mutable_entity_id();
   // @@protoc_insertion_point(field_mutable:se.room.N_EntityDespawn.entity_id)
   return _msg;
 }
-inline void N_EntityDespawn::set_allocated_entity_id(::se::common::EntityId* entity_id) {
+inline void N_EntityDespawn::set_allocated_entity_id(::se::common::ObjectId* entity_id) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.entity_id_);
@@ -2147,24 +2179,24 @@ inline void N_EntityDespawn::set_allocated_entity_id(::se::common::EntityId* ent
 
 // N_HitEvent
 
-// .se.common.EntityId attacker = 1;
+// .se.common.ObjectId attacker = 1;
 inline bool N_HitEvent::_internal_has_attacker() const {
   return this != internal_default_instance() && _impl_.attacker_ != nullptr;
 }
 inline bool N_HitEvent::has_attacker() const {
   return _internal_has_attacker();
 }
-inline const ::se::common::EntityId& N_HitEvent::_internal_attacker() const {
-  const ::se::common::EntityId* p = _impl_.attacker_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::common::EntityId&>(
-      ::se::common::_EntityId_default_instance_);
+inline const ::se::common::ObjectId& N_HitEvent::_internal_attacker() const {
+  const ::se::common::ObjectId* p = _impl_.attacker_;
+  return p != nullptr ? *p : reinterpret_cast<const ::se::common::ObjectId&>(
+      ::se::common::_ObjectId_default_instance_);
 }
-inline const ::se::common::EntityId& N_HitEvent::attacker() const {
+inline const ::se::common::ObjectId& N_HitEvent::attacker() const {
   // @@protoc_insertion_point(field_get:se.room.N_HitEvent.attacker)
   return _internal_attacker();
 }
 inline void N_HitEvent::unsafe_arena_set_allocated_attacker(
-    ::se::common::EntityId* attacker) {
+    ::se::common::ObjectId* attacker) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.attacker_);
   }
@@ -2176,9 +2208,9 @@ inline void N_HitEvent::unsafe_arena_set_allocated_attacker(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.room.N_HitEvent.attacker)
 }
-inline ::se::common::EntityId* N_HitEvent::release_attacker() {
+inline ::se::common::ObjectId* N_HitEvent::release_attacker() {
   
-  ::se::common::EntityId* temp = _impl_.attacker_;
+  ::se::common::ObjectId* temp = _impl_.attacker_;
   _impl_.attacker_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -2191,27 +2223,27 @@ inline ::se::common::EntityId* N_HitEvent::release_attacker() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::se::common::EntityId* N_HitEvent::unsafe_arena_release_attacker() {
+inline ::se::common::ObjectId* N_HitEvent::unsafe_arena_release_attacker() {
   // @@protoc_insertion_point(field_release:se.room.N_HitEvent.attacker)
   
-  ::se::common::EntityId* temp = _impl_.attacker_;
+  ::se::common::ObjectId* temp = _impl_.attacker_;
   _impl_.attacker_ = nullptr;
   return temp;
 }
-inline ::se::common::EntityId* N_HitEvent::_internal_mutable_attacker() {
+inline ::se::common::ObjectId* N_HitEvent::_internal_mutable_attacker() {
   
   if (_impl_.attacker_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::common::EntityId>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::se::common::ObjectId>(GetArenaForAllocation());
     _impl_.attacker_ = p;
   }
   return _impl_.attacker_;
 }
-inline ::se::common::EntityId* N_HitEvent::mutable_attacker() {
-  ::se::common::EntityId* _msg = _internal_mutable_attacker();
+inline ::se::common::ObjectId* N_HitEvent::mutable_attacker() {
+  ::se::common::ObjectId* _msg = _internal_mutable_attacker();
   // @@protoc_insertion_point(field_mutable:se.room.N_HitEvent.attacker)
   return _msg;
 }
-inline void N_HitEvent::set_allocated_attacker(::se::common::EntityId* attacker) {
+inline void N_HitEvent::set_allocated_attacker(::se::common::ObjectId* attacker) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.attacker_);
@@ -2232,24 +2264,24 @@ inline void N_HitEvent::set_allocated_attacker(::se::common::EntityId* attacker)
   // @@protoc_insertion_point(field_set_allocated:se.room.N_HitEvent.attacker)
 }
 
-// .se.common.EntityId victim = 2;
+// .se.common.ObjectId victim = 2;
 inline bool N_HitEvent::_internal_has_victim() const {
   return this != internal_default_instance() && _impl_.victim_ != nullptr;
 }
 inline bool N_HitEvent::has_victim() const {
   return _internal_has_victim();
 }
-inline const ::se::common::EntityId& N_HitEvent::_internal_victim() const {
-  const ::se::common::EntityId* p = _impl_.victim_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::common::EntityId&>(
-      ::se::common::_EntityId_default_instance_);
+inline const ::se::common::ObjectId& N_HitEvent::_internal_victim() const {
+  const ::se::common::ObjectId* p = _impl_.victim_;
+  return p != nullptr ? *p : reinterpret_cast<const ::se::common::ObjectId&>(
+      ::se::common::_ObjectId_default_instance_);
 }
-inline const ::se::common::EntityId& N_HitEvent::victim() const {
+inline const ::se::common::ObjectId& N_HitEvent::victim() const {
   // @@protoc_insertion_point(field_get:se.room.N_HitEvent.victim)
   return _internal_victim();
 }
 inline void N_HitEvent::unsafe_arena_set_allocated_victim(
-    ::se::common::EntityId* victim) {
+    ::se::common::ObjectId* victim) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.victim_);
   }
@@ -2261,9 +2293,9 @@ inline void N_HitEvent::unsafe_arena_set_allocated_victim(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.room.N_HitEvent.victim)
 }
-inline ::se::common::EntityId* N_HitEvent::release_victim() {
+inline ::se::common::ObjectId* N_HitEvent::release_victim() {
   
-  ::se::common::EntityId* temp = _impl_.victim_;
+  ::se::common::ObjectId* temp = _impl_.victim_;
   _impl_.victim_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -2276,27 +2308,27 @@ inline ::se::common::EntityId* N_HitEvent::release_victim() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::se::common::EntityId* N_HitEvent::unsafe_arena_release_victim() {
+inline ::se::common::ObjectId* N_HitEvent::unsafe_arena_release_victim() {
   // @@protoc_insertion_point(field_release:se.room.N_HitEvent.victim)
   
-  ::se::common::EntityId* temp = _impl_.victim_;
+  ::se::common::ObjectId* temp = _impl_.victim_;
   _impl_.victim_ = nullptr;
   return temp;
 }
-inline ::se::common::EntityId* N_HitEvent::_internal_mutable_victim() {
+inline ::se::common::ObjectId* N_HitEvent::_internal_mutable_victim() {
   
   if (_impl_.victim_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::common::EntityId>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::se::common::ObjectId>(GetArenaForAllocation());
     _impl_.victim_ = p;
   }
   return _impl_.victim_;
 }
-inline ::se::common::EntityId* N_HitEvent::mutable_victim() {
-  ::se::common::EntityId* _msg = _internal_mutable_victim();
+inline ::se::common::ObjectId* N_HitEvent::mutable_victim() {
+  ::se::common::ObjectId* _msg = _internal_mutable_victim();
   // @@protoc_insertion_point(field_mutable:se.room.N_HitEvent.victim)
   return _msg;
 }
-inline void N_HitEvent::set_allocated_victim(::se::common::EntityId* victim) {
+inline void N_HitEvent::set_allocated_victim(::se::common::ObjectId* victim) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.victim_);

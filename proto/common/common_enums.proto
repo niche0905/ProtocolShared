@@ -26,3 +26,11 @@ enum ErrorCode {
   ERR_INVALID_ROOM = 300;
   ERR_ROOM_FULL = 301;
 }
+
+enum ObjectType {
+  OBJ_NONE = 0;
+  
+  OBJ_PLAYER = 1;
+  OBJ_NPC = 2;
+  OBJ_ITEM = 3;
+}

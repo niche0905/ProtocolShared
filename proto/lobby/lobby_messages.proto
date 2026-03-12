@@ -45,7 +45,6 @@ message S_MatchQueueEnterRes {
   option (se.options.route) = LOBBY;
 
   se.common.Result result = 1;
-  MatchTicket ticket = 2;
 }
 
 message C_MatchQueueCancelReq {
@@ -53,7 +52,6 @@ message C_MatchQueueCancelReq {
   option (se.options.dir) = C2S;
   option (se.options.route) = LOBBY;
 
-  MatchTicket ticket = 1;
 }
 
 message S_MatchQueueCancelRes {
@@ -72,6 +70,6 @@ message N_MatchFound {
   option (se.options.packet_id) = 2020;
   option (se.options.dir) = S2C;
   option (se.options.route) = LOBBY;
-
-  RoomEndpoint room = 1;
+  
+  uint32 room_id = 1;
 }

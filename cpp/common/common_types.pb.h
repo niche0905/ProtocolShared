@@ -47,21 +47,18 @@ struct TableStruct_common_2fcommon_5ftypes_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_common_2fcommon_5ftypes_2eproto;
 namespace se {
 namespace common {
-class AimRotation;
-struct AimRotationDefaultTypeInternal;
-extern AimRotationDefaultTypeInternal _AimRotation_default_instance_;
-class EntityId;
-struct EntityIdDefaultTypeInternal;
-extern EntityIdDefaultTypeInternal _EntityId_default_instance_;
 class MovementState;
 struct MovementStateDefaultTypeInternal;
 extern MovementStateDefaultTypeInternal _MovementState_default_instance_;
+class ObjectId;
+struct ObjectIdDefaultTypeInternal;
+extern ObjectIdDefaultTypeInternal _ObjectId_default_instance_;
+class PlayerId;
+struct PlayerIdDefaultTypeInternal;
+extern PlayerIdDefaultTypeInternal _PlayerId_default_instance_;
 class Result;
 struct ResultDefaultTypeInternal;
 extern ResultDefaultTypeInternal _Result_default_instance_;
-class Rotation;
-struct RotationDefaultTypeInternal;
-extern RotationDefaultTypeInternal _Rotation_default_instance_;
 class Transform;
 struct TransformDefaultTypeInternal;
 extern TransformDefaultTypeInternal _Transform_default_instance_;
@@ -71,11 +68,10 @@ extern Vector3DefaultTypeInternal _Vector3_default_instance_;
 }  // namespace common
 }  // namespace se
 PROTOBUF_NAMESPACE_OPEN
-template<> ::se::common::AimRotation* Arena::CreateMaybeMessage<::se::common::AimRotation>(Arena*);
-template<> ::se::common::EntityId* Arena::CreateMaybeMessage<::se::common::EntityId>(Arena*);
 template<> ::se::common::MovementState* Arena::CreateMaybeMessage<::se::common::MovementState>(Arena*);
+template<> ::se::common::ObjectId* Arena::CreateMaybeMessage<::se::common::ObjectId>(Arena*);
+template<> ::se::common::PlayerId* Arena::CreateMaybeMessage<::se::common::PlayerId>(Arena*);
 template<> ::se::common::Result* Arena::CreateMaybeMessage<::se::common::Result>(Arena*);
-template<> ::se::common::Rotation* Arena::CreateMaybeMessage<::se::common::Rotation>(Arena*);
 template<> ::se::common::Transform* Arena::CreateMaybeMessage<::se::common::Transform>(Arena*);
 template<> ::se::common::Vector3* Arena::CreateMaybeMessage<::se::common::Vector3>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -418,302 +414,6 @@ class Vector3 final :
 };
 // -------------------------------------------------------------------
 
-class Rotation final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.common.Rotation) */ {
- public:
-  inline Rotation() : Rotation(nullptr) {}
-  ~Rotation() override;
-  explicit PROTOBUF_CONSTEXPR Rotation(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  Rotation(const Rotation& from);
-  Rotation(Rotation&& from) noexcept
-    : Rotation() {
-    *this = ::std::move(from);
-  }
-
-  inline Rotation& operator=(const Rotation& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Rotation& operator=(Rotation&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Rotation& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Rotation* internal_default_instance() {
-    return reinterpret_cast<const Rotation*>(
-               &_Rotation_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(Rotation& a, Rotation& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Rotation* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Rotation* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Rotation* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<Rotation>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const Rotation& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const Rotation& from) {
-    Rotation::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Rotation* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "se.common.Rotation";
-  }
-  protected:
-  explicit Rotation(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kYawFieldNumber = 1,
-  };
-  // float yaw = 1;
-  void clear_yaw();
-  float yaw() const;
-  void set_yaw(float value);
-  private:
-  float _internal_yaw() const;
-  void _internal_set_yaw(float value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:se.common.Rotation)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    float yaw_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_common_2fcommon_5ftypes_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AimRotation final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.common.AimRotation) */ {
- public:
-  inline AimRotation() : AimRotation(nullptr) {}
-  ~AimRotation() override;
-  explicit PROTOBUF_CONSTEXPR AimRotation(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  AimRotation(const AimRotation& from);
-  AimRotation(AimRotation&& from) noexcept
-    : AimRotation() {
-    *this = ::std::move(from);
-  }
-
-  inline AimRotation& operator=(const AimRotation& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AimRotation& operator=(AimRotation&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AimRotation& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const AimRotation* internal_default_instance() {
-    return reinterpret_cast<const AimRotation*>(
-               &_AimRotation_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    3;
-
-  friend void swap(AimRotation& a, AimRotation& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(AimRotation* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AimRotation* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AimRotation* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<AimRotation>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AimRotation& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const AimRotation& from) {
-    AimRotation::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(AimRotation* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "se.common.AimRotation";
-  }
-  protected:
-  explicit AimRotation(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kPitchFieldNumber = 1,
-  };
-  // float pitch = 1;
-  void clear_pitch();
-  float pitch() const;
-  void set_pitch(float value);
-  private:
-  float _internal_pitch() const;
-  void _internal_set_pitch(float value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:se.common.AimRotation)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    float pitch_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_common_2fcommon_5ftypes_2eproto;
-};
-// -------------------------------------------------------------------
-
 class Transform final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.common.Transform) */ {
  public:
@@ -762,7 +462,7 @@ class Transform final :
                &_Transform_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    2;
 
   friend void swap(Transform& a, Transform& b) {
     a.Swap(&b);
@@ -836,7 +536,7 @@ class Transform final :
 
   enum : int {
     kPositionFieldNumber = 1,
-    kRotationFieldNumber = 2,
+    kYawFieldNumber = 2,
   };
   // .se.common.Vector3 position = 1;
   bool has_position() const;
@@ -856,23 +556,14 @@ class Transform final :
       ::se::common::Vector3* position);
   ::se::common::Vector3* unsafe_arena_release_position();
 
-  // .se.common.Rotation rotation = 2;
-  bool has_rotation() const;
+  // float yaw = 2;
+  void clear_yaw();
+  float yaw() const;
+  void set_yaw(float value);
   private:
-  bool _internal_has_rotation() const;
+  float _internal_yaw() const;
+  void _internal_set_yaw(float value);
   public:
-  void clear_rotation();
-  const ::se::common::Rotation& rotation() const;
-  PROTOBUF_NODISCARD ::se::common::Rotation* release_rotation();
-  ::se::common::Rotation* mutable_rotation();
-  void set_allocated_rotation(::se::common::Rotation* rotation);
-  private:
-  const ::se::common::Rotation& _internal_rotation() const;
-  ::se::common::Rotation* _internal_mutable_rotation();
-  public:
-  void unsafe_arena_set_allocated_rotation(
-      ::se::common::Rotation* rotation);
-  ::se::common::Rotation* unsafe_arena_release_rotation();
 
   // @@protoc_insertion_point(class_scope:se.common.Transform)
  private:
@@ -883,7 +574,7 @@ class Transform final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::se::common::Vector3* position_;
-    ::se::common::Rotation* rotation_;
+    float yaw_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -939,7 +630,7 @@ class MovementState final :
                &_MovementState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    3;
 
   friend void swap(MovementState& a, MovementState& b) {
     a.Swap(&b);
@@ -1014,7 +705,7 @@ class MovementState final :
   enum : int {
     kPositionFieldNumber = 1,
     kYawFieldNumber = 2,
-    kSpeedFieldNumber = 3,
+    kPitchFieldNumber = 3,
   };
   // .se.common.Vector3 position = 1;
   bool has_position() const;
@@ -1043,13 +734,13 @@ class MovementState final :
   void _internal_set_yaw(float value);
   public:
 
-  // float speed = 3;
-  void clear_speed();
-  float speed() const;
-  void set_speed(float value);
+  // float pitch = 3;
+  void clear_pitch();
+  float pitch() const;
+  void set_pitch(float value);
   private:
-  float _internal_speed() const;
-  void _internal_set_speed(float value);
+  float _internal_pitch() const;
+  void _internal_set_pitch(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:se.common.MovementState)
@@ -1062,7 +753,7 @@ class MovementState final :
   struct Impl_ {
     ::se::common::Vector3* position_;
     float yaw_;
-    float speed_;
+    float pitch_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1070,24 +761,24 @@ class MovementState final :
 };
 // -------------------------------------------------------------------
 
-class EntityId final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.common.EntityId) */ {
+class PlayerId final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.common.PlayerId) */ {
  public:
-  inline EntityId() : EntityId(nullptr) {}
-  ~EntityId() override;
-  explicit PROTOBUF_CONSTEXPR EntityId(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline PlayerId() : PlayerId(nullptr) {}
+  ~PlayerId() override;
+  explicit PROTOBUF_CONSTEXPR PlayerId(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  EntityId(const EntityId& from);
-  EntityId(EntityId&& from) noexcept
-    : EntityId() {
+  PlayerId(const PlayerId& from);
+  PlayerId(PlayerId&& from) noexcept
+    : PlayerId() {
     *this = ::std::move(from);
   }
 
-  inline EntityId& operator=(const EntityId& from) {
+  inline PlayerId& operator=(const PlayerId& from) {
     CopyFrom(from);
     return *this;
   }
-  inline EntityId& operator=(EntityId&& from) noexcept {
+  inline PlayerId& operator=(PlayerId&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1110,20 +801,20 @@ class EntityId final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const EntityId& default_instance() {
+  static const PlayerId& default_instance() {
     return *internal_default_instance();
   }
-  static inline const EntityId* internal_default_instance() {
-    return reinterpret_cast<const EntityId*>(
-               &_EntityId_default_instance_);
+  static inline const PlayerId* internal_default_instance() {
+    return reinterpret_cast<const PlayerId*>(
+               &_PlayerId_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    4;
 
-  friend void swap(EntityId& a, EntityId& b) {
+  friend void swap(PlayerId& a, PlayerId& b) {
     a.Swap(&b);
   }
-  inline void Swap(EntityId* other) {
+  inline void Swap(PlayerId* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1136,7 +827,7 @@ class EntityId final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(EntityId* other) {
+  void UnsafeArenaSwap(PlayerId* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1144,14 +835,14 @@ class EntityId final :
 
   // implements Message ----------------------------------------------
 
-  EntityId* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<EntityId>(arena);
+  PlayerId* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PlayerId>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const EntityId& from);
+  void CopyFrom(const PlayerId& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const EntityId& from) {
-    EntityId::MergeImpl(*this, from);
+  void MergeFrom( const PlayerId& from) {
+    PlayerId::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -1169,15 +860,15 @@ class EntityId final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(EntityId* other);
+  void InternalSwap(PlayerId* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "se.common.EntityId";
+    return "se.common.PlayerId";
   }
   protected:
-  explicit EntityId(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit PlayerId(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1202,7 +893,7 @@ class EntityId final :
   void _internal_set_value(uint64_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:se.common.EntityId)
+  // @@protoc_insertion_point(class_scope:se.common.PlayerId)
  private:
   class _Internal;
 
@@ -1211,6 +902,154 @@ class EntityId final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     uint64_t value_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_2fcommon_5ftypes_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ObjectId final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.common.ObjectId) */ {
+ public:
+  inline ObjectId() : ObjectId(nullptr) {}
+  ~ObjectId() override;
+  explicit PROTOBUF_CONSTEXPR ObjectId(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ObjectId(const ObjectId& from);
+  ObjectId(ObjectId&& from) noexcept
+    : ObjectId() {
+    *this = ::std::move(from);
+  }
+
+  inline ObjectId& operator=(const ObjectId& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ObjectId& operator=(ObjectId&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ObjectId& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ObjectId* internal_default_instance() {
+    return reinterpret_cast<const ObjectId*>(
+               &_ObjectId_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(ObjectId& a, ObjectId& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ObjectId* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ObjectId* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ObjectId* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ObjectId>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ObjectId& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ObjectId& from) {
+    ObjectId::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ObjectId* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "se.common.ObjectId";
+  }
+  protected:
+  explicit ObjectId(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kValueFieldNumber = 1,
+  };
+  // uint32 value = 1;
+  void clear_value();
+  uint32_t value() const;
+  void set_value(uint32_t value);
+  private:
+  uint32_t _internal_value() const;
+  void _internal_set_value(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:se.common.ObjectId)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    uint32_t value_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1363,54 +1202,6 @@ inline void Vector3::set_z(float value) {
 
 // -------------------------------------------------------------------
 
-// Rotation
-
-// float yaw = 1;
-inline void Rotation::clear_yaw() {
-  _impl_.yaw_ = 0;
-}
-inline float Rotation::_internal_yaw() const {
-  return _impl_.yaw_;
-}
-inline float Rotation::yaw() const {
-  // @@protoc_insertion_point(field_get:se.common.Rotation.yaw)
-  return _internal_yaw();
-}
-inline void Rotation::_internal_set_yaw(float value) {
-  
-  _impl_.yaw_ = value;
-}
-inline void Rotation::set_yaw(float value) {
-  _internal_set_yaw(value);
-  // @@protoc_insertion_point(field_set:se.common.Rotation.yaw)
-}
-
-// -------------------------------------------------------------------
-
-// AimRotation
-
-// float pitch = 1;
-inline void AimRotation::clear_pitch() {
-  _impl_.pitch_ = 0;
-}
-inline float AimRotation::_internal_pitch() const {
-  return _impl_.pitch_;
-}
-inline float AimRotation::pitch() const {
-  // @@protoc_insertion_point(field_get:se.common.AimRotation.pitch)
-  return _internal_pitch();
-}
-inline void AimRotation::_internal_set_pitch(float value) {
-  
-  _impl_.pitch_ = value;
-}
-inline void AimRotation::set_pitch(float value) {
-  _internal_set_pitch(value);
-  // @@protoc_insertion_point(field_set:se.common.AimRotation.pitch)
-}
-
-// -------------------------------------------------------------------
-
 // Transform
 
 // .se.common.Vector3 position = 1;
@@ -1503,94 +1294,24 @@ inline void Transform::set_allocated_position(::se::common::Vector3* position) {
   // @@protoc_insertion_point(field_set_allocated:se.common.Transform.position)
 }
 
-// .se.common.Rotation rotation = 2;
-inline bool Transform::_internal_has_rotation() const {
-  return this != internal_default_instance() && _impl_.rotation_ != nullptr;
+// float yaw = 2;
+inline void Transform::clear_yaw() {
+  _impl_.yaw_ = 0;
 }
-inline bool Transform::has_rotation() const {
-  return _internal_has_rotation();
+inline float Transform::_internal_yaw() const {
+  return _impl_.yaw_;
 }
-inline void Transform::clear_rotation() {
-  if (GetArenaForAllocation() == nullptr && _impl_.rotation_ != nullptr) {
-    delete _impl_.rotation_;
-  }
-  _impl_.rotation_ = nullptr;
+inline float Transform::yaw() const {
+  // @@protoc_insertion_point(field_get:se.common.Transform.yaw)
+  return _internal_yaw();
 }
-inline const ::se::common::Rotation& Transform::_internal_rotation() const {
-  const ::se::common::Rotation* p = _impl_.rotation_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::common::Rotation&>(
-      ::se::common::_Rotation_default_instance_);
-}
-inline const ::se::common::Rotation& Transform::rotation() const {
-  // @@protoc_insertion_point(field_get:se.common.Transform.rotation)
-  return _internal_rotation();
-}
-inline void Transform::unsafe_arena_set_allocated_rotation(
-    ::se::common::Rotation* rotation) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.rotation_);
-  }
-  _impl_.rotation_ = rotation;
-  if (rotation) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.common.Transform.rotation)
-}
-inline ::se::common::Rotation* Transform::release_rotation() {
+inline void Transform::_internal_set_yaw(float value) {
   
-  ::se::common::Rotation* temp = _impl_.rotation_;
-  _impl_.rotation_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
+  _impl_.yaw_ = value;
 }
-inline ::se::common::Rotation* Transform::unsafe_arena_release_rotation() {
-  // @@protoc_insertion_point(field_release:se.common.Transform.rotation)
-  
-  ::se::common::Rotation* temp = _impl_.rotation_;
-  _impl_.rotation_ = nullptr;
-  return temp;
-}
-inline ::se::common::Rotation* Transform::_internal_mutable_rotation() {
-  
-  if (_impl_.rotation_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::common::Rotation>(GetArenaForAllocation());
-    _impl_.rotation_ = p;
-  }
-  return _impl_.rotation_;
-}
-inline ::se::common::Rotation* Transform::mutable_rotation() {
-  ::se::common::Rotation* _msg = _internal_mutable_rotation();
-  // @@protoc_insertion_point(field_mutable:se.common.Transform.rotation)
-  return _msg;
-}
-inline void Transform::set_allocated_rotation(::se::common::Rotation* rotation) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete _impl_.rotation_;
-  }
-  if (rotation) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(rotation);
-    if (message_arena != submessage_arena) {
-      rotation = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, rotation, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.rotation_ = rotation;
-  // @@protoc_insertion_point(field_set_allocated:se.common.Transform.rotation)
+inline void Transform::set_yaw(float value) {
+  _internal_set_yaw(value);
+  // @@protoc_insertion_point(field_set:se.common.Transform.yaw)
 }
 
 // -------------------------------------------------------------------
@@ -1707,55 +1428,77 @@ inline void MovementState::set_yaw(float value) {
   // @@protoc_insertion_point(field_set:se.common.MovementState.yaw)
 }
 
-// float speed = 3;
-inline void MovementState::clear_speed() {
-  _impl_.speed_ = 0;
+// float pitch = 3;
+inline void MovementState::clear_pitch() {
+  _impl_.pitch_ = 0;
 }
-inline float MovementState::_internal_speed() const {
-  return _impl_.speed_;
+inline float MovementState::_internal_pitch() const {
+  return _impl_.pitch_;
 }
-inline float MovementState::speed() const {
-  // @@protoc_insertion_point(field_get:se.common.MovementState.speed)
-  return _internal_speed();
+inline float MovementState::pitch() const {
+  // @@protoc_insertion_point(field_get:se.common.MovementState.pitch)
+  return _internal_pitch();
 }
-inline void MovementState::_internal_set_speed(float value) {
+inline void MovementState::_internal_set_pitch(float value) {
   
-  _impl_.speed_ = value;
+  _impl_.pitch_ = value;
 }
-inline void MovementState::set_speed(float value) {
-  _internal_set_speed(value);
-  // @@protoc_insertion_point(field_set:se.common.MovementState.speed)
+inline void MovementState::set_pitch(float value) {
+  _internal_set_pitch(value);
+  // @@protoc_insertion_point(field_set:se.common.MovementState.pitch)
 }
 
 // -------------------------------------------------------------------
 
-// EntityId
+// PlayerId
 
 // uint64 value = 1;
-inline void EntityId::clear_value() {
+inline void PlayerId::clear_value() {
   _impl_.value_ = uint64_t{0u};
 }
-inline uint64_t EntityId::_internal_value() const {
+inline uint64_t PlayerId::_internal_value() const {
   return _impl_.value_;
 }
-inline uint64_t EntityId::value() const {
-  // @@protoc_insertion_point(field_get:se.common.EntityId.value)
+inline uint64_t PlayerId::value() const {
+  // @@protoc_insertion_point(field_get:se.common.PlayerId.value)
   return _internal_value();
 }
-inline void EntityId::_internal_set_value(uint64_t value) {
+inline void PlayerId::_internal_set_value(uint64_t value) {
   
   _impl_.value_ = value;
 }
-inline void EntityId::set_value(uint64_t value) {
+inline void PlayerId::set_value(uint64_t value) {
   _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:se.common.EntityId.value)
+  // @@protoc_insertion_point(field_set:se.common.PlayerId.value)
+}
+
+// -------------------------------------------------------------------
+
+// ObjectId
+
+// uint32 value = 1;
+inline void ObjectId::clear_value() {
+  _impl_.value_ = 0u;
+}
+inline uint32_t ObjectId::_internal_value() const {
+  return _impl_.value_;
+}
+inline uint32_t ObjectId::value() const {
+  // @@protoc_insertion_point(field_get:se.common.ObjectId.value)
+  return _internal_value();
+}
+inline void ObjectId::_internal_set_value(uint32_t value) {
+  
+  _impl_.value_ = value;
+}
+inline void ObjectId::set_value(uint32_t value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:se.common.ObjectId.value)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

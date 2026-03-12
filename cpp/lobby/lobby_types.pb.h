@@ -47,21 +47,13 @@ struct TableStruct_lobby_2flobby_5ftypes_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_lobby_2flobby_5ftypes_2eproto;
 namespace se {
 namespace lobby {
-class MatchTicket;
-struct MatchTicketDefaultTypeInternal;
-extern MatchTicketDefaultTypeInternal _MatchTicket_default_instance_;
 class PlayerProfile;
 struct PlayerProfileDefaultTypeInternal;
 extern PlayerProfileDefaultTypeInternal _PlayerProfile_default_instance_;
-class RoomEndpoint;
-struct RoomEndpointDefaultTypeInternal;
-extern RoomEndpointDefaultTypeInternal _RoomEndpoint_default_instance_;
 }  // namespace lobby
 }  // namespace se
 PROTOBUF_NAMESPACE_OPEN
-template<> ::se::lobby::MatchTicket* Arena::CreateMaybeMessage<::se::lobby::MatchTicket>(Arena*);
 template<> ::se::lobby::PlayerProfile* Arena::CreateMaybeMessage<::se::lobby::PlayerProfile>(Arena*);
-template<> ::se::lobby::RoomEndpoint* Arena::CreateMaybeMessage<::se::lobby::RoomEndpoint>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace se {
 namespace lobby {
@@ -207,23 +199,23 @@ class PlayerProfile final :
   std::string* _internal_mutable_nickname();
   public:
 
-  // .se.common.EntityId player_id = 1;
+  // .se.common.PlayerId player_id = 1;
   bool has_player_id() const;
   private:
   bool _internal_has_player_id() const;
   public:
   void clear_player_id();
-  const ::se::common::EntityId& player_id() const;
-  PROTOBUF_NODISCARD ::se::common::EntityId* release_player_id();
-  ::se::common::EntityId* mutable_player_id();
-  void set_allocated_player_id(::se::common::EntityId* player_id);
+  const ::se::common::PlayerId& player_id() const;
+  PROTOBUF_NODISCARD ::se::common::PlayerId* release_player_id();
+  ::se::common::PlayerId* mutable_player_id();
+  void set_allocated_player_id(::se::common::PlayerId* player_id);
   private:
-  const ::se::common::EntityId& _internal_player_id() const;
-  ::se::common::EntityId* _internal_mutable_player_id();
+  const ::se::common::PlayerId& _internal_player_id() const;
+  ::se::common::PlayerId* _internal_mutable_player_id();
   public:
   void unsafe_arena_set_allocated_player_id(
-      ::se::common::EntityId* player_id);
-  ::se::common::EntityId* unsafe_arena_release_player_id();
+      ::se::common::PlayerId* player_id);
+  ::se::common::PlayerId* unsafe_arena_release_player_id();
 
   // uint32 level = 3;
   void clear_level();
@@ -243,320 +235,8 @@ class PlayerProfile final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nickname_;
-    ::se::common::EntityId* player_id_;
+    ::se::common::PlayerId* player_id_;
     uint32_t level_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_lobby_2flobby_5ftypes_2eproto;
-};
-// -------------------------------------------------------------------
-
-class MatchTicket final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.lobby.MatchTicket) */ {
- public:
-  inline MatchTicket() : MatchTicket(nullptr) {}
-  ~MatchTicket() override;
-  explicit PROTOBUF_CONSTEXPR MatchTicket(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  MatchTicket(const MatchTicket& from);
-  MatchTicket(MatchTicket&& from) noexcept
-    : MatchTicket() {
-    *this = ::std::move(from);
-  }
-
-  inline MatchTicket& operator=(const MatchTicket& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MatchTicket& operator=(MatchTicket&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MatchTicket& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MatchTicket* internal_default_instance() {
-    return reinterpret_cast<const MatchTicket*>(
-               &_MatchTicket_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(MatchTicket& a, MatchTicket& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(MatchTicket* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MatchTicket* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MatchTicket* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MatchTicket>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const MatchTicket& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const MatchTicket& from) {
-    MatchTicket::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(MatchTicket* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "se.lobby.MatchTicket";
-  }
-  protected:
-  explicit MatchTicket(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kTicketIdFieldNumber = 1,
-  };
-  // uint64 ticket_id = 1;
-  void clear_ticket_id();
-  uint64_t ticket_id() const;
-  void set_ticket_id(uint64_t value);
-  private:
-  uint64_t _internal_ticket_id() const;
-  void _internal_set_ticket_id(uint64_t value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:se.lobby.MatchTicket)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    uint64_t ticket_id_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_lobby_2flobby_5ftypes_2eproto;
-};
-// -------------------------------------------------------------------
-
-class RoomEndpoint final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.lobby.RoomEndpoint) */ {
- public:
-  inline RoomEndpoint() : RoomEndpoint(nullptr) {}
-  ~RoomEndpoint() override;
-  explicit PROTOBUF_CONSTEXPR RoomEndpoint(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  RoomEndpoint(const RoomEndpoint& from);
-  RoomEndpoint(RoomEndpoint&& from) noexcept
-    : RoomEndpoint() {
-    *this = ::std::move(from);
-  }
-
-  inline RoomEndpoint& operator=(const RoomEndpoint& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RoomEndpoint& operator=(RoomEndpoint&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RoomEndpoint& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const RoomEndpoint* internal_default_instance() {
-    return reinterpret_cast<const RoomEndpoint*>(
-               &_RoomEndpoint_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(RoomEndpoint& a, RoomEndpoint& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(RoomEndpoint* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RoomEndpoint* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RoomEndpoint* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<RoomEndpoint>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const RoomEndpoint& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const RoomEndpoint& from) {
-    RoomEndpoint::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(RoomEndpoint* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "se.lobby.RoomEndpoint";
-  }
-  protected:
-  explicit RoomEndpoint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kJoinTokenFieldNumber = 4,
-    kRoomIdFieldNumber = 3,
-  };
-  // string join_token = 4;
-  void clear_join_token();
-  const std::string& join_token() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_join_token(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_join_token();
-  PROTOBUF_NODISCARD std::string* release_join_token();
-  void set_allocated_join_token(std::string* join_token);
-  private:
-  const std::string& _internal_join_token() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_join_token(const std::string& value);
-  std::string* _internal_mutable_join_token();
-  public:
-
-  // uint64 room_id = 3;
-  void clear_room_id();
-  uint64_t room_id() const;
-  void set_room_id(uint64_t value);
-  private:
-  uint64_t _internal_room_id() const;
-  void _internal_set_room_id(uint64_t value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:se.lobby.RoomEndpoint)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr join_token_;
-    uint64_t room_id_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -573,24 +253,24 @@ class RoomEndpoint final :
 #endif  // __GNUC__
 // PlayerProfile
 
-// .se.common.EntityId player_id = 1;
+// .se.common.PlayerId player_id = 1;
 inline bool PlayerProfile::_internal_has_player_id() const {
   return this != internal_default_instance() && _impl_.player_id_ != nullptr;
 }
 inline bool PlayerProfile::has_player_id() const {
   return _internal_has_player_id();
 }
-inline const ::se::common::EntityId& PlayerProfile::_internal_player_id() const {
-  const ::se::common::EntityId* p = _impl_.player_id_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::common::EntityId&>(
-      ::se::common::_EntityId_default_instance_);
+inline const ::se::common::PlayerId& PlayerProfile::_internal_player_id() const {
+  const ::se::common::PlayerId* p = _impl_.player_id_;
+  return p != nullptr ? *p : reinterpret_cast<const ::se::common::PlayerId&>(
+      ::se::common::_PlayerId_default_instance_);
 }
-inline const ::se::common::EntityId& PlayerProfile::player_id() const {
+inline const ::se::common::PlayerId& PlayerProfile::player_id() const {
   // @@protoc_insertion_point(field_get:se.lobby.PlayerProfile.player_id)
   return _internal_player_id();
 }
 inline void PlayerProfile::unsafe_arena_set_allocated_player_id(
-    ::se::common::EntityId* player_id) {
+    ::se::common::PlayerId* player_id) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.player_id_);
   }
@@ -602,9 +282,9 @@ inline void PlayerProfile::unsafe_arena_set_allocated_player_id(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.lobby.PlayerProfile.player_id)
 }
-inline ::se::common::EntityId* PlayerProfile::release_player_id() {
+inline ::se::common::PlayerId* PlayerProfile::release_player_id() {
   
-  ::se::common::EntityId* temp = _impl_.player_id_;
+  ::se::common::PlayerId* temp = _impl_.player_id_;
   _impl_.player_id_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -617,27 +297,27 @@ inline ::se::common::EntityId* PlayerProfile::release_player_id() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::se::common::EntityId* PlayerProfile::unsafe_arena_release_player_id() {
+inline ::se::common::PlayerId* PlayerProfile::unsafe_arena_release_player_id() {
   // @@protoc_insertion_point(field_release:se.lobby.PlayerProfile.player_id)
   
-  ::se::common::EntityId* temp = _impl_.player_id_;
+  ::se::common::PlayerId* temp = _impl_.player_id_;
   _impl_.player_id_ = nullptr;
   return temp;
 }
-inline ::se::common::EntityId* PlayerProfile::_internal_mutable_player_id() {
+inline ::se::common::PlayerId* PlayerProfile::_internal_mutable_player_id() {
   
   if (_impl_.player_id_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::common::EntityId>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::se::common::PlayerId>(GetArenaForAllocation());
     _impl_.player_id_ = p;
   }
   return _impl_.player_id_;
 }
-inline ::se::common::EntityId* PlayerProfile::mutable_player_id() {
-  ::se::common::EntityId* _msg = _internal_mutable_player_id();
+inline ::se::common::PlayerId* PlayerProfile::mutable_player_id() {
+  ::se::common::PlayerId* _msg = _internal_mutable_player_id();
   // @@protoc_insertion_point(field_mutable:se.lobby.PlayerProfile.player_id)
   return _msg;
 }
-inline void PlayerProfile::set_allocated_player_id(::se::common::EntityId* player_id) {
+inline void PlayerProfile::set_allocated_player_id(::se::common::PlayerId* player_id) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.player_id_);
@@ -728,111 +408,9 @@ inline void PlayerProfile::set_level(uint32_t value) {
   // @@protoc_insertion_point(field_set:se.lobby.PlayerProfile.level)
 }
 
-// -------------------------------------------------------------------
-
-// MatchTicket
-
-// uint64 ticket_id = 1;
-inline void MatchTicket::clear_ticket_id() {
-  _impl_.ticket_id_ = uint64_t{0u};
-}
-inline uint64_t MatchTicket::_internal_ticket_id() const {
-  return _impl_.ticket_id_;
-}
-inline uint64_t MatchTicket::ticket_id() const {
-  // @@protoc_insertion_point(field_get:se.lobby.MatchTicket.ticket_id)
-  return _internal_ticket_id();
-}
-inline void MatchTicket::_internal_set_ticket_id(uint64_t value) {
-  
-  _impl_.ticket_id_ = value;
-}
-inline void MatchTicket::set_ticket_id(uint64_t value) {
-  _internal_set_ticket_id(value);
-  // @@protoc_insertion_point(field_set:se.lobby.MatchTicket.ticket_id)
-}
-
-// -------------------------------------------------------------------
-
-// RoomEndpoint
-
-// uint64 room_id = 3;
-inline void RoomEndpoint::clear_room_id() {
-  _impl_.room_id_ = uint64_t{0u};
-}
-inline uint64_t RoomEndpoint::_internal_room_id() const {
-  return _impl_.room_id_;
-}
-inline uint64_t RoomEndpoint::room_id() const {
-  // @@protoc_insertion_point(field_get:se.lobby.RoomEndpoint.room_id)
-  return _internal_room_id();
-}
-inline void RoomEndpoint::_internal_set_room_id(uint64_t value) {
-  
-  _impl_.room_id_ = value;
-}
-inline void RoomEndpoint::set_room_id(uint64_t value) {
-  _internal_set_room_id(value);
-  // @@protoc_insertion_point(field_set:se.lobby.RoomEndpoint.room_id)
-}
-
-// string join_token = 4;
-inline void RoomEndpoint::clear_join_token() {
-  _impl_.join_token_.ClearToEmpty();
-}
-inline const std::string& RoomEndpoint::join_token() const {
-  // @@protoc_insertion_point(field_get:se.lobby.RoomEndpoint.join_token)
-  return _internal_join_token();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void RoomEndpoint::set_join_token(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.join_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:se.lobby.RoomEndpoint.join_token)
-}
-inline std::string* RoomEndpoint::mutable_join_token() {
-  std::string* _s = _internal_mutable_join_token();
-  // @@protoc_insertion_point(field_mutable:se.lobby.RoomEndpoint.join_token)
-  return _s;
-}
-inline const std::string& RoomEndpoint::_internal_join_token() const {
-  return _impl_.join_token_.Get();
-}
-inline void RoomEndpoint::_internal_set_join_token(const std::string& value) {
-  
-  _impl_.join_token_.Set(value, GetArenaForAllocation());
-}
-inline std::string* RoomEndpoint::_internal_mutable_join_token() {
-  
-  return _impl_.join_token_.Mutable(GetArenaForAllocation());
-}
-inline std::string* RoomEndpoint::release_join_token() {
-  // @@protoc_insertion_point(field_release:se.lobby.RoomEndpoint.join_token)
-  return _impl_.join_token_.Release();
-}
-inline void RoomEndpoint::set_allocated_join_token(std::string* join_token) {
-  if (join_token != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.join_token_.SetAllocated(join_token, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.join_token_.IsDefault()) {
-    _impl_.join_token_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:se.lobby.RoomEndpoint.join_token)
-}
-
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 
 // @@protoc_insertion_point(namespace_scope)
 

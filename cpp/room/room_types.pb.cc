@@ -40,7 +40,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR RoomSnapshot::RoomSnapshot(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.players_)*/{}
-  , /*decltype(_impl_.room_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.room_id_)*/0u
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RoomSnapshotDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RoomSnapshotDefaultTypeInternal()
@@ -55,7 +55,6 @@ PROTOBUF_CONSTEXPR EntityState::EntityState(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.entity_id_)*/nullptr
   , /*decltype(_impl_.movement_)*/nullptr
-  , /*decltype(_impl_.aim_)*/nullptr
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct EntityStateDefaultTypeInternal {
   PROTOBUF_CONSTEXPR EntityStateDefaultTypeInternal()
@@ -98,7 +97,6 @@ const uint32_t TableStruct_room_2froom_5ftypes_2eproto::offsets[] PROTOBUF_SECTI
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::se::room::EntityState, _impl_.entity_id_),
   PROTOBUF_FIELD_OFFSET(::se::room::EntityState, _impl_.movement_),
-  PROTOBUF_FIELD_OFFSET(::se::room::EntityState, _impl_.aim_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::se::room::RoomPlayer)},
@@ -115,21 +113,20 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_room_2froom_5ftypes_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\025room/room_types.proto\022\007se.room\032\031common"
   "/common_types.proto\"X\n\nRoomPlayer\022&\n\tent"
-  "ity_id\030\001 \001(\0132\023.se.common.EntityId\022\020\n\010nic"
+  "ity_id\030\001 \001(\0132\023.se.common.ObjectId\022\020\n\010nic"
   "kname\030\002 \001(\t\022\020\n\010is_ready\030\003 \001(\010\"E\n\014RoomSna"
-  "pshot\022\017\n\007room_id\030\001 \001(\004\022$\n\007players\030\002 \003(\0132"
-  "\023.se.room.RoomPlayer\"\206\001\n\013EntityState\022&\n\t"
-  "entity_id\030\001 \001(\0132\023.se.common.EntityId\022*\n\010"
-  "movement\030\002 \001(\0132\030.se.common.MovementState"
-  "\022#\n\003aim\030\003 \001(\0132\026.se.common.AimRotationb\006p"
-  "roto3"
+  "pshot\022\017\n\007room_id\030\001 \001(\r\022$\n\007players\030\002 \003(\0132"
+  "\023.se.room.RoomPlayer\"a\n\013EntityState\022&\n\te"
+  "ntity_id\030\001 \001(\0132\023.se.common.ObjectId\022*\n\010m"
+  "ovement\030\002 \001(\0132\030.se.common.MovementStateb"
+  "\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_room_2froom_5ftypes_2eproto_deps[1] = {
   &::descriptor_table_common_2fcommon_5ftypes_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_room_2froom_5ftypes_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_room_2froom_5ftypes_2eproto = {
-    false, false, 365, descriptor_table_protodef_room_2froom_5ftypes_2eproto,
+    false, false, 327, descriptor_table_protodef_room_2froom_5ftypes_2eproto,
     "room/room_types.proto",
     &descriptor_table_room_2froom_5ftypes_2eproto_once, descriptor_table_room_2froom_5ftypes_2eproto_deps, 1, 3,
     schemas, file_default_instances, TableStruct_room_2froom_5ftypes_2eproto::offsets,
@@ -149,10 +146,10 @@ namespace room {
 
 class RoomPlayer::_Internal {
  public:
-  static const ::se::common::EntityId& entity_id(const RoomPlayer* msg);
+  static const ::se::common::ObjectId& entity_id(const RoomPlayer* msg);
 };
 
-const ::se::common::EntityId&
+const ::se::common::ObjectId&
 RoomPlayer::_Internal::entity_id(const RoomPlayer* msg) {
   return *msg->_impl_.entity_id_;
 }
@@ -187,7 +184,7 @@ RoomPlayer::RoomPlayer(const RoomPlayer& from)
       _this->GetArenaForAllocation());
   }
   if (from._internal_has_entity_id()) {
-    _this->_impl_.entity_id_ = new ::se::common::EntityId(*from._impl_.entity_id_);
+    _this->_impl_.entity_id_ = new ::se::common::ObjectId(*from._impl_.entity_id_);
   }
   _this->_impl_.is_ready_ = from._impl_.is_ready_;
   // @@protoc_insertion_point(copy_constructor:se.room.RoomPlayer)
@@ -249,7 +246,7 @@ const char* RoomPlayer::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .se.common.EntityId entity_id = 1;
+      // .se.common.ObjectId entity_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_entity_id(), ptr);
@@ -304,7 +301,7 @@ uint8_t* RoomPlayer::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .se.common.EntityId entity_id = 1;
+  // .se.common.ObjectId entity_id = 1;
   if (this->_internal_has_entity_id()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(1, _Internal::entity_id(this),
@@ -350,7 +347,7 @@ size_t RoomPlayer::ByteSizeLong() const {
         this->_internal_nickname());
   }
 
-  // .se.common.EntityId entity_id = 1;
+  // .se.common.ObjectId entity_id = 1;
   if (this->_internal_has_entity_id()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -384,7 +381,7 @@ void RoomPlayer::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
     _this->_internal_set_nickname(from._internal_nickname());
   }
   if (from._internal_has_entity_id()) {
-    _this->_internal_mutable_entity_id()->::se::common::EntityId::MergeFrom(
+    _this->_internal_mutable_entity_id()->::se::common::ObjectId::MergeFrom(
         from._internal_entity_id());
   }
   if (from._internal_is_ready() != 0) {
@@ -458,7 +455,7 @@ inline void RoomSnapshot::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.players_){arena}
-    , decltype(_impl_.room_id_){uint64_t{0u}}
+    , decltype(_impl_.room_id_){0u}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -488,7 +485,7 @@ void RoomSnapshot::Clear() {
   (void) cached_has_bits;
 
   _impl_.players_.Clear();
-  _impl_.room_id_ = uint64_t{0u};
+  _impl_.room_id_ = 0u;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -498,10 +495,10 @@ const char* RoomSnapshot::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint64 room_id = 1;
+      // uint32 room_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.room_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.room_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -548,10 +545,10 @@ uint8_t* RoomSnapshot::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 room_id = 1;
+  // uint32 room_id = 1;
   if (this->_internal_room_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_room_id(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_room_id(), target);
   }
 
   // repeated .se.room.RoomPlayer players = 2;
@@ -585,9 +582,9 @@ size_t RoomSnapshot::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  // uint64 room_id = 1;
+  // uint32 room_id = 1;
   if (this->_internal_room_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_room_id());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_room_id());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -643,22 +640,17 @@ void RoomSnapshot::InternalSwap(RoomSnapshot* other) {
 
 class EntityState::_Internal {
  public:
-  static const ::se::common::EntityId& entity_id(const EntityState* msg);
+  static const ::se::common::ObjectId& entity_id(const EntityState* msg);
   static const ::se::common::MovementState& movement(const EntityState* msg);
-  static const ::se::common::AimRotation& aim(const EntityState* msg);
 };
 
-const ::se::common::EntityId&
+const ::se::common::ObjectId&
 EntityState::_Internal::entity_id(const EntityState* msg) {
   return *msg->_impl_.entity_id_;
 }
 const ::se::common::MovementState&
 EntityState::_Internal::movement(const EntityState* msg) {
   return *msg->_impl_.movement_;
-}
-const ::se::common::AimRotation&
-EntityState::_Internal::aim(const EntityState* msg) {
-  return *msg->_impl_.aim_;
 }
 void EntityState::clear_entity_id() {
   if (GetArenaForAllocation() == nullptr && _impl_.entity_id_ != nullptr) {
@@ -672,12 +664,6 @@ void EntityState::clear_movement() {
   }
   _impl_.movement_ = nullptr;
 }
-void EntityState::clear_aim() {
-  if (GetArenaForAllocation() == nullptr && _impl_.aim_ != nullptr) {
-    delete _impl_.aim_;
-  }
-  _impl_.aim_ = nullptr;
-}
 EntityState::EntityState(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -690,18 +676,14 @@ EntityState::EntityState(const EntityState& from)
   new (&_impl_) Impl_{
       decltype(_impl_.entity_id_){nullptr}
     , decltype(_impl_.movement_){nullptr}
-    , decltype(_impl_.aim_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_entity_id()) {
-    _this->_impl_.entity_id_ = new ::se::common::EntityId(*from._impl_.entity_id_);
+    _this->_impl_.entity_id_ = new ::se::common::ObjectId(*from._impl_.entity_id_);
   }
   if (from._internal_has_movement()) {
     _this->_impl_.movement_ = new ::se::common::MovementState(*from._impl_.movement_);
-  }
-  if (from._internal_has_aim()) {
-    _this->_impl_.aim_ = new ::se::common::AimRotation(*from._impl_.aim_);
   }
   // @@protoc_insertion_point(copy_constructor:se.room.EntityState)
 }
@@ -713,7 +695,6 @@ inline void EntityState::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.entity_id_){nullptr}
     , decltype(_impl_.movement_){nullptr}
-    , decltype(_impl_.aim_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -731,7 +712,6 @@ inline void EntityState::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete _impl_.entity_id_;
   if (this != internal_default_instance()) delete _impl_.movement_;
-  if (this != internal_default_instance()) delete _impl_.aim_;
 }
 
 void EntityState::SetCachedSize(int size) const {
@@ -752,10 +732,6 @@ void EntityState::Clear() {
     delete _impl_.movement_;
   }
   _impl_.movement_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.aim_ != nullptr) {
-    delete _impl_.aim_;
-  }
-  _impl_.aim_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -765,7 +741,7 @@ const char* EntityState::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .se.common.EntityId entity_id = 1;
+      // .se.common.ObjectId entity_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_entity_id(), ptr);
@@ -777,14 +753,6 @@ const char* EntityState::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_movement(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .se.common.AimRotation aim = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_aim(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -818,7 +786,7 @@ uint8_t* EntityState::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .se.common.EntityId entity_id = 1;
+  // .se.common.ObjectId entity_id = 1;
   if (this->_internal_has_entity_id()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(1, _Internal::entity_id(this),
@@ -830,13 +798,6 @@ uint8_t* EntityState::_InternalSerialize(
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(2, _Internal::movement(this),
         _Internal::movement(this).GetCachedSize(), target, stream);
-  }
-
-  // .se.common.AimRotation aim = 3;
-  if (this->_internal_has_aim()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::aim(this),
-        _Internal::aim(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -855,7 +816,7 @@ size_t EntityState::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .se.common.EntityId entity_id = 1;
+  // .se.common.ObjectId entity_id = 1;
   if (this->_internal_has_entity_id()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -867,13 +828,6 @@ size_t EntityState::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.movement_);
-  }
-
-  // .se.common.AimRotation aim = 3;
-  if (this->_internal_has_aim()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.aim_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -895,16 +849,12 @@ void EntityState::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PR
   (void) cached_has_bits;
 
   if (from._internal_has_entity_id()) {
-    _this->_internal_mutable_entity_id()->::se::common::EntityId::MergeFrom(
+    _this->_internal_mutable_entity_id()->::se::common::ObjectId::MergeFrom(
         from._internal_entity_id());
   }
   if (from._internal_has_movement()) {
     _this->_internal_mutable_movement()->::se::common::MovementState::MergeFrom(
         from._internal_movement());
-  }
-  if (from._internal_has_aim()) {
-    _this->_internal_mutable_aim()->::se::common::AimRotation::MergeFrom(
-        from._internal_aim());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -924,8 +874,8 @@ void EntityState::InternalSwap(EntityState* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(EntityState, _impl_.aim_)
-      + sizeof(EntityState::_impl_.aim_)
+      PROTOBUF_FIELD_OFFSET(EntityState, _impl_.movement_)
+      + sizeof(EntityState::_impl_.movement_)
       - PROTOBUF_FIELD_OFFSET(EntityState, _impl_.entity_id_)>(
           reinterpret_cast<char*>(&_impl_.entity_id_),
           reinterpret_cast<char*>(&other->_impl_.entity_id_));

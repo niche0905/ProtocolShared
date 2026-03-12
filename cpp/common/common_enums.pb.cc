@@ -24,7 +24,7 @@ namespace se {
 namespace common {
 }  // namespace common
 }  // namespace se
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2fcommon_5fenums_2eproto[1];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2fcommon_5fenums_2eproto[2];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_common_2fcommon_5fenums_2eproto = nullptr;
 const uint32_t TableStruct_common_2fcommon_5fenums_2eproto::offsets[1] = {};
 static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
@@ -37,11 +37,13 @@ const char descriptor_table_protodef_common_2fcommon_5fenums_2eproto[] PROTOBUF_
   "ID_STATE\020\003\022\031\n\025ERR_PERMISSION_DENIED\020\004\022\023\n"
   "\017ERR_AUTH_FAILED\020d\022\031\n\025ERR_ALREADY_LOGGED"
   "_IN\020e\022\026\n\021ERR_INVALID_LOBBY\020\310\001\022\025\n\020ERR_INV"
-  "ALID_ROOM\020\254\002\022\022\n\rERR_ROOM_FULL\020\255\002b\006proto3"
+  "ALID_ROOM\020\254\002\022\022\n\rERR_ROOM_FULL\020\255\002*E\n\nObje"
+  "ctType\022\014\n\010OBJ_NONE\020\000\022\016\n\nOBJ_PLAYER\020\001\022\013\n\007"
+  "OBJ_NPC\020\002\022\014\n\010OBJ_ITEM\020\003b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_common_2fcommon_5fenums_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fcommon_5fenums_2eproto = {
-    false, false, 280, descriptor_table_protodef_common_2fcommon_5fenums_2eproto,
+    false, false, 351, descriptor_table_protodef_common_2fcommon_5fenums_2eproto,
     "common/common_enums.proto",
     &descriptor_table_common_2fcommon_5fenums_2eproto_once, nullptr, 0, 0,
     schemas, file_default_instances, TableStruct_common_2fcommon_5fenums_2eproto::offsets,
@@ -72,6 +74,22 @@ bool ErrorCode_IsValid(int value) {
     case 200:
     case 300:
     case 301:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ObjectType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_common_2fcommon_5fenums_2eproto);
+  return file_level_enum_descriptors_common_2fcommon_5fenums_2eproto[1];
+}
+bool ObjectType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
       return true;
     default:
       return false;

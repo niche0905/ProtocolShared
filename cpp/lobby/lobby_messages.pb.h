@@ -652,7 +652,6 @@ class S_MatchQueueEnterRes final :
 
   enum : int {
     kResultFieldNumber = 1,
-    kTicketFieldNumber = 2,
   };
   // .se.common.Result result = 1;
   bool has_result() const;
@@ -672,24 +671,6 @@ class S_MatchQueueEnterRes final :
       ::se::common::Result* result);
   ::se::common::Result* unsafe_arena_release_result();
 
-  // .se.lobby.MatchTicket ticket = 2;
-  bool has_ticket() const;
-  private:
-  bool _internal_has_ticket() const;
-  public:
-  void clear_ticket();
-  const ::se::lobby::MatchTicket& ticket() const;
-  PROTOBUF_NODISCARD ::se::lobby::MatchTicket* release_ticket();
-  ::se::lobby::MatchTicket* mutable_ticket();
-  void set_allocated_ticket(::se::lobby::MatchTicket* ticket);
-  private:
-  const ::se::lobby::MatchTicket& _internal_ticket() const;
-  ::se::lobby::MatchTicket* _internal_mutable_ticket();
-  public:
-  void unsafe_arena_set_allocated_ticket(
-      ::se::lobby::MatchTicket* ticket);
-  ::se::lobby::MatchTicket* unsafe_arena_release_ticket();
-
   // @@protoc_insertion_point(class_scope:se.lobby.S_MatchQueueEnterRes)
  private:
   class _Internal;
@@ -699,7 +680,6 @@ class S_MatchQueueEnterRes final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::se::common::Result* result_;
-    ::se::lobby::MatchTicket* ticket_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -708,10 +688,9 @@ class S_MatchQueueEnterRes final :
 // -------------------------------------------------------------------
 
 class C_MatchQueueCancelReq final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.lobby.C_MatchQueueCancelReq) */ {
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:se.lobby.C_MatchQueueCancelReq) */ {
  public:
   inline C_MatchQueueCancelReq() : C_MatchQueueCancelReq(nullptr) {}
-  ~C_MatchQueueCancelReq() override;
   explicit PROTOBUF_CONSTEXPR C_MatchQueueCancelReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   C_MatchQueueCancelReq(const C_MatchQueueCancelReq& from);
@@ -784,29 +763,15 @@ class C_MatchQueueCancelReq final :
   C_MatchQueueCancelReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
     return CreateMaybeMessage<C_MatchQueueCancelReq>(arena);
   }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const C_MatchQueueCancelReq& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const C_MatchQueueCancelReq& from) {
-    C_MatchQueueCancelReq::MergeImpl(*this, from);
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const C_MatchQueueCancelReq& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
   }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const C_MatchQueueCancelReq& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
   public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(C_MatchQueueCancelReq* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -827,27 +792,6 @@ class C_MatchQueueCancelReq final :
 
   // accessors -------------------------------------------------------
 
-  enum : int {
-    kTicketFieldNumber = 1,
-  };
-  // .se.lobby.MatchTicket ticket = 1;
-  bool has_ticket() const;
-  private:
-  bool _internal_has_ticket() const;
-  public:
-  void clear_ticket();
-  const ::se::lobby::MatchTicket& ticket() const;
-  PROTOBUF_NODISCARD ::se::lobby::MatchTicket* release_ticket();
-  ::se::lobby::MatchTicket* mutable_ticket();
-  void set_allocated_ticket(::se::lobby::MatchTicket* ticket);
-  private:
-  const ::se::lobby::MatchTicket& _internal_ticket() const;
-  ::se::lobby::MatchTicket* _internal_mutable_ticket();
-  public:
-  void unsafe_arena_set_allocated_ticket(
-      ::se::lobby::MatchTicket* ticket);
-  ::se::lobby::MatchTicket* unsafe_arena_release_ticket();
-
   // @@protoc_insertion_point(class_scope:se.lobby.C_MatchQueueCancelReq)
  private:
   class _Internal;
@@ -856,10 +800,7 @@ class C_MatchQueueCancelReq final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::se::lobby::MatchTicket* ticket_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
-  union { Impl_ _impl_; };
   friend struct ::TableStruct_lobby_2flobby_5fmessages_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1142,25 +1083,16 @@ class N_MatchFound final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRoomFieldNumber = 1,
+    kRoomIdFieldNumber = 1,
   };
-  // .se.lobby.RoomEndpoint room = 1;
-  bool has_room() const;
+  // uint32 room_id = 1;
+  void clear_room_id();
+  uint32_t room_id() const;
+  void set_room_id(uint32_t value);
   private:
-  bool _internal_has_room() const;
+  uint32_t _internal_room_id() const;
+  void _internal_set_room_id(uint32_t value);
   public:
-  void clear_room();
-  const ::se::lobby::RoomEndpoint& room() const;
-  PROTOBUF_NODISCARD ::se::lobby::RoomEndpoint* release_room();
-  ::se::lobby::RoomEndpoint* mutable_room();
-  void set_allocated_room(::se::lobby::RoomEndpoint* room);
-  private:
-  const ::se::lobby::RoomEndpoint& _internal_room() const;
-  ::se::lobby::RoomEndpoint* _internal_mutable_room();
-  public:
-  void unsafe_arena_set_allocated_room(
-      ::se::lobby::RoomEndpoint* room);
-  ::se::lobby::RoomEndpoint* unsafe_arena_release_room();
 
   // @@protoc_insertion_point(class_scope:se.lobby.N_MatchFound)
  private:
@@ -1170,7 +1102,7 @@ class N_MatchFound final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::se::lobby::RoomEndpoint* room_;
+    uint32_t room_id_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1474,179 +1406,9 @@ inline void S_MatchQueueEnterRes::set_allocated_result(::se::common::Result* res
   // @@protoc_insertion_point(field_set_allocated:se.lobby.S_MatchQueueEnterRes.result)
 }
 
-// .se.lobby.MatchTicket ticket = 2;
-inline bool S_MatchQueueEnterRes::_internal_has_ticket() const {
-  return this != internal_default_instance() && _impl_.ticket_ != nullptr;
-}
-inline bool S_MatchQueueEnterRes::has_ticket() const {
-  return _internal_has_ticket();
-}
-inline const ::se::lobby::MatchTicket& S_MatchQueueEnterRes::_internal_ticket() const {
-  const ::se::lobby::MatchTicket* p = _impl_.ticket_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::lobby::MatchTicket&>(
-      ::se::lobby::_MatchTicket_default_instance_);
-}
-inline const ::se::lobby::MatchTicket& S_MatchQueueEnterRes::ticket() const {
-  // @@protoc_insertion_point(field_get:se.lobby.S_MatchQueueEnterRes.ticket)
-  return _internal_ticket();
-}
-inline void S_MatchQueueEnterRes::unsafe_arena_set_allocated_ticket(
-    ::se::lobby::MatchTicket* ticket) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ticket_);
-  }
-  _impl_.ticket_ = ticket;
-  if (ticket) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.lobby.S_MatchQueueEnterRes.ticket)
-}
-inline ::se::lobby::MatchTicket* S_MatchQueueEnterRes::release_ticket() {
-  
-  ::se::lobby::MatchTicket* temp = _impl_.ticket_;
-  _impl_.ticket_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::se::lobby::MatchTicket* S_MatchQueueEnterRes::unsafe_arena_release_ticket() {
-  // @@protoc_insertion_point(field_release:se.lobby.S_MatchQueueEnterRes.ticket)
-  
-  ::se::lobby::MatchTicket* temp = _impl_.ticket_;
-  _impl_.ticket_ = nullptr;
-  return temp;
-}
-inline ::se::lobby::MatchTicket* S_MatchQueueEnterRes::_internal_mutable_ticket() {
-  
-  if (_impl_.ticket_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::lobby::MatchTicket>(GetArenaForAllocation());
-    _impl_.ticket_ = p;
-  }
-  return _impl_.ticket_;
-}
-inline ::se::lobby::MatchTicket* S_MatchQueueEnterRes::mutable_ticket() {
-  ::se::lobby::MatchTicket* _msg = _internal_mutable_ticket();
-  // @@protoc_insertion_point(field_mutable:se.lobby.S_MatchQueueEnterRes.ticket)
-  return _msg;
-}
-inline void S_MatchQueueEnterRes::set_allocated_ticket(::se::lobby::MatchTicket* ticket) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ticket_);
-  }
-  if (ticket) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ticket));
-    if (message_arena != submessage_arena) {
-      ticket = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, ticket, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.ticket_ = ticket;
-  // @@protoc_insertion_point(field_set_allocated:se.lobby.S_MatchQueueEnterRes.ticket)
-}
-
 // -------------------------------------------------------------------
 
 // C_MatchQueueCancelReq
-
-// .se.lobby.MatchTicket ticket = 1;
-inline bool C_MatchQueueCancelReq::_internal_has_ticket() const {
-  return this != internal_default_instance() && _impl_.ticket_ != nullptr;
-}
-inline bool C_MatchQueueCancelReq::has_ticket() const {
-  return _internal_has_ticket();
-}
-inline const ::se::lobby::MatchTicket& C_MatchQueueCancelReq::_internal_ticket() const {
-  const ::se::lobby::MatchTicket* p = _impl_.ticket_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::lobby::MatchTicket&>(
-      ::se::lobby::_MatchTicket_default_instance_);
-}
-inline const ::se::lobby::MatchTicket& C_MatchQueueCancelReq::ticket() const {
-  // @@protoc_insertion_point(field_get:se.lobby.C_MatchQueueCancelReq.ticket)
-  return _internal_ticket();
-}
-inline void C_MatchQueueCancelReq::unsafe_arena_set_allocated_ticket(
-    ::se::lobby::MatchTicket* ticket) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ticket_);
-  }
-  _impl_.ticket_ = ticket;
-  if (ticket) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.lobby.C_MatchQueueCancelReq.ticket)
-}
-inline ::se::lobby::MatchTicket* C_MatchQueueCancelReq::release_ticket() {
-  
-  ::se::lobby::MatchTicket* temp = _impl_.ticket_;
-  _impl_.ticket_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::se::lobby::MatchTicket* C_MatchQueueCancelReq::unsafe_arena_release_ticket() {
-  // @@protoc_insertion_point(field_release:se.lobby.C_MatchQueueCancelReq.ticket)
-  
-  ::se::lobby::MatchTicket* temp = _impl_.ticket_;
-  _impl_.ticket_ = nullptr;
-  return temp;
-}
-inline ::se::lobby::MatchTicket* C_MatchQueueCancelReq::_internal_mutable_ticket() {
-  
-  if (_impl_.ticket_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::lobby::MatchTicket>(GetArenaForAllocation());
-    _impl_.ticket_ = p;
-  }
-  return _impl_.ticket_;
-}
-inline ::se::lobby::MatchTicket* C_MatchQueueCancelReq::mutable_ticket() {
-  ::se::lobby::MatchTicket* _msg = _internal_mutable_ticket();
-  // @@protoc_insertion_point(field_mutable:se.lobby.C_MatchQueueCancelReq.ticket)
-  return _msg;
-}
-inline void C_MatchQueueCancelReq::set_allocated_ticket(::se::lobby::MatchTicket* ticket) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ticket_);
-  }
-  if (ticket) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ticket));
-    if (message_arena != submessage_arena) {
-      ticket = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, ticket, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.ticket_ = ticket;
-  // @@protoc_insertion_point(field_set_allocated:se.lobby.C_MatchQueueCancelReq.ticket)
-}
 
 // -------------------------------------------------------------------
 
@@ -1741,89 +1503,24 @@ inline void S_MatchQueueCancelRes::set_allocated_result(::se::common::Result* re
 
 // N_MatchFound
 
-// .se.lobby.RoomEndpoint room = 1;
-inline bool N_MatchFound::_internal_has_room() const {
-  return this != internal_default_instance() && _impl_.room_ != nullptr;
+// uint32 room_id = 1;
+inline void N_MatchFound::clear_room_id() {
+  _impl_.room_id_ = 0u;
 }
-inline bool N_MatchFound::has_room() const {
-  return _internal_has_room();
+inline uint32_t N_MatchFound::_internal_room_id() const {
+  return _impl_.room_id_;
 }
-inline const ::se::lobby::RoomEndpoint& N_MatchFound::_internal_room() const {
-  const ::se::lobby::RoomEndpoint* p = _impl_.room_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::lobby::RoomEndpoint&>(
-      ::se::lobby::_RoomEndpoint_default_instance_);
+inline uint32_t N_MatchFound::room_id() const {
+  // @@protoc_insertion_point(field_get:se.lobby.N_MatchFound.room_id)
+  return _internal_room_id();
 }
-inline const ::se::lobby::RoomEndpoint& N_MatchFound::room() const {
-  // @@protoc_insertion_point(field_get:se.lobby.N_MatchFound.room)
-  return _internal_room();
-}
-inline void N_MatchFound::unsafe_arena_set_allocated_room(
-    ::se::lobby::RoomEndpoint* room) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.room_);
-  }
-  _impl_.room_ = room;
-  if (room) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.lobby.N_MatchFound.room)
-}
-inline ::se::lobby::RoomEndpoint* N_MatchFound::release_room() {
+inline void N_MatchFound::_internal_set_room_id(uint32_t value) {
   
-  ::se::lobby::RoomEndpoint* temp = _impl_.room_;
-  _impl_.room_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
+  _impl_.room_id_ = value;
 }
-inline ::se::lobby::RoomEndpoint* N_MatchFound::unsafe_arena_release_room() {
-  // @@protoc_insertion_point(field_release:se.lobby.N_MatchFound.room)
-  
-  ::se::lobby::RoomEndpoint* temp = _impl_.room_;
-  _impl_.room_ = nullptr;
-  return temp;
-}
-inline ::se::lobby::RoomEndpoint* N_MatchFound::_internal_mutable_room() {
-  
-  if (_impl_.room_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::lobby::RoomEndpoint>(GetArenaForAllocation());
-    _impl_.room_ = p;
-  }
-  return _impl_.room_;
-}
-inline ::se::lobby::RoomEndpoint* N_MatchFound::mutable_room() {
-  ::se::lobby::RoomEndpoint* _msg = _internal_mutable_room();
-  // @@protoc_insertion_point(field_mutable:se.lobby.N_MatchFound.room)
-  return _msg;
-}
-inline void N_MatchFound::set_allocated_room(::se::lobby::RoomEndpoint* room) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.room_);
-  }
-  if (room) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(room));
-    if (message_arena != submessage_arena) {
-      room = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, room, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.room_ = room;
-  // @@protoc_insertion_point(field_set_allocated:se.lobby.N_MatchFound.room)
+inline void N_MatchFound::set_room_id(uint32_t value) {
+  _internal_set_room_id(value);
+  // @@protoc_insertion_point(field_set:se.lobby.N_MatchFound.room_id)
 }
 
 #ifdef __GNUC__

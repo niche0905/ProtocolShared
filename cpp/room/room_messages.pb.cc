@@ -115,6 +115,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR N_EntitySpawn::N_EntitySpawn(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.entity_)*/nullptr
+  , /*decltype(_impl_.entity_type_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct N_EntitySpawnDefaultTypeInternal {
   PROTOBUF_CONSTEXPR N_EntitySpawnDefaultTypeInternal()
@@ -215,6 +216,7 @@ const uint32_t TableStruct_room_2froom_5fmessages_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::se::room::N_EntitySpawn, _impl_.entity_type_),
   PROTOBUF_FIELD_OFFSET(::se::room::N_EntitySpawn, _impl_.entity_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::se::room::N_EntityDespawn, _internal_metadata_),
@@ -242,8 +244,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 35, -1, -1, sizeof(::se::room::C_FireReq)},
   { 42, -1, -1, sizeof(::se::room::S_EntityState)},
   { 49, -1, -1, sizeof(::se::room::N_EntitySpawn)},
-  { 56, -1, -1, sizeof(::se::room::N_EntityDespawn)},
-  { 63, -1, -1, sizeof(::se::room::N_HitEvent)},
+  { 57, -1, -1, sizeof(::se::room::N_EntityDespawn)},
+  { 64, -1, -1, sizeof(::se::room::N_HitEvent)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -262,35 +264,38 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_room_2froom_5fmessages_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\030room/room_messages.proto\022\007se.room\032\034opt"
   "ions/packet_options.proto\032\031common/common"
-  "_types.proto\032\025room/room_types.proto\".\n\016C"
-  "_RoomReadyReq\022\r\n\005ready\030\001 \001(\010:\r\210\265\030\302\027\220\265\030\001\230"
-  "\265\030\003\"Z\n\022N_RoomReadyChanged\022&\n\tentity_id\030\001"
-  " \001(\0132\023.se.common.EntityId\022\r\n\005ready\030\002 \001(\010"
-  ":\r\210\265\030\303\027\220\265\030\002\230\265\030\003\"\034\n\013N_GameStart:\r\210\265\030\314\027\220\265\030"
-  "\002\230\265\030\003\"H\n\013C_MoveInput\022*\n\014entity_state\030\001 \001"
-  "(\0132\024.se.room.EntityState:\r\210\265\030\234\030\220\265\030\001\230\265\030\003\""
-  "*\n\nC_AimInput\022\r\n\005pitch\030\001 \001(\002:\r\210\265\030\235\030\220\265\030\001\230"
-  "\265\030\003\"-\n\tC_FireReq\022\021\n\tweapon_id\030\001 \001(\r:\r\210\265\030"
-  "\246\030\220\265\030\001\230\265\030\003\"F\n\rS_EntityState\022&\n\010entities\030"
-  "\001 \003(\0132\024.se.room.EntityState:\r\210\265\030\200\031\220\265\030\002\230\265"
-  "\030\003\"D\n\rN_EntitySpawn\022$\n\006entity\030\001 \001(\0132\024.se"
-  ".room.EntityState:\r\210\265\030\212\031\220\265\030\002\230\265\030\003\"H\n\017N_En"
-  "tityDespawn\022&\n\tentity_id\030\001 \001(\0132\023.se.comm"
-  "on.EntityId:\r\210\265\030\213\031\220\265\030\002\230\265\030\003\"w\n\nN_HitEvent"
-  "\022%\n\010attacker\030\001 \001(\0132\023.se.common.EntityId\022"
-  "#\n\006victim\030\002 \001(\0132\023.se.common.EntityId\022\016\n\006"
-  "damage\030\003 \001(\r:\r\210\265\030\224\031\220\265\030\002\230\265\030\003b\006proto3"
+  "_enums.proto\032\031common/common_types.proto\032"
+  "\025room/room_types.proto\".\n\016C_RoomReadyReq"
+  "\022\r\n\005ready\030\001 \001(\010:\r\210\265\030\302\027\220\265\030\001\230\265\030\003\"Z\n\022N_Room"
+  "ReadyChanged\022&\n\tentity_id\030\001 \001(\0132\023.se.com"
+  "mon.ObjectId\022\r\n\005ready\030\002 \001(\010:\r\210\265\030\303\027\220\265\030\002\230\265"
+  "\030\003\"\034\n\013N_GameStart:\r\210\265\030\314\027\220\265\030\002\230\265\030\003\"H\n\013C_Mo"
+  "veInput\022*\n\014entity_state\030\001 \001(\0132\024.se.room."
+  "EntityState:\r\210\265\030\234\030\220\265\030\001\230\265\030\003\"*\n\nC_AimInput"
+  "\022\r\n\005pitch\030\001 \001(\002:\r\210\265\030\235\030\220\265\030\001\230\265\030\003\"-\n\tC_Fire"
+  "Req\022\021\n\tweapon_id\030\001 \001(\r:\r\210\265\030\246\030\220\265\030\001\230\265\030\003\"F\n"
+  "\rS_EntityState\022&\n\010entities\030\001 \003(\0132\024.se.ro"
+  "om.EntityState:\r\210\265\030\200\031\220\265\030\002\230\265\030\003\"p\n\rN_Entit"
+  "ySpawn\022*\n\013entity_type\030\001 \001(\0162\025.se.common."
+  "ObjectType\022$\n\006entity\030\002 \001(\0132\024.se.room.Ent"
+  "ityState:\r\210\265\030\212\031\220\265\030\002\230\265\030\003\"H\n\017N_EntityDespa"
+  "wn\022&\n\tentity_id\030\001 \001(\0132\023.se.common.Object"
+  "Id:\r\210\265\030\213\031\220\265\030\002\230\265\030\003\"w\n\nN_HitEvent\022%\n\010attac"
+  "ker\030\001 \001(\0132\023.se.common.ObjectId\022#\n\006victim"
+  "\030\002 \001(\0132\023.se.common.ObjectId\022\016\n\006damage\030\003 "
+  "\001(\r:\r\210\265\030\224\031\220\265\030\002\230\265\030\003b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_room_2froom_5fmessages_2eproto_deps[3] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_room_2froom_5fmessages_2eproto_deps[4] = {
+  &::descriptor_table_common_2fcommon_5fenums_2eproto,
   &::descriptor_table_common_2fcommon_5ftypes_2eproto,
   &::descriptor_table_options_2fpacket_5foptions_2eproto,
   &::descriptor_table_room_2froom_5ftypes_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_room_2froom_5fmessages_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_room_2froom_5fmessages_2eproto = {
-    false, false, 795, descriptor_table_protodef_room_2froom_5fmessages_2eproto,
+    false, false, 866, descriptor_table_protodef_room_2froom_5fmessages_2eproto,
     "room/room_messages.proto",
-    &descriptor_table_room_2froom_5fmessages_2eproto_once, descriptor_table_room_2froom_5fmessages_2eproto_deps, 3, 10,
+    &descriptor_table_room_2froom_5fmessages_2eproto_once, descriptor_table_room_2froom_5fmessages_2eproto_deps, 4, 10,
     schemas, file_default_instances, TableStruct_room_2froom_5fmessages_2eproto::offsets,
     file_level_metadata_room_2froom_5fmessages_2eproto, file_level_enum_descriptors_room_2froom_5fmessages_2eproto,
     file_level_service_descriptors_room_2froom_5fmessages_2eproto,
@@ -486,10 +491,10 @@ void C_RoomReadyReq::InternalSwap(C_RoomReadyReq* other) {
 
 class N_RoomReadyChanged::_Internal {
  public:
-  static const ::se::common::EntityId& entity_id(const N_RoomReadyChanged* msg);
+  static const ::se::common::ObjectId& entity_id(const N_RoomReadyChanged* msg);
 };
 
-const ::se::common::EntityId&
+const ::se::common::ObjectId&
 N_RoomReadyChanged::_Internal::entity_id(const N_RoomReadyChanged* msg) {
   return *msg->_impl_.entity_id_;
 }
@@ -515,7 +520,7 @@ N_RoomReadyChanged::N_RoomReadyChanged(const N_RoomReadyChanged& from)
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_entity_id()) {
-    _this->_impl_.entity_id_ = new ::se::common::EntityId(*from._impl_.entity_id_);
+    _this->_impl_.entity_id_ = new ::se::common::ObjectId(*from._impl_.entity_id_);
   }
   _this->_impl_.ready_ = from._impl_.ready_;
   // @@protoc_insertion_point(copy_constructor:se.room.N_RoomReadyChanged)
@@ -570,7 +575,7 @@ const char* N_RoomReadyChanged::_InternalParse(const char* ptr, ::_pbi::ParseCon
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .se.common.EntityId entity_id = 1;
+      // .se.common.ObjectId entity_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_entity_id(), ptr);
@@ -615,7 +620,7 @@ uint8_t* N_RoomReadyChanged::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .se.common.EntityId entity_id = 1;
+  // .se.common.ObjectId entity_id = 1;
   if (this->_internal_has_entity_id()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(1, _Internal::entity_id(this),
@@ -644,7 +649,7 @@ size_t N_RoomReadyChanged::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .se.common.EntityId entity_id = 1;
+  // .se.common.ObjectId entity_id = 1;
   if (this->_internal_has_entity_id()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -675,7 +680,7 @@ void N_RoomReadyChanged::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, con
   (void) cached_has_bits;
 
   if (from._internal_has_entity_id()) {
-    _this->_internal_mutable_entity_id()->::se::common::EntityId::MergeFrom(
+    _this->_internal_mutable_entity_id()->::se::common::ObjectId::MergeFrom(
         from._internal_entity_id());
   }
   if (from._internal_ready() != 0) {
@@ -1535,12 +1540,14 @@ N_EntitySpawn::N_EntitySpawn(const N_EntitySpawn& from)
   N_EntitySpawn* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.entity_){nullptr}
+    , decltype(_impl_.entity_type_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_entity()) {
     _this->_impl_.entity_ = new ::se::room::EntityState(*from._impl_.entity_);
   }
+  _this->_impl_.entity_type_ = from._impl_.entity_type_;
   // @@protoc_insertion_point(copy_constructor:se.room.N_EntitySpawn)
 }
 
@@ -1550,6 +1557,7 @@ inline void N_EntitySpawn::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.entity_){nullptr}
+    , decltype(_impl_.entity_type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1582,6 +1590,7 @@ void N_EntitySpawn::Clear() {
     delete _impl_.entity_;
   }
   _impl_.entity_ = nullptr;
+  _impl_.entity_type_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1591,9 +1600,18 @@ const char* N_EntitySpawn::_InternalParse(const char* ptr, ::_pbi::ParseContext*
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .se.room.EntityState entity = 1;
+      // .se.common.ObjectType entity_type = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_entity_type(static_cast<::se::common::ObjectType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .se.room.EntityState entity = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_entity(), ptr);
           CHK_(ptr);
         } else
@@ -1628,10 +1646,17 @@ uint8_t* N_EntitySpawn::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .se.room.EntityState entity = 1;
+  // .se.common.ObjectType entity_type = 1;
+  if (this->_internal_entity_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_entity_type(), target);
+  }
+
+  // .se.room.EntityState entity = 2;
   if (this->_internal_has_entity()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::entity(this),
+      InternalWriteMessage(2, _Internal::entity(this),
         _Internal::entity(this).GetCachedSize(), target, stream);
   }
 
@@ -1651,11 +1676,17 @@ size_t N_EntitySpawn::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .se.room.EntityState entity = 1;
+  // .se.room.EntityState entity = 2;
   if (this->_internal_has_entity()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.entity_);
+  }
+
+  // .se.common.ObjectType entity_type = 1;
+  if (this->_internal_entity_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_entity_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1680,6 +1711,9 @@ void N_EntitySpawn::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
     _this->_internal_mutable_entity()->::se::room::EntityState::MergeFrom(
         from._internal_entity());
   }
+  if (from._internal_entity_type() != 0) {
+    _this->_internal_set_entity_type(from._internal_entity_type());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1697,7 +1731,12 @@ bool N_EntitySpawn::IsInitialized() const {
 void N_EntitySpawn::InternalSwap(N_EntitySpawn* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.entity_, other->_impl_.entity_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(N_EntitySpawn, _impl_.entity_type_)
+      + sizeof(N_EntitySpawn::_impl_.entity_type_)
+      - PROTOBUF_FIELD_OFFSET(N_EntitySpawn, _impl_.entity_)>(
+          reinterpret_cast<char*>(&_impl_.entity_),
+          reinterpret_cast<char*>(&other->_impl_.entity_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata N_EntitySpawn::GetMetadata() const {
@@ -1710,10 +1749,10 @@ void N_EntitySpawn::InternalSwap(N_EntitySpawn* other) {
 
 class N_EntityDespawn::_Internal {
  public:
-  static const ::se::common::EntityId& entity_id(const N_EntityDespawn* msg);
+  static const ::se::common::ObjectId& entity_id(const N_EntityDespawn* msg);
 };
 
-const ::se::common::EntityId&
+const ::se::common::ObjectId&
 N_EntityDespawn::_Internal::entity_id(const N_EntityDespawn* msg) {
   return *msg->_impl_.entity_id_;
 }
@@ -1738,7 +1777,7 @@ N_EntityDespawn::N_EntityDespawn(const N_EntityDespawn& from)
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_entity_id()) {
-    _this->_impl_.entity_id_ = new ::se::common::EntityId(*from._impl_.entity_id_);
+    _this->_impl_.entity_id_ = new ::se::common::ObjectId(*from._impl_.entity_id_);
   }
   // @@protoc_insertion_point(copy_constructor:se.room.N_EntityDespawn)
 }
@@ -1790,7 +1829,7 @@ const char* N_EntityDespawn::_InternalParse(const char* ptr, ::_pbi::ParseContex
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .se.common.EntityId entity_id = 1;
+      // .se.common.ObjectId entity_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_entity_id(), ptr);
@@ -1827,7 +1866,7 @@ uint8_t* N_EntityDespawn::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .se.common.EntityId entity_id = 1;
+  // .se.common.ObjectId entity_id = 1;
   if (this->_internal_has_entity_id()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(1, _Internal::entity_id(this),
@@ -1850,7 +1889,7 @@ size_t N_EntityDespawn::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .se.common.EntityId entity_id = 1;
+  // .se.common.ObjectId entity_id = 1;
   if (this->_internal_has_entity_id()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -1876,7 +1915,7 @@ void N_EntityDespawn::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const 
   (void) cached_has_bits;
 
   if (from._internal_has_entity_id()) {
-    _this->_internal_mutable_entity_id()->::se::common::EntityId::MergeFrom(
+    _this->_internal_mutable_entity_id()->::se::common::ObjectId::MergeFrom(
         from._internal_entity_id());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -1909,15 +1948,15 @@ void N_EntityDespawn::InternalSwap(N_EntityDespawn* other) {
 
 class N_HitEvent::_Internal {
  public:
-  static const ::se::common::EntityId& attacker(const N_HitEvent* msg);
-  static const ::se::common::EntityId& victim(const N_HitEvent* msg);
+  static const ::se::common::ObjectId& attacker(const N_HitEvent* msg);
+  static const ::se::common::ObjectId& victim(const N_HitEvent* msg);
 };
 
-const ::se::common::EntityId&
+const ::se::common::ObjectId&
 N_HitEvent::_Internal::attacker(const N_HitEvent* msg) {
   return *msg->_impl_.attacker_;
 }
-const ::se::common::EntityId&
+const ::se::common::ObjectId&
 N_HitEvent::_Internal::victim(const N_HitEvent* msg) {
   return *msg->_impl_.victim_;
 }
@@ -1950,10 +1989,10 @@ N_HitEvent::N_HitEvent(const N_HitEvent& from)
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_attacker()) {
-    _this->_impl_.attacker_ = new ::se::common::EntityId(*from._impl_.attacker_);
+    _this->_impl_.attacker_ = new ::se::common::ObjectId(*from._impl_.attacker_);
   }
   if (from._internal_has_victim()) {
-    _this->_impl_.victim_ = new ::se::common::EntityId(*from._impl_.victim_);
+    _this->_impl_.victim_ = new ::se::common::ObjectId(*from._impl_.victim_);
   }
   _this->_impl_.damage_ = from._impl_.damage_;
   // @@protoc_insertion_point(copy_constructor:se.room.N_HitEvent)
@@ -2014,7 +2053,7 @@ const char* N_HitEvent::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .se.common.EntityId attacker = 1;
+      // .se.common.ObjectId attacker = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_attacker(), ptr);
@@ -2022,7 +2061,7 @@ const char* N_HitEvent::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
         } else
           goto handle_unusual;
         continue;
-      // .se.common.EntityId victim = 2;
+      // .se.common.ObjectId victim = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_victim(), ptr);
@@ -2067,14 +2106,14 @@ uint8_t* N_HitEvent::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .se.common.EntityId attacker = 1;
+  // .se.common.ObjectId attacker = 1;
   if (this->_internal_has_attacker()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(1, _Internal::attacker(this),
         _Internal::attacker(this).GetCachedSize(), target, stream);
   }
 
-  // .se.common.EntityId victim = 2;
+  // .se.common.ObjectId victim = 2;
   if (this->_internal_has_victim()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(2, _Internal::victim(this),
@@ -2103,14 +2142,14 @@ size_t N_HitEvent::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .se.common.EntityId attacker = 1;
+  // .se.common.ObjectId attacker = 1;
   if (this->_internal_has_attacker()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.attacker_);
   }
 
-  // .se.common.EntityId victim = 2;
+  // .se.common.ObjectId victim = 2;
   if (this->_internal_has_victim()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -2141,11 +2180,11 @@ void N_HitEvent::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   (void) cached_has_bits;
 
   if (from._internal_has_attacker()) {
-    _this->_internal_mutable_attacker()->::se::common::EntityId::MergeFrom(
+    _this->_internal_mutable_attacker()->::se::common::ObjectId::MergeFrom(
         from._internal_attacker());
   }
   if (from._internal_has_victim()) {
-    _this->_internal_mutable_victim()->::se::common::EntityId::MergeFrom(
+    _this->_internal_mutable_victim()->::se::common::ObjectId::MergeFrom(
         from._internal_victim());
   }
   if (from._internal_damage() != 0) {
