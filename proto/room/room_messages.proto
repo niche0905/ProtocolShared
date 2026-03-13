@@ -12,7 +12,7 @@ import "room/room_types.proto";
  */
 message S_JoinRoom {
   option (se.options.packet_id) = 3000;
-  option (se.options.dir) = C2S;
+  option (se.options.dir) = S2C;
   option (se.options.route) = ROOM;
   
   se.common.PlayerId player_id = 1;
