@@ -249,7 +249,7 @@ const char descriptor_table_protodef_room_2froom_5fmessages_2eproto[] PROTOBUF_S
   "\tplayer_id\030\001 \001(\0132\023.se.common.PlayerId\022\'\n"
   "\010snapshot\030\002 \001(\0132\025.se.room.RoomSnapshot\0221"
   "\n\021existing_entities\030\003 \003(\0132\026.se.room.N_En"
-  "titySpawn:\r\210\265\030\270\027\220\265\030\001\230\265\030\003\"\034\n\013N_GameStart:"
+  "titySpawn:\r\210\265\030\270\027\220\265\030\002\230\265\030\003\"\034\n\013N_GameStart:"
   "\r\210\265\030\314\027\220\265\030\002\230\265\030\003\"H\n\013C_MoveInput\022*\n\014entity_"
   "state\030\001 \001(\0132\024.se.room.EntityState:\r\210\265\030\234\030"
   "\220\265\030\001\230\265\030\003\"*\n\nC_AimInput\022\r\n\005pitch\030\001 \001(\002:\r\210"

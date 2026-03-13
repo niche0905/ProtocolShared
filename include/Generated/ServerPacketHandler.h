@@ -70,7 +70,6 @@ bool Handle_C_Ping(PacketSessionRef& session, const se::auth::C_Ping& pkt);
 bool Handle_C_LobbyEnterReq(PacketSessionRef& session, const se::lobby::C_LobbyEnterReq& pkt);
 bool Handle_C_MatchQueueEnterReq(PacketSessionRef& session, const se::lobby::C_MatchQueueEnterReq& pkt);
 bool Handle_C_MatchQueueCancelReq(PacketSessionRef& session, const se::lobby::C_MatchQueueCancelReq& pkt);
-bool Handle_S_JoinRoom(PacketSessionRef& session, const se::room::S_JoinRoom& pkt);
 bool Handle_C_MoveInput(PacketSessionRef& session, const se::room::C_MoveInput& pkt);
 bool Handle_C_AimInput(PacketSessionRef& session, const se::room::C_AimInput& pkt);
 bool Handle_C_FireReq(PacketSessionRef& session, const se::room::C_FireReq& pkt);
@@ -90,7 +89,6 @@ public:
         GPacketHandler[PKT_C_LobbyEnterReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::lobby::C_LobbyEnterReq>(Handle_C_LobbyEnterReq, session, buffer, len); };
         GPacketHandler[PKT_C_MatchQueueEnterReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::lobby::C_MatchQueueEnterReq>(Handle_C_MatchQueueEnterReq, session, buffer, len); };
         GPacketHandler[PKT_C_MatchQueueCancelReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::lobby::C_MatchQueueCancelReq>(Handle_C_MatchQueueCancelReq, session, buffer, len); };
-        GPacketHandler[PKT_S_JoinRoom] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::S_JoinRoom>(Handle_S_JoinRoom, session, buffer, len); };
         GPacketHandler[PKT_C_MoveInput] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::C_MoveInput>(Handle_C_MoveInput, session, buffer, len); };
         GPacketHandler[PKT_C_AimInput] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::C_AimInput>(Handle_C_AimInput, session, buffer, len); };
         GPacketHandler[PKT_C_FireReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::C_FireReq>(Handle_C_FireReq, session, buffer, len); };
@@ -103,6 +101,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::lobby::S_MatchQueueEnterRes& pkt) { return MakeSendBuffer(pkt, PKT_S_MatchQueueEnterRes); }
     static SendBufferRef MakeSendBuffer(se::lobby::S_MatchQueueCancelRes& pkt) { return MakeSendBuffer(pkt, PKT_S_MatchQueueCancelRes); }
     static SendBufferRef MakeSendBuffer(se::lobby::N_MatchFound& pkt) { return MakeSendBuffer(pkt, PKT_N_MatchFound); }
+    static SendBufferRef MakeSendBuffer(se::room::S_JoinRoom& pkt) { return MakeSendBuffer(pkt, PKT_S_JoinRoom); }
     static SendBufferRef MakeSendBuffer(se::room::N_GameStart& pkt) { return MakeSendBuffer(pkt, PKT_N_GameStart); }
     static SendBufferRef MakeSendBuffer(se::room::S_EntityState& pkt) { return MakeSendBuffer(pkt, PKT_S_EntityState); }
     static SendBufferRef MakeSendBuffer(se::room::N_EntitySpawn& pkt) { return MakeSendBuffer(pkt, PKT_N_EntitySpawn); }
