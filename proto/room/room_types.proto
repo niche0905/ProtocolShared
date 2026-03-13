@@ -3,14 +3,15 @@
 package se.room;
 
 import "common/common_types.proto";
+import "common/common_enums.proto";
 
 /*
  * Room 참가자 정보
  */
 message RoomPlayer {
-  se.common.ObjectId entity_id = 1;
-  string nickname = 2;
-  bool is_ready = 3;
+  se.common.PlayerId player_id = 1;
+  se.common.ObjectId entity_id = 2;
+  string nickname = 3;
 }
 
 /*
@@ -20,6 +21,15 @@ message RoomSnapshot {
   uint32 room_id = 1;
 
   repeated RoomPlayer players = 2;
+}
+
+/*
+ * Room Spawn 정보
+ */
+message SpawnInfo {
+  se.common.ObjectType type = 1;
+  se.common.ObjectId entity_id = 2;
+  se.common.MovementState movement = 3;
 }
 
 /*
