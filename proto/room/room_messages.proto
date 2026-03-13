@@ -10,21 +10,14 @@ import "room/room_types.proto";
 /*
  * Ready / Start
  */
-message C_RoomReadyReq {
-  option (se.options.packet_id) = 3010;
+message S_JoinRoom {
+  option (se.options.packet_id) = 3000;
   option (se.options.dir) = C2S;
   option (se.options.route) = ROOM;
-
-  bool ready = 1;
-}
-
-message N_RoomReadyChanged {
-  option (se.options.packet_id) = 3011;
-  option (se.options.dir) = S2C;
-  option (se.options.route) = ROOM;
-
-  se.common.ObjectId entity_id = 1;
-  bool ready = 2;
+  
+  se.common.PlayerId player_id = 1;
+  RoomSnapshot snapshot = 2;
+  repeated N_EntitySpawn existing_entities = 3;
 }
 
 message N_GameStart {
