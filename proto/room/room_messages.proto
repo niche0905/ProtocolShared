@@ -6,88 +6,76 @@ import "options/packet_options.proto";
 import "common/common_enums.proto";
 import "common/common_types.proto";
 import "room/room_types.proto";
+import "room/room_enums.proto";
 
 /*
- * Ready / Start
+ * Enter
  */
-message S_JoinRoom {
+message C_RoomEnterReq {
   option (se.options.packet_id) = 3000;
-  option (se.options.dir) = S2C;
+  option (se.options.dir) = C2S;
   option (se.options.route) = ROOM;
-  
-  se.common.PlayerId player_id = 1;
-  RoomSnapshot snapshot = 2;
-  repeated N_EntitySpawn existing_entities = 3;
+
+  uint32 room_id = 1;
 }
 
-message N_GameStart {
-  option (se.options.packet_id) = 3020;
+message S_RoomEnterRes {
+  option (se.options.packet_id) = 3001;
   option (se.options.dir) = S2C;
   option (se.options.route) = ROOM;
+
+  bool success = 1;
+  se.common.Result result = 2;
+
+  RoomSnapshot snapshot = 3;
+  se.common.ObjectId my_entity_id = 4; // 클라이언트가 제어하는 엔티티 ID (실패 시 0)
 }
 
 /*
- * ===== Input (Client -> Server) =====
- * 클라이언트에서 이동을 확정하고 서버에서는 Broadcast만 한다
+ * Leave
  */
-message C_MoveInput {
-  option (se.options.packet_id) = 3100;
+message C_RoomLeaveReq {
+  option (se.options.packet_id) = 3010;
   option (se.options.dir) = C2S;
   option (se.options.route) = ROOM;
-
-  EntityState entity_state = 1;
 }
 
-message C_AimInput {
-  option (se.options.packet_id) = 3101;
-  option (se.options.dir) = C2S;
-  option (se.options.route) = ROOM;
-
-  float pitch = 1;
-}
-
-message C_FireReq {
-  option (se.options.packet_id) = 3110;
-  option (se.options.dir) = C2S;
-  option (se.options.route) = ROOM;
-
-  uint32 weapon_id = 1;
-}
-
-/*
- * ===== State / Event (Server -> Client) =====
- */
-message S_EntityState {
-  option (se.options.packet_id) = 3200;
+message S_RoomLeaveRes {
+  option (se.options.packet_id) = 3011;
   option (se.options.dir) = S2C;
   option (se.options.route) = ROOM;
 
-  repeated EntityState entities = 1;
+  bool success = 1;
+  se.common.Result result = 2;
 }
 
+/*
+ * Init State / Snapshot
+ */
 message N_EntitySpawn {
-  option (se.options.packet_id) = 3210;
+  option (se.options.packet_id) = 3100;
   option (se.options.dir) = S2C;
   option (se.options.route) = ROOM;
 
-  se.common.ObjectType entity_type = 1;
-  EntityState entity = 2;
+  SpawnInfo info = 1;
 }
 
 message N_EntityDespawn {
-  option (se.options.packet_id) = 3211;
+  option (se.options.packet_id) = 3101;
   option (se.options.dir) = S2C;
   option (se.options.route) = ROOM;
 
   se.common.ObjectId entity_id = 1;
 }
 
-message N_HitEvent {
-  option (se.options.packet_id) = 3220;
+/*
+ * Room Shutdown
+ */
+message N_RoomClosed {
+  option (se.options.packet_id) = 3200;
   option (se.options.dir) = S2C;
   option (se.options.route) = ROOM;
 
-  se.common.ObjectId attacker = 1;
-  se.common.ObjectId victim = 2;
-  uint32 damage = 3;
+  uint32 room_id = 1;
+  RoomClosedReason reason = 2;
 }

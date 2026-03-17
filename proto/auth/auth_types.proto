@@ -2,7 +2,7 @@
 
 package se.auth;
 
-// 필요해지면 확장: token, platform, region 등
-message AuthToken {
-  string access_token = 1;
+message RuntimeConfig {
+  uint32 movement_update_hz = 1;
+  uint32 ping_interval_ms = 2;
 }

@@ -12,7 +12,6 @@ message C_HandshakeReq {
   option (se.options.route) = AUTH;
 
   uint32 client_protocol_version = 1;
-  string client_build = 2;
 }
 
 message S_HandshakeRes {
@@ -20,16 +19,16 @@ message S_HandshakeRes {
   option (se.options.dir) = S2C;
   option (se.options.route) = AUTH;
 
-  se.common.Result result = 1;
+  bool success = 1;
+  se.common.Result result = 2;
 
   // 서버가 내려주는 "운영 값" (config -> handshake로 전달)
-  uint32 server_tick_hz = 2;
-  uint32 snapshot_hz = 3;
-
-  uint32 server_protocol_version = 4;
-  string server_build = 5;
+  // Success = true일 때만 유효
+  uint64 session_player_id = 3;
+  se.auth.RuntimeConfig config = 4;
 }
 
+// DB 연동 전까지는 로그인 제공 안함
 message C_LoginReq {
   option (se.options.packet_id) = 1010;
   option (se.options.dir) = C2S;
@@ -44,12 +43,11 @@ message S_LoginRes {
   option (se.options.dir) = S2C;
   option (se.options.route) = AUTH;
 
-  se.common.Result result = 1;
-
-  // 로그인 성공 시 내려줄 토큰/세션키 (선택)
-  AuthToken token = 2;
+  bool success = 1;
+  se.common.Result result = 2;
 }
 
+// 1초에 한 번씩 클라이언트에서 보내는 Ping 패킷과 서버에서 보내는 Pong 패킷
 message C_Ping {
   option (se.options.packet_id) = 1020;
   option (se.options.dir) = C2S;

@@ -1,0 +1,311 @@
+﻿syntax = "proto3";
+
+package se.game;
+
+import "options/packet_options.proto";
+import "common/common_types.proto";
+import "game/game_enums.proto";
+import "game/game_types.proto";
+
+/*
+ * Game flow
+ */
+message C_LoadingCompleteReq {
+  option (se.options.packet_id) = 4000;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+}
+
+message N_GameStart {
+  option (se.options.packet_id) = 4001;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+}
+
+message N_GameEnd {
+  option (se.options.packet_id) = 4002;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+}
+
+/*
+ * Movement
+ */
+message C_MoveReq {
+  option (se.options.packet_id) = 4010;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  se.common.MovementState movement = 1;
+}
+
+message N_Move {
+  option (se.options.packet_id) = 4011;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+  se.common.MovementState movement = 2;
+}
+
+/*
+ * Combat
+ */
+message C_FireReq {
+  option (se.options.packet_id) = 4100;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  uint32 weapon_id = 1;   // 어떤 무기로 발사하는지 식별할 수 있는 ID
+  se.common.Vector3 start_position = 2;
+  se.common.Vector3 direction = 3;
+}
+
+message N_Fire {
+  option (se.options.packet_id) = 4101;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+  uint32 weapon_id = 2;
+  se.common.Vector3 start_position = 3;
+  se.common.Vector3 direction = 4;
+}
+
+message C_AttackReq {
+  option (se.options.packet_id) = 4102;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+}
+
+message N_Attack {
+  option (se.options.packet_id) = 4103;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+  uint32 attack_type = 2;   // 어떤 공격인지 식별할 수 있는 ID
+}
+
+message C_ThrowGrenadeReq {
+  option (se.options.packet_id) = 4104;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  se.common.Vector3 start_position = 1;
+  se.common.Vector3 direction = 2;
+}
+
+message N_ThrowGrenade {
+  option (se.options.packet_id) = 4105;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+  se.common.Vector3 start_position = 2;
+  se.common.Vector3 direction = 3;
+}
+
+message C_ReloadReq {
+  option (se.options.packet_id) = 4106;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  uint32 weapon_id = 1;   // 어떤 무기를 재장전하는지 식별할 수 있는 ID 
+}
+
+message N_Reload {
+  option (se.options.packet_id) = 4107;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+  uint32 weapon_id = 2;
+}
+
+message C_WeaponChangeReq {
+  option (se.options.packet_id) = 4108;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  uint32 weapon_id = 1;   // 어떤 무기로 변경하는지 식별할 수 있는 ID
+}
+
+message N_WeaponChanged {
+  option (se.options.packet_id) = 4109;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+  uint32 weapon_id = 2;
+}
+
+message C_UseAbilityReq {
+  option (se.options.packet_id) = 4110;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  uint32 ability_id = 1;   // 어떤 능력을 사용하는지 식별할 수 있는 ID
+}
+
+message N_UseAbility {
+  option (se.options.packet_id) = 4111;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+  uint32 ability_id = 2;
+  // 능력 사용에 필요한 추가 정보 (예: 타겟 위치, 타겟 엔티티 등)를 여기에 포함할 수 있음
+}
+
+message N_KillPlayer {  // 이펙트를 보여주기 위한 패킷
+  option (se.options.packet_id) = 4112;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId killer_id = 1;   // 킬을 한 플레이어의 ID
+  se.common.ObjectId victim_id = 2;   // 죽은 플레이어의 ID
+}
+
+/*
+ * Items / Interactions
+ */
+message C_UseItemReq {
+  option (se.options.packet_id) = 4200;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+
+  uint32 item_id = 1;   // 어떤 아이템을 사용하는지 식별할 수 있는 ID
+}
+
+message N_UseItem {
+  option (se.options.packet_id) = 4201;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;   // 아이템을 사용하는 플레이어의 ID
+  uint32 item_id = 2;   // 어떤 아이템이 사용되었는지 식별할 수 있는 ID
+}
+
+message C_ChestInteractReq {
+  option (se.options.packet_id) = 4202;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId chest_entity_id = 1;   // 상호작용을 하려는 entity의 ID (상자)
+  // 상호작용하는 상자의 ID와 어떤 Item 혹은 Slot을 선택했는지에 대한 정보가 필요할 수 있음
+}
+
+message C_PickupItemReq {
+  option (se.options.packet_id) = 4203;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId item_entity_id = 1;   // 상호작용을 하려는 entity의 ID (아이템)
+}
+
+message N_PickupItem {
+  option (se.options.packet_id) = 4204;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;   // 아이템을 주운 플레이어의 ID
+  se.common.ObjectId item_entity_id = 2;   // 주운 아이템의 entity ID
+}
+
+message C_UseStoreReq {
+  option (se.options.packet_id) = 4205;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId store_entity_id = 1;   // 상호작용을 하려는 entity의 ID (상점)
+  uint32 slot = 2;   // 상점에서 어떤 슬롯을 구매하려는지 식별할 수 있는 ID
+}
+
+message S_UseStoreRes {
+  option (se.options.packet_id) = 4206;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  bool success = 1;   // 구매 성공 여부
+  se.common.Result result = 2;   // 구매 실패 시 실패 이유
+  uint32 slot = 3;   // 상점에서 어떤 슬롯이 구매되었는지 식별할 수 있는 ID
+}
+
+message N_ItemGained {
+  option (se.options.packet_id) = 4207;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  uint32 item_id = 1;   // 어떤 아이템이 획득되었는지 식별할 수 있는 ID
+  uint32 quantity = 2;   // 획득한 아이템의 수량
+}
+
+message C_SetSavePointReq {
+  option (se.options.packet_id) = 4208;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  se.common.Vector3 position = 1;   // 세이브 포인트로 설정할 위치
+  // 필요에 따라 회전 정보도 포함할 수 있음
+  // 쿨타임이 필요하다면 Res 패킷도 구현
+}
+
+/*
+ * State updates
+ */
+
+message N_HealthChanged {
+  option (se.options.packet_id) = 4300;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  int32 new_health = 1;   // 변경된 체력 값
+  int32 delta = 2;   // 체력 변화량 (예: -20, +10)
+}
+
+message N_EntityDied {
+  option (se.options.packet_id) = 4301;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;   // 죽은 엔티티의 ID
+}
+
+message N_EntityRespawned {
+  option (se.options.packet_id) = 4302;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;   // 리스폰한 엔티티의 ID
+  se.common.Transform transform = 2;   // 리스폰 위치와 회전 정보
+}
+
+message N_EntityDestroyed {
+  option (se.options.packet_id) = 4303;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;   // 파괴된 엔티티의 ID
+}
+
+message N_TimePointChanged {
+  option (se.options.packet_id) = 4304;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  int32 new_time_points = 1;   // 변경된 시간 포인트 값
+  int32 delta = 2;   // 시간 포인트 변화량 (예: -20, +10)
+}
+
+/*
+ * World updates
+ */
+message N_TimeStormChange {
+  option (se.options.packet_id) = 4400;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.Vector3 center = 1;   // 타임 스톰의 중심 위치
+  float radius = 2;   // 타임 스톰의 반지름
+}

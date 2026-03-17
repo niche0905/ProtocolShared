@@ -14,17 +14,48 @@ enum ErrorCode {
   ERR_INVALID_PACKET = 2;
   ERR_INVALID_STATE = 3;
   ERR_PERMISSION_DENIED = 4;
+  ERR_INTERNAL_ERROR = 5;
+  
+  // Handshake
+  ERR_INVALID_PROTOCOL_VERSION = 10;
+  ERR_MALFORMED_HANDSHAKE = 11;
+  ERR_SERVER_FULL = 12;
 
   // Auth
   ERR_AUTH_FAILED = 100;
   ERR_ALREADY_LOGGED_IN = 101;
 
   // Lobby
-  ERR_INVALID_LOBBY = 200;
+  // ERR_INVALID_LOBBY = 200;
+  ERR_ALREADY_IN_MATCH_QUEUE = 201;
+  ERR_NOT_IN_MATCH_QUEUE = 202;
+  ERR_MATCH_ALREADY_FOUND = 203;
+  ERR_MATCHMAKING_UNAVAILABLE = 204;
 
   // Room
   ERR_INVALID_ROOM = 300;
   ERR_ROOM_FULL = 301;
+  ERR_ROOM_ENTER_DENIED = 302;  // 이 세션은 이 방에 들어갈 권한 없음
+  ERR_ROOM_NOT_ASSIGNED = 303;  // 아직 매칭된 방이 없는데 enter 요청함
+  ERR_NOT_IN_ROOM = 304;        // 방에 있지 않은데 방 관련 행동 시도
+  
+  // Game
+  ERR_GAME_NOT_READY = 400;
+  ERR_GAME_ALREADY_STARTED = 401;
+  ERR_GAME_ALREADY_ENDED = 402;
+  ERR_ENTITY_ALREADY_DEAD = 403;
+  ERR_ACTION_NOT_ALLOWED = 404;   // 현재 상태에서 시도한 행동이 허용되지 않음
+  ERR_TARGET_OUT_OF_RANGE = 405;  // 공격이나 상호작용 시도한 대상이 범위 밖에 있음
+  ERR_INVALID_TARGET = 406;       // 공격이나 상호작용 시도한 대상이 존재하지 않거나 유효하지 않음
+  ERR_ITEM_NOT_FOUND = 407;       // 사용하려는 아이템이 인벤토리에 없음
+  ERR_ITEM_USE_NOT_ALLOWED = 408;     // 현재 상태에서 아이템 사용이 허용되지 않음 (예: 재사용 대기 중)
+  ERR_WEAPON_NOT_EQUIPPED = 409;      // 사용하려는 무기가 장착되어 있지 않음
+  ERR_RELOAD_NOT_ALLOWED = 410;       // 현재 상태에서 재장전이 허용되지 않음 (예: 탄창이 이미 가득 찼거나 재장전 중)
+  ERR_AMMO_EMPTY = 411;               // 발사하려는 무기의 탄약이 없음
+  ERR_ABILITY_NOT_AVAILABLE = 412;        // 사용하려는 능력이 현재 사용할 수 없음 (예: 재사용 대기 중이거나 자원이 부족함)
+  ERR_STORE_PURCHASE_NOT_ALLOWED = 413;   // 현재 상태에서 상점 구매가 허용되지 않음
+  ERR_INSUFFICIENT_TIME_POINTS = 414;     // 행동을 수행하기에 시간 포인트가 부족함
+  ERR_SAVE_POINT_NOT_ALLOWED = 415;
 }
 
 enum ObjectType {

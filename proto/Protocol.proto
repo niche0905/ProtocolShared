@@ -23,7 +23,15 @@ import "lobby/lobby_types.proto";
 import "lobby/lobby_messages.proto";
 
 /*
- * ===== Room(Game) Domain =====
+ * ===== Room Domain =====
  */
+import "room/room_enums.proto";
 import "room/room_types.proto";
 import "room/room_messages.proto";
+
+/*
+ * ===== Game Domain =====
+ */
+import "game/game_enums.proto";
+import "game/game_types.proto";
+import "game/game_messages.proto";

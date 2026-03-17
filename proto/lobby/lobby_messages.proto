@@ -7,24 +7,24 @@ import "common/common_types.proto";
 import "lobby/lobby_types.proto";
 
 /*
- * 로비 진입(초기 상태 요청)
+ * 사용자 닉네임 설정
  */
-message C_LobbyEnterReq {
-  option (se.options.packet_id) = 2000;
+message C_SetNicknameReq {
+  option (se.options.packet_id) = 2002;
   option (se.options.dir) = C2S;
   option (se.options.route) = LOBBY;
 
-  // 필요 시: 클라 상태/마지막 로비 버전 등
+  string nickname = 1;
 }
 
-message S_LobbyEnterRes {
-  option (se.options.packet_id) = 2001;
+message S_SetNicknameRes {
+  option (se.options.packet_id) = 2003;
   option (se.options.dir) = S2C;
   option (se.options.route) = LOBBY;
 
-  se.common.Result result = 1;
-
-  PlayerProfile profile = 2;
+  bool success = 1;
+  se.common.Result result = 2;
+  string nickname = 3; // 서버에서 최종적으로 설정된 닉네임 (입력과 약간 다를 수 있음)
 }
 
 /*
@@ -35,8 +35,6 @@ message C_MatchQueueEnterReq {
   option (se.options.dir) = C2S;
   option (se.options.route) = LOBBY;
 
-  // 모드/난이도/지역 같은 매칭 파라미터 (최소 1개는 있어야 확장 쉬움)
-  uint32 playlist_id = 1;
 }
 
 message S_MatchQueueEnterRes {
@@ -44,7 +42,8 @@ message S_MatchQueueEnterRes {
   option (se.options.dir) = S2C;
   option (se.options.route) = LOBBY;
 
-  se.common.Result result = 1;
+  bool success = 1;
+  se.common.Result result = 2;
 }
 
 message C_MatchQueueCancelReq {
@@ -59,7 +58,8 @@ message S_MatchQueueCancelRes {
   option (se.options.dir) = S2C;
   option (se.options.route) = LOBBY;
 
-  se.common.Result result = 1;
+  bool success = 1;
+  se.common.Result result = 2;
 }
 
 /*

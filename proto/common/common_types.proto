@@ -36,6 +36,7 @@ message Transform {
  * 이동 동기화용 최소 상태
  * 서버 -> 클라이언트 브로드캐스트 기준
  */
+// TODO: Wire Action과 다른 Animation State를 포함해야 한다
 message MovementState {
   Vector3 position = 1;
   float yaw = 2;

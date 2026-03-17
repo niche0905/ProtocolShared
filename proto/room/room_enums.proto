@@ -1,0 +1,10 @@
+﻿syntax = "proto3";
+
+package se.room;
+
+enum RoomClosedReason {
+  ROOM_CLOSED_REASON_NONE = 0;
+  ROOM_CLOSED_REASON_GAME_FINISHED = 1;
+  ROOM_CLOSED_REASON_SERVER_SHUTDOWN = 2;
+  ROOM_CLOSED_REASON_ROOM_ERROR = 3;
+}
