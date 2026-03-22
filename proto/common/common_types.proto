@@ -41,6 +41,7 @@ message MovementState {
   Vector3 position = 1;
   float yaw = 2;
   float pitch = 3;
+  float speed = 4; // 이동 속도 (0이면 정지)
 }
 
 /*

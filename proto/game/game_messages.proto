@@ -92,8 +92,9 @@ message C_ThrowGrenadeReq {
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
   
-  se.common.Vector3 start_position = 1;
-  se.common.Vector3 direction = 2;
+  uint32 grenade_type = 1;   // 어떤 수류탄을 던지는지 식별할 수 있는 ID
+  se.common.Vector3 start_position = 2;
+  se.common.Vector3 direction = 3;
 }
 
 message N_ThrowGrenade {
@@ -102,8 +103,9 @@ message N_ThrowGrenade {
   option (se.options.route) = GAME;
   
   se.common.ObjectId entity_id = 1;
-  se.common.Vector3 start_position = 2;
-  se.common.Vector3 direction = 3;
+  uint32 grenade_type = 2;
+  se.common.Vector3 start_position = 3;
+  se.common.Vector3 direction = 4;
 }
 
 message C_ReloadReq {
