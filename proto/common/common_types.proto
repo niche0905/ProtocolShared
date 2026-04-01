@@ -24,6 +24,15 @@ message Vector3 {
 }
 
 /*
+ * 2D 벡터
+ * x, y 값으로 평면 상의 위치나 방향을 표현할 때 사용
+ */
+message Vector2 {
+  float x = 1;
+  float y = 2;
+}
+
+/*
  * 위치 + 회전 (정적 상태)
  * 순간 스냅샷, 텔레포트, 초기 동기화 등에 사용
  */
@@ -41,7 +50,8 @@ message MovementState {
   Vector3 position = 1;
   float yaw = 2;
   float pitch = 3;
-  float speed = 4; // 이동 속도 (0이면 정지)
+  Vector2 velocity = 4;
+  int32 movement_mode = 5;
 }
 
 /*

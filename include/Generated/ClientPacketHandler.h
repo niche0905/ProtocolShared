@@ -62,6 +62,18 @@ enum : uint16
     PKT_N_GameEnd = 4002,
     PKT_C_MoveReq = 4010,
     PKT_N_Move = 4011,
+    PKT_C_JumpReq = 4020,
+    PKT_N_Jump = 4021,
+    PKT_C_JumpLand = 4022,
+    PKT_N_JumpLand = 4023,
+    PKT_C_CrouchReq = 4030,
+    PKT_N_Crouch = 4031,
+    PKT_C_WireActionReq = 4040,
+    PKT_N_WireAction = 4041,
+    PKT_C_WireActionEnd = 4042,
+    PKT_N_WireActionEnd = 4043,
+    PKT_C_AimReq = 4090,
+    PKT_N_Aim = 4091,
     PKT_C_FireReq = 4100,
     PKT_N_Fire = 4101,
     PKT_C_AttackReq = 4102,
@@ -110,6 +122,12 @@ bool Handle_N_RoomClosed(PacketSessionRef& session, const se::room::N_RoomClosed
 bool Handle_N_GameStart(PacketSessionRef& session, const se::game::N_GameStart& pkt);
 bool Handle_N_GameEnd(PacketSessionRef& session, const se::game::N_GameEnd& pkt);
 bool Handle_N_Move(PacketSessionRef& session, const se::game::N_Move& pkt);
+bool Handle_N_Jump(PacketSessionRef& session, const se::game::N_Jump& pkt);
+bool Handle_N_JumpLand(PacketSessionRef& session, const se::game::N_JumpLand& pkt);
+bool Handle_N_Crouch(PacketSessionRef& session, const se::game::N_Crouch& pkt);
+bool Handle_N_WireAction(PacketSessionRef& session, const se::game::N_WireAction& pkt);
+bool Handle_N_WireActionEnd(PacketSessionRef& session, const se::game::N_WireActionEnd& pkt);
+bool Handle_N_Aim(PacketSessionRef& session, const se::game::N_Aim& pkt);
 bool Handle_N_Fire(PacketSessionRef& session, const se::game::N_Fire& pkt);
 bool Handle_N_Attack(PacketSessionRef& session, const se::game::N_Attack& pkt);
 bool Handle_N_ThrowGrenade(PacketSessionRef& session, const se::game::N_ThrowGrenade& pkt);
@@ -152,6 +170,12 @@ public:
         GPacketHandler[PKT_N_GameStart] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_GameStart>(Handle_N_GameStart, session, buffer, len); };
         GPacketHandler[PKT_N_GameEnd] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_GameEnd>(Handle_N_GameEnd, session, buffer, len); };
         GPacketHandler[PKT_N_Move] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_Move>(Handle_N_Move, session, buffer, len); };
+        GPacketHandler[PKT_N_Jump] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_Jump>(Handle_N_Jump, session, buffer, len); };
+        GPacketHandler[PKT_N_JumpLand] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_JumpLand>(Handle_N_JumpLand, session, buffer, len); };
+        GPacketHandler[PKT_N_Crouch] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_Crouch>(Handle_N_Crouch, session, buffer, len); };
+        GPacketHandler[PKT_N_WireAction] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_WireAction>(Handle_N_WireAction, session, buffer, len); };
+        GPacketHandler[PKT_N_WireActionEnd] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_WireActionEnd>(Handle_N_WireActionEnd, session, buffer, len); };
+        GPacketHandler[PKT_N_Aim] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_Aim>(Handle_N_Aim, session, buffer, len); };
         GPacketHandler[PKT_N_Fire] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_Fire>(Handle_N_Fire, session, buffer, len); };
         GPacketHandler[PKT_N_Attack] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_Attack>(Handle_N_Attack, session, buffer, len); };
         GPacketHandler[PKT_N_ThrowGrenade] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_ThrowGrenade>(Handle_N_ThrowGrenade, session, buffer, len); };
@@ -181,6 +205,12 @@ public:
     static SendBufferRef MakeSendBuffer(se::room::C_RoomLeaveReq& pkt) { return MakeSendBuffer(pkt, PKT_C_RoomLeaveReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_LoadingCompleteReq& pkt) { return MakeSendBuffer(pkt, PKT_C_LoadingCompleteReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_MoveReq& pkt) { return MakeSendBuffer(pkt, PKT_C_MoveReq); }
+    static SendBufferRef MakeSendBuffer(se::game::C_JumpReq& pkt) { return MakeSendBuffer(pkt, PKT_C_JumpReq); }
+    static SendBufferRef MakeSendBuffer(se::game::C_JumpLand& pkt) { return MakeSendBuffer(pkt, PKT_C_JumpLand); }
+    static SendBufferRef MakeSendBuffer(se::game::C_CrouchReq& pkt) { return MakeSendBuffer(pkt, PKT_C_CrouchReq); }
+    static SendBufferRef MakeSendBuffer(se::game::C_WireActionReq& pkt) { return MakeSendBuffer(pkt, PKT_C_WireActionReq); }
+    static SendBufferRef MakeSendBuffer(se::game::C_WireActionEnd& pkt) { return MakeSendBuffer(pkt, PKT_C_WireActionEnd); }
+    static SendBufferRef MakeSendBuffer(se::game::C_AimReq& pkt) { return MakeSendBuffer(pkt, PKT_C_AimReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_FireReq& pkt) { return MakeSendBuffer(pkt, PKT_C_FireReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_AttackReq& pkt) { return MakeSendBuffer(pkt, PKT_C_AttackReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_ThrowGrenadeReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ThrowGrenadeReq); }

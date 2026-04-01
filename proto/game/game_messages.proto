@@ -48,9 +48,103 @@ message N_Move {
   se.common.MovementState movement = 2;
 }
 
+message C_JumpReq {
+  option (se.options.packet_id) = 4020;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+}
+
+message N_Jump {
+  option (se.options.packet_id) = 4021;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+}
+
+message C_JumpLand{
+  option (se.options.packet_id) = 4022;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+}
+
+message N_JumpLand {
+  option (se.options.packet_id) = 4023;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+}
+
+message C_CrouchReq {
+  option (se.options.packet_id) = 4030;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  bool is_crouching = 1;   // true: 앉기 시작, false: 일어서기 시작
+}
+
+message N_Crouch {
+  option (se.options.packet_id) = 4031;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+  bool is_crouching = 2;   // true: 앉음, false: 일어남
+}
+
+message C_WireActionReq {
+  option (se.options.packet_id) = 4040;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  se.common.Vector3 anchor_point = 1;   // 와이어 액션이 시작되는 지점 (플레이어 위치)
+}
+
+message N_WireAction {
+  option (se.options.packet_id) = 4041;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  se.common.ObjectId entity_id = 1;
+  se.common.Vector3 anchor_point = 2;   // 와이어 액션이 시작되는 지점 (플레이어 위치)
+}
+
+message C_WireActionEnd {
+  option (se.options.packet_id) = 4042;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+}
+
+message N_WireActionEnd {
+  option (se.options.packet_id) = 4043;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  se.common.ObjectId entity_id = 1;
+}
+
 /*
  * Combat
  */
+
+message C_AimReq {
+  option (se.options.packet_id) = 4090;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  bool is_aiming = 1;   // true: 조준 시작, false: 조준 해제
+}
+
+message N_Aim {
+  option (se.options.packet_id) = 4091;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId entity_id = 1;
+  bool is_aiming = 2;   // true: 조준 중, false: 비조준
+}
+
 message C_FireReq {
   option (se.options.packet_id) = 4100;
   option (se.options.dir) = C2S;
@@ -309,5 +403,7 @@ message N_TimeStormChange {
   option (se.options.route) = GAME;
   
   se.common.Vector3 center = 1;   // 타임 스톰의 중심 위치
-  float radius = 2;   // 타임 스톰의 반지름
+  float radius = 2;               // 타임 스톰의 반지름
+  float waiting_time = 3;         // 타임 스톰이 다음 단계로 변화하기까지 남은 시간 (초 단위)
+  float shrinking_time = 4;       // 타임 스톰이 수축하는 데 걸리는 시간 (초 단위)
 }
