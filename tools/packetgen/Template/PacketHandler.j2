@@ -16,6 +16,9 @@
 #include "Network/Session/PacketSession.h"
 #include "Network/Buffer/SendBuffer.h"
 
+// 서버 빌드에서만 필요
+class ServerPacketDispatcher;
+
 #ifndef ASSERT_CRASH
     #define ASSERT_CRASH(Expr) assert(Expr)
 #endif
@@ -32,6 +35,11 @@ using SendBufferRef = std::shared_ptr<SendBuffer>;
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
 constexpr uint32 kMaxMessageId = UINT16_MAX;
 extern PacketHandlerFunc GPacketHandler[kMaxMessageId + 1];
+
+#if !(UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1)
+void SetServerPacketDispatcher(ServerPacketDispatcher* dispatcher);
+ServerPacketDispatcher* GetServerPacketDispatcher();
+#endif
 
 using PacketHeader = Protocol::Framing::PacketHeader;
 
