@@ -68,6 +68,15 @@ message N_EntityDespawn {
   se.common.ObjectId entity_id = 1;
 }
 
+message S_RoomSetupEnd {
+  option (se.options.packet_id) = 3102;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = ROOM;
+
+  // 클라이언트로 보내야 할 초기 세팅을 모두 보냈다는 신호.
+  // 이 패킷을 받았다면 모두 Spawn 한 뒤 Loading Complete 패킷을 보낼 것
+}
+
 /*
  * Room Shutdown
  */
