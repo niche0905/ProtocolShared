@@ -186,6 +186,7 @@ message C_FireReq {
   uint32 weapon_id = 1;   // 어떤 무기로 발사하는지 식별할 수 있는 ID
   se.common.Vector3 start_position = 2;
   se.common.Vector3 direction = 3;
+  uint32 shot_seed = 4;   // 총알 궤적의 랜덤성을 보장하기 위한 시드값 (클라이언트에서 생성되고 패킷에 포함)
 }
 
 message N_Fire {
@@ -197,6 +198,7 @@ message N_Fire {
   uint32 weapon_id = 2;
   se.common.Vector3 start_position = 3;
   se.common.Vector3 direction = 4;
+  uint32 shot_seed = 5;
 }
 
 message N_Attack {
@@ -373,7 +375,7 @@ message C_UseStoreReq {
   option (se.options.route) = GAME;
   
   se.common.ObjectId store_entity_id = 1;   // 상호작용을 하려는 entity의 ID (상점)
-  uint32 slot = 2;   // 상점에서 어떤 슬롯을 구매하려는지 식별할 수 있는 ID
+  uint32 store_item_id = 2;   // 상점에서 어떤 슬롯을 구매하려는지 식별할 수 있는 ID
 }
 
 message S_UseStoreRes {
@@ -383,7 +385,7 @@ message S_UseStoreRes {
   
   bool success = 1;   // 구매 성공 여부
   se.common.Result result = 2;   // 구매 실패 시 실패 이유
-  uint32 slot = 3;   // 상점에서 어떤 슬롯이 구매되었는지 식별할 수 있는 ID
+  uint32 store_item_id = 3;   // 상점에서 어떤 슬롯이 구매되었는지 식별할 수 있는 ID
 }
 
 message N_ItemGained {
