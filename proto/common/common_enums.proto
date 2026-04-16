@@ -65,5 +65,5 @@ enum ObjectType {
   OBJ_PLAYER = 1;
   OBJ_NPC = 2;
   OBJ_ITEM = 3;
-  OJB_PROJECTILE = 4;
+  OBJ_PROJECTILE = 4;
 }

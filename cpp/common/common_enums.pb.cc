@@ -59,7 +59,7 @@ const char descriptor_table_protodef_common_2fcommon_5fenums_2eproto[] PROTOBUF_
   "NSUFFICIENT_TIME_POINTS\020\236\003\022\037\n\032ERR_SAVE_P"
   "OINT_NOT_ALLOWED\020\237\003*Y\n\nObjectType\022\014\n\010OBJ"
   "_NONE\020\000\022\016\n\nOBJ_PLAYER\020\001\022\013\n\007OBJ_NPC\020\002\022\014\n\010"
-  "OBJ_ITEM\020\003\022\022\n\016OJB_PROJECTILE\020\004b\006proto3"
+  "OBJ_ITEM\020\003\022\022\n\016OBJ_PROJECTILE\020\004b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_common_2fcommon_5fenums_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fcommon_5fenums_2eproto = {
