@@ -60,6 +60,14 @@ message N_EntitySpawn {
   SpawnInfo info = 1;
 }
 
+message N_EntitiesSpawn {
+  option (se.options.packet_id) = 3103;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = ROOM;
+
+  repeated SpawnInfo infos = 1;
+}
+
 message N_EntityDespawn {
   option (se.options.packet_id) = 3101;
   option (se.options.dir) = S2C;

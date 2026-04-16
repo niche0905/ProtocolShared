@@ -65,6 +65,7 @@ enum : uint16
     PKT_N_EntitySpawn = 3100,
     PKT_N_EntityDespawn = 3101,
     PKT_S_RoomSetupEnd = 3102,
+    PKT_N_EntitiesSpawn = 3103,
     PKT_N_RoomClosed = 3200,
     PKT_C_LoadingCompleteReq = 4000,
     PKT_N_GameStart = 4001,
@@ -111,11 +112,14 @@ enum : uint16
     PKT_S_UseStoreRes = 4206,
     PKT_N_ItemGained = 4207,
     PKT_C_SetSavePointReq = 4208,
+    PKT_N_ChestInteracted = 4209,
+    PKT_S_UseItemRes = 4210,
     PKT_N_HealthChanged = 4300,
     PKT_N_EntityDied = 4301,
     PKT_N_EntityRespawned = 4302,
     PKT_N_EntityDestroyed = 4303,
     PKT_N_TimePointChanged = 4304,
+    PKT_N_MaxHealthChanged = 4305,
     PKT_N_TimeStormChange = 4400,
 };
 
@@ -134,6 +138,7 @@ bool Handle_S_RoomLeaveRes(PacketSessionRef& session, const se::room::S_RoomLeav
 bool Handle_N_EntitySpawn(PacketSessionRef& session, const se::room::N_EntitySpawn& pkt);
 bool Handle_N_EntityDespawn(PacketSessionRef& session, const se::room::N_EntityDespawn& pkt);
 bool Handle_S_RoomSetupEnd(PacketSessionRef& session, const se::room::S_RoomSetupEnd& pkt);
+bool Handle_N_EntitiesSpawn(PacketSessionRef& session, const se::room::N_EntitiesSpawn& pkt);
 bool Handle_N_RoomClosed(PacketSessionRef& session, const se::room::N_RoomClosed& pkt);
 bool Handle_N_GameStart(PacketSessionRef& session, const se::game::N_GameStart& pkt);
 bool Handle_N_GameEnd(PacketSessionRef& session, const se::game::N_GameEnd& pkt);
@@ -160,11 +165,14 @@ bool Handle_N_UseItem(PacketSessionRef& session, const se::game::N_UseItem& pkt)
 bool Handle_N_PickupItem(PacketSessionRef& session, const se::game::N_PickupItem& pkt);
 bool Handle_S_UseStoreRes(PacketSessionRef& session, const se::game::S_UseStoreRes& pkt);
 bool Handle_N_ItemGained(PacketSessionRef& session, const se::game::N_ItemGained& pkt);
+bool Handle_N_ChestInteracted(PacketSessionRef& session, const se::game::N_ChestInteracted& pkt);
+bool Handle_S_UseItemRes(PacketSessionRef& session, const se::game::S_UseItemRes& pkt);
 bool Handle_N_HealthChanged(PacketSessionRef& session, const se::game::N_HealthChanged& pkt);
 bool Handle_N_EntityDied(PacketSessionRef& session, const se::game::N_EntityDied& pkt);
 bool Handle_N_EntityRespawned(PacketSessionRef& session, const se::game::N_EntityRespawned& pkt);
 bool Handle_N_EntityDestroyed(PacketSessionRef& session, const se::game::N_EntityDestroyed& pkt);
 bool Handle_N_TimePointChanged(PacketSessionRef& session, const se::game::N_TimePointChanged& pkt);
+bool Handle_N_MaxHealthChanged(PacketSessionRef& session, const se::game::N_MaxHealthChanged& pkt);
 bool Handle_N_TimeStormChange(PacketSessionRef& session, const se::game::N_TimeStormChange& pkt);
 
 class ClientPacketHandler
@@ -188,6 +196,7 @@ public:
         GPacketHandler[PKT_N_EntitySpawn] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::N_EntitySpawn>(Handle_N_EntitySpawn, session, buffer, len); };
         GPacketHandler[PKT_N_EntityDespawn] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::N_EntityDespawn>(Handle_N_EntityDespawn, session, buffer, len); };
         GPacketHandler[PKT_S_RoomSetupEnd] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::S_RoomSetupEnd>(Handle_S_RoomSetupEnd, session, buffer, len); };
+        GPacketHandler[PKT_N_EntitiesSpawn] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::N_EntitiesSpawn>(Handle_N_EntitiesSpawn, session, buffer, len); };
         GPacketHandler[PKT_N_RoomClosed] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::room::N_RoomClosed>(Handle_N_RoomClosed, session, buffer, len); };
         GPacketHandler[PKT_N_GameStart] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_GameStart>(Handle_N_GameStart, session, buffer, len); };
         GPacketHandler[PKT_N_GameEnd] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_GameEnd>(Handle_N_GameEnd, session, buffer, len); };
@@ -214,11 +223,14 @@ public:
         GPacketHandler[PKT_N_PickupItem] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_PickupItem>(Handle_N_PickupItem, session, buffer, len); };
         GPacketHandler[PKT_S_UseStoreRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::S_UseStoreRes>(Handle_S_UseStoreRes, session, buffer, len); };
         GPacketHandler[PKT_N_ItemGained] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_ItemGained>(Handle_N_ItemGained, session, buffer, len); };
+        GPacketHandler[PKT_N_ChestInteracted] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_ChestInteracted>(Handle_N_ChestInteracted, session, buffer, len); };
+        GPacketHandler[PKT_S_UseItemRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::S_UseItemRes>(Handle_S_UseItemRes, session, buffer, len); };
         GPacketHandler[PKT_N_HealthChanged] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_HealthChanged>(Handle_N_HealthChanged, session, buffer, len); };
         GPacketHandler[PKT_N_EntityDied] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityDied>(Handle_N_EntityDied, session, buffer, len); };
         GPacketHandler[PKT_N_EntityRespawned] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityRespawned>(Handle_N_EntityRespawned, session, buffer, len); };
         GPacketHandler[PKT_N_EntityDestroyed] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityDestroyed>(Handle_N_EntityDestroyed, session, buffer, len); };
         GPacketHandler[PKT_N_TimePointChanged] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_TimePointChanged>(Handle_N_TimePointChanged, session, buffer, len); };
+        GPacketHandler[PKT_N_MaxHealthChanged] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_MaxHealthChanged>(Handle_N_MaxHealthChanged, session, buffer, len); };
         GPacketHandler[PKT_N_TimeStormChange] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_TimeStormChange>(Handle_N_TimeStormChange, session, buffer, len); };
     }
     

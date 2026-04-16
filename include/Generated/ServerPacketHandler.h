@@ -65,6 +65,7 @@ enum : uint16
     PKT_N_EntitySpawn = 3100,
     PKT_N_EntityDespawn = 3101,
     PKT_S_RoomSetupEnd = 3102,
+    PKT_N_EntitiesSpawn = 3103,
     PKT_N_RoomClosed = 3200,
     PKT_C_LoadingCompleteReq = 4000,
     PKT_N_GameStart = 4001,
@@ -111,11 +112,14 @@ enum : uint16
     PKT_S_UseStoreRes = 4206,
     PKT_N_ItemGained = 4207,
     PKT_C_SetSavePointReq = 4208,
+    PKT_N_ChestInteracted = 4209,
+    PKT_S_UseItemRes = 4210,
     PKT_N_HealthChanged = 4300,
     PKT_N_EntityDied = 4301,
     PKT_N_EntityRespawned = 4302,
     PKT_N_EntityDestroyed = 4303,
     PKT_N_TimePointChanged = 4304,
+    PKT_N_MaxHealthChanged = 4305,
     PKT_N_TimeStormChange = 4400,
 };
 
@@ -202,6 +206,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::room::N_EntitySpawn& pkt) { return MakeSendBuffer(pkt, PKT_N_EntitySpawn); }
     static SendBufferRef MakeSendBuffer(se::room::N_EntityDespawn& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityDespawn); }
     static SendBufferRef MakeSendBuffer(se::room::S_RoomSetupEnd& pkt) { return MakeSendBuffer(pkt, PKT_S_RoomSetupEnd); }
+    static SendBufferRef MakeSendBuffer(se::room::N_EntitiesSpawn& pkt) { return MakeSendBuffer(pkt, PKT_N_EntitiesSpawn); }
     static SendBufferRef MakeSendBuffer(se::room::N_RoomClosed& pkt) { return MakeSendBuffer(pkt, PKT_N_RoomClosed); }
     static SendBufferRef MakeSendBuffer(se::game::N_GameStart& pkt) { return MakeSendBuffer(pkt, PKT_N_GameStart); }
     static SendBufferRef MakeSendBuffer(se::game::N_GameEnd& pkt) { return MakeSendBuffer(pkt, PKT_N_GameEnd); }
@@ -228,11 +233,14 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::N_PickupItem& pkt) { return MakeSendBuffer(pkt, PKT_N_PickupItem); }
     static SendBufferRef MakeSendBuffer(se::game::S_UseStoreRes& pkt) { return MakeSendBuffer(pkt, PKT_S_UseStoreRes); }
     static SendBufferRef MakeSendBuffer(se::game::N_ItemGained& pkt) { return MakeSendBuffer(pkt, PKT_N_ItemGained); }
+    static SendBufferRef MakeSendBuffer(se::game::N_ChestInteracted& pkt) { return MakeSendBuffer(pkt, PKT_N_ChestInteracted); }
+    static SendBufferRef MakeSendBuffer(se::game::S_UseItemRes& pkt) { return MakeSendBuffer(pkt, PKT_S_UseItemRes); }
     static SendBufferRef MakeSendBuffer(se::game::N_HealthChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_HealthChanged); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityDied& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityDied); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityRespawned& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityRespawned); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityDestroyed& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityDestroyed); }
     static SendBufferRef MakeSendBuffer(se::game::N_TimePointChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_TimePointChanged); }
+    static SendBufferRef MakeSendBuffer(se::game::N_MaxHealthChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_MaxHealthChanged); }
     static SendBufferRef MakeSendBuffer(se::game::N_TimeStormChange& pkt) { return MakeSendBuffer(pkt, PKT_N_TimeStormChange); }
 
 public:

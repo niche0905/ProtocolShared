@@ -24,11 +24,40 @@ message RoomSnapshot {
 }
 
 /*
+ * Entity Spawn 정보
+ */
+message PlayerSpawnInfo {
+  se.common.MovementState movement = 1;
+}
+
+message MonsterSpawnInfo {
+  se.common.MovementState movement = 1;
+  // TODO: 필요한 정보가 더 있다면 추가하기
+}
+
+message ItemSpawnInfo {
+  se.common.Vector3 position = 1;
+  se.common.Vector3 velocity = 2;
+  uint32 amount = 3;
+}
+
+message ProjectileSpawnInfo {
+  se.common.Vector3 position = 1;
+  se.common.Vector3 velocity = 2;
+}
+
+/*
  * Room Spawn 정보
  */
 message SpawnInfo {
   se.common.ObjectType type = 1;
   uint32 template_id = 2;
   se.common.ObjectId entity_id = 3;
-  se.common.MovementState movement = 4;
+  
+  oneof detail {
+      PlayerSpawnInfo player_info = 10;
+      MonsterSpawnInfo monster_info = 11;
+      ItemSpawnInfo item_info = 12;
+      ProjectileSpawnInfo projectile_info = 13;
+  }
 }
