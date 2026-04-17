@@ -205,6 +205,9 @@ extern N_WireLaunchDefaultTypeInternal _N_WireLaunch_default_instance_;
 class S_ReloadRes;
 struct S_ReloadResDefaultTypeInternal;
 extern S_ReloadResDefaultTypeInternal _S_ReloadRes_default_instance_;
+class S_SetSavePointRes;
+struct S_SetSavePointResDefaultTypeInternal;
+extern S_SetSavePointResDefaultTypeInternal _S_SetSavePointRes_default_instance_;
 class S_UseItemRes;
 struct S_UseItemResDefaultTypeInternal;
 extern S_UseItemResDefaultTypeInternal _S_UseItemRes_default_instance_;
@@ -265,6 +268,7 @@ template<> ::se::game::N_WireAction* Arena::CreateMaybeMessage<::se::game::N_Wir
 template<> ::se::game::N_WireActionEnd* Arena::CreateMaybeMessage<::se::game::N_WireActionEnd>(Arena*);
 template<> ::se::game::N_WireLaunch* Arena::CreateMaybeMessage<::se::game::N_WireLaunch>(Arena*);
 template<> ::se::game::S_ReloadRes* Arena::CreateMaybeMessage<::se::game::S_ReloadRes>(Arena*);
+template<> ::se::game::S_SetSavePointRes* Arena::CreateMaybeMessage<::se::game::S_SetSavePointRes>(Arena*);
 template<> ::se::game::S_UseItemRes* Arena::CreateMaybeMessage<::se::game::S_UseItemRes>(Arena*);
 template<> ::se::game::S_UseStoreRes* Arena::CreateMaybeMessage<::se::game::S_UseStoreRes>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -7795,6 +7799,194 @@ class C_SetSavePointReq final :
 };
 // -------------------------------------------------------------------
 
+class S_SetSavePointRes final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.game.S_SetSavePointRes) */ {
+ public:
+  inline S_SetSavePointRes() : S_SetSavePointRes(nullptr) {}
+  ~S_SetSavePointRes() override;
+  explicit PROTOBUF_CONSTEXPR S_SetSavePointRes(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  S_SetSavePointRes(const S_SetSavePointRes& from);
+  S_SetSavePointRes(S_SetSavePointRes&& from) noexcept
+    : S_SetSavePointRes() {
+    *this = ::std::move(from);
+  }
+
+  inline S_SetSavePointRes& operator=(const S_SetSavePointRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline S_SetSavePointRes& operator=(S_SetSavePointRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const S_SetSavePointRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const S_SetSavePointRes* internal_default_instance() {
+    return reinterpret_cast<const S_SetSavePointRes*>(
+               &_S_SetSavePointRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    46;
+
+  friend void swap(S_SetSavePointRes& a, S_SetSavePointRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(S_SetSavePointRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(S_SetSavePointRes* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  S_SetSavePointRes* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<S_SetSavePointRes>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const S_SetSavePointRes& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const S_SetSavePointRes& from) {
+    S_SetSavePointRes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(S_SetSavePointRes* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "se.game.S_SetSavePointRes";
+  }
+  protected:
+  explicit S_SetSavePointRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResultFieldNumber = 2,
+    kPositionFieldNumber = 3,
+    kSuccessFieldNumber = 1,
+  };
+  // .se.common.Result result = 2;
+  bool has_result() const;
+  private:
+  bool _internal_has_result() const;
+  public:
+  void clear_result();
+  const ::se::common::Result& result() const;
+  PROTOBUF_NODISCARD ::se::common::Result* release_result();
+  ::se::common::Result* mutable_result();
+  void set_allocated_result(::se::common::Result* result);
+  private:
+  const ::se::common::Result& _internal_result() const;
+  ::se::common::Result* _internal_mutable_result();
+  public:
+  void unsafe_arena_set_allocated_result(
+      ::se::common::Result* result);
+  ::se::common::Result* unsafe_arena_release_result();
+
+  // .se.common.Vector3 position = 3;
+  bool has_position() const;
+  private:
+  bool _internal_has_position() const;
+  public:
+  void clear_position();
+  const ::se::common::Vector3& position() const;
+  PROTOBUF_NODISCARD ::se::common::Vector3* release_position();
+  ::se::common::Vector3* mutable_position();
+  void set_allocated_position(::se::common::Vector3* position);
+  private:
+  const ::se::common::Vector3& _internal_position() const;
+  ::se::common::Vector3* _internal_mutable_position();
+  public:
+  void unsafe_arena_set_allocated_position(
+      ::se::common::Vector3* position);
+  ::se::common::Vector3* unsafe_arena_release_position();
+
+  // bool success = 1;
+  void clear_success();
+  bool success() const;
+  void set_success(bool value);
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:se.game.S_SetSavePointRes)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::se::common::Result* result_;
+    ::se::common::Vector3* position_;
+    bool success_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_game_2fgame_5fmessages_2eproto;
+};
+// -------------------------------------------------------------------
+
 class N_HealthChanged final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.game.N_HealthChanged) */ {
  public:
@@ -7843,7 +8035,7 @@ class N_HealthChanged final :
                &_N_HealthChanged_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    47;
 
   friend void swap(N_HealthChanged& a, N_HealthChanged& b) {
     a.Swap(&b);
@@ -8022,7 +8214,7 @@ class N_MaxHealthChanged final :
                &_N_MaxHealthChanged_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    48;
 
   friend void swap(N_MaxHealthChanged& a, N_MaxHealthChanged& b) {
     a.Swap(&b);
@@ -8201,7 +8393,7 @@ class N_EntityDied final :
                &_N_EntityDied_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    49;
 
   friend void swap(N_EntityDied& a, N_EntityDied& b) {
     a.Swap(&b);
@@ -8358,7 +8550,7 @@ class N_EntityRespawned final :
                &_N_EntityRespawned_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    50;
 
   friend void swap(N_EntityRespawned& a, N_EntityRespawned& b) {
     a.Swap(&b);
@@ -8535,7 +8727,7 @@ class N_EntityDestroyed final :
                &_N_EntityDestroyed_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    51;
 
   friend void swap(N_EntityDestroyed& a, N_EntityDestroyed& b) {
     a.Swap(&b);
@@ -8692,7 +8884,7 @@ class N_TimePointChanged final :
                &_N_TimePointChanged_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    52;
 
   friend void swap(N_TimePointChanged& a, N_TimePointChanged& b) {
     a.Swap(&b);
@@ -8851,7 +9043,7 @@ class N_TimeStormChange final :
                &_N_TimeStormChange_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    53;
 
   friend void swap(N_TimeStormChange& a, N_TimeStormChange& b) {
     a.Swap(&b);
@@ -13941,6 +14133,200 @@ inline void C_SetSavePointReq::set_allocated_position(::se::common::Vector3* pos
 
 // -------------------------------------------------------------------
 
+// S_SetSavePointRes
+
+// bool success = 1;
+inline void S_SetSavePointRes::clear_success() {
+  _impl_.success_ = false;
+}
+inline bool S_SetSavePointRes::_internal_success() const {
+  return _impl_.success_;
+}
+inline bool S_SetSavePointRes::success() const {
+  // @@protoc_insertion_point(field_get:se.game.S_SetSavePointRes.success)
+  return _internal_success();
+}
+inline void S_SetSavePointRes::_internal_set_success(bool value) {
+  
+  _impl_.success_ = value;
+}
+inline void S_SetSavePointRes::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:se.game.S_SetSavePointRes.success)
+}
+
+// .se.common.Result result = 2;
+inline bool S_SetSavePointRes::_internal_has_result() const {
+  return this != internal_default_instance() && _impl_.result_ != nullptr;
+}
+inline bool S_SetSavePointRes::has_result() const {
+  return _internal_has_result();
+}
+inline const ::se::common::Result& S_SetSavePointRes::_internal_result() const {
+  const ::se::common::Result* p = _impl_.result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::se::common::Result&>(
+      ::se::common::_Result_default_instance_);
+}
+inline const ::se::common::Result& S_SetSavePointRes::result() const {
+  // @@protoc_insertion_point(field_get:se.game.S_SetSavePointRes.result)
+  return _internal_result();
+}
+inline void S_SetSavePointRes::unsafe_arena_set_allocated_result(
+    ::se::common::Result* result) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.result_);
+  }
+  _impl_.result_ = result;
+  if (result) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.game.S_SetSavePointRes.result)
+}
+inline ::se::common::Result* S_SetSavePointRes::release_result() {
+  
+  ::se::common::Result* temp = _impl_.result_;
+  _impl_.result_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::se::common::Result* S_SetSavePointRes::unsafe_arena_release_result() {
+  // @@protoc_insertion_point(field_release:se.game.S_SetSavePointRes.result)
+  
+  ::se::common::Result* temp = _impl_.result_;
+  _impl_.result_ = nullptr;
+  return temp;
+}
+inline ::se::common::Result* S_SetSavePointRes::_internal_mutable_result() {
+  
+  if (_impl_.result_ == nullptr) {
+    auto* p = CreateMaybeMessage<::se::common::Result>(GetArenaForAllocation());
+    _impl_.result_ = p;
+  }
+  return _impl_.result_;
+}
+inline ::se::common::Result* S_SetSavePointRes::mutable_result() {
+  ::se::common::Result* _msg = _internal_mutable_result();
+  // @@protoc_insertion_point(field_mutable:se.game.S_SetSavePointRes.result)
+  return _msg;
+}
+inline void S_SetSavePointRes::set_allocated_result(::se::common::Result* result) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.result_);
+  }
+  if (result) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(result));
+    if (message_arena != submessage_arena) {
+      result = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, result, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.result_ = result;
+  // @@protoc_insertion_point(field_set_allocated:se.game.S_SetSavePointRes.result)
+}
+
+// .se.common.Vector3 position = 3;
+inline bool S_SetSavePointRes::_internal_has_position() const {
+  return this != internal_default_instance() && _impl_.position_ != nullptr;
+}
+inline bool S_SetSavePointRes::has_position() const {
+  return _internal_has_position();
+}
+inline const ::se::common::Vector3& S_SetSavePointRes::_internal_position() const {
+  const ::se::common::Vector3* p = _impl_.position_;
+  return p != nullptr ? *p : reinterpret_cast<const ::se::common::Vector3&>(
+      ::se::common::_Vector3_default_instance_);
+}
+inline const ::se::common::Vector3& S_SetSavePointRes::position() const {
+  // @@protoc_insertion_point(field_get:se.game.S_SetSavePointRes.position)
+  return _internal_position();
+}
+inline void S_SetSavePointRes::unsafe_arena_set_allocated_position(
+    ::se::common::Vector3* position) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.position_);
+  }
+  _impl_.position_ = position;
+  if (position) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.game.S_SetSavePointRes.position)
+}
+inline ::se::common::Vector3* S_SetSavePointRes::release_position() {
+  
+  ::se::common::Vector3* temp = _impl_.position_;
+  _impl_.position_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::se::common::Vector3* S_SetSavePointRes::unsafe_arena_release_position() {
+  // @@protoc_insertion_point(field_release:se.game.S_SetSavePointRes.position)
+  
+  ::se::common::Vector3* temp = _impl_.position_;
+  _impl_.position_ = nullptr;
+  return temp;
+}
+inline ::se::common::Vector3* S_SetSavePointRes::_internal_mutable_position() {
+  
+  if (_impl_.position_ == nullptr) {
+    auto* p = CreateMaybeMessage<::se::common::Vector3>(GetArenaForAllocation());
+    _impl_.position_ = p;
+  }
+  return _impl_.position_;
+}
+inline ::se::common::Vector3* S_SetSavePointRes::mutable_position() {
+  ::se::common::Vector3* _msg = _internal_mutable_position();
+  // @@protoc_insertion_point(field_mutable:se.game.S_SetSavePointRes.position)
+  return _msg;
+}
+inline void S_SetSavePointRes::set_allocated_position(::se::common::Vector3* position) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.position_);
+  }
+  if (position) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(position));
+    if (message_arena != submessage_arena) {
+      position = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, position, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.position_ = position;
+  // @@protoc_insertion_point(field_set_allocated:se.game.S_SetSavePointRes.position)
+}
+
+// -------------------------------------------------------------------
+
 // N_HealthChanged
 
 // .se.common.ObjectId entity_id = 1;
@@ -14745,6 +15131,8 @@ inline void N_TimeStormChange::set_shrinking_time(float value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -424,6 +424,16 @@ message C_SetSavePointReq {
   // 쿨타임이 필요하다면 Res 패킷도 구현
 }
 
+message S_SetSavePointRes {
+  option (se.options.packet_id) = 4211;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  bool success = 1;   // 세이브 포인트 설정 성공 여부
+  se.common.Result result = 2;   // 세이브 포인트 설정 실패 시 실패 이유
+  se.common.Vector3 position = 3;   // 세이브 포인트로 설정된 위치 (성공한 경우)
+}
+
 /*
  * State updates
  */
