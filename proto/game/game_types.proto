@@ -2,3 +2,19 @@
 
 package se.game;
 
+import "common/common_types.proto";
+import "common/common_enums.proto";
+
+message PlayerMovement {
+  float pitch = 3;
+  se.common.Vector2 velocity = 4;
+  int32 movement_mode = 5;
+}
+
+message MonsterMovement {
+  // TODO: Monster 고유 이동 상태 추가
+}
+
+message ProjectileMovement {
+  se.common.Vector3 velocity = 1;
+}

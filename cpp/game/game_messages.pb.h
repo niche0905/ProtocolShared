@@ -33,6 +33,7 @@
 #include <google/protobuf/unknown_field_set.h>
 #include "options/packet_options.pb.h"
 #include "common/common_types.pb.h"
+#include "common/common_enums.pb.h"
 #include "game/game_enums.pb.h"
 #include "game/game_types.pb.h"
 // @@protoc_insertion_point(includes)
@@ -171,9 +172,6 @@ extern N_MoveDefaultTypeInternal _N_Move_default_instance_;
 class N_PickupItem;
 struct N_PickupItemDefaultTypeInternal;
 extern N_PickupItemDefaultTypeInternal _N_PickupItem_default_instance_;
-class N_ProjectileMove;
-struct N_ProjectileMoveDefaultTypeInternal;
-extern N_ProjectileMoveDefaultTypeInternal _N_ProjectileMove_default_instance_;
 class N_Reload;
 struct N_ReloadDefaultTypeInternal;
 extern N_ReloadDefaultTypeInternal _N_Reload_default_instance_;
@@ -256,7 +254,6 @@ template<> ::se::game::N_KillPlayer* Arena::CreateMaybeMessage<::se::game::N_Kil
 template<> ::se::game::N_MaxHealthChanged* Arena::CreateMaybeMessage<::se::game::N_MaxHealthChanged>(Arena*);
 template<> ::se::game::N_Move* Arena::CreateMaybeMessage<::se::game::N_Move>(Arena*);
 template<> ::se::game::N_PickupItem* Arena::CreateMaybeMessage<::se::game::N_PickupItem>(Arena*);
-template<> ::se::game::N_ProjectileMove* Arena::CreateMaybeMessage<::se::game::N_ProjectileMove>(Arena*);
 template<> ::se::game::N_Reload* Arena::CreateMaybeMessage<::se::game::N_Reload>(Arena*);
 template<> ::se::game::N_ThrowGrenade* Arena::CreateMaybeMessage<::se::game::N_ThrowGrenade>(Arena*);
 template<> ::se::game::N_TimePointChanged* Arena::CreateMaybeMessage<::se::game::N_TimePointChanged>(Arena*);
@@ -830,6 +827,13 @@ class N_Move final :
   static const N_Move& default_instance() {
     return *internal_default_instance();
   }
+  enum DetailCase {
+    kPlayerMovement = 4,
+    kMonsterMovement = 5,
+    kProjectileMovement = 6,
+    DETAIL_NOT_SET = 0,
+  };
+
   static inline const N_Move* internal_default_instance() {
     return reinterpret_cast<const N_Move*>(
                &_N_Move_default_instance_);
@@ -909,7 +913,11 @@ class N_Move final :
 
   enum : int {
     kEntityIdFieldNumber = 1,
-    kMovementFieldNumber = 2,
+    kTransformFieldNumber = 3,
+    kObjectTypeFieldNumber = 2,
+    kPlayerMovementFieldNumber = 4,
+    kMonsterMovementFieldNumber = 5,
+    kProjectileMovementFieldNumber = 6,
   };
   // .se.common.ObjectId entity_id = 1;
   bool has_entity_id() const;
@@ -929,35 +937,116 @@ class N_Move final :
       ::se::common::ObjectId* entity_id);
   ::se::common::ObjectId* unsafe_arena_release_entity_id();
 
-  // .se.common.MovementState movement = 2;
-  bool has_movement() const;
+  // .se.common.Transform transform = 3;
+  bool has_transform() const;
   private:
-  bool _internal_has_movement() const;
+  bool _internal_has_transform() const;
   public:
-  void clear_movement();
-  const ::se::common::MovementState& movement() const;
-  PROTOBUF_NODISCARD ::se::common::MovementState* release_movement();
-  ::se::common::MovementState* mutable_movement();
-  void set_allocated_movement(::se::common::MovementState* movement);
+  void clear_transform();
+  const ::se::common::Transform& transform() const;
+  PROTOBUF_NODISCARD ::se::common::Transform* release_transform();
+  ::se::common::Transform* mutable_transform();
+  void set_allocated_transform(::se::common::Transform* transform);
   private:
-  const ::se::common::MovementState& _internal_movement() const;
-  ::se::common::MovementState* _internal_mutable_movement();
+  const ::se::common::Transform& _internal_transform() const;
+  ::se::common::Transform* _internal_mutable_transform();
   public:
-  void unsafe_arena_set_allocated_movement(
-      ::se::common::MovementState* movement);
-  ::se::common::MovementState* unsafe_arena_release_movement();
+  void unsafe_arena_set_allocated_transform(
+      ::se::common::Transform* transform);
+  ::se::common::Transform* unsafe_arena_release_transform();
 
+  // .se.common.ObjectType object_type = 2;
+  void clear_object_type();
+  ::se::common::ObjectType object_type() const;
+  void set_object_type(::se::common::ObjectType value);
+  private:
+  ::se::common::ObjectType _internal_object_type() const;
+  void _internal_set_object_type(::se::common::ObjectType value);
+  public:
+
+  // .se.game.PlayerMovement player_movement = 4;
+  bool has_player_movement() const;
+  private:
+  bool _internal_has_player_movement() const;
+  public:
+  void clear_player_movement();
+  const ::se::game::PlayerMovement& player_movement() const;
+  PROTOBUF_NODISCARD ::se::game::PlayerMovement* release_player_movement();
+  ::se::game::PlayerMovement* mutable_player_movement();
+  void set_allocated_player_movement(::se::game::PlayerMovement* player_movement);
+  private:
+  const ::se::game::PlayerMovement& _internal_player_movement() const;
+  ::se::game::PlayerMovement* _internal_mutable_player_movement();
+  public:
+  void unsafe_arena_set_allocated_player_movement(
+      ::se::game::PlayerMovement* player_movement);
+  ::se::game::PlayerMovement* unsafe_arena_release_player_movement();
+
+  // .se.game.MonsterMovement monster_movement = 5;
+  bool has_monster_movement() const;
+  private:
+  bool _internal_has_monster_movement() const;
+  public:
+  void clear_monster_movement();
+  const ::se::game::MonsterMovement& monster_movement() const;
+  PROTOBUF_NODISCARD ::se::game::MonsterMovement* release_monster_movement();
+  ::se::game::MonsterMovement* mutable_monster_movement();
+  void set_allocated_monster_movement(::se::game::MonsterMovement* monster_movement);
+  private:
+  const ::se::game::MonsterMovement& _internal_monster_movement() const;
+  ::se::game::MonsterMovement* _internal_mutable_monster_movement();
+  public:
+  void unsafe_arena_set_allocated_monster_movement(
+      ::se::game::MonsterMovement* monster_movement);
+  ::se::game::MonsterMovement* unsafe_arena_release_monster_movement();
+
+  // .se.game.ProjectileMovement projectile_movement = 6;
+  bool has_projectile_movement() const;
+  private:
+  bool _internal_has_projectile_movement() const;
+  public:
+  void clear_projectile_movement();
+  const ::se::game::ProjectileMovement& projectile_movement() const;
+  PROTOBUF_NODISCARD ::se::game::ProjectileMovement* release_projectile_movement();
+  ::se::game::ProjectileMovement* mutable_projectile_movement();
+  void set_allocated_projectile_movement(::se::game::ProjectileMovement* projectile_movement);
+  private:
+  const ::se::game::ProjectileMovement& _internal_projectile_movement() const;
+  ::se::game::ProjectileMovement* _internal_mutable_projectile_movement();
+  public:
+  void unsafe_arena_set_allocated_projectile_movement(
+      ::se::game::ProjectileMovement* projectile_movement);
+  ::se::game::ProjectileMovement* unsafe_arena_release_projectile_movement();
+
+  void clear_detail();
+  DetailCase detail_case() const;
   // @@protoc_insertion_point(class_scope:se.game.N_Move)
  private:
   class _Internal;
+  void set_has_player_movement();
+  void set_has_monster_movement();
+  void set_has_projectile_movement();
+
+  inline bool has_detail() const;
+  inline void clear_has_detail();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::se::common::ObjectId* entity_id_;
-    ::se::common::MovementState* movement_;
+    ::se::common::Transform* transform_;
+    int object_type_;
+    union DetailUnion {
+      constexpr DetailUnion() : _constinit_{} {}
+        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+      ::se::game::PlayerMovement* player_movement_;
+      ::se::game::MonsterMovement* monster_movement_;
+      ::se::game::ProjectileMovement* projectile_movement_;
+    } detail_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    uint32_t _oneof_case_[1];
+
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_game_2fgame_5fmessages_2eproto;
@@ -4386,203 +4475,6 @@ class N_ThrowGrenade final :
 };
 // -------------------------------------------------------------------
 
-class N_ProjectileMove final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.game.N_ProjectileMove) */ {
- public:
-  inline N_ProjectileMove() : N_ProjectileMove(nullptr) {}
-  ~N_ProjectileMove() override;
-  explicit PROTOBUF_CONSTEXPR N_ProjectileMove(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  N_ProjectileMove(const N_ProjectileMove& from);
-  N_ProjectileMove(N_ProjectileMove&& from) noexcept
-    : N_ProjectileMove() {
-    *this = ::std::move(from);
-  }
-
-  inline N_ProjectileMove& operator=(const N_ProjectileMove& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline N_ProjectileMove& operator=(N_ProjectileMove&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const N_ProjectileMove& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const N_ProjectileMove* internal_default_instance() {
-    return reinterpret_cast<const N_ProjectileMove*>(
-               &_N_ProjectileMove_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    26;
-
-  friend void swap(N_ProjectileMove& a, N_ProjectileMove& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(N_ProjectileMove* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(N_ProjectileMove* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  N_ProjectileMove* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<N_ProjectileMove>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const N_ProjectileMove& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const N_ProjectileMove& from) {
-    N_ProjectileMove::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(N_ProjectileMove* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "se.game.N_ProjectileMove";
-  }
-  protected:
-  explicit N_ProjectileMove(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kProjectileIdFieldNumber = 1,
-    kPositionFieldNumber = 2,
-    kVelocityFieldNumber = 3,
-  };
-  // .se.common.ObjectId projectile_id = 1;
-  bool has_projectile_id() const;
-  private:
-  bool _internal_has_projectile_id() const;
-  public:
-  void clear_projectile_id();
-  const ::se::common::ObjectId& projectile_id() const;
-  PROTOBUF_NODISCARD ::se::common::ObjectId* release_projectile_id();
-  ::se::common::ObjectId* mutable_projectile_id();
-  void set_allocated_projectile_id(::se::common::ObjectId* projectile_id);
-  private:
-  const ::se::common::ObjectId& _internal_projectile_id() const;
-  ::se::common::ObjectId* _internal_mutable_projectile_id();
-  public:
-  void unsafe_arena_set_allocated_projectile_id(
-      ::se::common::ObjectId* projectile_id);
-  ::se::common::ObjectId* unsafe_arena_release_projectile_id();
-
-  // .se.common.Vector3 position = 2;
-  bool has_position() const;
-  private:
-  bool _internal_has_position() const;
-  public:
-  void clear_position();
-  const ::se::common::Vector3& position() const;
-  PROTOBUF_NODISCARD ::se::common::Vector3* release_position();
-  ::se::common::Vector3* mutable_position();
-  void set_allocated_position(::se::common::Vector3* position);
-  private:
-  const ::se::common::Vector3& _internal_position() const;
-  ::se::common::Vector3* _internal_mutable_position();
-  public:
-  void unsafe_arena_set_allocated_position(
-      ::se::common::Vector3* position);
-  ::se::common::Vector3* unsafe_arena_release_position();
-
-  // .se.common.Vector3 velocity = 3;
-  bool has_velocity() const;
-  private:
-  bool _internal_has_velocity() const;
-  public:
-  void clear_velocity();
-  const ::se::common::Vector3& velocity() const;
-  PROTOBUF_NODISCARD ::se::common::Vector3* release_velocity();
-  ::se::common::Vector3* mutable_velocity();
-  void set_allocated_velocity(::se::common::Vector3* velocity);
-  private:
-  const ::se::common::Vector3& _internal_velocity() const;
-  ::se::common::Vector3* _internal_mutable_velocity();
-  public:
-  void unsafe_arena_set_allocated_velocity(
-      ::se::common::Vector3* velocity);
-  ::se::common::Vector3* unsafe_arena_release_velocity();
-
-  // @@protoc_insertion_point(class_scope:se.game.N_ProjectileMove)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::se::common::ObjectId* projectile_id_;
-    ::se::common::Vector3* position_;
-    ::se::common::Vector3* velocity_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_game_2fgame_5fmessages_2eproto;
-};
-// -------------------------------------------------------------------
-
 class C_ReloadReq final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:se.game.C_ReloadReq) */ {
  public:
@@ -4631,7 +4523,7 @@ class C_ReloadReq final :
                &_C_ReloadReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    26;
 
   friend void swap(C_ReloadReq& a, C_ReloadReq& b) {
     a.Swap(&b);
@@ -4779,7 +4671,7 @@ class S_ReloadRes final :
                &_S_ReloadRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    27;
 
   friend void swap(S_ReloadRes& a, S_ReloadRes& b) {
     a.Swap(&b);
@@ -4960,7 +4852,7 @@ class N_Reload final :
                &_N_Reload_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    28;
 
   friend void swap(N_Reload& a, N_Reload& b) {
     a.Swap(&b);
@@ -5128,7 +5020,7 @@ class C_WeaponChangeReq final :
                &_C_WeaponChangeReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    29;
 
   friend void swap(C_WeaponChangeReq& a, C_WeaponChangeReq& b) {
     a.Swap(&b);
@@ -5276,7 +5168,7 @@ class N_WeaponChanged final :
                &_N_WeaponChanged_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    30;
 
   friend void swap(N_WeaponChanged& a, N_WeaponChanged& b) {
     a.Swap(&b);
@@ -5444,7 +5336,7 @@ class C_UseAbilityReq final :
                &_C_UseAbilityReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    31;
 
   friend void swap(C_UseAbilityReq& a, C_UseAbilityReq& b) {
     a.Swap(&b);
@@ -5592,7 +5484,7 @@ class N_UseAbility final :
                &_N_UseAbility_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    32;
 
   friend void swap(N_UseAbility& a, N_UseAbility& b) {
     a.Swap(&b);
@@ -5760,7 +5652,7 @@ class N_KillPlayer final :
                &_N_KillPlayer_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    33;
 
   friend void swap(N_KillPlayer& a, N_KillPlayer& b) {
     a.Swap(&b);
@@ -5937,7 +5829,7 @@ class N_EntityHit final :
                &_N_EntityHit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    34;
 
   friend void swap(N_EntityHit& a, N_EntityHit& b) {
     a.Swap(&b);
@@ -6125,7 +6017,7 @@ class C_UseItemReq final :
                &_C_UseItemReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    35;
 
   friend void swap(C_UseItemReq& a, C_UseItemReq& b) {
     a.Swap(&b);
@@ -6273,7 +6165,7 @@ class S_UseItemRes final :
                &_S_UseItemRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    36;
 
   friend void swap(S_UseItemRes& a, S_UseItemRes& b) {
     a.Swap(&b);
@@ -6452,7 +6344,7 @@ class N_UseItem final :
                &_N_UseItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    37;
 
   friend void swap(N_UseItem& a, N_UseItem& b) {
     a.Swap(&b);
@@ -6620,7 +6512,7 @@ class C_ChestInteractReq final :
                &_C_ChestInteractReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    38;
 
   friend void swap(C_ChestInteractReq& a, C_ChestInteractReq& b) {
     a.Swap(&b);
@@ -6777,7 +6669,7 @@ class N_ChestInteracted final :
                &_N_ChestInteracted_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    39;
 
   friend void swap(N_ChestInteracted& a, N_ChestInteracted& b) {
     a.Swap(&b);
@@ -6954,7 +6846,7 @@ class C_PickupItemReq final :
                &_C_PickupItemReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    40;
 
   friend void swap(C_PickupItemReq& a, C_PickupItemReq& b) {
     a.Swap(&b);
@@ -7111,7 +7003,7 @@ class N_PickupItem final :
                &_N_PickupItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    41;
 
   friend void swap(N_PickupItem& a, N_PickupItem& b) {
     a.Swap(&b);
@@ -7288,7 +7180,7 @@ class C_UseStoreReq final :
                &_C_UseStoreReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    42;
 
   friend void swap(C_UseStoreReq& a, C_UseStoreReq& b) {
     a.Swap(&b);
@@ -7456,7 +7348,7 @@ class S_UseStoreRes final :
                &_S_UseStoreRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    43;
 
   friend void swap(S_UseStoreRes& a, S_UseStoreRes& b) {
     a.Swap(&b);
@@ -7635,7 +7527,7 @@ class N_ItemGained final :
                &_N_ItemGained_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    44;
 
   friend void swap(N_ItemGained& a, N_ItemGained& b) {
     a.Swap(&b);
@@ -7794,7 +7686,7 @@ class C_SetSavePointReq final :
                &_C_SetSavePointReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    45;
 
   friend void swap(C_SetSavePointReq& a, C_SetSavePointReq& b) {
     a.Swap(&b);
@@ -7951,7 +7843,7 @@ class N_HealthChanged final :
                &_N_HealthChanged_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    46;
 
   friend void swap(N_HealthChanged& a, N_HealthChanged& b) {
     a.Swap(&b);
@@ -8130,7 +8022,7 @@ class N_MaxHealthChanged final :
                &_N_MaxHealthChanged_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    47;
 
   friend void swap(N_MaxHealthChanged& a, N_MaxHealthChanged& b) {
     a.Swap(&b);
@@ -8309,7 +8201,7 @@ class N_EntityDied final :
                &_N_EntityDied_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    48;
 
   friend void swap(N_EntityDied& a, N_EntityDied& b) {
     a.Swap(&b);
@@ -8466,7 +8358,7 @@ class N_EntityRespawned final :
                &_N_EntityRespawned_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    49;
 
   friend void swap(N_EntityRespawned& a, N_EntityRespawned& b) {
     a.Swap(&b);
@@ -8643,7 +8535,7 @@ class N_EntityDestroyed final :
                &_N_EntityDestroyed_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    50;
 
   friend void swap(N_EntityDestroyed& a, N_EntityDestroyed& b) {
     a.Swap(&b);
@@ -8800,7 +8692,7 @@ class N_TimePointChanged final :
                &_N_TimePointChanged_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    51;
 
   friend void swap(N_TimePointChanged& a, N_TimePointChanged& b) {
     a.Swap(&b);
@@ -8959,7 +8851,7 @@ class N_TimeStormChange final :
                &_N_TimeStormChange_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    52;
 
   friend void swap(N_TimeStormChange& a, N_TimeStormChange& b) {
     a.Swap(&b);
@@ -9296,39 +9188,59 @@ inline void N_Move::set_allocated_entity_id(::se::common::ObjectId* entity_id) {
   // @@protoc_insertion_point(field_set_allocated:se.game.N_Move.entity_id)
 }
 
-// .se.common.MovementState movement = 2;
-inline bool N_Move::_internal_has_movement() const {
-  return this != internal_default_instance() && _impl_.movement_ != nullptr;
+// .se.common.ObjectType object_type = 2;
+inline void N_Move::clear_object_type() {
+  _impl_.object_type_ = 0;
 }
-inline bool N_Move::has_movement() const {
-  return _internal_has_movement();
+inline ::se::common::ObjectType N_Move::_internal_object_type() const {
+  return static_cast< ::se::common::ObjectType >(_impl_.object_type_);
 }
-inline const ::se::common::MovementState& N_Move::_internal_movement() const {
-  const ::se::common::MovementState* p = _impl_.movement_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::common::MovementState&>(
-      ::se::common::_MovementState_default_instance_);
+inline ::se::common::ObjectType N_Move::object_type() const {
+  // @@protoc_insertion_point(field_get:se.game.N_Move.object_type)
+  return _internal_object_type();
 }
-inline const ::se::common::MovementState& N_Move::movement() const {
-  // @@protoc_insertion_point(field_get:se.game.N_Move.movement)
-  return _internal_movement();
+inline void N_Move::_internal_set_object_type(::se::common::ObjectType value) {
+  
+  _impl_.object_type_ = value;
 }
-inline void N_Move::unsafe_arena_set_allocated_movement(
-    ::se::common::MovementState* movement) {
+inline void N_Move::set_object_type(::se::common::ObjectType value) {
+  _internal_set_object_type(value);
+  // @@protoc_insertion_point(field_set:se.game.N_Move.object_type)
+}
+
+// .se.common.Transform transform = 3;
+inline bool N_Move::_internal_has_transform() const {
+  return this != internal_default_instance() && _impl_.transform_ != nullptr;
+}
+inline bool N_Move::has_transform() const {
+  return _internal_has_transform();
+}
+inline const ::se::common::Transform& N_Move::_internal_transform() const {
+  const ::se::common::Transform* p = _impl_.transform_;
+  return p != nullptr ? *p : reinterpret_cast<const ::se::common::Transform&>(
+      ::se::common::_Transform_default_instance_);
+}
+inline const ::se::common::Transform& N_Move::transform() const {
+  // @@protoc_insertion_point(field_get:se.game.N_Move.transform)
+  return _internal_transform();
+}
+inline void N_Move::unsafe_arena_set_allocated_transform(
+    ::se::common::Transform* transform) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.movement_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.transform_);
   }
-  _impl_.movement_ = movement;
-  if (movement) {
+  _impl_.transform_ = transform;
+  if (transform) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.game.N_Move.movement)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.game.N_Move.transform)
 }
-inline ::se::common::MovementState* N_Move::release_movement() {
+inline ::se::common::Transform* N_Move::release_transform() {
   
-  ::se::common::MovementState* temp = _impl_.movement_;
-  _impl_.movement_ = nullptr;
+  ::se::common::Transform* temp = _impl_.transform_;
+  _impl_.transform_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -9340,47 +9252,254 @@ inline ::se::common::MovementState* N_Move::release_movement() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::se::common::MovementState* N_Move::unsafe_arena_release_movement() {
-  // @@protoc_insertion_point(field_release:se.game.N_Move.movement)
+inline ::se::common::Transform* N_Move::unsafe_arena_release_transform() {
+  // @@protoc_insertion_point(field_release:se.game.N_Move.transform)
   
-  ::se::common::MovementState* temp = _impl_.movement_;
-  _impl_.movement_ = nullptr;
+  ::se::common::Transform* temp = _impl_.transform_;
+  _impl_.transform_ = nullptr;
   return temp;
 }
-inline ::se::common::MovementState* N_Move::_internal_mutable_movement() {
+inline ::se::common::Transform* N_Move::_internal_mutable_transform() {
   
-  if (_impl_.movement_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::common::MovementState>(GetArenaForAllocation());
-    _impl_.movement_ = p;
+  if (_impl_.transform_ == nullptr) {
+    auto* p = CreateMaybeMessage<::se::common::Transform>(GetArenaForAllocation());
+    _impl_.transform_ = p;
   }
-  return _impl_.movement_;
+  return _impl_.transform_;
 }
-inline ::se::common::MovementState* N_Move::mutable_movement() {
-  ::se::common::MovementState* _msg = _internal_mutable_movement();
-  // @@protoc_insertion_point(field_mutable:se.game.N_Move.movement)
+inline ::se::common::Transform* N_Move::mutable_transform() {
+  ::se::common::Transform* _msg = _internal_mutable_transform();
+  // @@protoc_insertion_point(field_mutable:se.game.N_Move.transform)
   return _msg;
 }
-inline void N_Move::set_allocated_movement(::se::common::MovementState* movement) {
+inline void N_Move::set_allocated_transform(::se::common::Transform* transform) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.movement_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.transform_);
   }
-  if (movement) {
+  if (transform) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(transform));
     if (message_arena != submessage_arena) {
-      movement = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, movement, submessage_arena);
+      transform = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, transform, submessage_arena);
     }
     
   } else {
     
   }
-  _impl_.movement_ = movement;
-  // @@protoc_insertion_point(field_set_allocated:se.game.N_Move.movement)
+  _impl_.transform_ = transform;
+  // @@protoc_insertion_point(field_set_allocated:se.game.N_Move.transform)
 }
 
+// .se.game.PlayerMovement player_movement = 4;
+inline bool N_Move::_internal_has_player_movement() const {
+  return detail_case() == kPlayerMovement;
+}
+inline bool N_Move::has_player_movement() const {
+  return _internal_has_player_movement();
+}
+inline void N_Move::set_has_player_movement() {
+  _impl_._oneof_case_[0] = kPlayerMovement;
+}
+inline ::se::game::PlayerMovement* N_Move::release_player_movement() {
+  // @@protoc_insertion_point(field_release:se.game.N_Move.player_movement)
+  if (_internal_has_player_movement()) {
+    clear_has_detail();
+    ::se::game::PlayerMovement* temp = _impl_.detail_.player_movement_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.detail_.player_movement_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::se::game::PlayerMovement& N_Move::_internal_player_movement() const {
+  return _internal_has_player_movement()
+      ? *_impl_.detail_.player_movement_
+      : reinterpret_cast< ::se::game::PlayerMovement&>(::se::game::_PlayerMovement_default_instance_);
+}
+inline const ::se::game::PlayerMovement& N_Move::player_movement() const {
+  // @@protoc_insertion_point(field_get:se.game.N_Move.player_movement)
+  return _internal_player_movement();
+}
+inline ::se::game::PlayerMovement* N_Move::unsafe_arena_release_player_movement() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:se.game.N_Move.player_movement)
+  if (_internal_has_player_movement()) {
+    clear_has_detail();
+    ::se::game::PlayerMovement* temp = _impl_.detail_.player_movement_;
+    _impl_.detail_.player_movement_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void N_Move::unsafe_arena_set_allocated_player_movement(::se::game::PlayerMovement* player_movement) {
+  clear_detail();
+  if (player_movement) {
+    set_has_player_movement();
+    _impl_.detail_.player_movement_ = player_movement;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.game.N_Move.player_movement)
+}
+inline ::se::game::PlayerMovement* N_Move::_internal_mutable_player_movement() {
+  if (!_internal_has_player_movement()) {
+    clear_detail();
+    set_has_player_movement();
+    _impl_.detail_.player_movement_ = CreateMaybeMessage< ::se::game::PlayerMovement >(GetArenaForAllocation());
+  }
+  return _impl_.detail_.player_movement_;
+}
+inline ::se::game::PlayerMovement* N_Move::mutable_player_movement() {
+  ::se::game::PlayerMovement* _msg = _internal_mutable_player_movement();
+  // @@protoc_insertion_point(field_mutable:se.game.N_Move.player_movement)
+  return _msg;
+}
+
+// .se.game.MonsterMovement monster_movement = 5;
+inline bool N_Move::_internal_has_monster_movement() const {
+  return detail_case() == kMonsterMovement;
+}
+inline bool N_Move::has_monster_movement() const {
+  return _internal_has_monster_movement();
+}
+inline void N_Move::set_has_monster_movement() {
+  _impl_._oneof_case_[0] = kMonsterMovement;
+}
+inline ::se::game::MonsterMovement* N_Move::release_monster_movement() {
+  // @@protoc_insertion_point(field_release:se.game.N_Move.monster_movement)
+  if (_internal_has_monster_movement()) {
+    clear_has_detail();
+    ::se::game::MonsterMovement* temp = _impl_.detail_.monster_movement_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.detail_.monster_movement_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::se::game::MonsterMovement& N_Move::_internal_monster_movement() const {
+  return _internal_has_monster_movement()
+      ? *_impl_.detail_.monster_movement_
+      : reinterpret_cast< ::se::game::MonsterMovement&>(::se::game::_MonsterMovement_default_instance_);
+}
+inline const ::se::game::MonsterMovement& N_Move::monster_movement() const {
+  // @@protoc_insertion_point(field_get:se.game.N_Move.monster_movement)
+  return _internal_monster_movement();
+}
+inline ::se::game::MonsterMovement* N_Move::unsafe_arena_release_monster_movement() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:se.game.N_Move.monster_movement)
+  if (_internal_has_monster_movement()) {
+    clear_has_detail();
+    ::se::game::MonsterMovement* temp = _impl_.detail_.monster_movement_;
+    _impl_.detail_.monster_movement_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void N_Move::unsafe_arena_set_allocated_monster_movement(::se::game::MonsterMovement* monster_movement) {
+  clear_detail();
+  if (monster_movement) {
+    set_has_monster_movement();
+    _impl_.detail_.monster_movement_ = monster_movement;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.game.N_Move.monster_movement)
+}
+inline ::se::game::MonsterMovement* N_Move::_internal_mutable_monster_movement() {
+  if (!_internal_has_monster_movement()) {
+    clear_detail();
+    set_has_monster_movement();
+    _impl_.detail_.monster_movement_ = CreateMaybeMessage< ::se::game::MonsterMovement >(GetArenaForAllocation());
+  }
+  return _impl_.detail_.monster_movement_;
+}
+inline ::se::game::MonsterMovement* N_Move::mutable_monster_movement() {
+  ::se::game::MonsterMovement* _msg = _internal_mutable_monster_movement();
+  // @@protoc_insertion_point(field_mutable:se.game.N_Move.monster_movement)
+  return _msg;
+}
+
+// .se.game.ProjectileMovement projectile_movement = 6;
+inline bool N_Move::_internal_has_projectile_movement() const {
+  return detail_case() == kProjectileMovement;
+}
+inline bool N_Move::has_projectile_movement() const {
+  return _internal_has_projectile_movement();
+}
+inline void N_Move::set_has_projectile_movement() {
+  _impl_._oneof_case_[0] = kProjectileMovement;
+}
+inline ::se::game::ProjectileMovement* N_Move::release_projectile_movement() {
+  // @@protoc_insertion_point(field_release:se.game.N_Move.projectile_movement)
+  if (_internal_has_projectile_movement()) {
+    clear_has_detail();
+    ::se::game::ProjectileMovement* temp = _impl_.detail_.projectile_movement_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.detail_.projectile_movement_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::se::game::ProjectileMovement& N_Move::_internal_projectile_movement() const {
+  return _internal_has_projectile_movement()
+      ? *_impl_.detail_.projectile_movement_
+      : reinterpret_cast< ::se::game::ProjectileMovement&>(::se::game::_ProjectileMovement_default_instance_);
+}
+inline const ::se::game::ProjectileMovement& N_Move::projectile_movement() const {
+  // @@protoc_insertion_point(field_get:se.game.N_Move.projectile_movement)
+  return _internal_projectile_movement();
+}
+inline ::se::game::ProjectileMovement* N_Move::unsafe_arena_release_projectile_movement() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:se.game.N_Move.projectile_movement)
+  if (_internal_has_projectile_movement()) {
+    clear_has_detail();
+    ::se::game::ProjectileMovement* temp = _impl_.detail_.projectile_movement_;
+    _impl_.detail_.projectile_movement_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void N_Move::unsafe_arena_set_allocated_projectile_movement(::se::game::ProjectileMovement* projectile_movement) {
+  clear_detail();
+  if (projectile_movement) {
+    set_has_projectile_movement();
+    _impl_.detail_.projectile_movement_ = projectile_movement;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.game.N_Move.projectile_movement)
+}
+inline ::se::game::ProjectileMovement* N_Move::_internal_mutable_projectile_movement() {
+  if (!_internal_has_projectile_movement()) {
+    clear_detail();
+    set_has_projectile_movement();
+    _impl_.detail_.projectile_movement_ = CreateMaybeMessage< ::se::game::ProjectileMovement >(GetArenaForAllocation());
+  }
+  return _impl_.detail_.projectile_movement_;
+}
+inline ::se::game::ProjectileMovement* N_Move::mutable_projectile_movement() {
+  ::se::game::ProjectileMovement* _msg = _internal_mutable_projectile_movement();
+  // @@protoc_insertion_point(field_mutable:se.game.N_Move.projectile_movement)
+  return _msg;
+}
+
+inline bool N_Move::has_detail() const {
+  return detail_case() != DETAIL_NOT_SET;
+}
+inline void N_Move::clear_has_detail() {
+  _impl_._oneof_case_[0] = DETAIL_NOT_SET;
+}
+inline N_Move::DetailCase N_Move::detail_case() const {
+  return N_Move::DetailCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // C_JumpReq
@@ -11808,265 +11927,6 @@ inline void N_ThrowGrenade::set_allocated_direction(::se::common::Vector3* direc
   }
   _impl_.direction_ = direction;
   // @@protoc_insertion_point(field_set_allocated:se.game.N_ThrowGrenade.direction)
-}
-
-// -------------------------------------------------------------------
-
-// N_ProjectileMove
-
-// .se.common.ObjectId projectile_id = 1;
-inline bool N_ProjectileMove::_internal_has_projectile_id() const {
-  return this != internal_default_instance() && _impl_.projectile_id_ != nullptr;
-}
-inline bool N_ProjectileMove::has_projectile_id() const {
-  return _internal_has_projectile_id();
-}
-inline const ::se::common::ObjectId& N_ProjectileMove::_internal_projectile_id() const {
-  const ::se::common::ObjectId* p = _impl_.projectile_id_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::common::ObjectId&>(
-      ::se::common::_ObjectId_default_instance_);
-}
-inline const ::se::common::ObjectId& N_ProjectileMove::projectile_id() const {
-  // @@protoc_insertion_point(field_get:se.game.N_ProjectileMove.projectile_id)
-  return _internal_projectile_id();
-}
-inline void N_ProjectileMove::unsafe_arena_set_allocated_projectile_id(
-    ::se::common::ObjectId* projectile_id) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.projectile_id_);
-  }
-  _impl_.projectile_id_ = projectile_id;
-  if (projectile_id) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.game.N_ProjectileMove.projectile_id)
-}
-inline ::se::common::ObjectId* N_ProjectileMove::release_projectile_id() {
-  
-  ::se::common::ObjectId* temp = _impl_.projectile_id_;
-  _impl_.projectile_id_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::se::common::ObjectId* N_ProjectileMove::unsafe_arena_release_projectile_id() {
-  // @@protoc_insertion_point(field_release:se.game.N_ProjectileMove.projectile_id)
-  
-  ::se::common::ObjectId* temp = _impl_.projectile_id_;
-  _impl_.projectile_id_ = nullptr;
-  return temp;
-}
-inline ::se::common::ObjectId* N_ProjectileMove::_internal_mutable_projectile_id() {
-  
-  if (_impl_.projectile_id_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::common::ObjectId>(GetArenaForAllocation());
-    _impl_.projectile_id_ = p;
-  }
-  return _impl_.projectile_id_;
-}
-inline ::se::common::ObjectId* N_ProjectileMove::mutable_projectile_id() {
-  ::se::common::ObjectId* _msg = _internal_mutable_projectile_id();
-  // @@protoc_insertion_point(field_mutable:se.game.N_ProjectileMove.projectile_id)
-  return _msg;
-}
-inline void N_ProjectileMove::set_allocated_projectile_id(::se::common::ObjectId* projectile_id) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.projectile_id_);
-  }
-  if (projectile_id) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(projectile_id));
-    if (message_arena != submessage_arena) {
-      projectile_id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, projectile_id, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.projectile_id_ = projectile_id;
-  // @@protoc_insertion_point(field_set_allocated:se.game.N_ProjectileMove.projectile_id)
-}
-
-// .se.common.Vector3 position = 2;
-inline bool N_ProjectileMove::_internal_has_position() const {
-  return this != internal_default_instance() && _impl_.position_ != nullptr;
-}
-inline bool N_ProjectileMove::has_position() const {
-  return _internal_has_position();
-}
-inline const ::se::common::Vector3& N_ProjectileMove::_internal_position() const {
-  const ::se::common::Vector3* p = _impl_.position_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::common::Vector3&>(
-      ::se::common::_Vector3_default_instance_);
-}
-inline const ::se::common::Vector3& N_ProjectileMove::position() const {
-  // @@protoc_insertion_point(field_get:se.game.N_ProjectileMove.position)
-  return _internal_position();
-}
-inline void N_ProjectileMove::unsafe_arena_set_allocated_position(
-    ::se::common::Vector3* position) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.position_);
-  }
-  _impl_.position_ = position;
-  if (position) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.game.N_ProjectileMove.position)
-}
-inline ::se::common::Vector3* N_ProjectileMove::release_position() {
-  
-  ::se::common::Vector3* temp = _impl_.position_;
-  _impl_.position_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::se::common::Vector3* N_ProjectileMove::unsafe_arena_release_position() {
-  // @@protoc_insertion_point(field_release:se.game.N_ProjectileMove.position)
-  
-  ::se::common::Vector3* temp = _impl_.position_;
-  _impl_.position_ = nullptr;
-  return temp;
-}
-inline ::se::common::Vector3* N_ProjectileMove::_internal_mutable_position() {
-  
-  if (_impl_.position_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::common::Vector3>(GetArenaForAllocation());
-    _impl_.position_ = p;
-  }
-  return _impl_.position_;
-}
-inline ::se::common::Vector3* N_ProjectileMove::mutable_position() {
-  ::se::common::Vector3* _msg = _internal_mutable_position();
-  // @@protoc_insertion_point(field_mutable:se.game.N_ProjectileMove.position)
-  return _msg;
-}
-inline void N_ProjectileMove::set_allocated_position(::se::common::Vector3* position) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.position_);
-  }
-  if (position) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(position));
-    if (message_arena != submessage_arena) {
-      position = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, position, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.position_ = position;
-  // @@protoc_insertion_point(field_set_allocated:se.game.N_ProjectileMove.position)
-}
-
-// .se.common.Vector3 velocity = 3;
-inline bool N_ProjectileMove::_internal_has_velocity() const {
-  return this != internal_default_instance() && _impl_.velocity_ != nullptr;
-}
-inline bool N_ProjectileMove::has_velocity() const {
-  return _internal_has_velocity();
-}
-inline const ::se::common::Vector3& N_ProjectileMove::_internal_velocity() const {
-  const ::se::common::Vector3* p = _impl_.velocity_;
-  return p != nullptr ? *p : reinterpret_cast<const ::se::common::Vector3&>(
-      ::se::common::_Vector3_default_instance_);
-}
-inline const ::se::common::Vector3& N_ProjectileMove::velocity() const {
-  // @@protoc_insertion_point(field_get:se.game.N_ProjectileMove.velocity)
-  return _internal_velocity();
-}
-inline void N_ProjectileMove::unsafe_arena_set_allocated_velocity(
-    ::se::common::Vector3* velocity) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.velocity_);
-  }
-  _impl_.velocity_ = velocity;
-  if (velocity) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:se.game.N_ProjectileMove.velocity)
-}
-inline ::se::common::Vector3* N_ProjectileMove::release_velocity() {
-  
-  ::se::common::Vector3* temp = _impl_.velocity_;
-  _impl_.velocity_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::se::common::Vector3* N_ProjectileMove::unsafe_arena_release_velocity() {
-  // @@protoc_insertion_point(field_release:se.game.N_ProjectileMove.velocity)
-  
-  ::se::common::Vector3* temp = _impl_.velocity_;
-  _impl_.velocity_ = nullptr;
-  return temp;
-}
-inline ::se::common::Vector3* N_ProjectileMove::_internal_mutable_velocity() {
-  
-  if (_impl_.velocity_ == nullptr) {
-    auto* p = CreateMaybeMessage<::se::common::Vector3>(GetArenaForAllocation());
-    _impl_.velocity_ = p;
-  }
-  return _impl_.velocity_;
-}
-inline ::se::common::Vector3* N_ProjectileMove::mutable_velocity() {
-  ::se::common::Vector3* _msg = _internal_mutable_velocity();
-  // @@protoc_insertion_point(field_mutable:se.game.N_ProjectileMove.velocity)
-  return _msg;
-}
-inline void N_ProjectileMove::set_allocated_velocity(::se::common::Vector3* velocity) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.velocity_);
-  }
-  if (velocity) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(velocity));
-    if (message_arena != submessage_arena) {
-      velocity = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, velocity, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.velocity_ = velocity;
-  // @@protoc_insertion_point(field_set_allocated:se.game.N_ProjectileMove.velocity)
 }
 
 // -------------------------------------------------------------------
@@ -14885,8 +14745,6 @@ inline void N_TimeStormChange::set_shrinking_time(float value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

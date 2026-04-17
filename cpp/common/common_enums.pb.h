@@ -111,7 +111,7 @@ inline bool ErrorCode_Parse(
 enum ObjectType : int {
   OBJ_NONE = 0,
   OBJ_PLAYER = 1,
-  OBJ_NPC = 2,
+  OBJ_MONSTER = 2,
   OBJ_ITEM = 3,
   OBJ_PROJECTILE = 4,
   ObjectType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),

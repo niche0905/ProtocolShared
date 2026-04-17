@@ -102,7 +102,6 @@ enum : uint16
     PKT_N_KillPlayer = 4112,
     PKT_S_ReloadRes = 4113,
     PKT_N_EntityHit = 4114,
-    PKT_N_ProjectileMove = 4115,
     PKT_C_UseItemReq = 4200,
     PKT_N_UseItem = 4201,
     PKT_C_ChestInteractReq = 4202,
@@ -228,7 +227,6 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::N_KillPlayer& pkt) { return MakeSendBuffer(pkt, PKT_N_KillPlayer); }
     static SendBufferRef MakeSendBuffer(se::game::S_ReloadRes& pkt) { return MakeSendBuffer(pkt, PKT_S_ReloadRes); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityHit& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityHit); }
-    static SendBufferRef MakeSendBuffer(se::game::N_ProjectileMove& pkt) { return MakeSendBuffer(pkt, PKT_N_ProjectileMove); }
     static SendBufferRef MakeSendBuffer(se::game::N_UseItem& pkt) { return MakeSendBuffer(pkt, PKT_N_UseItem); }
     static SendBufferRef MakeSendBuffer(se::game::N_PickupItem& pkt) { return MakeSendBuffer(pkt, PKT_N_PickupItem); }
     static SendBufferRef MakeSendBuffer(se::game::S_UseStoreRes& pkt) { return MakeSendBuffer(pkt, PKT_S_UseStoreRes); }

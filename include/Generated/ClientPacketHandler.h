@@ -102,7 +102,6 @@ enum : uint16
     PKT_N_KillPlayer = 4112,
     PKT_S_ReloadRes = 4113,
     PKT_N_EntityHit = 4114,
-    PKT_N_ProjectileMove = 4115,
     PKT_C_UseItemReq = 4200,
     PKT_N_UseItem = 4201,
     PKT_C_ChestInteractReq = 4202,
@@ -160,7 +159,6 @@ bool Handle_N_UseAbility(PacketSessionRef& session, const se::game::N_UseAbility
 bool Handle_N_KillPlayer(PacketSessionRef& session, const se::game::N_KillPlayer& pkt);
 bool Handle_S_ReloadRes(PacketSessionRef& session, const se::game::S_ReloadRes& pkt);
 bool Handle_N_EntityHit(PacketSessionRef& session, const se::game::N_EntityHit& pkt);
-bool Handle_N_ProjectileMove(PacketSessionRef& session, const se::game::N_ProjectileMove& pkt);
 bool Handle_N_UseItem(PacketSessionRef& session, const se::game::N_UseItem& pkt);
 bool Handle_N_PickupItem(PacketSessionRef& session, const se::game::N_PickupItem& pkt);
 bool Handle_S_UseStoreRes(PacketSessionRef& session, const se::game::S_UseStoreRes& pkt);
@@ -218,7 +216,6 @@ public:
         GPacketHandler[PKT_N_KillPlayer] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_KillPlayer>(Handle_N_KillPlayer, session, buffer, len); };
         GPacketHandler[PKT_S_ReloadRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::S_ReloadRes>(Handle_S_ReloadRes, session, buffer, len); };
         GPacketHandler[PKT_N_EntityHit] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityHit>(Handle_N_EntityHit, session, buffer, len); };
-        GPacketHandler[PKT_N_ProjectileMove] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_ProjectileMove>(Handle_N_ProjectileMove, session, buffer, len); };
         GPacketHandler[PKT_N_UseItem] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_UseItem>(Handle_N_UseItem, session, buffer, len); };
         GPacketHandler[PKT_N_PickupItem] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_PickupItem>(Handle_N_PickupItem, session, buffer, len); };
         GPacketHandler[PKT_S_UseStoreRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::S_UseStoreRes>(Handle_S_UseStoreRes, session, buffer, len); };

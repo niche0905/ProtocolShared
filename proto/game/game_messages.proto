@@ -4,6 +4,7 @@ package se.game;
 
 import "options/packet_options.proto";
 import "common/common_types.proto";
+import "common/common_enums.proto";
 import "game/game_enums.proto";
 import "game/game_types.proto";
 
@@ -43,9 +44,17 @@ message N_Move {
   option (se.options.packet_id) = 4011;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
-  
+
   se.common.ObjectId entity_id = 1;
-  se.common.MovementState movement = 2;
+  se.common.ObjectType object_type = 2;   // Entity의 타입 (플레이어, NPC 등)을 식별할 수 있는 ID
+  
+  se.common.Transform transform = 3;   // 현재 위치와 회전 정보
+  
+  oneof detail {
+    se.game.PlayerMovement player_movement = 4;   // 플레이어의 이동에 대한 추가 정보 (예: 달리기, 걷기, 슬라이딩 등)
+    se.game.MonsterMovement monster_movement = 5;   // 몬스터의 이동에 대한 추가 정보 (예: 패트롤, 추적, 도망 등)
+    se.game.ProjectileMovement projectile_movement = 6;   // 투사체의 이동에 대한 추가 정보 (예: 발사된 총알, 날아가는 수류탄 등)
+  }
 }
 
 message C_JumpReq {
@@ -229,16 +238,6 @@ message N_ThrowGrenade {
   uint32 grenade_type = 2;
   se.common.Vector3 start_position = 3;
   se.common.Vector3 direction = 4;
-}
-
-message N_ProjectileMove {
-  option (se.options.packet_id) = 4115;
-  option (se.options.dir) = S2C;
-  option (se.options.route) = GAME;
-  
-  se.common.ObjectId projectile_id = 1;   // 발사된 투사체의 ID
-  se.common.Vector3 position = 2;         // 투사체의 현재 위치
-  se.common.Vector3 velocity = 3;         // 투사체의 현재 속도 (방향과 속력을 포함)
 }
 
 message C_ReloadReq {
