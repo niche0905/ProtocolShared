@@ -361,7 +361,7 @@ message C_ChestInteractReq {
 }
 
 message N_ChestInteracted {
-  option (se.options.packet_id) = 4209;
+  option (se.options.packet_id) = 4212;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -414,8 +414,18 @@ message N_ItemGained {
   uint32 quantity = 2;   // 획득한 아이템의 수량
 }
 
+message N_ItemLost {    // or Use
+  option (se.options.packet_id) = 4213;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  uint32 item_id = 1;         // 어떤 아이템이 잃었는지 식별할 수 있는 ID
+  uint32 new_quantity = 2;    // 잃은 후 남은 아이템의 수량 (0이면 완전히 잃은 것)
+  uint32 quantity = 3;        // 잃은 아이템의 수량
+}
+
 message C_SetSavePointReq {
-  option (se.options.packet_id) = 4208;
+  option (se.options.packet_id) = 4209;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
   

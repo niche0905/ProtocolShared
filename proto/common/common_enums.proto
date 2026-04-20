@@ -66,4 +66,6 @@ enum ObjectType {
   OBJ_MONSTER = 2;
   OBJ_ITEM = 3;
   OBJ_PROJECTILE = 4;
+  OBJ_CHEST = 5;
+  OBJ_STORE = 6;
 }

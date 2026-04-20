@@ -110,10 +110,11 @@ enum : uint16
     PKT_C_UseStoreReq = 4205,
     PKT_S_UseStoreRes = 4206,
     PKT_N_ItemGained = 4207,
-    PKT_C_SetSavePointReq = 4208,
-    PKT_N_ChestInteracted = 4209,
+    PKT_C_SetSavePointReq = 4209,
     PKT_S_UseItemRes = 4210,
     PKT_S_SetSavePointRes = 4211,
+    PKT_N_ChestInteracted = 4212,
+    PKT_N_ItemLost = 4213,
     PKT_N_HealthChanged = 4300,
     PKT_N_EntityDied = 4301,
     PKT_N_EntityRespawned = 4302,
@@ -232,9 +233,10 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::N_PickupItem& pkt) { return MakeSendBuffer(pkt, PKT_N_PickupItem); }
     static SendBufferRef MakeSendBuffer(se::game::S_UseStoreRes& pkt) { return MakeSendBuffer(pkt, PKT_S_UseStoreRes); }
     static SendBufferRef MakeSendBuffer(se::game::N_ItemGained& pkt) { return MakeSendBuffer(pkt, PKT_N_ItemGained); }
-    static SendBufferRef MakeSendBuffer(se::game::N_ChestInteracted& pkt) { return MakeSendBuffer(pkt, PKT_N_ChestInteracted); }
     static SendBufferRef MakeSendBuffer(se::game::S_UseItemRes& pkt) { return MakeSendBuffer(pkt, PKT_S_UseItemRes); }
     static SendBufferRef MakeSendBuffer(se::game::S_SetSavePointRes& pkt) { return MakeSendBuffer(pkt, PKT_S_SetSavePointRes); }
+    static SendBufferRef MakeSendBuffer(se::game::N_ChestInteracted& pkt) { return MakeSendBuffer(pkt, PKT_N_ChestInteracted); }
+    static SendBufferRef MakeSendBuffer(se::game::N_ItemLost& pkt) { return MakeSendBuffer(pkt, PKT_N_ItemLost); }
     static SendBufferRef MakeSendBuffer(se::game::N_HealthChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_HealthChanged); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityDied& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityDied); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityRespawned& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityRespawned); }
