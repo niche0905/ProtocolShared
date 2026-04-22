@@ -4,6 +4,7 @@ package se.game;
 
 import "common/common_types.proto";
 import "common/common_enums.proto";
+import "game/game_enums.proto";
 
 message PlayerMovement {
   float pitch = 3;
@@ -17,4 +18,30 @@ message MonsterMovement {
 
 message ProjectileMovement {
   se.common.Vector3 velocity = 1;
+}
+
+message WeaponStatSnapshot {
+  int32 mag_capacity = 1;
+  float fire_interval = 2;
+  float reload_time = 3;
+  
+  int32 pellet_count = 4;
+  float cone_angle = 5;
+  
+  float projectile_speed = 6;
+  float explosion_radius = 7;
+}
+
+message WeaponSlotSnapshot {
+  uint32 weapon_id = 1;
+  WeaponStatSnapshot stat = 2;
+}
+
+message WeaponStatValue {
+  WeaponStatType stat_type = 1;
+  
+  oneof value {
+    int32 int_value = 2;
+    float float_value = 3;
+  }
 }

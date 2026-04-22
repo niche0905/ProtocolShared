@@ -29,6 +29,18 @@ message N_GameEnd {
   option (se.options.route) = GAME;
 }
 
+message N_PlayerInitSetup {
+  option (se.options.packet_id) = 4003;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  int32 max_health = 1;       // 플레이어의 최대 체력
+  int32 current_health = 2;   // 플레이어의 현재 체력
+  int32 time_points = 3;      // 플레이어의 시간 포인트
+  
+  repeated WeaponSlotSnapshot weapon_slots = 4;   // 플레이어가 가진 무기 슬롯들의 초기 상태 (무기 ID, 탄약 수 등)
+}
+
 /*
  * Movement
  */
@@ -322,6 +334,15 @@ message N_EntityHit {
   uint32 damage = 3;                    // 충격량 (이펙트에 사용 가능, ex 피튀김 정도)
 }
 
+message N_WeaponStatChanged {
+  option (se.options.packet_id) = 4115;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  uint32 weapon_id = 1;   // 어떤 무기의 스탯이 변경되었는지 식별할 수 있는 ID
+  repeated WeaponStatValue stats = 2;   // 변경된 스탯과 그 값들의 리스트 (예: 데미지, 사거리, 발사 속도 등)
+}
+
 /*
  * Items / Interactions
  */
@@ -442,6 +463,34 @@ message S_SetSavePointRes {
   bool success = 1;   // 세이브 포인트 설정 성공 여부
   se.common.Result result = 2;   // 세이브 포인트 설정 실패 시 실패 이유
   se.common.Vector3 position = 3;   // 세이브 포인트로 설정된 위치 (성공한 경우)
+}
+
+message C_EquipItemReq {
+  option (se.options.packet_id) = 4214;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+
+  uint32 item_id = 1;   // 어떤 아이템을 장착하는지 식별할 수 있는 ID (수류탄과 같은 장착 모션이 필요한 아이템을 위한 패킷)
+}
+
+message S_EquipItemRes {
+  // 해당 아이템이 없는 경우 너는 착용할 수 없다 (혹은 사망 상태이거나)
+  option (se.options.packet_id) = 4216;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  bool success = 1;   // 아이템 장착 성공 여부
+  se.common.Result result = 2;   // 아이템 장착 실패 시 실패 이유
+  uint32 item_id = 3;   // 어떤 아이템이 장착되었는지 식별할 수 있는 ID (성공한 경우)
+}
+
+message N_EquipItem {
+  option (se.options.packet_id) = 4215;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  se.common.ObjectId entity_id = 1;   // 아이템을 장착하는 플레이어의 ID
+  uint32 item_id = 2;   // 어떤 아이템이 장착되었는지 식별할 수 있는 ID
 }
 
 /*

@@ -70,6 +70,7 @@ enum : uint16
     PKT_C_LoadingCompleteReq = 4000,
     PKT_N_GameStart = 4001,
     PKT_N_GameEnd = 4002,
+    PKT_N_PlayerInitSetup = 4003,
     PKT_C_MoveReq = 4010,
     PKT_N_Move = 4011,
     PKT_C_JumpReq = 4020,
@@ -102,6 +103,7 @@ enum : uint16
     PKT_N_KillPlayer = 4112,
     PKT_S_ReloadRes = 4113,
     PKT_N_EntityHit = 4114,
+    PKT_N_WeaponStatChanged = 4115,
     PKT_C_UseItemReq = 4200,
     PKT_N_UseItem = 4201,
     PKT_C_ChestInteractReq = 4202,
@@ -115,6 +117,9 @@ enum : uint16
     PKT_S_SetSavePointRes = 4211,
     PKT_N_ChestInteracted = 4212,
     PKT_N_ItemLost = 4213,
+    PKT_C_EquipItemReq = 4214,
+    PKT_N_EquipItem = 4215,
+    PKT_S_EquipItemRes = 4216,
     PKT_N_HealthChanged = 4300,
     PKT_N_EntityDied = 4301,
     PKT_N_EntityRespawned = 4302,
@@ -155,6 +160,7 @@ bool Handle_C_ChestInteractReq(PacketSessionRef& session, const se::game::C_Ches
 bool Handle_C_PickupItemReq(PacketSessionRef& session, const se::game::C_PickupItemReq& pkt);
 bool Handle_C_UseStoreReq(PacketSessionRef& session, const se::game::C_UseStoreReq& pkt);
 bool Handle_C_SetSavePointReq(PacketSessionRef& session, const se::game::C_SetSavePointReq& pkt);
+bool Handle_C_EquipItemReq(PacketSessionRef& session, const se::game::C_EquipItemReq& pkt);
 
 class ServerPacketHandler
 {
@@ -193,6 +199,7 @@ public:
         GPacketHandler[PKT_C_PickupItemReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::C_PickupItemReq>(Handle_C_PickupItemReq, session, buffer, len); };
         GPacketHandler[PKT_C_UseStoreReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::C_UseStoreReq>(Handle_C_UseStoreReq, session, buffer, len); };
         GPacketHandler[PKT_C_SetSavePointReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::C_SetSavePointReq>(Handle_C_SetSavePointReq, session, buffer, len); };
+        GPacketHandler[PKT_C_EquipItemReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::C_EquipItemReq>(Handle_C_EquipItemReq, session, buffer, len); };
     }
     
     static SendBufferRef MakeSendBuffer(se::auth::S_HandshakeRes& pkt) { return MakeSendBuffer(pkt, PKT_S_HandshakeRes); }
@@ -211,6 +218,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::room::N_RoomClosed& pkt) { return MakeSendBuffer(pkt, PKT_N_RoomClosed); }
     static SendBufferRef MakeSendBuffer(se::game::N_GameStart& pkt) { return MakeSendBuffer(pkt, PKT_N_GameStart); }
     static SendBufferRef MakeSendBuffer(se::game::N_GameEnd& pkt) { return MakeSendBuffer(pkt, PKT_N_GameEnd); }
+    static SendBufferRef MakeSendBuffer(se::game::N_PlayerInitSetup& pkt) { return MakeSendBuffer(pkt, PKT_N_PlayerInitSetup); }
     static SendBufferRef MakeSendBuffer(se::game::N_Move& pkt) { return MakeSendBuffer(pkt, PKT_N_Move); }
     static SendBufferRef MakeSendBuffer(se::game::N_Jump& pkt) { return MakeSendBuffer(pkt, PKT_N_Jump); }
     static SendBufferRef MakeSendBuffer(se::game::N_JumpLand& pkt) { return MakeSendBuffer(pkt, PKT_N_JumpLand); }
@@ -229,6 +237,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::N_KillPlayer& pkt) { return MakeSendBuffer(pkt, PKT_N_KillPlayer); }
     static SendBufferRef MakeSendBuffer(se::game::S_ReloadRes& pkt) { return MakeSendBuffer(pkt, PKT_S_ReloadRes); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityHit& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityHit); }
+    static SendBufferRef MakeSendBuffer(se::game::N_WeaponStatChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_WeaponStatChanged); }
     static SendBufferRef MakeSendBuffer(se::game::N_UseItem& pkt) { return MakeSendBuffer(pkt, PKT_N_UseItem); }
     static SendBufferRef MakeSendBuffer(se::game::N_PickupItem& pkt) { return MakeSendBuffer(pkt, PKT_N_PickupItem); }
     static SendBufferRef MakeSendBuffer(se::game::S_UseStoreRes& pkt) { return MakeSendBuffer(pkt, PKT_S_UseStoreRes); }
@@ -237,6 +246,8 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::S_SetSavePointRes& pkt) { return MakeSendBuffer(pkt, PKT_S_SetSavePointRes); }
     static SendBufferRef MakeSendBuffer(se::game::N_ChestInteracted& pkt) { return MakeSendBuffer(pkt, PKT_N_ChestInteracted); }
     static SendBufferRef MakeSendBuffer(se::game::N_ItemLost& pkt) { return MakeSendBuffer(pkt, PKT_N_ItemLost); }
+    static SendBufferRef MakeSendBuffer(se::game::N_EquipItem& pkt) { return MakeSendBuffer(pkt, PKT_N_EquipItem); }
+    static SendBufferRef MakeSendBuffer(se::game::S_EquipItemRes& pkt) { return MakeSendBuffer(pkt, PKT_S_EquipItemRes); }
     static SendBufferRef MakeSendBuffer(se::game::N_HealthChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_HealthChanged); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityDied& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityDied); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityRespawned& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityRespawned); }
