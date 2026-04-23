@@ -46,6 +46,16 @@ message ProjectileSpawnInfo {
   se.common.Vector3 velocity = 2;
 }
 
+message ChestSpawnInfo {
+  se.common.Vector3 position = 1;
+  float yaw = 2;
+}
+
+message StoreSpawnInfo {
+  se.common.Vector3 position = 1;
+  float yaw = 2;
+}
+
 /*
  * Room Spawn 정보
  */
@@ -59,5 +69,7 @@ message SpawnInfo {
       MonsterSpawnInfo monster_info = 11;
       ItemSpawnInfo item_info = 12;
       ProjectileSpawnInfo projectile_info = 13;
+      ChestSpawnInfo chest_info = 14;
+      StoreSpawnInfo store_info = 15;
   }
 }
