@@ -84,13 +84,13 @@ message N_Jump {
 }
 
 message C_DoubleJumpReq {
-  option (se.options.packet_id) = 4024;
+  option (se.options.packet_id) = 4022;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
 }
 
 message N_DoubleJump {
-  option (se.options.packet_id) = 4025;
+  option (se.options.packet_id) = 4023;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -98,13 +98,13 @@ message N_DoubleJump {
 }
 
 message C_JumpLand{
-  option (se.options.packet_id) = 4022;
+  option (se.options.packet_id) = 4024;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
 }
 
 message N_JumpLand {
-  option (se.options.packet_id) = 4023;
+  option (se.options.packet_id) = 4025;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -129,7 +129,7 @@ message N_Crouch {
 }
 
 message C_WireLaunchReq {
-  option (se.options.packet_id) = 4044;
+  option (se.options.packet_id) = 4040;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
 
@@ -138,7 +138,7 @@ message C_WireLaunchReq {
 }
 
 message N_WireLaunch {
-  option (se.options.packet_id) = 4045;
+  option (se.options.packet_id) = 4041;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
 
@@ -148,7 +148,7 @@ message N_WireLaunch {
 }
 
 message C_WireActionReq {
-  option (se.options.packet_id) = 4040;
+  option (se.options.packet_id) = 4042;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
   
@@ -156,7 +156,7 @@ message C_WireActionReq {
 }
 
 message N_WireAction {
-  option (se.options.packet_id) = 4041;
+  option (se.options.packet_id) = 4043;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
 
@@ -165,13 +165,13 @@ message N_WireAction {
 }
 
 message C_WireActionEnd {
-  option (se.options.packet_id) = 4042;
+  option (se.options.packet_id) = 4044;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
 }
 
 message N_WireActionEnd {
-  option (se.options.packet_id) = 4043;
+  option (se.options.packet_id) = 4045;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
 
@@ -229,6 +229,7 @@ message N_Attack {
   
   se.common.ObjectId entity_id = 1;
   uint32 attack_type = 2;   // 어떤 공격인지 식별할 수 있는 ID
+  // TODO: NPC BT가 구성되면 이 패킷 리뉴얼 필요할 듯 함
 }
 
 message C_ThrowGrenadeReq {
@@ -261,7 +262,7 @@ message C_ReloadReq {
 }
 
 message S_ReloadRes {
-  option (se.options.packet_id) = 4113;
+  option (se.options.packet_id) = 4107;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -272,7 +273,7 @@ message S_ReloadRes {
 }
 
 message N_Reload {
-  option (se.options.packet_id) = 4107;
+  option (se.options.packet_id) = 4108;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -281,7 +282,7 @@ message N_Reload {
 }
 
 message C_WeaponChangeReq {
-  option (se.options.packet_id) = 4108;
+  option (se.options.packet_id) = 4109;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
   
@@ -289,7 +290,7 @@ message C_WeaponChangeReq {
 }
 
 message N_WeaponChanged {
-  option (se.options.packet_id) = 4109;
+  option (se.options.packet_id) = 4110;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -297,8 +298,26 @@ message N_WeaponChanged {
   uint32 weapon_id = 2;
 }
 
+message N_WeaponStatChanged {
+  option (se.options.packet_id) = 4115;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  uint32 weapon_id = 1;   // 어떤 무기의 스탯이 변경되었는지 식별할 수 있는 ID
+  repeated WeaponStatValue stats = 2;   // 변경된 스탯과 그 값들의 리스트 (예: 데미지, 사거리, 발사 속도 등)
+}
+
+message N_WeaponStatSnapshot {
+  // 이 패킷이 오면 무조건 이 패킷으로 Set 하도록 (유효한 값으로 서버에서 보장)
+  option (se.options.packet_id) = 4116;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  repeated WeaponSlotSnapshot stats = 2;   // 무기의 스탯과 그 값들의 리스트 (예: 데미지, 사거리, 발사 속도 등)
+}
+
 message C_UseAbilityReq {
-  option (se.options.packet_id) = 4110;
+  option (se.options.packet_id) = 4120;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
   
@@ -306,7 +325,7 @@ message C_UseAbilityReq {
 }
 
 message N_UseAbility {
-  option (se.options.packet_id) = 4111;
+  option (se.options.packet_id) = 4121;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -315,32 +334,23 @@ message N_UseAbility {
   // 능력 사용에 필요한 추가 정보 (예: 타겟 위치, 타겟 엔티티 등)를 여기에 포함할 수 있음
 }
 
-message N_KillPlayer {  // 이펙트를 보여주기 위한 패킷
-  option (se.options.packet_id) = 4112;
-  option (se.options.dir) = S2C;
-  option (se.options.route) = GAME;
-  
-  se.common.ObjectId killer_id = 1;   // 킬을 한 플레이어의 ID
-  se.common.ObjectId victim_id = 2;   // 죽은 플레이어의 ID
-}
-
 message N_EntityHit {
-  option (se.options.packet_id) = 4114;
+  option (se.options.packet_id) = 4150;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
-  
+
   se.common.ObjectId entity_id = 1;     // 맞은 엔티티의 ID
   se.common.Vector3 hit_position = 2;   // 맞은 위치 (근사 하여 Entity의 콜리전 박스 내에서 표현)
   uint32 damage = 3;                    // 충격량 (이펙트에 사용 가능, ex 피튀김 정도)
 }
 
-message N_WeaponStatChanged {
-  option (se.options.packet_id) = 4115;
+message N_KillPlayer {  // 이펙트를 보여주기 위한 패킷
+  option (se.options.packet_id) = 4190;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
-  uint32 weapon_id = 1;   // 어떤 무기의 스탯이 변경되었는지 식별할 수 있는 ID
-  repeated WeaponStatValue stats = 2;   // 변경된 스탯과 그 값들의 리스트 (예: 데미지, 사거리, 발사 속도 등)
+  se.common.ObjectId killer_id = 1;   // 킬을 한 플레이어의 ID
+  se.common.ObjectId victim_id = 2;   // 죽은 플레이어의 ID
 }
 
 /*
@@ -355,7 +365,7 @@ message C_UseItemReq {
 }
 
 message S_UseItemRes {
-  option (se.options.packet_id) = 4210;
+  option (se.options.packet_id) = 4201;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
 
@@ -365,7 +375,7 @@ message S_UseItemRes {
 }
 
 message N_UseItem {
-  option (se.options.packet_id) = 4201;
+  option (se.options.packet_id) = 4202;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -374,7 +384,7 @@ message N_UseItem {
 }
 
 message C_ChestInteractReq {
-  option (se.options.packet_id) = 4202;
+  option (se.options.packet_id) = 4210;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
   
@@ -382,7 +392,7 @@ message C_ChestInteractReq {
 }
 
 message N_ChestInteracted {
-  option (se.options.packet_id) = 4212;
+  option (se.options.packet_id) = 4211;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -391,7 +401,7 @@ message N_ChestInteracted {
 }
 
 message C_PickupItemReq {
-  option (se.options.packet_id) = 4203;
+  option (se.options.packet_id) = 4220;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
   
@@ -399,7 +409,7 @@ message C_PickupItemReq {
 }
 
 message N_PickupItem {
-  option (se.options.packet_id) = 4204;
+  option (se.options.packet_id) = 4221;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -407,66 +417,8 @@ message N_PickupItem {
   se.common.ObjectId item_entity_id = 2;   // 주운 아이템의 entity ID
 }
 
-message C_UseStoreReq {
-  option (se.options.packet_id) = 4205;
-  option (se.options.dir) = C2S;
-  option (se.options.route) = GAME;
-  
-  se.common.ObjectId store_entity_id = 1;   // 상호작용을 하려는 entity의 ID (상점)
-  uint32 store_item_id = 2;   // 상점에서 어떤 슬롯을 구매하려는지 식별할 수 있는 ID
-}
-
-message S_UseStoreRes {
-  option (se.options.packet_id) = 4206;
-  option (se.options.dir) = S2C;
-  option (se.options.route) = GAME;
-  
-  bool success = 1;   // 구매 성공 여부
-  se.common.Result result = 2;   // 구매 실패 시 실패 이유
-  uint32 store_item_id = 3;   // 상점에서 어떤 슬롯이 구매되었는지 식별할 수 있는 ID
-}
-
-message N_ItemGained {
-  option (se.options.packet_id) = 4207;
-  option (se.options.dir) = S2C;
-  option (se.options.route) = GAME;
-
-  uint32 item_id = 1;   // 어떤 아이템이 획득되었는지 식별할 수 있는 ID
-  uint32 quantity = 2;   // 획득한 아이템의 수량
-}
-
-message N_ItemLost {    // or Use
-  option (se.options.packet_id) = 4213;
-  option (se.options.dir) = S2C;
-  option (se.options.route) = GAME;
-
-  uint32 item_id = 1;         // 어떤 아이템이 잃었는지 식별할 수 있는 ID
-  uint32 new_quantity = 2;    // 잃은 후 남은 아이템의 수량 (0이면 완전히 잃은 것)
-  uint32 quantity = 3;        // 잃은 아이템의 수량
-}
-
-message C_SetSavePointReq {
-  option (se.options.packet_id) = 4209;
-  option (se.options.dir) = C2S;
-  option (se.options.route) = GAME;
-  
-  se.common.Vector3 position = 1;   // 세이브 포인트로 설정할 위치
-  // 필요에 따라 회전 정보도 포함할 수 있음
-  // 쿨타임이 필요하다면 Res 패킷도 구현
-}
-
-message S_SetSavePointRes {
-  option (se.options.packet_id) = 4211;
-  option (se.options.dir) = S2C;
-  option (se.options.route) = GAME;
-  
-  bool success = 1;   // 세이브 포인트 설정 성공 여부
-  se.common.Result result = 2;   // 세이브 포인트 설정 실패 시 실패 이유
-  se.common.Vector3 position = 3;   // 세이브 포인트로 설정된 위치 (성공한 경우)
-}
-
 message C_EquipItemReq {
-  option (se.options.packet_id) = 4214;
+  option (se.options.packet_id) = 4230;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
 
@@ -475,7 +427,7 @@ message C_EquipItemReq {
 
 message S_EquipItemRes {
   // 해당 아이템이 없는 경우 너는 착용할 수 없다 (혹은 사망 상태이거나)
-  option (se.options.packet_id) = 4216;
+  option (se.options.packet_id) = 4231;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
 
@@ -485,12 +437,79 @@ message S_EquipItemRes {
 }
 
 message N_EquipItem {
-  option (se.options.packet_id) = 4215;
+  option (se.options.packet_id) = 4232;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
 
   se.common.ObjectId entity_id = 1;   // 아이템을 장착하는 플레이어의 ID
   uint32 item_id = 2;   // 어떤 아이템이 장착되었는지 식별할 수 있는 ID
+}
+
+message C_UseStoreReq {
+  option (se.options.packet_id) = 4240;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  se.common.ObjectId store_entity_id = 1;   // 상호작용을 하려는 entity의 ID (상점)
+  uint32 store_item_id = 2;   // 상점에서 어떤 슬롯을 구매하려는지 식별할 수 있는 ID
+}
+
+message S_UseStoreRes {
+  option (se.options.packet_id) = 4241;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  bool success = 1;   // 구매 성공 여부
+  se.common.Result result = 2;   // 구매 실패 시 실패 이유
+  uint32 store_item_id = 3;   // 상점에서 어떤 슬롯이 구매되었는지 식별할 수 있는 ID
+}
+
+message N_ItemGained {
+  option (se.options.packet_id) = 4250;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  uint32 item_id = 1;   // 어떤 아이템이 획득되었는지 식별할 수 있는 ID
+  uint32 quantity = 2;   // 획득한 아이템의 수량
+}
+
+message N_ItemLost {    // or Use
+  option (se.options.packet_id) = 4251;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  uint32 item_id = 1;         // 어떤 아이템이 잃었는지 식별할 수 있는 ID
+  uint32 new_quantity = 2;    // 잃은 후 남은 아이템의 수량 (0이면 완전히 잃은 것)
+  uint32 quantity = 3;        // 잃은 아이템의 수량
+}
+
+message N_ItemSnapshot {
+  // 이 패킷이 오면 무조건 이 패킷으로 Set 하도록 (유효한 값으로 서버에서 보장)
+  option (se.options.packet_id) = 4252;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  repeated ItemStack items = 1;   // 현재 플레이어가 가진 아이템들의 리스트 (아이템 ID와 수량)
+}
+
+message C_SetSavePointReq {
+  option (se.options.packet_id) = 4290;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+  
+  se.common.Vector3 position = 1;   // 세이브 포인트로 설정할 위치
+  // 필요에 따라 회전 정보도 포함할 수 있음
+  // 쿨타임이 필요하다면 Res 패킷도 구현
+}
+
+message S_SetSavePointRes {
+  option (se.options.packet_id) = 4291;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  bool success = 1;   // 세이브 포인트 설정 성공 여부
+  se.common.Result result = 2;   // 세이브 포인트 설정 실패 시 실패 이유
+  se.common.Vector3 position = 3;   // 세이브 포인트로 설정된 위치 (성공한 경우)
 }
 
 /*
@@ -508,7 +527,7 @@ message N_HealthChanged {
 }
 
 message N_MaxHealthChanged {
-  option (se.options.packet_id) = 4305;
+  option (se.options.packet_id) = 4301;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -517,8 +536,73 @@ message N_MaxHealthChanged {
   int32 new_current_health = 3;       // 최대 체력 변경 후 현재 체력 값 (최대 체력보다 클 수 없음)
 }
 
+message N_HealthSnapshot {
+  // 이 패킷이 오면 무조건 이 패킷으로 Set 하도록 (유효한 값으로 서버에서 보장)
+  option (se.options.packet_id) = 4302;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+  
+  int32 current_health = 1;   // 현재 체력 값
+  int32 max_health = 2;       // 최대 체력 값
+}
+
+message N_TimePointChanged {
+  option (se.options.packet_id) = 4310;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  int32 new_time_points = 1;   // 변경된 시간 포인트 값
+  int32 delta = 2;   // 시간 포인트 변화량 (예: -20, +10)
+}
+
+message N_TimePointSnapshot {
+  // 이 패킷이 오면 무조건 이 패킷으로 Set 하도록 (유효한 값으로 서버에서 보장)
+  option (se.options.packet_id) = 4311;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  int32 time_points = 1;   // 현재 시간 포인트 값
+}
+
+message N_SkillUnlock {
+  option (se.options.packet_id) = 4320;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  uint32 skill_id = 1;   // 어떤 스킬이 잠금 해제되었는지 식별할 수 있는 ID
+}
+
+message C_SkillEquipReq {
+  option (se.options.packet_id) = 4321;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+
+  uint32 skill_id = 1;   // 어떤 스킬을 장착하는지 식별할 수 있는 ID
+  uint32 slot_index = 2;   // 어떤 슬롯에 장착하는지 식별할 수 있는 ID
+}
+
+message S_SkillEquipRes {
+  option (se.options.packet_id) = 4322;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  bool success = 1;   // 스킬 장착 성공 여부
+  se.common.Result result = 2;   // 스킬 장착 실패 시 실패 이유
+  uint32 skill_id = 3;   // 어떤 스킬이 장착되었는지 식별할 수 있는 ID (성공한 경우)
+  uint32 slot_index = 4;   // 어떤 슬롯에 장착되었는지 식별할 수 있는 ID (성공한 경우)
+}
+
+message N_SkillUnlockSnapshot {
+  // 이 패킷이 오면 무조건 이 패킷으로 Set 하도록 (유효한 값으로 서버에서 보장)
+  option (se.options.packet_id) = 4323;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  repeated uint32 unlocked_skill_ids = 1;   // 현재 잠금 해제된 스킬들의 ID 리스트
+}
+
 message N_EntityDied {
-  option (se.options.packet_id) = 4301;
+  option (se.options.packet_id) = 4390;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -526,7 +610,7 @@ message N_EntityDied {
 }
 
 message N_EntityRespawned {
-  option (se.options.packet_id) = 4302;
+  option (se.options.packet_id) = 4391;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -535,20 +619,11 @@ message N_EntityRespawned {
 }
 
 message N_EntityDestroyed {
-  option (se.options.packet_id) = 4303;
+  option (se.options.packet_id) = 4392;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
   se.common.ObjectId entity_id = 1;   // 파괴된 엔티티의 ID
-}
-
-message N_TimePointChanged {
-  option (se.options.packet_id) = 4304;
-  option (se.options.dir) = S2C;
-  option (se.options.route) = GAME;
-  
-  int32 new_time_points = 1;   // 변경된 시간 포인트 값
-  int32 delta = 2;   // 시간 포인트 변화량 (예: -20, +10)
 }
 
 /*
