@@ -49,9 +49,10 @@ message Transform {
 message MovementState {
   Vector3 position = 1;
   float yaw = 2;
-  float pitch = 3;
-  Vector2 velocity = 4;
-  int32 movement_mode = 5;
+  float aim_yaw = 3;    // camera yaw
+  float pitch = 4;
+  Vector2 velocity = 5;
+  int32 movement_mode = 6;
 }
 
 /*
