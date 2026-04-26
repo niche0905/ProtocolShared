@@ -1,0 +1,107 @@
+﻿syntax = "proto3";
+
+package se.test;
+
+import "options/packet_options.proto";
+import "common/common_enums.proto";
+import "common/common_types.proto";
+
+/*
+ * 
+ */
+
+message C_SpawnMonsterReq {
+  option (se.options.packet_id) = 9001;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  se.common.Vector3 spawn_position = 2;
+  uint32 enemy_type = 1;
+}
+
+message C_SpawnChestReq {
+  option (se.options.packet_id) = 9002;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  se.common.Vector3 spawn_position = 2;
+}
+
+message C_SpawnStoreReq {
+  option (se.options.packet_id) = 9003;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  se.common.Vector3 spawn_position = 2;
+}
+
+/*
+ * 
+ */
+
+message C_ItemReq {
+  option (se.options.packet_id) = 9010;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  uint32 item_id = 1;
+  uint32 quantity = 2;
+}
+
+message C_MoneyReq {
+  option (se.options.packet_id) = 9011;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  uint32 amount = 1;
+}
+
+message C_HealthReq {
+  option (se.options.packet_id) = 9012;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  uint32 health = 1;
+}
+
+message C_MaxHealthReq {
+  option (se.options.packet_id) = 9013;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  uint32 max_health = 1;
+}
+
+/*
+ * 
+ */
+
+message C_ZoneStopReq {
+  option (se.options.packet_id) = 9090;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+}
+
+message C_ZoneStartReq {
+  option (se.options.packet_id) = 9091;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+}
+
+message C_ZoneResetReq {
+  option (se.options.packet_id) = 9092;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+}
+
+message C_ZoneDamageOffReq {
+  option (se.options.packet_id) = 9093;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+}
+
+message C_ZoneDamageOnReq {
+  option (se.options.packet_id) = 9094;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+}

@@ -22,4 +22,5 @@ enum PacketRoute {
   LOBBY = 2;
   ROOM  = 3;
   GAME  = 4;
+  TEST  = 9;
 }

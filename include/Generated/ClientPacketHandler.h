@@ -135,6 +135,18 @@ enum : uint16
     PKT_N_EntityRespawned = 4391,
     PKT_N_EntityDestroyed = 4392,
     PKT_N_TimeStormChange = 4400,
+    PKT_C_SpawnMonsterReq = 9001,
+    PKT_C_SpawnChestReq = 9002,
+    PKT_C_SpawnStoreReq = 9003,
+    PKT_C_ItemReq = 9010,
+    PKT_C_MoneyReq = 9011,
+    PKT_C_HealthReq = 9012,
+    PKT_C_MaxHealthReq = 9013,
+    PKT_C_ZoneStopReq = 9090,
+    PKT_C_ZoneStartReq = 9091,
+    PKT_C_ZoneResetReq = 9092,
+    PKT_C_ZoneDamageOffReq = 9093,
+    PKT_C_ZoneDamageOnReq = 9094,
 };
 
 // Custom packet handler declaration
@@ -302,6 +314,18 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::C_UseStoreReq& pkt) { return MakeSendBuffer(pkt, PKT_C_UseStoreReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_SetSavePointReq& pkt) { return MakeSendBuffer(pkt, PKT_C_SetSavePointReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_SkillEquipReq& pkt) { return MakeSendBuffer(pkt, PKT_C_SkillEquipReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_SpawnMonsterReq& pkt) { return MakeSendBuffer(pkt, PKT_C_SpawnMonsterReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_SpawnChestReq& pkt) { return MakeSendBuffer(pkt, PKT_C_SpawnChestReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_SpawnStoreReq& pkt) { return MakeSendBuffer(pkt, PKT_C_SpawnStoreReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_ItemReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ItemReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_MoneyReq& pkt) { return MakeSendBuffer(pkt, PKT_C_MoneyReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_HealthReq& pkt) { return MakeSendBuffer(pkt, PKT_C_HealthReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_MaxHealthReq& pkt) { return MakeSendBuffer(pkt, PKT_C_MaxHealthReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_ZoneStopReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ZoneStopReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_ZoneStartReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ZoneStartReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_ZoneResetReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ZoneResetReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_ZoneDamageOffReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ZoneDamageOffReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_ZoneDamageOnReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ZoneDamageOnReq); }
 
 public:
     static bool Dispatch(PacketSessionRef& session, BYTE* buffer, int32 len)

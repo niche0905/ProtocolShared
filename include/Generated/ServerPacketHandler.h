@@ -135,6 +135,18 @@ enum : uint16
     PKT_N_EntityRespawned = 4391,
     PKT_N_EntityDestroyed = 4392,
     PKT_N_TimeStormChange = 4400,
+    PKT_C_SpawnMonsterReq = 9001,
+    PKT_C_SpawnChestReq = 9002,
+    PKT_C_SpawnStoreReq = 9003,
+    PKT_C_ItemReq = 9010,
+    PKT_C_MoneyReq = 9011,
+    PKT_C_HealthReq = 9012,
+    PKT_C_MaxHealthReq = 9013,
+    PKT_C_ZoneStopReq = 9090,
+    PKT_C_ZoneStartReq = 9091,
+    PKT_C_ZoneResetReq = 9092,
+    PKT_C_ZoneDamageOffReq = 9093,
+    PKT_C_ZoneDamageOnReq = 9094,
 };
 
 // Custom packet handler declaration
@@ -170,6 +182,18 @@ bool Handle_C_EquipItemReq(PacketSessionRef& session, const se::game::C_EquipIte
 bool Handle_C_UseStoreReq(PacketSessionRef& session, const se::game::C_UseStoreReq& pkt);
 bool Handle_C_SetSavePointReq(PacketSessionRef& session, const se::game::C_SetSavePointReq& pkt);
 bool Handle_C_SkillEquipReq(PacketSessionRef& session, const se::game::C_SkillEquipReq& pkt);
+bool Handle_C_SpawnMonsterReq(PacketSessionRef& session, const se::test::C_SpawnMonsterReq& pkt);
+bool Handle_C_SpawnChestReq(PacketSessionRef& session, const se::test::C_SpawnChestReq& pkt);
+bool Handle_C_SpawnStoreReq(PacketSessionRef& session, const se::test::C_SpawnStoreReq& pkt);
+bool Handle_C_ItemReq(PacketSessionRef& session, const se::test::C_ItemReq& pkt);
+bool Handle_C_MoneyReq(PacketSessionRef& session, const se::test::C_MoneyReq& pkt);
+bool Handle_C_HealthReq(PacketSessionRef& session, const se::test::C_HealthReq& pkt);
+bool Handle_C_MaxHealthReq(PacketSessionRef& session, const se::test::C_MaxHealthReq& pkt);
+bool Handle_C_ZoneStopReq(PacketSessionRef& session, const se::test::C_ZoneStopReq& pkt);
+bool Handle_C_ZoneStartReq(PacketSessionRef& session, const se::test::C_ZoneStartReq& pkt);
+bool Handle_C_ZoneResetReq(PacketSessionRef& session, const se::test::C_ZoneResetReq& pkt);
+bool Handle_C_ZoneDamageOffReq(PacketSessionRef& session, const se::test::C_ZoneDamageOffReq& pkt);
+bool Handle_C_ZoneDamageOnReq(PacketSessionRef& session, const se::test::C_ZoneDamageOnReq& pkt);
 
 class ServerPacketHandler
 {
@@ -210,6 +234,18 @@ public:
         GPacketHandler[PKT_C_UseStoreReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::C_UseStoreReq>(Handle_C_UseStoreReq, session, buffer, len); };
         GPacketHandler[PKT_C_SetSavePointReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::C_SetSavePointReq>(Handle_C_SetSavePointReq, session, buffer, len); };
         GPacketHandler[PKT_C_SkillEquipReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::C_SkillEquipReq>(Handle_C_SkillEquipReq, session, buffer, len); };
+        GPacketHandler[PKT_C_SpawnMonsterReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_SpawnMonsterReq>(Handle_C_SpawnMonsterReq, session, buffer, len); };
+        GPacketHandler[PKT_C_SpawnChestReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_SpawnChestReq>(Handle_C_SpawnChestReq, session, buffer, len); };
+        GPacketHandler[PKT_C_SpawnStoreReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_SpawnStoreReq>(Handle_C_SpawnStoreReq, session, buffer, len); };
+        GPacketHandler[PKT_C_ItemReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_ItemReq>(Handle_C_ItemReq, session, buffer, len); };
+        GPacketHandler[PKT_C_MoneyReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_MoneyReq>(Handle_C_MoneyReq, session, buffer, len); };
+        GPacketHandler[PKT_C_HealthReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_HealthReq>(Handle_C_HealthReq, session, buffer, len); };
+        GPacketHandler[PKT_C_MaxHealthReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_MaxHealthReq>(Handle_C_MaxHealthReq, session, buffer, len); };
+        GPacketHandler[PKT_C_ZoneStopReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_ZoneStopReq>(Handle_C_ZoneStopReq, session, buffer, len); };
+        GPacketHandler[PKT_C_ZoneStartReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_ZoneStartReq>(Handle_C_ZoneStartReq, session, buffer, len); };
+        GPacketHandler[PKT_C_ZoneResetReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_ZoneResetReq>(Handle_C_ZoneResetReq, session, buffer, len); };
+        GPacketHandler[PKT_C_ZoneDamageOffReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_ZoneDamageOffReq>(Handle_C_ZoneDamageOffReq, session, buffer, len); };
+        GPacketHandler[PKT_C_ZoneDamageOnReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_ZoneDamageOnReq>(Handle_C_ZoneDamageOnReq, session, buffer, len); };
     }
     
     static SendBufferRef MakeSendBuffer(se::auth::S_HandshakeRes& pkt) { return MakeSendBuffer(pkt, PKT_S_HandshakeRes); }

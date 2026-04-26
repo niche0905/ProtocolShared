@@ -35,3 +35,8 @@ import "room/room_messages.proto";
 import "game/game_enums.proto";
 import "game/game_types.proto";
 import "game/game_messages.proto";
+
+/*
+ * ===== Test Domain =====
+ */
+import "test/test_messages.proto";
