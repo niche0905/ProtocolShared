@@ -470,7 +470,8 @@ message N_ItemGained {
   option (se.options.route) = GAME;
 
   uint32 item_id = 1;   // 어떤 아이템이 획득되었는지 식별할 수 있는 ID
-  uint32 quantity = 2;   // 획득한 아이템의 수량
+  uint32 new_quantity = 2;    // 얻은 후 현재 아이템의 수량 (1 이상)
+  uint32 quantity = 3;   // 획득한 아이템의 수량
 }
 
 message N_ItemLost {    // or Use
