@@ -86,6 +86,9 @@ extern C_ZoneStartReqDefaultTypeInternal _C_ZoneStartReq_default_instance_;
 class C_ZoneStopReq;
 struct C_ZoneStopReqDefaultTypeInternal;
 extern C_ZoneStopReqDefaultTypeInternal _C_ZoneStopReq_default_instance_;
+class N_ZoneStop;
+struct N_ZoneStopDefaultTypeInternal;
+extern N_ZoneStopDefaultTypeInternal _N_ZoneStop_default_instance_;
 }  // namespace test
 }  // namespace se
 PROTOBUF_NAMESPACE_OPEN
@@ -101,6 +104,7 @@ template<> ::se::test::C_ZoneDamageOnReq* Arena::CreateMaybeMessage<::se::test::
 template<> ::se::test::C_ZoneResetReq* Arena::CreateMaybeMessage<::se::test::C_ZoneResetReq>(Arena*);
 template<> ::se::test::C_ZoneStartReq* Arena::CreateMaybeMessage<::se::test::C_ZoneStartReq>(Arena*);
 template<> ::se::test::C_ZoneStopReq* Arena::CreateMaybeMessage<::se::test::C_ZoneStopReq>(Arena*);
+template<> ::se::test::N_ZoneStop* Arena::CreateMaybeMessage<::se::test::N_ZoneStop>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace se {
 namespace test {
@@ -722,13 +726,13 @@ class C_ItemReq final :
   void _internal_set_item_id(uint32_t value);
   public:
 
-  // uint32 quantity = 2;
+  // int32 quantity = 2;
   void clear_quantity();
-  uint32_t quantity() const;
-  void set_quantity(uint32_t value);
+  int32_t quantity() const;
+  void set_quantity(int32_t value);
   private:
-  uint32_t _internal_quantity() const;
-  void _internal_set_quantity(uint32_t value);
+  int32_t _internal_quantity() const;
+  void _internal_set_quantity(int32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:se.test.C_ItemReq)
@@ -740,7 +744,7 @@ class C_ItemReq final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     uint32_t item_id_;
-    uint32_t quantity_;
+    int32_t quantity_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -871,13 +875,13 @@ class C_MoneyReq final :
   enum : int {
     kAmountFieldNumber = 1,
   };
-  // uint32 amount = 1;
+  // int32 amount = 1;
   void clear_amount();
-  uint32_t amount() const;
-  void set_amount(uint32_t value);
+  int32_t amount() const;
+  void set_amount(int32_t value);
   private:
-  uint32_t _internal_amount() const;
-  void _internal_set_amount(uint32_t value);
+  int32_t _internal_amount() const;
+  void _internal_set_amount(int32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:se.test.C_MoneyReq)
@@ -888,7 +892,7 @@ class C_MoneyReq final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    uint32_t amount_;
+    int32_t amount_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1019,13 +1023,13 @@ class C_HealthReq final :
   enum : int {
     kHealthFieldNumber = 1,
   };
-  // uint32 health = 1;
+  // int32 health = 1;
   void clear_health();
-  uint32_t health() const;
-  void set_health(uint32_t value);
+  int32_t health() const;
+  void set_health(int32_t value);
   private:
-  uint32_t _internal_health() const;
-  void _internal_set_health(uint32_t value);
+  int32_t _internal_health() const;
+  void _internal_set_health(int32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:se.test.C_HealthReq)
@@ -1036,7 +1040,7 @@ class C_HealthReq final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    uint32_t health_;
+    int32_t health_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1167,13 +1171,13 @@ class C_MaxHealthReq final :
   enum : int {
     kMaxHealthFieldNumber = 1,
   };
-  // uint32 max_health = 1;
+  // int32 max_health = 1;
   void clear_max_health();
-  uint32_t max_health() const;
-  void set_max_health(uint32_t value);
+  int32_t max_health() const;
+  void set_max_health(int32_t value);
   private:
-  uint32_t _internal_max_health() const;
-  void _internal_set_max_health(uint32_t value);
+  int32_t _internal_max_health() const;
+  void _internal_set_max_health(int32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:se.test.C_MaxHealthReq)
@@ -1184,7 +1188,7 @@ class C_MaxHealthReq final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    uint32_t max_health_;
+    int32_t max_health_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1780,6 +1784,124 @@ class C_ZoneDamageOnReq final :
   };
   friend struct ::TableStruct_test_2ftest_5fmessages_2eproto;
 };
+// -------------------------------------------------------------------
+
+class N_ZoneStop final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:se.test.N_ZoneStop) */ {
+ public:
+  inline N_ZoneStop() : N_ZoneStop(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR N_ZoneStop(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  N_ZoneStop(const N_ZoneStop& from);
+  N_ZoneStop(N_ZoneStop&& from) noexcept
+    : N_ZoneStop() {
+    *this = ::std::move(from);
+  }
+
+  inline N_ZoneStop& operator=(const N_ZoneStop& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline N_ZoneStop& operator=(N_ZoneStop&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const N_ZoneStop& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const N_ZoneStop* internal_default_instance() {
+    return reinterpret_cast<const N_ZoneStop*>(
+               &_N_ZoneStop_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(N_ZoneStop& a, N_ZoneStop& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(N_ZoneStop* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(N_ZoneStop* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  N_ZoneStop* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<N_ZoneStop>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const N_ZoneStop& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const N_ZoneStop& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "se.test.N_ZoneStop";
+  }
+  protected:
+  explicit N_ZoneStop(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:se.test.N_ZoneStop)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+  };
+  friend struct ::TableStruct_test_2ftest_5fmessages_2eproto;
+};
 // ===================================================================
 
 
@@ -2098,22 +2220,22 @@ inline void C_ItemReq::set_item_id(uint32_t value) {
   // @@protoc_insertion_point(field_set:se.test.C_ItemReq.item_id)
 }
 
-// uint32 quantity = 2;
+// int32 quantity = 2;
 inline void C_ItemReq::clear_quantity() {
-  _impl_.quantity_ = 0u;
+  _impl_.quantity_ = 0;
 }
-inline uint32_t C_ItemReq::_internal_quantity() const {
+inline int32_t C_ItemReq::_internal_quantity() const {
   return _impl_.quantity_;
 }
-inline uint32_t C_ItemReq::quantity() const {
+inline int32_t C_ItemReq::quantity() const {
   // @@protoc_insertion_point(field_get:se.test.C_ItemReq.quantity)
   return _internal_quantity();
 }
-inline void C_ItemReq::_internal_set_quantity(uint32_t value) {
+inline void C_ItemReq::_internal_set_quantity(int32_t value) {
   
   _impl_.quantity_ = value;
 }
-inline void C_ItemReq::set_quantity(uint32_t value) {
+inline void C_ItemReq::set_quantity(int32_t value) {
   _internal_set_quantity(value);
   // @@protoc_insertion_point(field_set:se.test.C_ItemReq.quantity)
 }
@@ -2122,22 +2244,22 @@ inline void C_ItemReq::set_quantity(uint32_t value) {
 
 // C_MoneyReq
 
-// uint32 amount = 1;
+// int32 amount = 1;
 inline void C_MoneyReq::clear_amount() {
-  _impl_.amount_ = 0u;
+  _impl_.amount_ = 0;
 }
-inline uint32_t C_MoneyReq::_internal_amount() const {
+inline int32_t C_MoneyReq::_internal_amount() const {
   return _impl_.amount_;
 }
-inline uint32_t C_MoneyReq::amount() const {
+inline int32_t C_MoneyReq::amount() const {
   // @@protoc_insertion_point(field_get:se.test.C_MoneyReq.amount)
   return _internal_amount();
 }
-inline void C_MoneyReq::_internal_set_amount(uint32_t value) {
+inline void C_MoneyReq::_internal_set_amount(int32_t value) {
   
   _impl_.amount_ = value;
 }
-inline void C_MoneyReq::set_amount(uint32_t value) {
+inline void C_MoneyReq::set_amount(int32_t value) {
   _internal_set_amount(value);
   // @@protoc_insertion_point(field_set:se.test.C_MoneyReq.amount)
 }
@@ -2146,22 +2268,22 @@ inline void C_MoneyReq::set_amount(uint32_t value) {
 
 // C_HealthReq
 
-// uint32 health = 1;
+// int32 health = 1;
 inline void C_HealthReq::clear_health() {
-  _impl_.health_ = 0u;
+  _impl_.health_ = 0;
 }
-inline uint32_t C_HealthReq::_internal_health() const {
+inline int32_t C_HealthReq::_internal_health() const {
   return _impl_.health_;
 }
-inline uint32_t C_HealthReq::health() const {
+inline int32_t C_HealthReq::health() const {
   // @@protoc_insertion_point(field_get:se.test.C_HealthReq.health)
   return _internal_health();
 }
-inline void C_HealthReq::_internal_set_health(uint32_t value) {
+inline void C_HealthReq::_internal_set_health(int32_t value) {
   
   _impl_.health_ = value;
 }
-inline void C_HealthReq::set_health(uint32_t value) {
+inline void C_HealthReq::set_health(int32_t value) {
   _internal_set_health(value);
   // @@protoc_insertion_point(field_set:se.test.C_HealthReq.health)
 }
@@ -2170,22 +2292,22 @@ inline void C_HealthReq::set_health(uint32_t value) {
 
 // C_MaxHealthReq
 
-// uint32 max_health = 1;
+// int32 max_health = 1;
 inline void C_MaxHealthReq::clear_max_health() {
-  _impl_.max_health_ = 0u;
+  _impl_.max_health_ = 0;
 }
-inline uint32_t C_MaxHealthReq::_internal_max_health() const {
+inline int32_t C_MaxHealthReq::_internal_max_health() const {
   return _impl_.max_health_;
 }
-inline uint32_t C_MaxHealthReq::max_health() const {
+inline int32_t C_MaxHealthReq::max_health() const {
   // @@protoc_insertion_point(field_get:se.test.C_MaxHealthReq.max_health)
   return _internal_max_health();
 }
-inline void C_MaxHealthReq::_internal_set_max_health(uint32_t value) {
+inline void C_MaxHealthReq::_internal_set_max_health(int32_t value) {
   
   _impl_.max_health_ = value;
 }
-inline void C_MaxHealthReq::set_max_health(uint32_t value) {
+inline void C_MaxHealthReq::set_max_health(int32_t value) {
   _internal_set_max_health(value);
   // @@protoc_insertion_point(field_set:se.test.C_MaxHealthReq.max_health)
 }
@@ -2210,9 +2332,15 @@ inline void C_MaxHealthReq::set_max_health(uint32_t value) {
 
 // C_ZoneDamageOnReq
 
+// -------------------------------------------------------------------
+
+// N_ZoneStop
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

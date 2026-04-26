@@ -147,6 +147,7 @@ enum : uint16
     PKT_C_ZoneResetReq = 9092,
     PKT_C_ZoneDamageOffReq = 9093,
     PKT_C_ZoneDamageOnReq = 9094,
+    PKT_N_ZoneStop = 9095,
 };
 
 // Custom packet handler declaration
@@ -212,6 +213,7 @@ bool Handle_N_EntityDied(PacketSessionRef& session, const se::game::N_EntityDied
 bool Handle_N_EntityRespawned(PacketSessionRef& session, const se::game::N_EntityRespawned& pkt);
 bool Handle_N_EntityDestroyed(PacketSessionRef& session, const se::game::N_EntityDestroyed& pkt);
 bool Handle_N_TimeStormChange(PacketSessionRef& session, const se::game::N_TimeStormChange& pkt);
+bool Handle_N_ZoneStop(PacketSessionRef& session, const se::test::N_ZoneStop& pkt);
 
 class ClientPacketHandler
 {
@@ -282,6 +284,7 @@ public:
         GPacketHandler[PKT_N_EntityRespawned] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityRespawned>(Handle_N_EntityRespawned, session, buffer, len); };
         GPacketHandler[PKT_N_EntityDestroyed] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityDestroyed>(Handle_N_EntityDestroyed, session, buffer, len); };
         GPacketHandler[PKT_N_TimeStormChange] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_TimeStormChange>(Handle_N_TimeStormChange, session, buffer, len); };
+        GPacketHandler[PKT_N_ZoneStop] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::N_ZoneStop>(Handle_N_ZoneStop, session, buffer, len); };
     }
     
     static SendBufferRef MakeSendBuffer(se::auth::C_HandshakeReq& pkt) { return MakeSendBuffer(pkt, PKT_C_HandshakeReq); }

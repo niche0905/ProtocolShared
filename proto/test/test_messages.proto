@@ -45,7 +45,7 @@ message C_ItemReq {
   option (se.options.route) = TEST;
 
   uint32 item_id = 1;
-  uint32 quantity = 2;
+  int32 quantity = 2;
 }
 
 message C_MoneyReq {
@@ -53,7 +53,7 @@ message C_MoneyReq {
   option (se.options.dir) = C2S;
   option (se.options.route) = TEST;
 
-  uint32 amount = 1;
+  int32 amount = 1;
 }
 
 message C_HealthReq {
@@ -61,7 +61,7 @@ message C_HealthReq {
   option (se.options.dir) = C2S;
   option (se.options.route) = TEST;
 
-  uint32 health = 1;
+  int32 health = 1;
 }
 
 message C_MaxHealthReq {
@@ -69,7 +69,7 @@ message C_MaxHealthReq {
   option (se.options.dir) = C2S;
   option (se.options.route) = TEST;
 
-  uint32 max_health = 1;
+  int32 max_health = 1;
 }
 
 /*
@@ -103,5 +103,11 @@ message C_ZoneDamageOffReq {
 message C_ZoneDamageOnReq {
   option (se.options.packet_id) = 9094;
   option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+}
+
+message N_ZoneStop {
+  option (se.options.packet_id) = 9095;
+  option (se.options.dir) = S2C;
   option (se.options.route) = TEST;
 }

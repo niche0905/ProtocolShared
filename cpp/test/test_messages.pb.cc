@@ -65,7 +65,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR C_ItemReq::C_ItemReq(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.item_id_)*/0u
-  , /*decltype(_impl_.quantity_)*/0u
+  , /*decltype(_impl_.quantity_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct C_ItemReqDefaultTypeInternal {
   PROTOBUF_CONSTEXPR C_ItemReqDefaultTypeInternal()
@@ -78,7 +78,7 @@ struct C_ItemReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_ItemReqDefaultTypeInternal _C_ItemReq_default_instance_;
 PROTOBUF_CONSTEXPR C_MoneyReq::C_MoneyReq(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.amount_)*/0u
+    /*decltype(_impl_.amount_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct C_MoneyReqDefaultTypeInternal {
   PROTOBUF_CONSTEXPR C_MoneyReqDefaultTypeInternal()
@@ -91,7 +91,7 @@ struct C_MoneyReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_MoneyReqDefaultTypeInternal _C_MoneyReq_default_instance_;
 PROTOBUF_CONSTEXPR C_HealthReq::C_HealthReq(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.health_)*/0u
+    /*decltype(_impl_.health_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct C_HealthReqDefaultTypeInternal {
   PROTOBUF_CONSTEXPR C_HealthReqDefaultTypeInternal()
@@ -104,7 +104,7 @@ struct C_HealthReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_HealthReqDefaultTypeInternal _C_HealthReq_default_instance_;
 PROTOBUF_CONSTEXPR C_MaxHealthReq::C_MaxHealthReq(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.max_health_)*/0u
+    /*decltype(_impl_.max_health_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct C_MaxHealthReqDefaultTypeInternal {
   PROTOBUF_CONSTEXPR C_MaxHealthReqDefaultTypeInternal()
@@ -170,9 +170,20 @@ struct C_ZoneDamageOnReqDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_ZoneDamageOnReqDefaultTypeInternal _C_ZoneDamageOnReq_default_instance_;
+PROTOBUF_CONSTEXPR N_ZoneStop::N_ZoneStop(
+    ::_pbi::ConstantInitialized) {}
+struct N_ZoneStopDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR N_ZoneStopDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~N_ZoneStopDefaultTypeInternal() {}
+  union {
+    N_ZoneStop _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 N_ZoneStopDefaultTypeInternal _N_ZoneStop_default_instance_;
 }  // namespace test
 }  // namespace se
-static ::_pb::Metadata file_level_metadata_test_2ftest_5fmessages_2eproto[12];
+static ::_pb::Metadata file_level_metadata_test_2ftest_5fmessages_2eproto[13];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_test_2ftest_5fmessages_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_test_2ftest_5fmessages_2eproto = nullptr;
 
@@ -258,6 +269,12 @@ const uint32_t TableStruct_test_2ftest_5fmessages_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::se::test::N_ZoneStop, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::se::test::C_SpawnMonsterReq)},
@@ -272,6 +289,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 63, -1, -1, sizeof(::se::test::C_ZoneResetReq)},
   { 69, -1, -1, sizeof(::se::test::C_ZoneDamageOffReq)},
   { 75, -1, -1, sizeof(::se::test::C_ZoneDamageOnReq)},
+  { 81, -1, -1, sizeof(::se::test::N_ZoneStop)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -287,6 +305,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::se::test::_C_ZoneResetReq_default_instance_._instance,
   &::se::test::_C_ZoneDamageOffReq_default_instance_._instance,
   &::se::test::_C_ZoneDamageOnReq_default_instance_._instance,
+  &::se::test::_N_ZoneStop_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_test_2ftest_5fmessages_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -300,16 +319,16 @@ const char descriptor_table_protodef_test_2ftest_5fmessages_2eproto[] PROTOBUF_S
   "r3:\r\210\265\030\252F\220\265\030\001\230\265\030\t\"L\n\017C_SpawnStoreReq\022*\n\016"
   "spawn_position\030\002 \001(\0132\022.se.common.Vector3"
   ":\r\210\265\030\253F\220\265\030\001\230\265\030\t\"=\n\tC_ItemReq\022\017\n\007item_id\030"
-  "\001 \001(\r\022\020\n\010quantity\030\002 \001(\r:\r\210\265\030\262F\220\265\030\001\230\265\030\t\"+"
-  "\n\nC_MoneyReq\022\016\n\006amount\030\001 \001(\r:\r\210\265\030\263F\220\265\030\001\230"
-  "\265\030\t\",\n\013C_HealthReq\022\016\n\006health\030\001 \001(\r:\r\210\265\030\264"
+  "\001 \001(\r\022\020\n\010quantity\030\002 \001(\005:\r\210\265\030\262F\220\265\030\001\230\265\030\t\"+"
+  "\n\nC_MoneyReq\022\016\n\006amount\030\001 \001(\005:\r\210\265\030\263F\220\265\030\001\230"
+  "\265\030\t\",\n\013C_HealthReq\022\016\n\006health\030\001 \001(\005:\r\210\265\030\264"
   "F\220\265\030\001\230\265\030\t\"3\n\016C_MaxHealthReq\022\022\n\nmax_healt"
-  "h\030\001 \001(\r:\r\210\265\030\265F\220\265\030\001\230\265\030\t\"\036\n\rC_ZoneStopReq:"
+  "h\030\001 \001(\005:\r\210\265\030\265F\220\265\030\001\230\265\030\t\"\036\n\rC_ZoneStopReq:"
   "\r\210\265\030\202G\220\265\030\001\230\265\030\t\"\037\n\016C_ZoneStartReq:\r\210\265\030\203G\220"
   "\265\030\001\230\265\030\t\"\037\n\016C_ZoneResetReq:\r\210\265\030\204G\220\265\030\001\230\265\030\t"
   "\"#\n\022C_ZoneDamageOffReq:\r\210\265\030\205G\220\265\030\001\230\265\030\t\"\"\n"
-  "\021C_ZoneDamageOnReq:\r\210\265\030\206G\220\265\030\001\230\265\030\tb\006proto"
-  "3"
+  "\021C_ZoneDamageOnReq:\r\210\265\030\206G\220\265\030\001\230\265\030\t\"\033\n\nN_Z"
+  "oneStop:\r\210\265\030\207G\220\265\030\002\230\265\030\tb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_test_2ftest_5fmessages_2eproto_deps[3] = {
   &::descriptor_table_common_2fcommon_5fenums_2eproto,
@@ -318,9 +337,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_test_2ftest_5fmessa
 };
 static ::_pbi::once_flag descriptor_table_test_2ftest_5fmessages_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_test_2ftest_5fmessages_2eproto = {
-    false, false, 761, descriptor_table_protodef_test_2ftest_5fmessages_2eproto,
+    false, false, 790, descriptor_table_protodef_test_2ftest_5fmessages_2eproto,
     "test/test_messages.proto",
-    &descriptor_table_test_2ftest_5fmessages_2eproto_once, descriptor_table_test_2ftest_5fmessages_2eproto_deps, 3, 12,
+    &descriptor_table_test_2ftest_5fmessages_2eproto_once, descriptor_table_test_2ftest_5fmessages_2eproto_deps, 3, 13,
     schemas, file_default_instances, TableStruct_test_2ftest_5fmessages_2eproto::offsets,
     file_level_metadata_test_2ftest_5fmessages_2eproto, file_level_enum_descriptors_test_2ftest_5fmessages_2eproto,
     file_level_service_descriptors_test_2ftest_5fmessages_2eproto,
@@ -995,7 +1014,7 @@ inline void C_ItemReq::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.item_id_){0u}
-    , decltype(_impl_.quantity_){0u}
+    , decltype(_impl_.quantity_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1043,7 +1062,7 @@ const char* C_ItemReq::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
         } else
           goto handle_unusual;
         continue;
-      // uint32 quantity = 2;
+      // int32 quantity = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _impl_.quantity_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -1086,10 +1105,10 @@ uint8_t* C_ItemReq::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_item_id(), target);
   }
 
-  // uint32 quantity = 2;
+  // int32 quantity = 2;
   if (this->_internal_quantity() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_quantity(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_quantity(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1113,9 +1132,9 @@ size_t C_ItemReq::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_item_id());
   }
 
-  // uint32 quantity = 2;
+  // int32 quantity = 2;
   if (this->_internal_quantity() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_quantity());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_quantity());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1202,7 +1221,7 @@ inline void C_MoneyReq::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.amount_){0u}
+      decltype(_impl_.amount_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1230,7 +1249,7 @@ void C_MoneyReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.amount_ = 0u;
+  _impl_.amount_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1240,7 +1259,7 @@ const char* C_MoneyReq::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint32 amount = 1;
+      // int32 amount = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _impl_.amount_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -1277,10 +1296,10 @@ uint8_t* C_MoneyReq::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint32 amount = 1;
+  // int32 amount = 1;
   if (this->_internal_amount() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_amount(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_amount(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1299,9 +1318,9 @@ size_t C_MoneyReq::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint32 amount = 1;
+  // int32 amount = 1;
   if (this->_internal_amount() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_amount());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_amount());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1380,7 +1399,7 @@ inline void C_HealthReq::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.health_){0u}
+      decltype(_impl_.health_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1408,7 +1427,7 @@ void C_HealthReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.health_ = 0u;
+  _impl_.health_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1418,7 +1437,7 @@ const char* C_HealthReq::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint32 health = 1;
+      // int32 health = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _impl_.health_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -1455,10 +1474,10 @@ uint8_t* C_HealthReq::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint32 health = 1;
+  // int32 health = 1;
   if (this->_internal_health() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_health(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_health(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1477,9 +1496,9 @@ size_t C_HealthReq::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint32 health = 1;
+  // int32 health = 1;
   if (this->_internal_health() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_health());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_health());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1558,7 +1577,7 @@ inline void C_MaxHealthReq::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.max_health_){0u}
+      decltype(_impl_.max_health_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1586,7 +1605,7 @@ void C_MaxHealthReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.max_health_ = 0u;
+  _impl_.max_health_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1596,7 +1615,7 @@ const char* C_MaxHealthReq::_InternalParse(const char* ptr, ::_pbi::ParseContext
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint32 max_health = 1;
+      // int32 max_health = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _impl_.max_health_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -1633,10 +1652,10 @@ uint8_t* C_MaxHealthReq::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint32 max_health = 1;
+  // int32 max_health = 1;
   if (this->_internal_max_health() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_max_health(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_max_health(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1655,9 +1674,9 @@ size_t C_MaxHealthReq::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint32 max_health = 1;
+  // int32 max_health = 1;
   if (this->_internal_max_health() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_max_health());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_max_health());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1907,6 +1926,46 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*C_ZoneDamageOnReq::GetClassDat
       file_level_metadata_test_2ftest_5fmessages_2eproto[11]);
 }
 
+// ===================================================================
+
+class N_ZoneStop::_Internal {
+ public:
+};
+
+N_ZoneStop::N_ZoneStop(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:se.test.N_ZoneStop)
+}
+N_ZoneStop::N_ZoneStop(const N_ZoneStop& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  N_ZoneStop* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:se.test.N_ZoneStop)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData N_ZoneStop::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*N_ZoneStop::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata N_ZoneStop::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_test_2ftest_5fmessages_2eproto_getter, &descriptor_table_test_2ftest_5fmessages_2eproto_once,
+      file_level_metadata_test_2ftest_5fmessages_2eproto[12]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace test
 }  // namespace se
@@ -1958,6 +2017,10 @@ Arena::CreateMaybeMessage< ::se::test::C_ZoneDamageOffReq >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::se::test::C_ZoneDamageOnReq*
 Arena::CreateMaybeMessage< ::se::test::C_ZoneDamageOnReq >(Arena* arena) {
   return Arena::CreateMessageInternal< ::se::test::C_ZoneDamageOnReq >(arena);
+}
+template<> PROTOBUF_NOINLINE ::se::test::N_ZoneStop*
+Arena::CreateMaybeMessage< ::se::test::N_ZoneStop >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::se::test::N_ZoneStop >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
