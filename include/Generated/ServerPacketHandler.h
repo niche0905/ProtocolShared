@@ -148,6 +148,7 @@ enum : uint16
     PKT_C_ZoneDamageOffReq = 9093,
     PKT_C_ZoneDamageOnReq = 9094,
     PKT_N_ZoneStop = 9095,
+    PKT_N_ZoneStart = 9096,
 };
 
 // Custom packet handler declaration
@@ -310,6 +311,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::N_EntityDestroyed& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityDestroyed); }
     static SendBufferRef MakeSendBuffer(se::game::N_TimeStormChange& pkt) { return MakeSendBuffer(pkt, PKT_N_TimeStormChange); }
     static SendBufferRef MakeSendBuffer(se::test::N_ZoneStop& pkt) { return MakeSendBuffer(pkt, PKT_N_ZoneStop); }
+    static SendBufferRef MakeSendBuffer(se::test::N_ZoneStart& pkt) { return MakeSendBuffer(pkt, PKT_N_ZoneStart); }
 
 public:
     static bool Dispatch(PacketSessionRef& session, BYTE* buffer, int32 len)

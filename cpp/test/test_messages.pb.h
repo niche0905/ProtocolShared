@@ -86,6 +86,9 @@ extern C_ZoneStartReqDefaultTypeInternal _C_ZoneStartReq_default_instance_;
 class C_ZoneStopReq;
 struct C_ZoneStopReqDefaultTypeInternal;
 extern C_ZoneStopReqDefaultTypeInternal _C_ZoneStopReq_default_instance_;
+class N_ZoneStart;
+struct N_ZoneStartDefaultTypeInternal;
+extern N_ZoneStartDefaultTypeInternal _N_ZoneStart_default_instance_;
 class N_ZoneStop;
 struct N_ZoneStopDefaultTypeInternal;
 extern N_ZoneStopDefaultTypeInternal _N_ZoneStop_default_instance_;
@@ -104,6 +107,7 @@ template<> ::se::test::C_ZoneDamageOnReq* Arena::CreateMaybeMessage<::se::test::
 template<> ::se::test::C_ZoneResetReq* Arena::CreateMaybeMessage<::se::test::C_ZoneResetReq>(Arena*);
 template<> ::se::test::C_ZoneStartReq* Arena::CreateMaybeMessage<::se::test::C_ZoneStartReq>(Arena*);
 template<> ::se::test::C_ZoneStopReq* Arena::CreateMaybeMessage<::se::test::C_ZoneStopReq>(Arena*);
+template<> ::se::test::N_ZoneStart* Arena::CreateMaybeMessage<::se::test::N_ZoneStart>(Arena*);
 template<> ::se::test::N_ZoneStop* Arena::CreateMaybeMessage<::se::test::N_ZoneStop>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace se {
@@ -1902,6 +1906,124 @@ class N_ZoneStop final :
   };
   friend struct ::TableStruct_test_2ftest_5fmessages_2eproto;
 };
+// -------------------------------------------------------------------
+
+class N_ZoneStart final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:se.test.N_ZoneStart) */ {
+ public:
+  inline N_ZoneStart() : N_ZoneStart(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR N_ZoneStart(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  N_ZoneStart(const N_ZoneStart& from);
+  N_ZoneStart(N_ZoneStart&& from) noexcept
+    : N_ZoneStart() {
+    *this = ::std::move(from);
+  }
+
+  inline N_ZoneStart& operator=(const N_ZoneStart& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline N_ZoneStart& operator=(N_ZoneStart&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const N_ZoneStart& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const N_ZoneStart* internal_default_instance() {
+    return reinterpret_cast<const N_ZoneStart*>(
+               &_N_ZoneStart_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(N_ZoneStart& a, N_ZoneStart& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(N_ZoneStart* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(N_ZoneStart* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  N_ZoneStart* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<N_ZoneStart>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const N_ZoneStart& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const N_ZoneStart& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "se.test.N_ZoneStart";
+  }
+  protected:
+  explicit N_ZoneStart(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:se.test.N_ZoneStart)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+  };
+  friend struct ::TableStruct_test_2ftest_5fmessages_2eproto;
+};
 // ===================================================================
 
 
@@ -2336,9 +2458,15 @@ inline void C_MaxHealthReq::set_max_health(int32_t value) {
 
 // N_ZoneStop
 
+// -------------------------------------------------------------------
+
+// N_ZoneStart
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

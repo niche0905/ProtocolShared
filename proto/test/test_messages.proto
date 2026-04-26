@@ -111,3 +111,9 @@ message N_ZoneStop {
   option (se.options.dir) = S2C;
   option (se.options.route) = TEST;
 }
+
+message N_ZoneStart {
+  option (se.options.packet_id) = 9096;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = TEST;
+}

@@ -181,9 +181,20 @@ struct N_ZoneStopDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 N_ZoneStopDefaultTypeInternal _N_ZoneStop_default_instance_;
+PROTOBUF_CONSTEXPR N_ZoneStart::N_ZoneStart(
+    ::_pbi::ConstantInitialized) {}
+struct N_ZoneStartDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR N_ZoneStartDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~N_ZoneStartDefaultTypeInternal() {}
+  union {
+    N_ZoneStart _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 N_ZoneStartDefaultTypeInternal _N_ZoneStart_default_instance_;
 }  // namespace test
 }  // namespace se
-static ::_pb::Metadata file_level_metadata_test_2ftest_5fmessages_2eproto[13];
+static ::_pb::Metadata file_level_metadata_test_2ftest_5fmessages_2eproto[14];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_test_2ftest_5fmessages_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_test_2ftest_5fmessages_2eproto = nullptr;
 
@@ -275,6 +286,12 @@ const uint32_t TableStruct_test_2ftest_5fmessages_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::se::test::N_ZoneStart, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::se::test::C_SpawnMonsterReq)},
@@ -290,6 +307,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 69, -1, -1, sizeof(::se::test::C_ZoneDamageOffReq)},
   { 75, -1, -1, sizeof(::se::test::C_ZoneDamageOnReq)},
   { 81, -1, -1, sizeof(::se::test::N_ZoneStop)},
+  { 87, -1, -1, sizeof(::se::test::N_ZoneStart)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -306,6 +324,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::se::test::_C_ZoneDamageOffReq_default_instance_._instance,
   &::se::test::_C_ZoneDamageOnReq_default_instance_._instance,
   &::se::test::_N_ZoneStop_default_instance_._instance,
+  &::se::test::_N_ZoneStart_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_test_2ftest_5fmessages_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -328,7 +347,8 @@ const char descriptor_table_protodef_test_2ftest_5fmessages_2eproto[] PROTOBUF_S
   "\265\030\001\230\265\030\t\"\037\n\016C_ZoneResetReq:\r\210\265\030\204G\220\265\030\001\230\265\030\t"
   "\"#\n\022C_ZoneDamageOffReq:\r\210\265\030\205G\220\265\030\001\230\265\030\t\"\"\n"
   "\021C_ZoneDamageOnReq:\r\210\265\030\206G\220\265\030\001\230\265\030\t\"\033\n\nN_Z"
-  "oneStop:\r\210\265\030\207G\220\265\030\002\230\265\030\tb\006proto3"
+  "oneStop:\r\210\265\030\207G\220\265\030\002\230\265\030\t\"\034\n\013N_ZoneStart:\r\210"
+  "\265\030\210G\220\265\030\002\230\265\030\tb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_test_2ftest_5fmessages_2eproto_deps[3] = {
   &::descriptor_table_common_2fcommon_5fenums_2eproto,
@@ -337,9 +357,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_test_2ftest_5fmessa
 };
 static ::_pbi::once_flag descriptor_table_test_2ftest_5fmessages_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_test_2ftest_5fmessages_2eproto = {
-    false, false, 790, descriptor_table_protodef_test_2ftest_5fmessages_2eproto,
+    false, false, 820, descriptor_table_protodef_test_2ftest_5fmessages_2eproto,
     "test/test_messages.proto",
-    &descriptor_table_test_2ftest_5fmessages_2eproto_once, descriptor_table_test_2ftest_5fmessages_2eproto_deps, 3, 13,
+    &descriptor_table_test_2ftest_5fmessages_2eproto_once, descriptor_table_test_2ftest_5fmessages_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_test_2ftest_5fmessages_2eproto::offsets,
     file_level_metadata_test_2ftest_5fmessages_2eproto, file_level_enum_descriptors_test_2ftest_5fmessages_2eproto,
     file_level_service_descriptors_test_2ftest_5fmessages_2eproto,
@@ -1966,6 +1986,46 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*N_ZoneStop::GetClassData() con
       file_level_metadata_test_2ftest_5fmessages_2eproto[12]);
 }
 
+// ===================================================================
+
+class N_ZoneStart::_Internal {
+ public:
+};
+
+N_ZoneStart::N_ZoneStart(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:se.test.N_ZoneStart)
+}
+N_ZoneStart::N_ZoneStart(const N_ZoneStart& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  N_ZoneStart* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:se.test.N_ZoneStart)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData N_ZoneStart::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*N_ZoneStart::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata N_ZoneStart::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_test_2ftest_5fmessages_2eproto_getter, &descriptor_table_test_2ftest_5fmessages_2eproto_once,
+      file_level_metadata_test_2ftest_5fmessages_2eproto[13]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace test
 }  // namespace se
@@ -2021,6 +2081,10 @@ Arena::CreateMaybeMessage< ::se::test::C_ZoneDamageOnReq >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::se::test::N_ZoneStop*
 Arena::CreateMaybeMessage< ::se::test::N_ZoneStop >(Arena* arena) {
   return Arena::CreateMessageInternal< ::se::test::N_ZoneStop >(arena);
+}
+template<> PROTOBUF_NOINLINE ::se::test::N_ZoneStart*
+Arena::CreateMaybeMessage< ::se::test::N_ZoneStart >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::se::test::N_ZoneStart >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
