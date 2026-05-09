@@ -341,6 +341,16 @@ message N_GrenadeExplosion {
   se.common.Vector3 position = 2;
 }
 
+message N_ProjectileExplosion {
+// 로켓 발사기의 로켓 투사체가 서버에서 판정하여 폭발이 일어날 때 모든 클라이언트에게 보내는 Broadcast
+  option (se.options.packet_id) = 4126;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  se.common.ObjectId entity_id = 1;   // 폭발한 투사체의 ID
+  se.common.Vector3 position = 2;     // 폭발 위치
+}
+
 message N_WeaponStatChanged {
   option (se.options.packet_id) = 4130;
   option (se.options.dir) = S2C;
