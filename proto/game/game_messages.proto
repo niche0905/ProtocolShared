@@ -349,6 +349,7 @@ message N_ProjectileExplosion {
 
   se.common.ObjectId entity_id = 1;   // 폭발한 투사체의 ID
   se.common.Vector3 position = 2;     // 폭발 위치
+  float explosion_radius = 3;         // 폭발 반경 (이펙트 재현에 사용)
 }
 
 message N_WeaponStatChanged {

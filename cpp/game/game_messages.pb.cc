@@ -517,6 +517,7 @@ PROTOBUF_CONSTEXPR N_ProjectileExplosion::N_ProjectileExplosion(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.entity_id_)*/nullptr
   , /*decltype(_impl_.position_)*/nullptr
+  , /*decltype(_impl_.explosion_radius_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct N_ProjectileExplosionDefaultTypeInternal {
   PROTOBUF_CONSTEXPR N_ProjectileExplosionDefaultTypeInternal()
@@ -1333,6 +1334,7 @@ const uint32_t TableStruct_game_2fgame_5fmessages_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::se::game::N_ProjectileExplosion, _impl_.entity_id_),
   PROTOBUF_FIELD_OFFSET(::se::game::N_ProjectileExplosion, _impl_.position_),
+  PROTOBUF_FIELD_OFFSET(::se::game::N_ProjectileExplosion, _impl_.explosion_radius_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::se::game::N_WeaponStatChanged, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1662,42 +1664,42 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 268, -1, -1, sizeof(::se::game::C_GrenadeExplosionReq)},
   { 276, -1, -1, sizeof(::se::game::N_GrenadeExplosion)},
   { 284, -1, -1, sizeof(::se::game::N_ProjectileExplosion)},
-  { 292, -1, -1, sizeof(::se::game::N_WeaponStatChanged)},
-  { 300, -1, -1, sizeof(::se::game::N_WeaponStatSnapshot)},
-  { 307, -1, -1, sizeof(::se::game::C_UseAbilityReq)},
-  { 314, -1, -1, sizeof(::se::game::N_UseAbility)},
-  { 322, -1, -1, sizeof(::se::game::N_EntityHit)},
-  { 331, -1, -1, sizeof(::se::game::N_KillPlayer)},
-  { 339, -1, -1, sizeof(::se::game::C_UseItemReq)},
-  { 346, -1, -1, sizeof(::se::game::S_UseItemRes)},
-  { 355, -1, -1, sizeof(::se::game::N_UseItem)},
-  { 363, -1, -1, sizeof(::se::game::C_ChestInteractReq)},
-  { 370, -1, -1, sizeof(::se::game::N_ChestInteracted)},
-  { 378, -1, -1, sizeof(::se::game::C_PickupItemReq)},
-  { 385, -1, -1, sizeof(::se::game::N_PickupItem)},
-  { 393, -1, -1, sizeof(::se::game::C_EquipItemReq)},
-  { 400, -1, -1, sizeof(::se::game::S_EquipItemRes)},
-  { 409, -1, -1, sizeof(::se::game::N_EquipItem)},
-  { 417, -1, -1, sizeof(::se::game::C_UseStoreReq)},
-  { 425, -1, -1, sizeof(::se::game::S_UseStoreRes)},
-  { 436, -1, -1, sizeof(::se::game::N_ItemGained)},
-  { 445, -1, -1, sizeof(::se::game::N_ItemLost)},
-  { 454, -1, -1, sizeof(::se::game::N_ItemSnapshot)},
-  { 461, -1, -1, sizeof(::se::game::C_SetSavePointReq)},
-  { 468, -1, -1, sizeof(::se::game::S_SetSavePointRes)},
-  { 477, -1, -1, sizeof(::se::game::N_HealthChanged)},
-  { 486, -1, -1, sizeof(::se::game::N_MaxHealthChanged)},
-  { 495, -1, -1, sizeof(::se::game::N_HealthSnapshot)},
-  { 503, -1, -1, sizeof(::se::game::N_TimePointChanged)},
-  { 511, -1, -1, sizeof(::se::game::N_TimePointSnapshot)},
-  { 518, -1, -1, sizeof(::se::game::N_SkillUnlock)},
-  { 525, -1, -1, sizeof(::se::game::C_SkillEquipReq)},
-  { 533, -1, -1, sizeof(::se::game::S_SkillEquipRes)},
-  { 543, -1, -1, sizeof(::se::game::N_SkillUnlockSnapshot)},
-  { 550, -1, -1, sizeof(::se::game::N_EntityDied)},
-  { 557, -1, -1, sizeof(::se::game::N_EntityRespawned)},
-  { 565, -1, -1, sizeof(::se::game::N_EntityDestroyed)},
-  { 572, -1, -1, sizeof(::se::game::N_TimeStormChange)},
+  { 293, -1, -1, sizeof(::se::game::N_WeaponStatChanged)},
+  { 301, -1, -1, sizeof(::se::game::N_WeaponStatSnapshot)},
+  { 308, -1, -1, sizeof(::se::game::C_UseAbilityReq)},
+  { 315, -1, -1, sizeof(::se::game::N_UseAbility)},
+  { 323, -1, -1, sizeof(::se::game::N_EntityHit)},
+  { 332, -1, -1, sizeof(::se::game::N_KillPlayer)},
+  { 340, -1, -1, sizeof(::se::game::C_UseItemReq)},
+  { 347, -1, -1, sizeof(::se::game::S_UseItemRes)},
+  { 356, -1, -1, sizeof(::se::game::N_UseItem)},
+  { 364, -1, -1, sizeof(::se::game::C_ChestInteractReq)},
+  { 371, -1, -1, sizeof(::se::game::N_ChestInteracted)},
+  { 379, -1, -1, sizeof(::se::game::C_PickupItemReq)},
+  { 386, -1, -1, sizeof(::se::game::N_PickupItem)},
+  { 394, -1, -1, sizeof(::se::game::C_EquipItemReq)},
+  { 401, -1, -1, sizeof(::se::game::S_EquipItemRes)},
+  { 410, -1, -1, sizeof(::se::game::N_EquipItem)},
+  { 418, -1, -1, sizeof(::se::game::C_UseStoreReq)},
+  { 426, -1, -1, sizeof(::se::game::S_UseStoreRes)},
+  { 437, -1, -1, sizeof(::se::game::N_ItemGained)},
+  { 446, -1, -1, sizeof(::se::game::N_ItemLost)},
+  { 455, -1, -1, sizeof(::se::game::N_ItemSnapshot)},
+  { 462, -1, -1, sizeof(::se::game::C_SetSavePointReq)},
+  { 469, -1, -1, sizeof(::se::game::S_SetSavePointRes)},
+  { 478, -1, -1, sizeof(::se::game::N_HealthChanged)},
+  { 487, -1, -1, sizeof(::se::game::N_MaxHealthChanged)},
+  { 496, -1, -1, sizeof(::se::game::N_HealthSnapshot)},
+  { 504, -1, -1, sizeof(::se::game::N_TimePointChanged)},
+  { 512, -1, -1, sizeof(::se::game::N_TimePointSnapshot)},
+  { 519, -1, -1, sizeof(::se::game::N_SkillUnlock)},
+  { 526, -1, -1, sizeof(::se::game::C_SkillEquipReq)},
+  { 534, -1, -1, sizeof(::se::game::S_SkillEquipRes)},
+  { 544, -1, -1, sizeof(::se::game::N_SkillUnlockSnapshot)},
+  { 551, -1, -1, sizeof(::se::game::N_EntityDied)},
+  { 558, -1, -1, sizeof(::se::game::N_EntityRespawned)},
+  { 566, -1, -1, sizeof(::se::game::N_EntityDestroyed)},
+  { 573, -1, -1, sizeof(::se::game::N_TimeStormChange)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1867,93 +1869,93 @@ const char descriptor_table_protodef_game_2fgame_5fmessages_2eproto[] PROTOBUF_S
   "\001(\0132\022.se.common.Vector3:\r\210\265\030\234 \220\265\030\001\230\265\030\004\"q"
   "\n\022N_GrenadeExplosion\022&\n\tentity_id\030\001 \001(\0132"
   "\023.se.common.ObjectId\022$\n\010position\030\002 \001(\0132\022"
-  ".se.common.Vector3:\r\210\265\030\235 \220\265\030\002\230\265\030\004\"t\n\025N_P"
-  "rojectileExplosion\022&\n\tentity_id\030\001 \001(\0132\023."
-  "se.common.ObjectId\022$\n\010position\030\002 \001(\0132\022.s"
-  "e.common.Vector3:\r\210\265\030\236 \220\265\030\002\230\265\030\004\"`\n\023N_Wea"
-  "ponStatChanged\022\021\n\tweapon_id\030\001 \001(\r\022\'\n\005sta"
-  "ts\030\002 \003(\0132\030.se.game.WeaponStatValue:\r\210\265\030\242"
-  " \220\265\030\002\230\265\030\004\"Q\n\024N_WeaponStatSnapshot\022*\n\005sta"
-  "ts\030\002 \003(\0132\033.se.game.WeaponSlotSnapshot:\r\210"
-  "\265\030\243 \220\265\030\002\230\265\030\004\"4\n\017C_UseAbilityReq\022\022\n\nabili"
-  "ty_id\030\001 \001(\r:\r\210\265\030\254 \220\265\030\001\230\265\030\004\"Y\n\014N_UseAbili"
-  "ty\022&\n\tentity_id\030\001 \001(\0132\023.se.common.Object"
-  "Id\022\022\n\nability_id\030\002 \001(\r:\r\210\265\030\255 \220\265\030\002\230\265\030\004\"~\n"
-  "\013N_EntityHit\022&\n\tentity_id\030\001 \001(\0132\023.se.com"
-  "mon.ObjectId\022(\n\014hit_position\030\002 \001(\0132\022.se."
-  "common.Vector3\022\016\n\006damage\030\003 \001(\r:\r\210\265\030\266 \220\265\030"
-  "\002\230\265\030\004\"m\n\014N_KillPlayer\022&\n\tkiller_id\030\001 \001(\013"
-  "2\023.se.common.ObjectId\022&\n\tvictim_id\030\002 \001(\013"
-  "2\023.se.common.ObjectId:\r\210\265\030\336 \220\265\030\002\230\265\030\004\".\n\014"
-  "C_UseItemReq\022\017\n\007item_id\030\001 \001(\r:\r\210\265\030\350 \220\265\030\001"
-  "\230\265\030\004\"b\n\014S_UseItemRes\022\017\n\007success\030\001 \001(\010\022!\n"
-  "\006result\030\002 \001(\0132\021.se.common.Result\022\017\n\007item"
-  "_id\030\003 \001(\r:\r\210\265\030\351 \220\265\030\002\230\265\030\004\"S\n\tN_UseItem\022&\n"
-  "\tentity_id\030\001 \001(\0132\023.se.common.ObjectId\022\017\n"
-  "\007item_id\030\002 \001(\r:\r\210\265\030\352 \220\265\030\002\230\265\030\004\"Q\n\022C_Chest"
-  "InteractReq\022,\n\017chest_entity_id\030\001 \001(\0132\023.s"
-  "e.common.ObjectId:\r\210\265\030\362 \220\265\030\001\230\265\030\004\"x\n\021N_Ch"
-  "estInteracted\022&\n\tentity_id\030\001 \001(\0132\023.se.co"
-  "mmon.ObjectId\022,\n\017chest_entity_id\030\002 \001(\0132\023"
-  ".se.common.ObjectId:\r\210\265\030\363 \220\265\030\002\230\265\030\004\"M\n\017C_"
-  "PickupItemReq\022+\n\016item_entity_id\030\001 \001(\0132\023."
-  "se.common.ObjectId:\r\210\265\030\374 \220\265\030\001\230\265\030\004\"r\n\014N_P"
-  "ickupItem\022&\n\tentity_id\030\001 \001(\0132\023.se.common"
-  ".ObjectId\022+\n\016item_entity_id\030\002 \001(\0132\023.se.c"
-  "ommon.ObjectId:\r\210\265\030\375 \220\265\030\002\230\265\030\004\"0\n\016C_Equip"
-  "ItemReq\022\017\n\007item_id\030\001 \001(\r:\r\210\265\030\206!\220\265\030\001\230\265\030\004\""
-  "d\n\016S_EquipItemRes\022\017\n\007success\030\001 \001(\010\022!\n\006re"
-  "sult\030\002 \001(\0132\021.se.common.Result\022\017\n\007item_id"
-  "\030\003 \001(\r:\r\210\265\030\207!\220\265\030\002\230\265\030\004\"U\n\013N_EquipItem\022&\n\t"
-  "entity_id\030\001 \001(\0132\023.se.common.ObjectId\022\017\n\007"
-  "item_id\030\002 \001(\r:\r\210\265\030\210!\220\265\030\002\230\265\030\004\"c\n\rC_UseSto"
-  "reReq\022,\n\017store_entity_id\030\001 \001(\0132\023.se.comm"
-  "on.ObjectId\022\025\n\rstore_item_id\030\002 \001(\r:\r\210\265\030\220"
-  "!\220\265\030\001\230\265\030\004\"\221\001\n\rS_UseStoreRes\022\017\n\007success\030\001"
-  " \001(\010\022!\n\006result\030\002 \001(\0132\021.se.common.Result\022"
-  "\025\n\rstore_item_id\030\003 \001(\r\022\021\n\tnew_price\030\004 \001("
-  "\005\022\023\n\013is_sold_out\030\005 \001(\010:\r\210\265\030\221!\220\265\030\002\230\265\030\004\"V\n"
-  "\014N_ItemGained\022\017\n\007item_id\030\001 \001(\r\022\024\n\014new_qu"
-  "antity\030\002 \001(\r\022\020\n\010quantity\030\003 \001(\r:\r\210\265\030\232!\220\265\030"
-  "\002\230\265\030\004\"T\n\nN_ItemLost\022\017\n\007item_id\030\001 \001(\r\022\024\n\014"
-  "new_quantity\030\002 \001(\r\022\020\n\010quantity\030\003 \001(\r:\r\210\265"
-  "\030\233!\220\265\030\002\230\265\030\004\"B\n\016N_ItemSnapshot\022!\n\005items\030\001"
-  " \003(\0132\022.se.game.ItemStack:\r\210\265\030\234!\220\265\030\002\230\265\030\004\""
-  "H\n\021C_SetSavePointReq\022$\n\010position\030\001 \001(\0132\022"
-  ".se.common.Vector3:\r\210\265\030\302!\220\265\030\001\230\265\030\004\"|\n\021S_S"
-  "etSavePointRes\022\017\n\007success\030\001 \001(\010\022!\n\006resul"
-  "t\030\002 \001(\0132\021.se.common.Result\022$\n\010position\030\003"
-  " \001(\0132\022.se.common.Vector3:\r\210\265\030\303!\220\265\030\002\230\265\030\004\""
-  "k\n\017N_HealthChanged\022&\n\tentity_id\030\001 \001(\0132\023."
-  "se.common.ObjectId\022\022\n\nnew_health\030\002 \001(\005\022\r"
-  "\n\005delta\030\003 \001(\005:\r\210\265\030\314!\220\265\030\002\230\265\030\004\"\177\n\022N_MaxHea"
-  "lthChanged\022&\n\tentity_id\030\001 \001(\0132\023.se.commo"
-  "n.ObjectId\022\026\n\016new_max_health\030\002 \001(\005\022\032\n\022ne"
-  "w_current_health\030\003 \001(\005:\r\210\265\030\315!\220\265\030\002\230\265\030\004\"M\n"
-  "\020N_HealthSnapshot\022\026\n\016current_health\030\001 \001("
-  "\005\022\022\n\nmax_health\030\002 \001(\005:\r\210\265\030\316!\220\265\030\002\230\265\030\004\"K\n\022"
-  "N_TimePointChanged\022\027\n\017new_time_points\030\001 "
-  "\001(\005\022\r\n\005delta\030\002 \001(\005:\r\210\265\030\326!\220\265\030\002\230\265\030\004\"9\n\023N_T"
-  "imePointSnapshot\022\023\n\013time_points\030\001 \001(\005:\r\210"
-  "\265\030\327!\220\265\030\002\230\265\030\004\"0\n\rN_SkillUnlock\022\020\n\010skill_i"
-  "d\030\001 \001(\r:\r\210\265\030\340!\220\265\030\002\230\265\030\004\"F\n\017C_SkillEquipRe"
-  "q\022\020\n\010skill_id\030\001 \001(\r\022\022\n\nslot_index\030\002 \001(\r:"
-  "\r\210\265\030\341!\220\265\030\001\230\265\030\004\"z\n\017S_SkillEquipRes\022\017\n\007suc"
-  "cess\030\001 \001(\010\022!\n\006result\030\002 \001(\0132\021.se.common.R"
-  "esult\022\020\n\010skill_id\030\003 \001(\r\022\022\n\nslot_index\030\004 "
-  "\001(\r:\r\210\265\030\342!\220\265\030\002\230\265\030\004\"B\n\025N_SkillUnlockSnaps"
-  "hot\022\032\n\022unlocked_skill_ids\030\001 \003(\r:\r\210\265\030\343!\220\265"
-  "\030\002\230\265\030\004\"E\n\014N_EntityDied\022&\n\tentity_id\030\001 \001("
-  "\0132\023.se.common.ObjectId:\r\210\265\030\246\"\220\265\030\002\230\265\030\004\"s\n"
-  "\021N_EntityRespawned\022&\n\tentity_id\030\001 \001(\0132\023."
-  "se.common.ObjectId\022\'\n\ttransform\030\002 \001(\0132\024."
-  "se.common.Transform:\r\210\265\030\247\"\220\265\030\002\230\265\030\004\"J\n\021N_"
-  "EntityDestroyed\022&\n\tentity_id\030\001 \001(\0132\023.se."
-  "common.ObjectId:\r\210\265\030\250\"\220\265\030\002\230\265\030\004\"\204\001\n\021N_Tim"
-  "eStormChange\022\"\n\006center\030\001 \001(\0132\022.se.common"
-  ".Vector3\022\016\n\006radius\030\002 \001(\002\022\024\n\014waiting_time"
-  "\030\003 \001(\002\022\026\n\016shrinking_time\030\004 \001(\002:\r\210\265\030\260\"\220\265\030"
-  "\002\230\265\030\004b\006proto3"
+  ".se.common.Vector3:\r\210\265\030\235 \220\265\030\002\230\265\030\004\"\216\001\n\025N_"
+  "ProjectileExplosion\022&\n\tentity_id\030\001 \001(\0132\023"
+  ".se.common.ObjectId\022$\n\010position\030\002 \001(\0132\022."
+  "se.common.Vector3\022\030\n\020explosion_radius\030\003 "
+  "\001(\002:\r\210\265\030\236 \220\265\030\002\230\265\030\004\"`\n\023N_WeaponStatChange"
+  "d\022\021\n\tweapon_id\030\001 \001(\r\022\'\n\005stats\030\002 \003(\0132\030.se"
+  ".game.WeaponStatValue:\r\210\265\030\242 \220\265\030\002\230\265\030\004\"Q\n\024"
+  "N_WeaponStatSnapshot\022*\n\005stats\030\002 \003(\0132\033.se"
+  ".game.WeaponSlotSnapshot:\r\210\265\030\243 \220\265\030\002\230\265\030\004\""
+  "4\n\017C_UseAbilityReq\022\022\n\nability_id\030\001 \001(\r:\r"
+  "\210\265\030\254 \220\265\030\001\230\265\030\004\"Y\n\014N_UseAbility\022&\n\tentity_"
+  "id\030\001 \001(\0132\023.se.common.ObjectId\022\022\n\nability"
+  "_id\030\002 \001(\r:\r\210\265\030\255 \220\265\030\002\230\265\030\004\"~\n\013N_EntityHit\022"
+  "&\n\tentity_id\030\001 \001(\0132\023.se.common.ObjectId\022"
+  "(\n\014hit_position\030\002 \001(\0132\022.se.common.Vector"
+  "3\022\016\n\006damage\030\003 \001(\r:\r\210\265\030\266 \220\265\030\002\230\265\030\004\"m\n\014N_Ki"
+  "llPlayer\022&\n\tkiller_id\030\001 \001(\0132\023.se.common."
+  "ObjectId\022&\n\tvictim_id\030\002 \001(\0132\023.se.common."
+  "ObjectId:\r\210\265\030\336 \220\265\030\002\230\265\030\004\".\n\014C_UseItemReq\022"
+  "\017\n\007item_id\030\001 \001(\r:\r\210\265\030\350 \220\265\030\001\230\265\030\004\"b\n\014S_Use"
+  "ItemRes\022\017\n\007success\030\001 \001(\010\022!\n\006result\030\002 \001(\013"
+  "2\021.se.common.Result\022\017\n\007item_id\030\003 \001(\r:\r\210\265"
+  "\030\351 \220\265\030\002\230\265\030\004\"S\n\tN_UseItem\022&\n\tentity_id\030\001 "
+  "\001(\0132\023.se.common.ObjectId\022\017\n\007item_id\030\002 \001("
+  "\r:\r\210\265\030\352 \220\265\030\002\230\265\030\004\"Q\n\022C_ChestInteractReq\022,"
+  "\n\017chest_entity_id\030\001 \001(\0132\023.se.common.Obje"
+  "ctId:\r\210\265\030\362 \220\265\030\001\230\265\030\004\"x\n\021N_ChestInteracted"
+  "\022&\n\tentity_id\030\001 \001(\0132\023.se.common.ObjectId"
+  "\022,\n\017chest_entity_id\030\002 \001(\0132\023.se.common.Ob"
+  "jectId:\r\210\265\030\363 \220\265\030\002\230\265\030\004\"M\n\017C_PickupItemReq"
+  "\022+\n\016item_entity_id\030\001 \001(\0132\023.se.common.Obj"
+  "ectId:\r\210\265\030\374 \220\265\030\001\230\265\030\004\"r\n\014N_PickupItem\022&\n\t"
+  "entity_id\030\001 \001(\0132\023.se.common.ObjectId\022+\n\016"
+  "item_entity_id\030\002 \001(\0132\023.se.common.ObjectI"
+  "d:\r\210\265\030\375 \220\265\030\002\230\265\030\004\"0\n\016C_EquipItemReq\022\017\n\007it"
+  "em_id\030\001 \001(\r:\r\210\265\030\206!\220\265\030\001\230\265\030\004\"d\n\016S_EquipIte"
+  "mRes\022\017\n\007success\030\001 \001(\010\022!\n\006result\030\002 \001(\0132\021."
+  "se.common.Result\022\017\n\007item_id\030\003 \001(\r:\r\210\265\030\207!"
+  "\220\265\030\002\230\265\030\004\"U\n\013N_EquipItem\022&\n\tentity_id\030\001 \001"
+  "(\0132\023.se.common.ObjectId\022\017\n\007item_id\030\002 \001(\r"
+  ":\r\210\265\030\210!\220\265\030\002\230\265\030\004\"c\n\rC_UseStoreReq\022,\n\017stor"
+  "e_entity_id\030\001 \001(\0132\023.se.common.ObjectId\022\025"
+  "\n\rstore_item_id\030\002 \001(\r:\r\210\265\030\220!\220\265\030\001\230\265\030\004\"\221\001\n"
+  "\rS_UseStoreRes\022\017\n\007success\030\001 \001(\010\022!\n\006resul"
+  "t\030\002 \001(\0132\021.se.common.Result\022\025\n\rstore_item"
+  "_id\030\003 \001(\r\022\021\n\tnew_price\030\004 \001(\005\022\023\n\013is_sold_"
+  "out\030\005 \001(\010:\r\210\265\030\221!\220\265\030\002\230\265\030\004\"V\n\014N_ItemGained"
+  "\022\017\n\007item_id\030\001 \001(\r\022\024\n\014new_quantity\030\002 \001(\r\022"
+  "\020\n\010quantity\030\003 \001(\r:\r\210\265\030\232!\220\265\030\002\230\265\030\004\"T\n\nN_It"
+  "emLost\022\017\n\007item_id\030\001 \001(\r\022\024\n\014new_quantity\030"
+  "\002 \001(\r\022\020\n\010quantity\030\003 \001(\r:\r\210\265\030\233!\220\265\030\002\230\265\030\004\"B"
+  "\n\016N_ItemSnapshot\022!\n\005items\030\001 \003(\0132\022.se.gam"
+  "e.ItemStack:\r\210\265\030\234!\220\265\030\002\230\265\030\004\"H\n\021C_SetSaveP"
+  "ointReq\022$\n\010position\030\001 \001(\0132\022.se.common.Ve"
+  "ctor3:\r\210\265\030\302!\220\265\030\001\230\265\030\004\"|\n\021S_SetSavePointRe"
+  "s\022\017\n\007success\030\001 \001(\010\022!\n\006result\030\002 \001(\0132\021.se."
+  "common.Result\022$\n\010position\030\003 \001(\0132\022.se.com"
+  "mon.Vector3:\r\210\265\030\303!\220\265\030\002\230\265\030\004\"k\n\017N_HealthCh"
+  "anged\022&\n\tentity_id\030\001 \001(\0132\023.se.common.Obj"
+  "ectId\022\022\n\nnew_health\030\002 \001(\005\022\r\n\005delta\030\003 \001(\005"
+  ":\r\210\265\030\314!\220\265\030\002\230\265\030\004\"\177\n\022N_MaxHealthChanged\022&\n"
+  "\tentity_id\030\001 \001(\0132\023.se.common.ObjectId\022\026\n"
+  "\016new_max_health\030\002 \001(\005\022\032\n\022new_current_hea"
+  "lth\030\003 \001(\005:\r\210\265\030\315!\220\265\030\002\230\265\030\004\"M\n\020N_HealthSnap"
+  "shot\022\026\n\016current_health\030\001 \001(\005\022\022\n\nmax_heal"
+  "th\030\002 \001(\005:\r\210\265\030\316!\220\265\030\002\230\265\030\004\"K\n\022N_TimePointCh"
+  "anged\022\027\n\017new_time_points\030\001 \001(\005\022\r\n\005delta\030"
+  "\002 \001(\005:\r\210\265\030\326!\220\265\030\002\230\265\030\004\"9\n\023N_TimePointSnaps"
+  "hot\022\023\n\013time_points\030\001 \001(\005:\r\210\265\030\327!\220\265\030\002\230\265\030\004\""
+  "0\n\rN_SkillUnlock\022\020\n\010skill_id\030\001 \001(\r:\r\210\265\030\340"
+  "!\220\265\030\002\230\265\030\004\"F\n\017C_SkillEquipReq\022\020\n\010skill_id"
+  "\030\001 \001(\r\022\022\n\nslot_index\030\002 \001(\r:\r\210\265\030\341!\220\265\030\001\230\265\030"
+  "\004\"z\n\017S_SkillEquipRes\022\017\n\007success\030\001 \001(\010\022!\n"
+  "\006result\030\002 \001(\0132\021.se.common.Result\022\020\n\010skil"
+  "l_id\030\003 \001(\r\022\022\n\nslot_index\030\004 \001(\r:\r\210\265\030\342!\220\265\030"
+  "\002\230\265\030\004\"B\n\025N_SkillUnlockSnapshot\022\032\n\022unlock"
+  "ed_skill_ids\030\001 \003(\r:\r\210\265\030\343!\220\265\030\002\230\265\030\004\"E\n\014N_E"
+  "ntityDied\022&\n\tentity_id\030\001 \001(\0132\023.se.common"
+  ".ObjectId:\r\210\265\030\246\"\220\265\030\002\230\265\030\004\"s\n\021N_EntityResp"
+  "awned\022&\n\tentity_id\030\001 \001(\0132\023.se.common.Obj"
+  "ectId\022\'\n\ttransform\030\002 \001(\0132\024.se.common.Tra"
+  "nsform:\r\210\265\030\247\"\220\265\030\002\230\265\030\004\"J\n\021N_EntityDestroy"
+  "ed\022&\n\tentity_id\030\001 \001(\0132\023.se.common.Object"
+  "Id:\r\210\265\030\250\"\220\265\030\002\230\265\030\004\"\204\001\n\021N_TimeStormChange\022"
+  "\"\n\006center\030\001 \001(\0132\022.se.common.Vector3\022\016\n\006r"
+  "adius\030\002 \001(\002\022\024\n\014waiting_time\030\003 \001(\002\022\026\n\016shr"
+  "inking_time\030\004 \001(\002:\r\210\265\030\260\"\220\265\030\002\230\265\030\004b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_game_2fgame_5fmessages_2eproto_deps[5] = {
   &::descriptor_table_common_2fcommon_5fenums_2eproto,
@@ -1964,7 +1966,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_game_2fgame_5fmessa
 };
 static ::_pbi::once_flag descriptor_table_game_2fgame_5fmessages_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_game_2fgame_5fmessages_2eproto = {
-    false, false, 7053, descriptor_table_protodef_game_2fgame_5fmessages_2eproto,
+    false, false, 7080, descriptor_table_protodef_game_2fgame_5fmessages_2eproto,
     "game/game_messages.proto",
     &descriptor_table_game_2fgame_5fmessages_2eproto_once, descriptor_table_game_2fgame_5fmessages_2eproto_deps, 5, 73,
     schemas, file_default_instances, TableStruct_game_2fgame_5fmessages_2eproto::offsets,
@@ -9562,6 +9564,7 @@ N_ProjectileExplosion::N_ProjectileExplosion(const N_ProjectileExplosion& from)
   new (&_impl_) Impl_{
       decltype(_impl_.entity_id_){nullptr}
     , decltype(_impl_.position_){nullptr}
+    , decltype(_impl_.explosion_radius_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -9571,6 +9574,7 @@ N_ProjectileExplosion::N_ProjectileExplosion(const N_ProjectileExplosion& from)
   if (from._internal_has_position()) {
     _this->_impl_.position_ = new ::se::common::Vector3(*from._impl_.position_);
   }
+  _this->_impl_.explosion_radius_ = from._impl_.explosion_radius_;
   // @@protoc_insertion_point(copy_constructor:se.game.N_ProjectileExplosion)
 }
 
@@ -9581,6 +9585,7 @@ inline void N_ProjectileExplosion::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.entity_id_){nullptr}
     , decltype(_impl_.position_){nullptr}
+    , decltype(_impl_.explosion_radius_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -9618,6 +9623,7 @@ void N_ProjectileExplosion::Clear() {
     delete _impl_.position_;
   }
   _impl_.position_ = nullptr;
+  _impl_.explosion_radius_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -9640,6 +9646,14 @@ const char* N_ProjectileExplosion::_InternalParse(const char* ptr, ::_pbi::Parse
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_position(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // float explosion_radius = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          _impl_.explosion_radius_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else
           goto handle_unusual;
         continue;
@@ -9686,6 +9700,16 @@ uint8_t* N_ProjectileExplosion::_InternalSerialize(
         _Internal::position(this).GetCachedSize(), target, stream);
   }
 
+  // float explosion_radius = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_explosion_radius = this->_internal_explosion_radius();
+  uint32_t raw_explosion_radius;
+  memcpy(&raw_explosion_radius, &tmp_explosion_radius, sizeof(tmp_explosion_radius));
+  if (raw_explosion_radius != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_explosion_radius(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -9716,6 +9740,15 @@ size_t N_ProjectileExplosion::ByteSizeLong() const {
         *_impl_.position_);
   }
 
+  // float explosion_radius = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_explosion_radius = this->_internal_explosion_radius();
+  uint32_t raw_explosion_radius;
+  memcpy(&raw_explosion_radius, &tmp_explosion_radius, sizeof(tmp_explosion_radius));
+  if (raw_explosion_radius != 0) {
+    total_size += 1 + 4;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -9742,6 +9775,13 @@ void N_ProjectileExplosion::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, 
     _this->_internal_mutable_position()->::se::common::Vector3::MergeFrom(
         from._internal_position());
   }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_explosion_radius = from._internal_explosion_radius();
+  uint32_t raw_explosion_radius;
+  memcpy(&raw_explosion_radius, &tmp_explosion_radius, sizeof(tmp_explosion_radius));
+  if (raw_explosion_radius != 0) {
+    _this->_internal_set_explosion_radius(from._internal_explosion_radius());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -9760,8 +9800,8 @@ void N_ProjectileExplosion::InternalSwap(N_ProjectileExplosion* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(N_ProjectileExplosion, _impl_.position_)
-      + sizeof(N_ProjectileExplosion::_impl_.position_)
+      PROTOBUF_FIELD_OFFSET(N_ProjectileExplosion, _impl_.explosion_radius_)
+      + sizeof(N_ProjectileExplosion::_impl_.explosion_radius_)
       - PROTOBUF_FIELD_OFFSET(N_ProjectileExplosion, _impl_.entity_id_)>(
           reinterpret_cast<char*>(&_impl_.entity_id_),
           reinterpret_cast<char*>(&other->_impl_.entity_id_));

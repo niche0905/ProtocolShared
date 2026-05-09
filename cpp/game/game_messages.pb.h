@@ -6429,6 +6429,7 @@ class N_ProjectileExplosion final :
   enum : int {
     kEntityIdFieldNumber = 1,
     kPositionFieldNumber = 2,
+    kExplosionRadiusFieldNumber = 3,
   };
   // .se.common.ObjectId entity_id = 1;
   bool has_entity_id() const;
@@ -6466,6 +6467,15 @@ class N_ProjectileExplosion final :
       ::se::common::Vector3* position);
   ::se::common::Vector3* unsafe_arena_release_position();
 
+  // float explosion_radius = 3;
+  void clear_explosion_radius();
+  float explosion_radius() const;
+  void set_explosion_radius(float value);
+  private:
+  float _internal_explosion_radius() const;
+  void _internal_set_explosion_radius(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:se.game.N_ProjectileExplosion)
  private:
   class _Internal;
@@ -6476,6 +6486,7 @@ class N_ProjectileExplosion final :
   struct Impl_ {
     ::se::common::ObjectId* entity_id_;
     ::se::common::Vector3* position_;
+    float explosion_radius_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -16947,6 +16958,26 @@ inline void N_ProjectileExplosion::set_allocated_position(::se::common::Vector3*
   }
   _impl_.position_ = position;
   // @@protoc_insertion_point(field_set_allocated:se.game.N_ProjectileExplosion.position)
+}
+
+// float explosion_radius = 3;
+inline void N_ProjectileExplosion::clear_explosion_radius() {
+  _impl_.explosion_radius_ = 0;
+}
+inline float N_ProjectileExplosion::_internal_explosion_radius() const {
+  return _impl_.explosion_radius_;
+}
+inline float N_ProjectileExplosion::explosion_radius() const {
+  // @@protoc_insertion_point(field_get:se.game.N_ProjectileExplosion.explosion_radius)
+  return _internal_explosion_radius();
+}
+inline void N_ProjectileExplosion::_internal_set_explosion_radius(float value) {
+  
+  _impl_.explosion_radius_ = value;
+}
+inline void N_ProjectileExplosion::set_explosion_radius(float value) {
+  _internal_set_explosion_radius(value);
+  // @@protoc_insertion_point(field_set:se.game.N_ProjectileExplosion.explosion_radius)
 }
 
 // -------------------------------------------------------------------
