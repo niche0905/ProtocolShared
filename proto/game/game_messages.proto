@@ -222,8 +222,53 @@ message N_Fire {
   uint32 shot_seed = 5;
 }
 
-message N_Attack {
+message C_ReloadReq {
+  option (se.options.packet_id) = 4102;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+
+  uint32 weapon_id = 1;   // 어떤 무기를 재장전하는지 식별할 수 있는 ID 
+}
+
+message S_ReloadRes {
   option (se.options.packet_id) = 4103;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  bool success = 1;   // 재장전 성공 여부
+  uint32 weapon_id = 2;   // 어떤 무기를 재장전하는지 식별할 수 있는 ID (성공한 경우)
+  uint32 reloaded_ammo = 3;   // 재장전된 탄약 수 (성공한 경우)
+  uint32 remaining_ammo = 4;   // 재장전 후 남은 탄약 수 (성공한 경우)
+}
+
+message N_Reload {
+  option (se.options.packet_id) = 4104;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  se.common.ObjectId entity_id = 1;
+  uint32 weapon_id = 2;
+}
+
+message C_WeaponChangeReq {
+  option (se.options.packet_id) = 4105;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = GAME;
+
+  uint32 weapon_id = 1;   // 어떤 무기로 변경하는지 식별할 수 있는 ID
+}
+
+message N_WeaponChanged {
+  option (se.options.packet_id) = 4106;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  se.common.ObjectId entity_id = 1;
+  uint32 weapon_id = 2;
+}
+
+message N_Attack {
+  option (se.options.packet_id) = 4110;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -233,7 +278,7 @@ message N_Attack {
 }
 
 message C_ThrowGrenadeReq {
-  option (se.options.packet_id) = 4104;
+  option (se.options.packet_id) = 4120;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
   
@@ -243,7 +288,9 @@ message C_ThrowGrenadeReq {
 }
 
 message N_ThrowGrenade {
-  option (se.options.packet_id) = 4105;
+// 로컬 클라이언트에도 보내는 Broadcast
+// 이 패킷을 받으면 그때 Spawn 하여 EntityId를 부여 받도록
+  option (se.options.packet_id) = 4121;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
@@ -253,53 +300,49 @@ message N_ThrowGrenade {
   se.common.Vector3 direction = 4;
 }
 
-message C_ReloadReq {
-  option (se.options.packet_id) = 4106;
+message C_GrenadeMoveSyncReq {
+  option (se.options.packet_id) = 4122;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
-  
-  uint32 weapon_id = 1;   // 어떤 무기를 재장전하는지 식별할 수 있는 ID 
-}
 
-message S_ReloadRes {
-  option (se.options.packet_id) = 4107;
-  option (se.options.dir) = S2C;
-  option (se.options.route) = GAME;
-  
-  bool success = 1;   // 재장전 성공 여부
-  uint32 weapon_id = 2;   // 어떤 무기를 재장전하는지 식별할 수 있는 ID (성공한 경우)
-  uint32 reloaded_ammo = 3;   // 재장전된 탄약 수 (성공한 경우)
-  uint32 remaining_ammo = 4;   // 재장전 후 남은 탄약 수 (성공한 경우)
-}
-
-message N_Reload {
-  option (se.options.packet_id) = 4108;
-  option (se.options.dir) = S2C;
-  option (se.options.route) = GAME;
-  
   se.common.ObjectId entity_id = 1;
-  uint32 weapon_id = 2;
+  se.common.Vector3 position = 2;
+  se.common.Vector3 velocity = 3;
 }
 
-message C_WeaponChangeReq {
-  option (se.options.packet_id) = 4109;
+message N_GrenadeMoveSync {
+// 로컬을 제외한 타 클라이언트에게 보내는 Broadcast (이 위치를 기반으로 각 클라이언트가 자체적으로 물리 시뮬레이션)
+  option (se.options.packet_id) = 4123;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  se.common.ObjectId entity_id = 1;
+  se.common.Vector3 position = 2;
+  se.common.Vector3 velocity = 3;
+}
+
+message C_GrenadeExplosionReq {
+  option (se.options.packet_id) = 4124;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
-  
-  uint32 weapon_id = 1;   // 어떤 무기로 변경하는지 식별할 수 있는 ID
+
+  se.common.ObjectId entity_id = 1;
+  se.common.Vector3 position = 2;
 }
 
-message N_WeaponChanged {
-  option (se.options.packet_id) = 4110;
+message N_GrenadeExplosion {
+// 이 패킷을 받으면 그 위치에 폭발 이펙트를 보여주도록
+// 이펙트 재현을 위한 패킷 (로컬을 제외한 타 클라이언트에게 보내는 Broadcast)
+  option (se.options.packet_id) = 4125;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
-  
+
   se.common.ObjectId entity_id = 1;
-  uint32 weapon_id = 2;
+  se.common.Vector3 position = 2;
 }
 
 message N_WeaponStatChanged {
-  option (se.options.packet_id) = 4115;
+  option (se.options.packet_id) = 4130;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
 
@@ -309,7 +352,7 @@ message N_WeaponStatChanged {
 
 message N_WeaponStatSnapshot {
   // 이 패킷이 오면 무조건 이 패킷으로 Set 하도록 (유효한 값으로 서버에서 보장)
-  option (se.options.packet_id) = 4116;
+  option (se.options.packet_id) = 4131;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
 
@@ -317,7 +360,7 @@ message N_WeaponStatSnapshot {
 }
 
 message C_UseAbilityReq {
-  option (se.options.packet_id) = 4120;
+  option (se.options.packet_id) = 4140;
   option (se.options.dir) = C2S;
   option (se.options.route) = GAME;
   
@@ -325,7 +368,7 @@ message C_UseAbilityReq {
 }
 
 message N_UseAbility {
-  option (se.options.packet_id) = 4121;
+  option (se.options.packet_id) = 4141;
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
