@@ -459,9 +459,11 @@ message S_UseStoreRes {
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
-  bool success = 1;   // 구매 성공 여부
-  se.common.Result result = 2;   // 구매 실패 시 실패 이유
-  uint32 store_item_id = 3;   // 상점에서 어떤 슬롯이 구매되었는지 식별할 수 있는 ID
+  bool success = 1;               // 구매 성공 여부
+  se.common.Result result = 2;    // 구매 실패 시 실패 이유
+  uint32 store_item_id = 3;       // 상점에서 어떤 슬롯이 구매되었는지 식별할 수 있는 ID
+  int32 new_price = 4;            // 구매 후 해당 슬롯의 새로운 가격 (성공한 경우, Upgrade 형식 혹은 반복 구매이지만 가격이 변동하는 상황)
+  bool is_sold_out = 5;           // 구매 후 해당 슬롯이 품절되었는지 여부 (성공한 경우, Upgrade 형식이지만 최대 레벨에 도달한 상황) <- 기본 적으론 false
 }
 
 message N_ItemGained {
