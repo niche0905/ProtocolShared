@@ -130,6 +130,7 @@ enum : uint16
     PKT_N_HealthChanged = 4300,
     PKT_N_MaxHealthChanged = 4301,
     PKT_N_HealthSnapshot = 4302,
+    PKT_N_SpeedChanged = 4305,
     PKT_N_TimePointChanged = 4310,
     PKT_N_TimePointSnapshot = 4311,
     PKT_N_SkillUnlock = 4320,
@@ -313,6 +314,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::N_HealthChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_HealthChanged); }
     static SendBufferRef MakeSendBuffer(se::game::N_MaxHealthChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_MaxHealthChanged); }
     static SendBufferRef MakeSendBuffer(se::game::N_HealthSnapshot& pkt) { return MakeSendBuffer(pkt, PKT_N_HealthSnapshot); }
+    static SendBufferRef MakeSendBuffer(se::game::N_SpeedChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_SpeedChanged); }
     static SendBufferRef MakeSendBuffer(se::game::N_TimePointChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_TimePointChanged); }
     static SendBufferRef MakeSendBuffer(se::game::N_TimePointSnapshot& pkt) { return MakeSendBuffer(pkt, PKT_N_TimePointSnapshot); }
     static SendBufferRef MakeSendBuffer(se::game::N_SkillUnlock& pkt) { return MakeSendBuffer(pkt, PKT_N_SkillUnlock); }

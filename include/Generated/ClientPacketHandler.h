@@ -130,6 +130,7 @@ enum : uint16
     PKT_N_HealthChanged = 4300,
     PKT_N_MaxHealthChanged = 4301,
     PKT_N_HealthSnapshot = 4302,
+    PKT_N_SpeedChanged = 4305,
     PKT_N_TimePointChanged = 4310,
     PKT_N_TimePointSnapshot = 4311,
     PKT_N_SkillUnlock = 4320,
@@ -213,6 +214,7 @@ bool Handle_S_SetSavePointRes(PacketSessionRef& session, const se::game::S_SetSa
 bool Handle_N_HealthChanged(PacketSessionRef& session, const se::game::N_HealthChanged& pkt);
 bool Handle_N_MaxHealthChanged(PacketSessionRef& session, const se::game::N_MaxHealthChanged& pkt);
 bool Handle_N_HealthSnapshot(PacketSessionRef& session, const se::game::N_HealthSnapshot& pkt);
+bool Handle_N_SpeedChanged(PacketSessionRef& session, const se::game::N_SpeedChanged& pkt);
 bool Handle_N_TimePointChanged(PacketSessionRef& session, const se::game::N_TimePointChanged& pkt);
 bool Handle_N_TimePointSnapshot(PacketSessionRef& session, const se::game::N_TimePointSnapshot& pkt);
 bool Handle_N_SkillUnlock(PacketSessionRef& session, const se::game::N_SkillUnlock& pkt);
@@ -288,6 +290,7 @@ public:
         GPacketHandler[PKT_N_HealthChanged] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_HealthChanged>(Handle_N_HealthChanged, session, buffer, len); };
         GPacketHandler[PKT_N_MaxHealthChanged] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_MaxHealthChanged>(Handle_N_MaxHealthChanged, session, buffer, len); };
         GPacketHandler[PKT_N_HealthSnapshot] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_HealthSnapshot>(Handle_N_HealthSnapshot, session, buffer, len); };
+        GPacketHandler[PKT_N_SpeedChanged] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_SpeedChanged>(Handle_N_SpeedChanged, session, buffer, len); };
         GPacketHandler[PKT_N_TimePointChanged] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_TimePointChanged>(Handle_N_TimePointChanged, session, buffer, len); };
         GPacketHandler[PKT_N_TimePointSnapshot] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_TimePointSnapshot>(Handle_N_TimePointSnapshot, session, buffer, len); };
         GPacketHandler[PKT_N_SkillUnlock] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_SkillUnlock>(Handle_N_SkillUnlock, session, buffer, len); };

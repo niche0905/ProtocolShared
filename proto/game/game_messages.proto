@@ -37,8 +37,9 @@ message N_PlayerInitSetup {
   int32 max_health = 1;       // 플레이어의 최대 체력
   int32 current_health = 2;   // 플레이어의 현재 체력
   int32 time_points = 3;      // 플레이어의 시간 포인트
+  float move_speed = 4;       // 플레이어의 이동 속도
   
-  repeated WeaponSlotSnapshot weapon_slots = 4;   // 플레이어가 가진 무기 슬롯들의 초기 상태 (무기 ID, 탄약 수 등)
+  repeated WeaponSlotSnapshot weapon_slots = 5;   // 플레이어가 가진 무기 슬롯들의 초기 상태 (무기 ID, 탄약 수 등)
 }
 
 /*
@@ -601,6 +602,15 @@ message N_HealthSnapshot {
   
   int32 current_health = 1;   // 현재 체력 값
   int32 max_health = 2;       // 최대 체력 값
+}
+
+message N_SpeedChanged {
+// 상점에서 능력 구매 등으로 이동 속도가 변경될 때 보내는 패킷 (이펙트 재현에 사용)
+  option (se.options.packet_id) = 4305;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  float new_speed = 1;   // 변경된 이동 속도 값
 }
 
 message N_TimePointChanged {
