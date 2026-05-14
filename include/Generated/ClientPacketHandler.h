@@ -71,6 +71,7 @@ enum : uint16
     PKT_N_GameStart = 4001,
     PKT_N_GameEnd = 4002,
     PKT_N_PlayerInitSetup = 4003,
+    PKT_N_PlayerGameResult = 4004,
     PKT_C_MoveReq = 4010,
     PKT_N_Move = 4011,
     PKT_C_JumpReq = 4020,
@@ -177,6 +178,7 @@ bool Handle_N_RoomClosed(PacketSessionRef& session, const se::room::N_RoomClosed
 bool Handle_N_GameStart(PacketSessionRef& session, const se::game::N_GameStart& pkt);
 bool Handle_N_GameEnd(PacketSessionRef& session, const se::game::N_GameEnd& pkt);
 bool Handle_N_PlayerInitSetup(PacketSessionRef& session, const se::game::N_PlayerInitSetup& pkt);
+bool Handle_N_PlayerGameResult(PacketSessionRef& session, const se::game::N_PlayerGameResult& pkt);
 bool Handle_N_Move(PacketSessionRef& session, const se::game::N_Move& pkt);
 bool Handle_N_Jump(PacketSessionRef& session, const se::game::N_Jump& pkt);
 bool Handle_N_DoubleJump(PacketSessionRef& session, const se::game::N_DoubleJump& pkt);
@@ -253,6 +255,7 @@ public:
         GPacketHandler[PKT_N_GameStart] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_GameStart>(Handle_N_GameStart, session, buffer, len); };
         GPacketHandler[PKT_N_GameEnd] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_GameEnd>(Handle_N_GameEnd, session, buffer, len); };
         GPacketHandler[PKT_N_PlayerInitSetup] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_PlayerInitSetup>(Handle_N_PlayerInitSetup, session, buffer, len); };
+        GPacketHandler[PKT_N_PlayerGameResult] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_PlayerGameResult>(Handle_N_PlayerGameResult, session, buffer, len); };
         GPacketHandler[PKT_N_Move] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_Move>(Handle_N_Move, session, buffer, len); };
         GPacketHandler[PKT_N_Jump] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_Jump>(Handle_N_Jump, session, buffer, len); };
         GPacketHandler[PKT_N_DoubleJump] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_DoubleJump>(Handle_N_DoubleJump, session, buffer, len); };

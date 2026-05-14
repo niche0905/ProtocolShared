@@ -42,6 +42,16 @@ message N_PlayerInitSetup {
   repeated WeaponSlotSnapshot weapon_slots = 5;   // 플레이어가 가진 무기 슬롯들의 초기 상태 (무기 ID, 탄약 수 등)
 }
 
+message N_PlayerGameResult {
+  option (se.options.packet_id) = 4004;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  uint32 rank = 1;      // 플레이어의 최종 순위
+  int32 score = 2;      // 플레이어의 최종 점수
+  string killer = 3;    // 플레이어를 죽인 상대의 이름 (없다면 빈 문자열)
+}
+
 /*
  * Movement
  */
