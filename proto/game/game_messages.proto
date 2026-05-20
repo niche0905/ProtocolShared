@@ -285,7 +285,18 @@ message N_Attack {
   
   se.common.ObjectId entity_id = 1;
   uint32 attack_type = 2;   // 어떤 공격인지 식별할 수 있는 ID
-  // TODO: NPC BT가 구성되면 이 패킷 리뉴얼 필요할 듯 함
+}
+
+message N_MonsterFire {
+  option (se.options.packet_id) = 4111;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  se.common.ObjectId entity_id = 1;
+  uint32 attack_type = 2;   // 어떤 공격인지 식별할 수 있는 ID
+  se.common.Vector3 start_position = 3;
+  se.common.Vector3 direction = 4;
+  float range = 5;          // 몬스터 공격의 사거리 (이펙트 재현에 사용)
 }
 
 message C_ThrowGrenadeReq {

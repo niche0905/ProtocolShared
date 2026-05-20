@@ -98,6 +98,7 @@ enum : uint16
     PKT_C_WeaponChangeReq = 4105,
     PKT_N_WeaponChanged = 4106,
     PKT_N_Attack = 4110,
+    PKT_N_MonsterFire = 4111,
     PKT_C_ThrowGrenadeReq = 4120,
     PKT_N_ThrowGrenade = 4121,
     PKT_C_GrenadeMoveSyncReq = 4122,
@@ -293,6 +294,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::N_Reload& pkt) { return MakeSendBuffer(pkt, PKT_N_Reload); }
     static SendBufferRef MakeSendBuffer(se::game::N_WeaponChanged& pkt) { return MakeSendBuffer(pkt, PKT_N_WeaponChanged); }
     static SendBufferRef MakeSendBuffer(se::game::N_Attack& pkt) { return MakeSendBuffer(pkt, PKT_N_Attack); }
+    static SendBufferRef MakeSendBuffer(se::game::N_MonsterFire& pkt) { return MakeSendBuffer(pkt, PKT_N_MonsterFire); }
     static SendBufferRef MakeSendBuffer(se::game::N_ThrowGrenade& pkt) { return MakeSendBuffer(pkt, PKT_N_ThrowGrenade); }
     static SendBufferRef MakeSendBuffer(se::game::N_GrenadeMoveSync& pkt) { return MakeSendBuffer(pkt, PKT_N_GrenadeMoveSync); }
     static SendBufferRef MakeSendBuffer(se::game::N_GrenadeExplosion& pkt) { return MakeSendBuffer(pkt, PKT_N_GrenadeExplosion); }
