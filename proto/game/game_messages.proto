@@ -287,6 +287,15 @@ message N_Attack {
   uint32 attack_type = 2;   // 어떤 공격인지 식별할 수 있는 ID
 }
 
+message N_MonsterTarget {
+  option (se.options.packet_id) = 4112;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  se.common.ObjectId monster_id = 1;   // 몬스터의 ID
+  se.common.ObjectId target_id = 2;    // 몬스터가 공격하려는 타겟의 ID (플레이어나 다른 엔티티)
+}
+
 message N_MonsterFire {
   option (se.options.packet_id) = 4111;
   option (se.options.dir) = S2C;

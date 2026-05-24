@@ -99,6 +99,7 @@ enum : uint16
     PKT_N_WeaponChanged = 4106,
     PKT_N_Attack = 4110,
     PKT_N_MonsterFire = 4111,
+    PKT_N_MonsterTarget = 4112,
     PKT_C_ThrowGrenadeReq = 4120,
     PKT_N_ThrowGrenade = 4121,
     PKT_C_GrenadeMoveSyncReq = 4122,
@@ -195,6 +196,7 @@ bool Handle_N_Reload(PacketSessionRef& session, const se::game::N_Reload& pkt);
 bool Handle_N_WeaponChanged(PacketSessionRef& session, const se::game::N_WeaponChanged& pkt);
 bool Handle_N_Attack(PacketSessionRef& session, const se::game::N_Attack& pkt);
 bool Handle_N_MonsterFire(PacketSessionRef& session, const se::game::N_MonsterFire& pkt);
+bool Handle_N_MonsterTarget(PacketSessionRef& session, const se::game::N_MonsterTarget& pkt);
 bool Handle_N_ThrowGrenade(PacketSessionRef& session, const se::game::N_ThrowGrenade& pkt);
 bool Handle_N_GrenadeMoveSync(PacketSessionRef& session, const se::game::N_GrenadeMoveSync& pkt);
 bool Handle_N_GrenadeExplosion(PacketSessionRef& session, const se::game::N_GrenadeExplosion& pkt);
@@ -273,6 +275,7 @@ public:
         GPacketHandler[PKT_N_WeaponChanged] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_WeaponChanged>(Handle_N_WeaponChanged, session, buffer, len); };
         GPacketHandler[PKT_N_Attack] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_Attack>(Handle_N_Attack, session, buffer, len); };
         GPacketHandler[PKT_N_MonsterFire] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_MonsterFire>(Handle_N_MonsterFire, session, buffer, len); };
+        GPacketHandler[PKT_N_MonsterTarget] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_MonsterTarget>(Handle_N_MonsterTarget, session, buffer, len); };
         GPacketHandler[PKT_N_ThrowGrenade] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_ThrowGrenade>(Handle_N_ThrowGrenade, session, buffer, len); };
         GPacketHandler[PKT_N_GrenadeMoveSync] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_GrenadeMoveSync>(Handle_N_GrenadeMoveSync, session, buffer, len); };
         GPacketHandler[PKT_N_GrenadeExplosion] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_GrenadeExplosion>(Handle_N_GrenadeExplosion, session, buffer, len); };
