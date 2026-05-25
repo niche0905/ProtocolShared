@@ -33,6 +33,18 @@ message Vector2 {
 }
 
 /*
+ * 회전 표현
+ * yaw, pitch, roll 순서로 회전하는 것으로 가정
+ * 단일 축 회전이 필요한 경우에는 해당 축의 값만 사용
+ */
+
+message Rotator {
+  float yaw = 1;
+  float pitch = 2;
+  float roll = 3;
+}
+
+/*
  * 위치 + 회전 (정적 상태)
  * 순간 스냅샷, 텔레포트, 초기 동기화 등에 사용
  */

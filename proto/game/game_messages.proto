@@ -325,10 +325,11 @@ message N_ThrowGrenade {
   option (se.options.dir) = S2C;
   option (se.options.route) = GAME;
   
-  se.common.ObjectId entity_id = 1;
-  uint32 grenade_type = 2;
-  se.common.Vector3 start_position = 3;
-  se.common.Vector3 direction = 4;
+  se.common.ObjectId owner_id = 1;    // 수류탄을 던진 플레이어의 ID (EntityId)
+  se.common.ObjectId entity_id = 2;   // 수류탄 Entity의 ID (이 패킷을 받으면 이 ID로 수류탄 Entity를 생성하도록)
+  uint32 grenade_type = 3;
+  se.common.Vector3 start_position = 4;
+  se.common.Vector3 direction = 5;
 }
 
 message C_GrenadeMoveSyncReq {
@@ -338,7 +339,8 @@ message C_GrenadeMoveSyncReq {
 
   se.common.ObjectId entity_id = 1;
   se.common.Vector3 position = 2;
-  se.common.Vector3 velocity = 3;
+  se.common.Rotator rotation = 3;
+  se.common.Vector3 velocity = 4;
 }
 
 message N_GrenadeMoveSync {
@@ -349,7 +351,8 @@ message N_GrenadeMoveSync {
 
   se.common.ObjectId entity_id = 1;
   se.common.Vector3 position = 2;
-  se.common.Vector3 velocity = 3;
+  se.common.Rotator rotation = 3;
+  se.common.Vector3 velocity = 4;
 }
 
 message C_GrenadeExplosionReq {
