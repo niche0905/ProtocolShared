@@ -14,7 +14,10 @@
 #else
 #include <cassert>
 #include "Network/Session/PacketSession.h"
+#include "Network/IoBackend.h"
 #include "Network/Buffer/SendBuffer.h"
+#include "Network/Buffer/RioBuffer/RioBufferPool.h"
+#include "Network/Buffer/RioBuffer/RioSendBuffer.h"
 
 // 서버 빌드에서만 필요
 class ServerPacketDispatcher;
@@ -29,7 +32,7 @@ using PacketSessionRef = TSharedPtr<PacketSession>;
 using SendBufferRef = TSharedPtr<SendBuffer>;
 #else
 using PacketSessionRef = std::shared_ptr<PacketSession>;
-using SendBufferRef = std::shared_ptr<SendBuffer>;
+// using SendBufferRef = std::shared_ptr<SendBuffer>;
 #endif
 
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
@@ -113,7 +116,8 @@ private:
 #if UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1
         SendBufferRef sendBuffer = MakeShared<SendBuffer>(packetSize);
 #else
-        SendBufferRef sendBuffer = std::make_shared<SendBuffer>(packetSize);
+        SendBufferRef sendBuffer = MakeNetworkSendBuffer(packetSize);
+        ASSERT_CRASH(sendBuffer != nullptr);
 #endif
 
         PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
