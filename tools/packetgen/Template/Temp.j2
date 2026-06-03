@@ -66,7 +66,8 @@ private:
         PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
         header->size = packetSize;
         header->id = pktId;
-        ASSERT_CRASH(pkt.SerializeToArray(&header[1], dataSize));
+        const bool bSerialized = pkt.SerializeToArray(&header[1], dataSize);
+        ASSERT_CRASH(bSerialized);
         
         sendBuffer->Close(packetSize);
         
