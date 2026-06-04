@@ -308,6 +308,16 @@ message N_MonsterFire {
   float range = 5;          // 몬스터 공격의 사거리 (이펙트 재현에 사용)
 }
 
+message N_MonsterImpact {
+  option (se.options.packet_id) = 4113;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  se.common.ObjectId entity_id = 1;
+  uint32 attack_type = 2;      // 어떤 공격인지 식별할 수 있는 ID
+  se.common.Vector3 position = 3;   // Impact 위치
+}
+
 message C_ThrowGrenadeReq {
   option (se.options.packet_id) = 4120;
   option (se.options.dir) = C2S;
