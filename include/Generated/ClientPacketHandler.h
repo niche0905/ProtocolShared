@@ -148,6 +148,7 @@ enum : uint16
     PKT_N_EntityRespawned = 4391,
     PKT_N_EntityDestroyed = 4392,
     PKT_N_TimeStormChange = 4400,
+    PKT_N_DebugDraw = 4410,
     PKT_C_SpawnMonsterReq = 9001,
     PKT_C_SpawnChestReq = 9002,
     PKT_C_SpawnStoreReq = 9003,
@@ -235,6 +236,7 @@ bool Handle_N_EntityDied(PacketSessionRef& session, const se::game::N_EntityDied
 bool Handle_N_EntityRespawned(PacketSessionRef& session, const se::game::N_EntityRespawned& pkt);
 bool Handle_N_EntityDestroyed(PacketSessionRef& session, const se::game::N_EntityDestroyed& pkt);
 bool Handle_N_TimeStormChange(PacketSessionRef& session, const se::game::N_TimeStormChange& pkt);
+bool Handle_N_DebugDraw(PacketSessionRef& session, const se::game::N_DebugDraw& pkt);
 bool Handle_N_ZoneStop(PacketSessionRef& session, const se::test::N_ZoneStop& pkt);
 bool Handle_N_ZoneStart(PacketSessionRef& session, const se::test::N_ZoneStart& pkt);
 
@@ -315,6 +317,7 @@ public:
         GPacketHandler[PKT_N_EntityRespawned] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityRespawned>(Handle_N_EntityRespawned, session, buffer, len); };
         GPacketHandler[PKT_N_EntityDestroyed] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityDestroyed>(Handle_N_EntityDestroyed, session, buffer, len); };
         GPacketHandler[PKT_N_TimeStormChange] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_TimeStormChange>(Handle_N_TimeStormChange, session, buffer, len); };
+        GPacketHandler[PKT_N_DebugDraw] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_DebugDraw>(Handle_N_DebugDraw, session, buffer, len); };
         GPacketHandler[PKT_N_ZoneStop] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::N_ZoneStop>(Handle_N_ZoneStop, session, buffer, len); };
         GPacketHandler[PKT_N_ZoneStart] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::N_ZoneStart>(Handle_N_ZoneStart, session, buffer, len); };
     }

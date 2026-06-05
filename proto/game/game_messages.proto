@@ -749,3 +749,32 @@ message N_TimeStormChange {
   float waiting_time = 3;         // 타임 스톰이 다음 단계로 변화하기까지 남은 시간 (초 단위)
   float shrinking_time = 4;       // 타임 스톰이 수축하는 데 걸리는 시간 (초 단위)
 }
+
+/*
+ * Debug draw
+ */
+message DebugDrawSphere {
+  se.common.Vector3 position = 1;   // Sphere 중심 위치
+  float radius = 2;                 // Sphere 반지름
+}
+
+message DebugDrawOBB {
+  se.common.Vector3 center = 1;        // OBB 중심 위치
+  se.common.Vector3 half_extents = 2;  // 각 축의 절반 길이
+  se.common.Rotator rotation = 3;      // OBB 회전
+}
+
+message N_DebugDraw {
+  option (se.options.packet_id) = 4410;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  oneof shape {
+    DebugDrawSphere sphere = 1;
+    DebugDrawOBB obb = 2;
+  }
+
+  uint32 color_rgba = 10;   // 0xRRGGBBAA, 0이면 클라이언트 기본 색상 사용
+  float duration = 11;      // 초 단위, 0이면 클라이언트 기본값 사용
+  float thickness = 12;     // 0이면 클라이언트 기본 두께 사용
+}

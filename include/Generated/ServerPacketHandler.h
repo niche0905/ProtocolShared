@@ -148,6 +148,7 @@ enum : uint16
     PKT_N_EntityRespawned = 4391,
     PKT_N_EntityDestroyed = 4392,
     PKT_N_TimeStormChange = 4400,
+    PKT_N_DebugDraw = 4410,
     PKT_C_SpawnMonsterReq = 9001,
     PKT_C_SpawnChestReq = 9002,
     PKT_C_SpawnStoreReq = 9003,
@@ -335,6 +336,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::N_EntityRespawned& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityRespawned); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityDestroyed& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityDestroyed); }
     static SendBufferRef MakeSendBuffer(se::game::N_TimeStormChange& pkt) { return MakeSendBuffer(pkt, PKT_N_TimeStormChange); }
+    static SendBufferRef MakeSendBuffer(se::game::N_DebugDraw& pkt) { return MakeSendBuffer(pkt, PKT_N_DebugDraw); }
     static SendBufferRef MakeSendBuffer(se::test::N_ZoneStop& pkt) { return MakeSendBuffer(pkt, PKT_N_ZoneStop); }
     static SendBufferRef MakeSendBuffer(se::test::N_ZoneStart& pkt) { return MakeSendBuffer(pkt, PKT_N_ZoneStart); }
 
