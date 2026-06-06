@@ -113,8 +113,9 @@ enum : uint16
     PKT_N_ProjectileExplosion = 4126,
     PKT_N_WeaponStatChanged = 4130,
     PKT_N_WeaponStatSnapshot = 4131,
-    PKT_C_UseAbilityReq = 4140,
-    PKT_N_UseAbility = 4141,
+    PKT_C_UseSkillReq = 4140,
+    PKT_S_UseSkillRes = 4141,
+    PKT_N_UseSkill = 4142,
     PKT_N_EntityHit = 4150,
     PKT_N_KillPlayer = 4190,
     PKT_C_UseItemReq = 4200,
@@ -209,7 +210,8 @@ bool Handle_N_GrenadeExplosion(PacketSessionRef& session, const se::game::N_Gren
 bool Handle_N_ProjectileExplosion(PacketSessionRef& session, const se::game::N_ProjectileExplosion& pkt);
 bool Handle_N_WeaponStatChanged(PacketSessionRef& session, const se::game::N_WeaponStatChanged& pkt);
 bool Handle_N_WeaponStatSnapshot(PacketSessionRef& session, const se::game::N_WeaponStatSnapshot& pkt);
-bool Handle_N_UseAbility(PacketSessionRef& session, const se::game::N_UseAbility& pkt);
+bool Handle_S_UseSkillRes(PacketSessionRef& session, const se::game::S_UseSkillRes& pkt);
+bool Handle_N_UseSkill(PacketSessionRef& session, const se::game::N_UseSkill& pkt);
 bool Handle_N_EntityHit(PacketSessionRef& session, const se::game::N_EntityHit& pkt);
 bool Handle_N_KillPlayer(PacketSessionRef& session, const se::game::N_KillPlayer& pkt);
 bool Handle_S_UseItemRes(PacketSessionRef& session, const se::game::S_UseItemRes& pkt);
@@ -290,7 +292,8 @@ public:
         GPacketHandler[PKT_N_ProjectileExplosion] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_ProjectileExplosion>(Handle_N_ProjectileExplosion, session, buffer, len); };
         GPacketHandler[PKT_N_WeaponStatChanged] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_WeaponStatChanged>(Handle_N_WeaponStatChanged, session, buffer, len); };
         GPacketHandler[PKT_N_WeaponStatSnapshot] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_WeaponStatSnapshot>(Handle_N_WeaponStatSnapshot, session, buffer, len); };
-        GPacketHandler[PKT_N_UseAbility] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_UseAbility>(Handle_N_UseAbility, session, buffer, len); };
+        GPacketHandler[PKT_S_UseSkillRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::S_UseSkillRes>(Handle_S_UseSkillRes, session, buffer, len); };
+        GPacketHandler[PKT_N_UseSkill] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_UseSkill>(Handle_N_UseSkill, session, buffer, len); };
         GPacketHandler[PKT_N_EntityHit] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityHit>(Handle_N_EntityHit, session, buffer, len); };
         GPacketHandler[PKT_N_KillPlayer] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_KillPlayer>(Handle_N_KillPlayer, session, buffer, len); };
         GPacketHandler[PKT_S_UseItemRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::S_UseItemRes>(Handle_S_UseItemRes, session, buffer, len); };
@@ -346,7 +349,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::C_ThrowGrenadeReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ThrowGrenadeReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_GrenadeMoveSyncReq& pkt) { return MakeSendBuffer(pkt, PKT_C_GrenadeMoveSyncReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_GrenadeExplosionReq& pkt) { return MakeSendBuffer(pkt, PKT_C_GrenadeExplosionReq); }
-    static SendBufferRef MakeSendBuffer(se::game::C_UseAbilityReq& pkt) { return MakeSendBuffer(pkt, PKT_C_UseAbilityReq); }
+    static SendBufferRef MakeSendBuffer(se::game::C_UseSkillReq& pkt) { return MakeSendBuffer(pkt, PKT_C_UseSkillReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_UseItemReq& pkt) { return MakeSendBuffer(pkt, PKT_C_UseItemReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_ChestInteractReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ChestInteractReq); }
     static SendBufferRef MakeSendBuffer(se::game::C_PickupItemReq& pkt) { return MakeSendBuffer(pkt, PKT_C_PickupItemReq); }

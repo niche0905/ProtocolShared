@@ -51,3 +51,26 @@ message ItemStack {
   uint32 item_id = 1;
   uint32 amount = 2;
 }
+
+message SkillSlotSnapshot {
+  uint32 slot_index = 1;
+  uint32 skill_id = 2;
+}
+
+message TimeAccelEffect {
+  uint32 fire_rate_bonus_percent = 1;    // 30 means +30%
+  uint32 move_speed_bonus_percent = 2;   // 20 means +20%
+}
+
+message TimeAfterImageEffect {
+  se.common.Vector3 start_position = 1;
+  se.common.Vector3 direction = 2;
+  float move_speed = 3;
+}
+
+message TimeRewindEffect {
+  uint32 rewind_duration_ms = 1;
+  uint32 invulnerable_duration_ms = 2;
+  int32 target_health = 3;
+  se.common.Vector3 target_position = 4;
+}
