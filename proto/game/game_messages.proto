@@ -421,6 +421,11 @@ message C_UseSkillReq {
   
   uint32 slot_index = 1;   // 사용할 스킬 슬롯
   uint32 skill_id = 2;     // 클라이언트가 해당 슬롯에 장착됐다고 판단한 스킬 ID (서버 슬롯 상태와 비교 검증)
+
+  oneof detail {
+    TimeAfterImageReq after_image = 10;
+    TimeRewindReq rewind = 11;
+  }
 }
 
 message S_UseSkillRes {

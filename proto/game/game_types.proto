@@ -62,6 +62,16 @@ message TimeAccelEffect {
   uint32 move_speed_bonus_percent = 2;   // 20 means +20%
 }
 
+message TimeAfterImageReq {
+  se.common.Vector3 start_position = 1;   // 클라이언트가 스킬 사용을 시작한 위치
+  se.common.Vector3 direction = 2;        // 잔상이 돌진할 방향
+}
+
+message TimeRewindReq {
+  uint32 rewind_duration_ms = 1;                  // 클라이언트가 요청한 역행 시간
+  se.common.Vector3 predicted_target_position = 2; // 클라이언트가 예상한 역행 후 위치
+}
+
 message TimeAfterImageEffect {
   se.common.Vector3 start_position = 1;
   se.common.Vector3 direction = 2;
