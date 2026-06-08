@@ -57,6 +57,11 @@ message SkillSlotSnapshot {
   uint32 skill_id = 2;
 }
 
+message StoreEntryInitData {
+  uint32 store_item_id = 1;   // 상점 Entry ID (C_UseStoreReq.store_item_id와 동일한 값)
+  int32 price = 2;            // 초기 표시 가격
+}
+
 message TimeAccelEffect {
   uint32 fire_rate_bonus_percent = 1;    // 30 means +30%
   uint32 move_speed_bonus_percent = 2;   // 20 means +20%

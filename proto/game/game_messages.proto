@@ -52,6 +52,14 @@ message N_PlayerGameResult {
   string killer = 3;    // 플레이어를 죽인 상대의 이름 (없다면 빈 문자열)
 }
 
+message N_GameDataInit {
+  option (se.options.packet_id) = 4005;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = GAME;
+
+  repeated StoreEntryInitData store_entries = 1;   // 상점 Entry별 초기 표시 가격
+}
+
 /*
  * Movement
  */

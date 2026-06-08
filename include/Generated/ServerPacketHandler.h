@@ -75,6 +75,7 @@ enum : uint16
     PKT_N_GameEnd = 4002,
     PKT_N_PlayerInitSetup = 4003,
     PKT_N_PlayerGameResult = 4004,
+    PKT_N_GameDataInit = 4005,
     PKT_C_MoveReq = 4010,
     PKT_N_Move = 4011,
     PKT_C_JumpReq = 4020,
@@ -287,6 +288,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::N_GameEnd& pkt) { return MakeSendBuffer(pkt, PKT_N_GameEnd); }
     static SendBufferRef MakeSendBuffer(se::game::N_PlayerInitSetup& pkt) { return MakeSendBuffer(pkt, PKT_N_PlayerInitSetup); }
     static SendBufferRef MakeSendBuffer(se::game::N_PlayerGameResult& pkt) { return MakeSendBuffer(pkt, PKT_N_PlayerGameResult); }
+    static SendBufferRef MakeSendBuffer(se::game::N_GameDataInit& pkt) { return MakeSendBuffer(pkt, PKT_N_GameDataInit); }
     static SendBufferRef MakeSendBuffer(se::game::N_Move& pkt) { return MakeSendBuffer(pkt, PKT_N_Move); }
     static SendBufferRef MakeSendBuffer(se::game::N_Jump& pkt) { return MakeSendBuffer(pkt, PKT_N_Jump); }
     static SendBufferRef MakeSendBuffer(se::game::N_DoubleJump& pkt) { return MakeSendBuffer(pkt, PKT_N_DoubleJump); }
