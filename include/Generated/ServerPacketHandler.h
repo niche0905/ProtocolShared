@@ -146,6 +146,7 @@ enum : uint16
     PKT_C_SkillEquipReq = 4321,
     PKT_S_SkillEquipRes = 4322,
     PKT_N_SkillUnlockSnapshot = 4323,
+    PKT_N_SkillEquip = 4324,
     PKT_N_EntityDied = 4390,
     PKT_N_EntityRespawned = 4391,
     PKT_N_EntityDestroyed = 4392,
@@ -336,6 +337,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::N_SkillUnlock& pkt) { return MakeSendBuffer(pkt, PKT_N_SkillUnlock); }
     static SendBufferRef MakeSendBuffer(se::game::S_SkillEquipRes& pkt) { return MakeSendBuffer(pkt, PKT_S_SkillEquipRes); }
     static SendBufferRef MakeSendBuffer(se::game::N_SkillUnlockSnapshot& pkt) { return MakeSendBuffer(pkt, PKT_N_SkillUnlockSnapshot); }
+    static SendBufferRef MakeSendBuffer(se::game::N_SkillEquip& pkt) { return MakeSendBuffer(pkt, PKT_N_SkillEquip); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityDied& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityDied); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityRespawned& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityRespawned); }
     static SendBufferRef MakeSendBuffer(se::game::N_EntityDestroyed& pkt) { return MakeSendBuffer(pkt, PKT_N_EntityDestroyed); }

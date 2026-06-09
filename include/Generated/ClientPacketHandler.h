@@ -146,6 +146,7 @@ enum : uint16
     PKT_C_SkillEquipReq = 4321,
     PKT_S_SkillEquipRes = 4322,
     PKT_N_SkillUnlockSnapshot = 4323,
+    PKT_N_SkillEquip = 4324,
     PKT_N_EntityDied = 4390,
     PKT_N_EntityRespawned = 4391,
     PKT_N_EntityDestroyed = 4392,
@@ -236,6 +237,7 @@ bool Handle_N_TimePointSnapshot(PacketSessionRef& session, const se::game::N_Tim
 bool Handle_N_SkillUnlock(PacketSessionRef& session, const se::game::N_SkillUnlock& pkt);
 bool Handle_S_SkillEquipRes(PacketSessionRef& session, const se::game::S_SkillEquipRes& pkt);
 bool Handle_N_SkillUnlockSnapshot(PacketSessionRef& session, const se::game::N_SkillUnlockSnapshot& pkt);
+bool Handle_N_SkillEquip(PacketSessionRef& session, const se::game::N_SkillEquip& pkt);
 bool Handle_N_EntityDied(PacketSessionRef& session, const se::game::N_EntityDied& pkt);
 bool Handle_N_EntityRespawned(PacketSessionRef& session, const se::game::N_EntityRespawned& pkt);
 bool Handle_N_EntityDestroyed(PacketSessionRef& session, const se::game::N_EntityDestroyed& pkt);
@@ -319,6 +321,7 @@ public:
         GPacketHandler[PKT_N_SkillUnlock] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_SkillUnlock>(Handle_N_SkillUnlock, session, buffer, len); };
         GPacketHandler[PKT_S_SkillEquipRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::S_SkillEquipRes>(Handle_S_SkillEquipRes, session, buffer, len); };
         GPacketHandler[PKT_N_SkillUnlockSnapshot] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_SkillUnlockSnapshot>(Handle_N_SkillUnlockSnapshot, session, buffer, len); };
+        GPacketHandler[PKT_N_SkillEquip] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_SkillEquip>(Handle_N_SkillEquip, session, buffer, len); };
         GPacketHandler[PKT_N_EntityDied] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityDied>(Handle_N_EntityDied, session, buffer, len); };
         GPacketHandler[PKT_N_EntityRespawned] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityRespawned>(Handle_N_EntityRespawned, session, buffer, len); };
         GPacketHandler[PKT_N_EntityDestroyed] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityDestroyed>(Handle_N_EntityDestroyed, session, buffer, len); };
