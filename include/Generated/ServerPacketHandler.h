@@ -131,6 +131,8 @@ enum : uint16
     PKT_N_EquipItem = 4232,
     PKT_C_UseStoreReq = 4240,
     PKT_S_UseStoreRes = 4241,
+    PKT_N_StoreEntryBlock = 4242,
+    PKT_N_StoreEntrySnapshot = 4243,
     PKT_N_ItemGained = 4250,
     PKT_N_ItemLost = 4251,
     PKT_N_ItemSnapshot = 4252,
@@ -324,6 +326,8 @@ public:
     static SendBufferRef MakeSendBuffer(se::game::S_EquipItemRes& pkt) { return MakeSendBuffer(pkt, PKT_S_EquipItemRes); }
     static SendBufferRef MakeSendBuffer(se::game::N_EquipItem& pkt) { return MakeSendBuffer(pkt, PKT_N_EquipItem); }
     static SendBufferRef MakeSendBuffer(se::game::S_UseStoreRes& pkt) { return MakeSendBuffer(pkt, PKT_S_UseStoreRes); }
+    static SendBufferRef MakeSendBuffer(se::game::N_StoreEntryBlock& pkt) { return MakeSendBuffer(pkt, PKT_N_StoreEntryBlock); }
+    static SendBufferRef MakeSendBuffer(se::game::N_StoreEntrySnapshot& pkt) { return MakeSendBuffer(pkt, PKT_N_StoreEntrySnapshot); }
     static SendBufferRef MakeSendBuffer(se::game::N_ItemGained& pkt) { return MakeSendBuffer(pkt, PKT_N_ItemGained); }
     static SendBufferRef MakeSendBuffer(se::game::N_ItemLost& pkt) { return MakeSendBuffer(pkt, PKT_N_ItemLost); }
     static SendBufferRef MakeSendBuffer(se::game::N_ItemSnapshot& pkt) { return MakeSendBuffer(pkt, PKT_N_ItemSnapshot); }

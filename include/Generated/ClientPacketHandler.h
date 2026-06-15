@@ -131,6 +131,8 @@ enum : uint16
     PKT_N_EquipItem = 4232,
     PKT_C_UseStoreReq = 4240,
     PKT_S_UseStoreRes = 4241,
+    PKT_N_StoreEntryBlock = 4242,
+    PKT_N_StoreEntrySnapshot = 4243,
     PKT_N_ItemGained = 4250,
     PKT_N_ItemLost = 4251,
     PKT_N_ItemSnapshot = 4252,
@@ -224,6 +226,8 @@ bool Handle_N_PickupItem(PacketSessionRef& session, const se::game::N_PickupItem
 bool Handle_S_EquipItemRes(PacketSessionRef& session, const se::game::S_EquipItemRes& pkt);
 bool Handle_N_EquipItem(PacketSessionRef& session, const se::game::N_EquipItem& pkt);
 bool Handle_S_UseStoreRes(PacketSessionRef& session, const se::game::S_UseStoreRes& pkt);
+bool Handle_N_StoreEntryBlock(PacketSessionRef& session, const se::game::N_StoreEntryBlock& pkt);
+bool Handle_N_StoreEntrySnapshot(PacketSessionRef& session, const se::game::N_StoreEntrySnapshot& pkt);
 bool Handle_N_ItemGained(PacketSessionRef& session, const se::game::N_ItemGained& pkt);
 bool Handle_N_ItemLost(PacketSessionRef& session, const se::game::N_ItemLost& pkt);
 bool Handle_N_ItemSnapshot(PacketSessionRef& session, const se::game::N_ItemSnapshot& pkt);
@@ -308,6 +312,8 @@ public:
         GPacketHandler[PKT_S_EquipItemRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::S_EquipItemRes>(Handle_S_EquipItemRes, session, buffer, len); };
         GPacketHandler[PKT_N_EquipItem] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EquipItem>(Handle_N_EquipItem, session, buffer, len); };
         GPacketHandler[PKT_S_UseStoreRes] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::S_UseStoreRes>(Handle_S_UseStoreRes, session, buffer, len); };
+        GPacketHandler[PKT_N_StoreEntryBlock] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_StoreEntryBlock>(Handle_N_StoreEntryBlock, session, buffer, len); };
+        GPacketHandler[PKT_N_StoreEntrySnapshot] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_StoreEntrySnapshot>(Handle_N_StoreEntrySnapshot, session, buffer, len); };
         GPacketHandler[PKT_N_ItemGained] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_ItemGained>(Handle_N_ItemGained, session, buffer, len); };
         GPacketHandler[PKT_N_ItemLost] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_ItemLost>(Handle_N_ItemLost, session, buffer, len); };
         GPacketHandler[PKT_N_ItemSnapshot] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_ItemSnapshot>(Handle_N_ItemSnapshot, session, buffer, len); };
