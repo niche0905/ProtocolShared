@@ -110,8 +110,12 @@ private:
     template<typename T>
     static SendBufferRef MakeSendBuffer(T& pkt, uint16 pktId)
     {
-        const int16 dataSize = static_cast<int32>(pkt.ByteSizeLong());
-        const int16 packetSize = dataSize + sizeof(PacketHeader);
+        const size_t dataSize = pkt.ByteSizeLong();
+        constexpr size_t MaxPacketSize = UINT16_MAX;
+        if (dataSize > MaxPacketSize - sizeof(PacketHeader))
+            return nullptr;
+
+        const uint16 packetSize = static_cast<uint16>(dataSize + sizeof(PacketHeader));
         
 #if UE_BUILD_DEBUG + UE_BUILD_DEVELOPMENT + UE_BUILD_TEST + UE_BUILD_SHIPPING >= 1
         SendBufferRef sendBuffer = MakeShared<SendBuffer>(packetSize);
@@ -123,7 +127,11 @@ private:
         PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
         header->packetSize = packetSize;
         header->messageId = pktId;
+<<<<<<< Updated upstream
         const bool bSerialized = pkt.SerializeToArray(&header[1], dataSize);
+=======
+        const bool bSerialized = pkt.SerializeToArray(&header[1], static_cast<int32>(dataSize));
+>>>>>>> Stashed changes
         ASSERT_CRASH(bSerialized);
         
         sendBuffer->Close(packetSize);
