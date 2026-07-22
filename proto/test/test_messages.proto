@@ -73,6 +73,26 @@ message C_MaxHealthReq {
 }
 
 /*
+ * Teleport
+ */
+
+message C_TPAllReq {
+  option (se.options.packet_id) = 9020;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  se.common.Vector3 position = 1;   // 방의 모든 플레이어를 이동시킬 목적지
+}
+
+message N_TPPos {
+  option (se.options.packet_id) = 9021;
+  option (se.options.dir) = S2C;
+  option (se.options.route) = TEST;
+
+  se.common.Vector3 position = 1;     // 서버에서 확정한 순간이동 위치
+}
+
+/*
  * 
  */
 

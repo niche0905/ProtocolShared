@@ -161,6 +161,8 @@ enum : uint16
     PKT_C_MoneyReq = 9011,
     PKT_C_HealthReq = 9012,
     PKT_C_MaxHealthReq = 9013,
+    PKT_C_TPAllReq = 9020,
+    PKT_N_TPPos = 9021,
     PKT_C_ZoneStopReq = 9090,
     PKT_C_ZoneStartReq = 9091,
     PKT_C_ZoneResetReq = 9092,
@@ -247,6 +249,7 @@ bool Handle_N_EntityRespawned(PacketSessionRef& session, const se::game::N_Entit
 bool Handle_N_EntityDestroyed(PacketSessionRef& session, const se::game::N_EntityDestroyed& pkt);
 bool Handle_N_TimeStormChange(PacketSessionRef& session, const se::game::N_TimeStormChange& pkt);
 bool Handle_N_DebugDraw(PacketSessionRef& session, const se::game::N_DebugDraw& pkt);
+bool Handle_N_TPPos(PacketSessionRef& session, const se::test::N_TPPos& pkt);
 bool Handle_N_ZoneStop(PacketSessionRef& session, const se::test::N_ZoneStop& pkt);
 bool Handle_N_ZoneStart(PacketSessionRef& session, const se::test::N_ZoneStart& pkt);
 
@@ -333,6 +336,7 @@ public:
         GPacketHandler[PKT_N_EntityDestroyed] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_EntityDestroyed>(Handle_N_EntityDestroyed, session, buffer, len); };
         GPacketHandler[PKT_N_TimeStormChange] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_TimeStormChange>(Handle_N_TimeStormChange, session, buffer, len); };
         GPacketHandler[PKT_N_DebugDraw] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::game::N_DebugDraw>(Handle_N_DebugDraw, session, buffer, len); };
+        GPacketHandler[PKT_N_TPPos] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::N_TPPos>(Handle_N_TPPos, session, buffer, len); };
         GPacketHandler[PKT_N_ZoneStop] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::N_ZoneStop>(Handle_N_ZoneStop, session, buffer, len); };
         GPacketHandler[PKT_N_ZoneStart] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::N_ZoneStart>(Handle_N_ZoneStart, session, buffer, len); };
     }
@@ -376,6 +380,7 @@ public:
     static SendBufferRef MakeSendBuffer(se::test::C_MoneyReq& pkt) { return MakeSendBuffer(pkt, PKT_C_MoneyReq); }
     static SendBufferRef MakeSendBuffer(se::test::C_HealthReq& pkt) { return MakeSendBuffer(pkt, PKT_C_HealthReq); }
     static SendBufferRef MakeSendBuffer(se::test::C_MaxHealthReq& pkt) { return MakeSendBuffer(pkt, PKT_C_MaxHealthReq); }
+    static SendBufferRef MakeSendBuffer(se::test::C_TPAllReq& pkt) { return MakeSendBuffer(pkt, PKT_C_TPAllReq); }
     static SendBufferRef MakeSendBuffer(se::test::C_ZoneStopReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ZoneStopReq); }
     static SendBufferRef MakeSendBuffer(se::test::C_ZoneStartReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ZoneStartReq); }
     static SendBufferRef MakeSendBuffer(se::test::C_ZoneResetReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ZoneResetReq); }
