@@ -81,6 +81,30 @@ message C_ItemReqAll {
   int32 quantity = 2;
 }
 
+message C_MoneyReqAll {
+  option (se.options.packet_id) = 9015;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  int32 amount = 1;
+}
+
+message C_HealthReqAll {
+  option (se.options.packet_id) = 9016;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  int32 health = 1;
+}
+
+message C_MaxHealthReqAll {
+  option (se.options.packet_id) = 9017;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  int32 max_health = 1;
+}
+
 /*
  * Teleport
  */

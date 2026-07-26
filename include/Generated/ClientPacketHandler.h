@@ -162,6 +162,9 @@ enum : uint16
     PKT_C_HealthReq = 9012,
     PKT_C_MaxHealthReq = 9013,
     PKT_C_ItemReqAll = 9014,
+    PKT_C_MoneyReqAll = 9015,
+    PKT_C_HealthReqAll = 9016,
+    PKT_C_MaxHealthReqAll = 9017,
     PKT_C_TPAllReq = 9020,
     PKT_N_TPPos = 9021,
     PKT_C_ZoneStopReq = 9090,
@@ -382,6 +385,9 @@ public:
     static SendBufferRef MakeSendBuffer(se::test::C_HealthReq& pkt) { return MakeSendBuffer(pkt, PKT_C_HealthReq); }
     static SendBufferRef MakeSendBuffer(se::test::C_MaxHealthReq& pkt) { return MakeSendBuffer(pkt, PKT_C_MaxHealthReq); }
     static SendBufferRef MakeSendBuffer(se::test::C_ItemReqAll& pkt) { return MakeSendBuffer(pkt, PKT_C_ItemReqAll); }
+    static SendBufferRef MakeSendBuffer(se::test::C_MoneyReqAll& pkt) { return MakeSendBuffer(pkt, PKT_C_MoneyReqAll); }
+    static SendBufferRef MakeSendBuffer(se::test::C_HealthReqAll& pkt) { return MakeSendBuffer(pkt, PKT_C_HealthReqAll); }
+    static SendBufferRef MakeSendBuffer(se::test::C_MaxHealthReqAll& pkt) { return MakeSendBuffer(pkt, PKT_C_MaxHealthReqAll); }
     static SendBufferRef MakeSendBuffer(se::test::C_TPAllReq& pkt) { return MakeSendBuffer(pkt, PKT_C_TPAllReq); }
     static SendBufferRef MakeSendBuffer(se::test::C_ZoneStopReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ZoneStopReq); }
     static SendBufferRef MakeSendBuffer(se::test::C_ZoneStartReq& pkt) { return MakeSendBuffer(pkt, PKT_C_ZoneStartReq); }
