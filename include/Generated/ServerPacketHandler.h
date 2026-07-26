@@ -161,6 +161,7 @@ enum : uint16
     PKT_C_MoneyReq = 9011,
     PKT_C_HealthReq = 9012,
     PKT_C_MaxHealthReq = 9013,
+    PKT_C_ItemReqAll = 9014,
     PKT_C_TPAllReq = 9020,
     PKT_N_TPPos = 9021,
     PKT_C_ZoneStopReq = 9090,
@@ -214,6 +215,7 @@ bool Handle_C_ItemReq(PacketSessionRef& session, const se::test::C_ItemReq& pkt)
 bool Handle_C_MoneyReq(PacketSessionRef& session, const se::test::C_MoneyReq& pkt);
 bool Handle_C_HealthReq(PacketSessionRef& session, const se::test::C_HealthReq& pkt);
 bool Handle_C_MaxHealthReq(PacketSessionRef& session, const se::test::C_MaxHealthReq& pkt);
+bool Handle_C_ItemReqAll(PacketSessionRef& session, const se::test::C_ItemReqAll& pkt);
 bool Handle_C_TPAllReq(PacketSessionRef& session, const se::test::C_TPAllReq& pkt);
 bool Handle_C_ZoneStopReq(PacketSessionRef& session, const se::test::C_ZoneStopReq& pkt);
 bool Handle_C_ZoneStartReq(PacketSessionRef& session, const se::test::C_ZoneStartReq& pkt);
@@ -269,6 +271,7 @@ public:
         GPacketHandler[PKT_C_MoneyReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_MoneyReq>(Handle_C_MoneyReq, session, buffer, len); };
         GPacketHandler[PKT_C_HealthReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_HealthReq>(Handle_C_HealthReq, session, buffer, len); };
         GPacketHandler[PKT_C_MaxHealthReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_MaxHealthReq>(Handle_C_MaxHealthReq, session, buffer, len); };
+        GPacketHandler[PKT_C_ItemReqAll] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_ItemReqAll>(Handle_C_ItemReqAll, session, buffer, len); };
         GPacketHandler[PKT_C_TPAllReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_TPAllReq>(Handle_C_TPAllReq, session, buffer, len); };
         GPacketHandler[PKT_C_ZoneStopReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_ZoneStopReq>(Handle_C_ZoneStopReq, session, buffer, len); };
         GPacketHandler[PKT_C_ZoneStartReq] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<se::test::C_ZoneStartReq>(Handle_C_ZoneStartReq, session, buffer, len); };

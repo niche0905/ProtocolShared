@@ -72,6 +72,15 @@ message C_MaxHealthReq {
   int32 max_health = 1;
 }
 
+message C_ItemReqAll {
+  option (se.options.packet_id) = 9014;
+  option (se.options.dir) = C2S;
+  option (se.options.route) = TEST;
+
+  uint32 item_id = 1;
+  int32 quantity = 2;
+}
+
 /*
  * Teleport
  */
